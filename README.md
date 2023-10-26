@@ -36,31 +36,31 @@
 ==========================================================================================
 # Rozřazené požadavky
 Relační model
-- 3) nastavit sekvence/ auto-inkrement pro každý pk
+- 3. nastavit sekvence/ auto-inkrement pro každý pk
 
 # developer
-- 4) 3 pohledy
-- 5) 3 funkce
-- 6) procedury
-- 7) trigger
-- 10) implicitní a explicitní kurzoz - možná pro vracení hesel z db 
-- 13) procedury - pro veškeré vládání nebo modifikace
-- 15) Aplikace využívá triggery k logování, zasílání zpráv mezi uživateli, apod
-- 16) DA využívá plnohodnotné vlastní funkce, které jsou vhodně nasazeny.
-- 19) DA využívá z datové vrstvy vlastní hierarchický dotaz, který je vhodně využit dle tématu semestrální práce.
-- 27) Všechny tabulky musí být naplněny řádnými daty, nikoliv zkušebními.
+- 4. 3 pohledy
+- 5. 3 funkce
+- 6. procedury
+- 7. trigger
+- 10. implicitní a explicitní kurzoz - možná pro vracení hesel z db 
+- 13. procedury - pro veškeré vládání nebo modifikace
+- 15. Aplikace využívá triggery k logování, zasílání zpráv mezi uživateli, apod
+- 16. DA využívá plnohodnotné vlastní funkce, které jsou vhodně nasazeny.
+- 19. DA využívá z datové vrstvy vlastní hierarchický dotaz, který je vhodně využit dle tématu semestrální práce.
+- 27. Všechny tabulky musí být naplněny řádnými daty, nikoliv zkušebními.
 
 # c#
-- 9) 3 formuláře
-- 11) neregistrovaný uživatel má omezené možnosti
-- 12) DA umožňuje vyhledávat a zobrazovat výsledky o všech přístupných datech v jednotlivých tabulkách dle svého oprávnění. V případě tabulky obsahující BLOB pak zobrazí název dokumentu/obrázku/jiného binárního souboru dle zvoleného tématu a návazné informace alespoň ze dvou tabulek.
-- 13) procedury - pro veškeré vládání nebo modifikace
-- 15) Aplikace využívá triggery k logování, zasílání zpráv mezi uživateli, apod
-- 16) DA využívá plnohodnotné vlastní funkce, které jsou vhodně nasazeny.
-- 19) DA využívá z datové vrstvy vlastní hierarchický dotaz, který je vhodně využit dle tématu semestrální práce.
-- 20) DA eviduje a spravuje údaje o všech uživatelích, kteří mají do aplikace přístup.
-- 21) DA umožňuje pracovat i s číselníky.
-- 22) DA má implementované veškerá pravidla, omezení, apod., která byla popsána v projektu z předmětu BDAS1/IDAS1 a nebyla řešena na datové vrstvě.
+- 9. 3 formuláře
+- 11. neregistrovaný uživatel má omezené možnosti
+- 12. DA umožňuje vyhledávat a zobrazovat výsledky o všech přístupných datech v jednotlivých tabulkách dle svého oprávnění. V případě tabulky obsahující BLOB pak zobrazí název dokumentu/obrázku/jiného binárního souboru dle zvoleného tématu a návazné informace alespoň ze dvou tabulek.
+- 13. procedury - pro veškeré vládání nebo modifikace
+- 15. Aplikace využívá triggery k logování, zasílání zpráv mezi uživateli, apod
+- 16. DA využívá plnohodnotné vlastní funkce, které jsou vhodně nasazeny.
+- 19. DA využívá z datové vrstvy vlastní hierarchický dotaz, který je vhodně využit dle tématu semestrální práce.
+- 20. DA eviduje a spravuje údaje o všech uživatelích, kteří mají do aplikace přístup.
+- 21. DA umožňuje pracovat i s číselníky.
+- 22. DA má implementované veškerá pravidla, omezení, apod., která byla popsána v projektu z předmětu BDAS1/IDAS1 a nebyla řešena na datové vrstvě.
 	PROCEDURÁLNÍ PRAVIDLA
 	•	PACIENT
 		o	Pokud byl u pacienta prováděným výkonem změna pohlaví, je nutné změnit položku pohlaví.
@@ -73,12 +73,12 @@ Relační model
 		o	Zkratka – jedná se o třímístný číselný kód, pod kterým pojišťovna vystupuje a ne zkratku odvozenou od názvu pojišťovny
 	•	ADRESA
 		o	Atribut stát v adrese musí být vyplněn ve formě dvoumístného alfabetického kódu státu.
-- 23) DA je navržena tak, aby uchovávala historii o vkládání či úpravách jednotlivých záznamů, toto je zobrazeno pouze uživatelům s rolí Administrátor.
-- 24) V DA existuje funkcionalita, které umožňuje nezobrazovat osobní údaje jiným uživatelům jako například rodné číslo, telefon, číslo účtu, apod. Toto neplatí pro uživatele v roli Administrátor, ty mají plný přístup všude.
-- 25) DA umožňuje přidávat, modifikovat a mazat záznamy ve všech tabulkách dle oprávnění uživatele.
-- 26) Aplikace bude mít menu nastaveno tak, že je možné z jedné karty přepnout na všechny ostatní, tak aby byla zaručena příjemná uživatelská správa.
-- 28) Aplikace se skládá z hlavního okna, kde má možnost neregistrovaný uživatel procházet povolené položky menu. Hlavní okno aplikace také umožňuje přihlásit registrovaného uživatele.
-- 29) Administrátor může spravovat jakákoliv data a zároveň se může přepnout (emulovat) na jakéhokoliv jiného uživatele.
-- 30) Uživatel si nemůže sám zvolit při registraci svoji roli, vždy obdrží roli s nejnižšími právy a poté jej může změnit administrátor.
-- 31) Databázová aplikace bude umožňovat výpis všech použitých databázových objektů  v semestrální práci (využijte systémový katalog).
-- 32) Všechny číselníky se v DA chovají jako číselníky, tzn. že bude využit např. combobox, apod. Data z tabulky označená jako číselník nebude uživatel ručně zapisovat.
+- 23. DA je navržena tak, aby uchovávala historii o vkládání či úpravách jednotlivých záznamů, toto je zobrazeno pouze uživatelům s rolí Administrátor.
+- 24. V DA existuje funkcionalita, které umožňuje nezobrazovat osobní údaje jiným uživatelům jako například rodné číslo, telefon, číslo účtu, apod. Toto neplatí pro uživatele v roli Administrátor, ty mají plný přístup všude.
+- 25. DA umožňuje přidávat, modifikovat a mazat záznamy ve všech tabulkách dle oprávnění uživatele.
+- 26. Aplikace bude mít menu nastaveno tak, že je možné z jedné karty přepnout na všechny ostatní, tak aby byla zaručena příjemná uživatelská správa.
+- 28. Aplikace se skládá z hlavního okna, kde má možnost neregistrovaný uživatel procházet povolené položky menu. Hlavní okno aplikace také umožňuje přihlásit registrovaného uživatele.
+- 29. Administrátor může spravovat jakákoliv data a zároveň se může přepnout (emulovat) na jakéhokoliv jiného uživatele.
+- 30. Uživatel si nemůže sám zvolit při registraci svoji roli, vždy obdrží roli s nejnižšími právy a poté jej může změnit administrátor.
+- 31. Databázová aplikace bude umožňovat výpis všech použitých databázových objektů  v semestrální práci (využijte systémový katalog).
+- 32. Všechny číselníky se v DA chovají jako číselníky, tzn. že bude využit např. combobox, apod. Data z tabulky označená jako číselník nebude uživatel ručně zapisovat.
