@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Database_Hospital_Application.DatabaseTools
+namespace Database_Hospital_Application.Models.DatabaseTools
 {
     public class DatabaseConnection
     {
