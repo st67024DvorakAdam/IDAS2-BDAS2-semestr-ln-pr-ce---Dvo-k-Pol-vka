@@ -34,11 +34,11 @@
 32. Všechny číselníky se v DA chovají jako číselníky, tzn. že bude využit např. combobox, apod. Data z tabulky označená jako číselník nebude uživatel ručně zapisovat.
 
 ==========================================================================================
-#Rozřazené požadavky
+# Rozřazené požadavky
 Relační model
 - 3) nastavit sekvence/ auto-inkrement pro každý pk
 
-#developer
+# developer
 - 4) 3 pohledy
 - 5) 3 funkce
 - 6) procedury
@@ -50,7 +50,7 @@ Relační model
 - 19) DA využívá z datové vrstvy vlastní hierarchický dotaz, který je vhodně využit dle tématu semestrální práce.
 - 27) Všechny tabulky musí být naplněny řádnými daty, nikoliv zkušebními.
 
-#c#
+# c#
 - 9) 3 formuláře
 - 11) neregistrovaný uživatel má omezené možnosti
 - 12) DA umožňuje vyhledávat a zobrazovat výsledky o všech přístupných datech v jednotlivých tabulkách dle svého oprávnění. V případě tabulky obsahující BLOB pak zobrazí název dokumentu/obrázku/jiného binárního souboru dle zvoleného tématu a návazné informace alespoň ze dvou tabulek.
