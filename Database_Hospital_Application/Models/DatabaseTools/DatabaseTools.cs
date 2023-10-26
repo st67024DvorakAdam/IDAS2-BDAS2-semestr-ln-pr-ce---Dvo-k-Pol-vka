@@ -1,4 +1,5 @@
-﻿using Oracle.ManagedDataAccess.Client;
+﻿using Database_Hospital_Application.Models.Entities;
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -33,6 +34,9 @@ namespace Database_Hospital_Application.Models.DatabaseTools
                 conn.Close();
             }
         }
+
+        
+
 
 
     }
