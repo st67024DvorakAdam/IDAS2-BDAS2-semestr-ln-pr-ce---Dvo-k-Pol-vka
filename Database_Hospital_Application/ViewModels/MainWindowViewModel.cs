@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Database_Hospital_Application.ViewModels
 {
-    internal class MainWindowViewModel
+    public class MainWindowViewModel
     {
+
     }
 }
