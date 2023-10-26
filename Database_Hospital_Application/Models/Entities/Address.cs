@@ -12,7 +12,7 @@ namespace Database_Hospital_Application.Models.Entities
         public string Street { get; set; }
         public string City { get; set; }
         public int HouseNumber {  get; set; }
-        public string Country {  get; set; } //enum?
+        public string Country {  get; set; } 
         public int ZipCode {  get; set; }
     }
 }
