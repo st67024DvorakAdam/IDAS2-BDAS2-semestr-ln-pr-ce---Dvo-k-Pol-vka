@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Database_Hospital_Application.Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,6 @@ namespace Database_Hospital_Application.Models.Entities
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int BirthNumber { get; set; }
-        public string Sex { get; set; }  //Neudělat jako enum?  
+        public SexEnum Sex { get; set; }
     }
 }

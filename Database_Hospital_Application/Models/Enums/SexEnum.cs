@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Database_Hospital_Application.ViewModels
+namespace Database_Hospital_Application.Models.Enums
 {
-    public class MainWindowViewModel
+    public enum SexEnum
     {
-
+        Male,
+        Female
     }
 }

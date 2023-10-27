@@ -7,17 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-// Takhle asi ne no :D
+
 namespace Database_Hospital_Application.ViewModels
 {
     public class AddressViewModel : INotifyPropertyChanged
     {
         private List<Address> _addresses;
 
-        public List<Address>? LoadAllAddresses()
-        {
-            return null;
-        }
+        
 
         public event PropertyChangedEventHandler PropertyChanged;
 

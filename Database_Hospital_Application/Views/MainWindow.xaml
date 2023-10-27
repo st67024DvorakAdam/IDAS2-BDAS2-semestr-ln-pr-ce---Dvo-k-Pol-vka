@@ -7,10 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         xmlns:vm="clr-namespace:Database_Hospital_Application.ViewModels">
-     <Window.DataContext>
-        <vm:MainWindowViewModel/>
-    </Window.DataContext>
+     
     <Grid>
-
+        
     </Grid>
 </Window>
