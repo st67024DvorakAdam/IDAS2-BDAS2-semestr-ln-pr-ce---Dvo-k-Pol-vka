@@ -10,17 +10,22 @@ using System.Threading.Tasks;
 
 namespace Database_Hospital_Application.ViewModels
 {
-    public class AddressViewModel : INotifyPropertyChanged
+    public class AddressViewModel : BaseViewModel
     {
-        private List<Address> _addresses;
+        // MODEL
+        private readonly Address _address;
 
-        
+        public int Id => _address.Id;
+        public string Street => _address.Street;
+        public string City => _address.Street;
+        public int HouseNumber => _address.HouseNumber;
+        public string Country => _address.Street;
+        public int ZipCode => _address.ZipCode;
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        // VIEWMODEL
+        public AddressViewModel(Address address) {
+            _address = address;
         }
+
     }
 }
