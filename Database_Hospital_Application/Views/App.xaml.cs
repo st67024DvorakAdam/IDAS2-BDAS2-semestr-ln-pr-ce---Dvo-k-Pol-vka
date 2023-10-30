@@ -20,16 +20,16 @@ namespace Database_Hospital_Application
             Models.Repositories.UserRepo userRepo = new Models.Repositories.UserRepo();
             bool loginResult = userRepo.LoginUser("heslo", "AdminTest");
 
-            // Zobrazení dialogu, pokud se hesla shodují
-            
-            //MainWindow = new MainWindow
-            //{
-            //    //DataContext = new MainWindowViewModel()
-            //};
+           
 
-            //MainWindow.Show();
-            
-            //base.OnStartup(e);
+           MainWindow = new MainWindow
+           {
+               //DataContext = new MainWindowViewModel()
+           };
+
+            MainWindow.Show();
+
+            base.OnStartup(e);
         }
 
 

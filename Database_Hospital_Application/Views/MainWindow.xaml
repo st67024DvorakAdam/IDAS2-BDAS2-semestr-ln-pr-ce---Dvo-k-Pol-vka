@@ -25,7 +25,7 @@
 
             <Label Content="Přihlašení" FontSize="21" HorizontalAlignment="Center" Grid.Row="0" Margin="0,0,0,20"/>
 
-            <Grid Grid.Row="1" Margin="0,0,0,10">
+            <Grid Grid.Row="1" Margin="0,0,0,10" MaxWidth="500">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
@@ -34,13 +34,13 @@
                 <TextBox Grid.Column="1" MaxWidth="500" Margin="6,0,0,0" Padding="2" Height="25"/>
             </Grid>
 
-            <Grid Grid.Row="2" Margin="0,0,0,20">
+            <Grid Grid.Row="2" Margin="0,0,0,20" MaxWidth="500">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Content="Password" VerticalAlignment="Center" FontSize="14"/>
-                <PasswordBox Grid.Column="1" MaxWidth="100" Margin="10,0,0,0" Padding="2" Height="25"/>
+                <PasswordBox Grid.Column="1" MaxWidth="500" Margin="10,0,0,0" Padding="2" Height="25"/>
             </Grid>
 
             <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
