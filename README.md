@@ -49,6 +49,9 @@ Relační model
 - 16. DA využívá plnohodnotné vlastní funkce, které jsou vhodně nasazeny.
 - 19. DA využívá z datové vrstvy vlastní hierarchický dotaz, který je vhodně využit dle tématu semestrální práce.
 - 27. Všechny tabulky musí být naplněny řádnými daty, nikoliv zkušebními.
+ 
+- procedury pro login atd
+- používat balíčky (bonus body)
 
 # c#
 - 9. 3 formuláře
