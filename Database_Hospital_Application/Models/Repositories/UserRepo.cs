@@ -1,4 +1,5 @@
 ﻿using Database_Hospital_Application.Models.Entities;
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Database_Hospital_Application.Models.Repositories
 {
@@ -16,52 +18,46 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public bool LoginUser(string password, string username)
         {
-            DatabaseTools.DatabaseTools db = new DatabaseTools.DatabaseTools();
+            DatabaseTools.DatabaseTools dbTools = new DatabaseTools.DatabaseTools();
 
-            string commandText = "SELECT * FROM USERS WHERE username = :username";
+            // Volání funkce
+            string commandText = "get_user_salt_and_password";
 
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
-                { "username", username }
+                { "p_jmeno", username }
             };
 
-            DataTable dataTable = db.ExecuteCommand(commandText, parameters);
-
-            if (dataTable.Rows.Count == 0)
+            DataTable result = dbTools.ExecuteCommand(commandText, parameters);
+            if (result.Rows.Count == 0)
             {
                 return false;
             }
 
-            DataRow row = dataTable.Rows[0];
-            string storedPassword = row["Password"].ToString();
+            string saltFromDb = result.Rows[0]["SALT"].ToString();
+            string hashedPasswordFromDb = result.Rows[0]["HESLO"].ToString();
 
-            return storedPassword == password;
+            string saltedInputPassword = saltFromDb + password;
+            string hashedInputPassword = "abc" + password;
+
+            MessageBox.Show("heslo: " + hashedPasswordFromDb + " salt: " + saltFromDb, "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            return hashedInputPassword == hashedPasswordFromDb;
+
         }
 
         public void RegisterUser(User user) 
         {
-            DatabaseTools.DatabaseTools db = new DatabaseTools.DatabaseTools();
             
-            // ?????????????????????????????????????????????????????????????????????????????????????????
-            string commandText = "INSERT INTO USERS (name, password) VALUES (:username,:password)";
-
-            //Dictionary<string, object> parameters = new Dictionary<string, object>
-            //{
-            //    { "username", user.Name }
-            //    { "password", user.Password }
-                
-            //};
-
-            //DataTable dataTable = db.ExecuteCommand(commandText, parameters);
         }
         public void GetAllUsers()
         {
-            DatabaseTools.DatabaseTools db = new DatabaseTools.DatabaseTools();
+            
         }
 
         public void UpdateUser(User user)
         {
-            DatabaseTools.DatabaseTools db = new DatabaseTools.DatabaseTools();
+            
         }
     }
 }

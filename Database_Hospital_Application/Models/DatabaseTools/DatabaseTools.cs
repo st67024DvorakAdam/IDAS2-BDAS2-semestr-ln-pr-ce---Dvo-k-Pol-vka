@@ -47,6 +47,14 @@ namespace Database_Hospital_Application.Models.DatabaseTools
                 OpenDB();
                 using (OracleCommand command = new OracleCommand(commandText, conn))
                 {
+                    command.CommandType = CommandType.StoredProcedure; // Specifikujeme, že voláme proceduru
+
+                    OracleParameter outputParameter = new OracleParameter();
+                    outputParameter.ParameterName = "cursor";
+                    outputParameter.OracleDbType = OracleDbType.RefCursor;
+                    outputParameter.Direction = ParameterDirection.ReturnValue; // Nastavíme, že se jedná o výstupní hodnotu
+                    command.Parameters.Add(outputParameter);
+
                     if (parameters != null)
                     {
                         foreach (var parameter in parameters)
@@ -71,6 +79,7 @@ namespace Database_Hospital_Application.Models.DatabaseTools
                 CloseDB();
             }
             return dataTable;
+            
         }
 
 

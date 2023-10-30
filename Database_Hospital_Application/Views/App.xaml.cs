@@ -17,14 +17,19 @@ namespace Database_Hospital_Application
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            MainWindow = new MainWindow
-            {
-                //DataContext = new MainWindowViewModel()
-            };
+            Models.Repositories.UserRepo userRepo = new Models.Repositories.UserRepo();
+            bool loginResult = userRepo.LoginUser("heslo", "AdminTest");
 
-            MainWindow.Show();
+            // Zobrazení dialogu, pokud se hesla shodují
+            
+            //MainWindow = new MainWindow
+            //{
+            //    //DataContext = new MainWindowViewModel()
+            //};
 
-            base.OnStartup(e);
+            //MainWindow.Show();
+            
+            //base.OnStartup(e);
         }
 
 
