@@ -45,14 +45,14 @@ namespace Database_Hospital_Application.Models.Repositories
             // ?????????????????????????????????????????????????????????????????????????????????????????
             string commandText = "INSERT INTO USERS (name, password) VALUES (:username,:password)";
 
-            Dictionary<string, object> parameters = new Dictionary<string, object>
-            {
-                { "username", user.Name }
-                { "password", user.Password }
+            //Dictionary<string, object> parameters = new Dictionary<string, object>
+            //{
+            //    { "username", user.Name }
+            //    { "password", user.Password }
                 
-            };
+            //};
 
-            DataTable dataTable = db.ExecuteCommand(commandText, parameters);
+            //DataTable dataTable = db.ExecuteCommand(commandText, parameters);
         }
         public void GetAllUsers()
         {

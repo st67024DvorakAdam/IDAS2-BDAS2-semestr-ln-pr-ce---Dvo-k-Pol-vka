@@ -19,7 +19,7 @@ namespace Database_Hospital_Application
         {
             MainWindow = new MainWindow
             {
-                //        DataContext = new MainWindowViewModel()
+                //DataContext = new MainWindowViewModel()
             };
 
             MainWindow.Show();

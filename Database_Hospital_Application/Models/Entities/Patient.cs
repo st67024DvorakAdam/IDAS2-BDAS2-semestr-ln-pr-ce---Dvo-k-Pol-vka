@@ -14,7 +14,7 @@ namespace Database_Hospital_Application.Models.Entities
         public string LastName { get; set; }
         public int BirthNumber { get; set; }
         public SexEnum Sex { get; set; }
-        public HealthInsurer HealthInsurer { get; set; }
+        public HealthInsurance HealthInsurer { get; set; }
         public Address Address { get; set; }
         public Contact Contact {  get; set; }
     }
