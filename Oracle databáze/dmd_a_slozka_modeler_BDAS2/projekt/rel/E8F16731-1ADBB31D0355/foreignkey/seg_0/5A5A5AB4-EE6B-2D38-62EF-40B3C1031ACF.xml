@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="5A5A5AB4-EE6B-2D38-62EF-40B3C1031ACF" containerWithKeyObject="07A5CDA4-B637-FDCF-481E-E16178B350FF" localFKIndex="80FA0F0D-1958-B7C7-7B9A-2E033063D0C1" name="UzityLek_prubezNem_PRUBEZNA_NEMOC_FK">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>C2F8E286-BC3C-DAE8-AA04-D07D5AB80B2F</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<referredTableLongName>PRUBEZNE_NEMOCI</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>44B75137-844B-ECE1-0A22-A045E3649B1F</referredTableID>
+<keyObject>F4790E03-6515-D75B-E268-3702DE827447</keyObject>
+<referredKeyID>F4790E03-6515-D75B-E268-3702DE827447</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

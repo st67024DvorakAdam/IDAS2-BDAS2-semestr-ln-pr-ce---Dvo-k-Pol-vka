@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="KonUdaje_zamest" directorySegmentName="seg_0" id="977AD26F-6F3D-7C5A-5737-B657C691E7D3">
+<createdBy>adysd</createdBy>
+<createdTime>2022-11-02 10:56:42 UTC</createdTime>
+<ownerDesignName>projekt</ownerDesignName>
+<engineerTo>
+<item key="E8F16731-6869-CEA7-957B-1ADBB31D0355" value="true"/>
+</engineerTo>
+<sourcePk>1BBA7723-E536-0983-3AD5-0212B69553DE</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>patří do</nameOnSource>
+<nameOnTarget>má</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>E4A0716C-1812-B57E-52DA-C5DAB4C5A7CD</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>59559332-C3A0-7EC6-39D7-4378FF7E3552</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

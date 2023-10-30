@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="ZdravKarta_prubezNem" directorySegmentName="seg_0" id="5AD96DB5-5E4B-483B-F640-A930CF5686CC">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-07 15:38:20 UTC</createdTime>
+<ownerDesignName>projekt</ownerDesignName>
+<engineerTo>
+<item key="E8F16731-6869-CEA7-957B-1ADBB31D0355" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>obsahuje</nameOnSource>
+<nameOnTarget>je v</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>7706B7A1-47CC-2225-8408-732589785876</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>E550272A-D007-974D-B77D-E2C5E25A533B</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

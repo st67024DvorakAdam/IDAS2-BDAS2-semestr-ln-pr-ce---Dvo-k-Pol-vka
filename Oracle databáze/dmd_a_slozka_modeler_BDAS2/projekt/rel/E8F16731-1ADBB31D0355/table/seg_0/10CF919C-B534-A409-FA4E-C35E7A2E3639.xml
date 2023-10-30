@@ -1,0 +1,96 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="10CF919C-B534-A409-FA4E-C35E7A2E3639" name="ADRESA">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>DFA561BF-9CF7-87AA-D8B9-38BAF41C9EAE</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="1FB6422D-D534-F909-1349-4E1B9343AC55">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>125E6C5F-3600-7C9E-2BD6-DD8B75B35988</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ulice" id="20227CFD-D1A1-5117-2BCC-9A87A27EDE96">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>11196EC7-DAB5-AAD1-8E9F-18C4328526DB</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>64</dataTypeSize>
+<ownDataTypeParameters>64,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="mesto" id="DD45A879-FFE9-85B1-5857-E35E596F41F3">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>295D81F8-4444-D99D-6E3C-559FEA490EB9</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>32</dataTypeSize>
+<ownDataTypeParameters>32,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="cislo_popisne" id="77FC517B-98C1-87BA-DC00-BE080A0E2044">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>09413EC3-E886-07F2-513D-EC7A7931D23A</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="stat" id="B6C24262-7345-9FDB-DCAE-58AD5479BBAC">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>6ABF9596-6EE3-4144-F1FD-3B1055B916CE</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>32</dataTypeSize>
+<ownDataTypeParameters>32,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="psc" id="8234FF4E-1100-DC31-0154-35A48ED5C001">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>386252B8-1BB6-D396-F04B-568E2CEEC9E9</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="42FA28FD-DB95-63C4-F626-0C5608C24B13" name="ADRESA_PK">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>C5324E50-55B4-7003-7D0F-E9499B838814</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1FB6422D-D534-F909-1349-4E1B9343AC55"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

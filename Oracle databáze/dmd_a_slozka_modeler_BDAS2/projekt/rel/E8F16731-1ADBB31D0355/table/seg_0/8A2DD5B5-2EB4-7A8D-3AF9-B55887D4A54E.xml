@@ -1,0 +1,99 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8A2DD5B5-2EB4-7A8D-3AF9-B55887D4A54E" name="PROVEDENY_VYKON">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>B3A25E0D-2AC0-CA68-8272-6848BCE8D8A6</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="E7C3A6BC-EFC4-B4B8-4065-2AED9E72F4C0">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>3300CCA2-44DD-CBD5-065F-01B4CAF2BA45</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nazev" id="A30F2F29-B08D-3FFA-330F-796763160A44">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>C57173A1-398C-E649-136D-DA4A33F10EC9</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="cena" id="3030AEF2-B572-02E1-3701-C4ABD3DB3CB4">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>18B72A75-292B-0FF9-C78D-14EF98B042FB</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="hrazeno_pojistovnou" id="A939BE2B-C2EA-D29D-1246-C73BB597D0E4">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>F5330105-F65D-FB36-FAE9-D16E0EEF9D5B</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PACIENT_id" id="685840C2-B551-7E36-4748-353B0880AEA6">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>9021AA49-0049-CCB5-E1AB-622AF4D5B16A</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="6D5F90A9-0613-B740-87DC-807939CCEBD4" referredColumn="B6E3339F-9615-C077-79E1-56349E4C44B7"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="DC2F001B-35BF-4611-4F46-27E006D78EDE" name="PROVEDENY_VYKON_PK">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>2F907250-CAE6-1247-8AF9-0B22EB375F0D</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E7C3A6BC-EFC4-B4B8-4065-2AED9E72F4C0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6B30AFBE-D271-0F11-4611-1C8605D4AE0E" name="PROVEDENY_VYKON_PACIENT_FK">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>FE6A3A5E-6E99-58C6-22AE-2BB3F6772DAE</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="685840C2-B551-7E36-4748-353B0880AEA6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

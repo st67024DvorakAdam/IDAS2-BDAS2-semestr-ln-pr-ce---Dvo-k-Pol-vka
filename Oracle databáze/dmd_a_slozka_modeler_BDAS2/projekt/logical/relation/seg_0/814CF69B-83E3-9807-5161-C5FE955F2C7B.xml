@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Oddel_zamest" directorySegmentName="seg_0" id="814CF69B-83E3-9807-5161-C5FE955F2C7B">
+<createdBy>adysd</createdBy>
+<createdTime>2022-11-02 10:48:31 UTC</createdTime>
+<ownerDesignName>projekt</ownerDesignName>
+<engineerTo>
+<item key="E8F16731-6869-CEA7-957B-1ADBB31D0355" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>pracuje na</nameOnSource>
+<nameOnTarget>má</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>59559332-C3A0-7EC6-39D7-4378FF7E3552</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>E6114466-3CE1-352A-63C9-4D2D7C664B72</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

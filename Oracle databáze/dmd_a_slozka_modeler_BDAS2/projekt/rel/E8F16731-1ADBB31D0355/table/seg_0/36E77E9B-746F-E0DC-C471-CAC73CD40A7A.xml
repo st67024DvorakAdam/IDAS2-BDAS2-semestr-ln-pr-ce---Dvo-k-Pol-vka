@@ -1,0 +1,65 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="36E77E9B-746F-E0DC-C471-CAC73CD40A7A" name="DOKTOR">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>2D1D4CA7-3F04-A615-64F0-5E662844C3DA</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<ordsAlias>doktor</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="FD6390D5-8DF3-5885-A07B-477A452230E6">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>7FAB1FE5-FA77-D7A0-503E-3F046A316059</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A6B5C6DA-4E0A-AEBE-A1D3-2E3B56D28325" referredColumn="83053CA8-09D5-0A60-C2D8-BDAB9510717E"/>
+</associations>
+</Column>
+<Column name="pracovni_napln" id="F7B49C6F-A730-6C5B-A1F2-C7261A5FCA38">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>88A6EDC1-07F6-B756-E4D1-F09D0D06AEA0</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="79591F10-AE2E-348B-7412-B70D4C6008B2" name="DOKTOR_PK">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>AD3729A6-9018-39DC-6CC8-578CB7C8E555</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FD6390D5-8DF3-5885-A07B-477A452230E6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D368EE8A-3F53-706D-4C4E-B6F9C5F5390C" name="DOKTOR_ZAMESTNANEC_FK">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>48956DBA-D690-DB3C-68A2-40583604F2B8</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FD6390D5-8DF3-5885-A07B-477A452230E6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,137 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="31633334-DB8F-8775-FCC9-ECCF3B714201" name="UZIVATEL">
+<createdBy>16003</createdBy>
+<createdTime>2023-10-26 13:35:21 UTC</createdTime>
+<generatorID>AFAE6517-1D9D-E584-C501-E7579F3F44B3</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="30CEE35D-5075-2C8E-68C6-E68B8CF0AD25">
+<createdBy>16003</createdBy>
+<createdTime>2023-10-26 13:35:21 UTC</createdTime>
+<generatorID>EDA828D8-BA1D-DC48-5373-994B3DF2AF59</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="jmeno" id="9BD286FB-BE67-F994-B720-588020D4607A">
+<createdBy>16003</createdBy>
+<createdTime>2023-10-26 13:35:21 UTC</createdTime>
+<generatorID>04D9A46D-9FAB-9F89-1236-27C931822AF7</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>64</dataTypeSize>
+<ownDataTypeParameters>64,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="heslo" id="884D8563-A275-BCF5-9011-D9153FC280AD">
+<createdBy>16003</createdBy>
+<createdTime>2023-10-26 13:35:21 UTC</createdTime>
+<generatorID>75EA0BC8-5790-6AAF-254A-5AEC0949F95A</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1024</dataTypeSize>
+<ownDataTypeParameters>1024,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ROLE_id" id="573683F6-B200-C01C-3902-3FEACF7555CC">
+<createdBy>16003</createdBy>
+<createdTime>2023-10-26 13:35:21 UTC</createdTime>
+<generatorID>AE043500-5239-7F16-392F-FEAD383E5DA0</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4448FD43-123F-4E35-6B06-01774F0C4ABF" referredColumn="7A201DD4-0A94-2E30-940A-B0591F10B49D"/>
+</associations>
+</Column>
+<Column name="ZAMESTNANEC_id" id="FA50560A-1E7C-3653-2943-D383F5DCBAEB">
+<createdBy>16003</createdBy>
+<createdTime>2023-10-26 13:35:21 UTC</createdTime>
+<generatorID>47A044E4-F959-F3FC-923C-C4AF6137DBBE</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D4641523-AF7C-CC49-2AB5-E12B28792325" referredColumn="83053CA8-09D5-0A60-C2D8-BDAB9510717E"/>
+</associations>
+</Column>
+<Column name="salt" id="F0B307F1-DBFD-961D-4C04-D0E09135DF81">
+<createdBy>16003</createdBy>
+<createdTime>2023-10-30 15:04:41 UTC</createdTime>
+<generatorID>47536907-5ABB-E1DB-A3E7-C4C72EED8337</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1024</dataTypeSize>
+<ownDataTypeParameters>1024,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="72F2F4E7-E913-FAF0-4907-AF151208A2F6" name="UZIVATEL_PK">
+<createdBy>16003</createdBy>
+<createdTime>2023-10-26 13:35:21 UTC</createdTime>
+<generatorID>D3B89C12-A847-FA98-B99D-C39424A2A365</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="30CEE35D-5075-2C8E-68C6-E68B8CF0AD25"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E6C324EA-0B56-5B6C-D084-4BC563494093" name="UZIVATEL__IDX">
+<createdBy>16003</createdBy>
+<createdTime>2023-10-26 13:35:21 UTC</createdTime>
+<ownerDesignName>projekt</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>1F8CA55D-3504-4E6E-01BA-4D568DFA3753</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="FA50560A-1E7C-3653-2943-D383F5DCBAEB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5A75C3AC-6B9C-2DDF-7D3E-9EC790FC8AAE" name="UZIVATEL_ROLE_FK">
+<createdBy>16003</createdBy>
+<createdTime>2023-10-26 13:35:21 UTC</createdTime>
+<generatorID>C4378858-05A9-397A-9674-696FA8E172D4</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="573683F6-B200-C01C-3902-3FEACF7555CC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="426BE176-C445-4248-82F6-9ED0B8E428AA" name="UZIVATEL_ZAMESTNANEC_FK">
+<createdBy>16003</createdBy>
+<createdTime>2023-10-30 15:21:47 UTC</createdTime>
+<generatorID>1F8CA55D-3504-4E6E-01BA-4D568DFA3753</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FA50560A-1E7C-3653-2943-D383F5DCBAEB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

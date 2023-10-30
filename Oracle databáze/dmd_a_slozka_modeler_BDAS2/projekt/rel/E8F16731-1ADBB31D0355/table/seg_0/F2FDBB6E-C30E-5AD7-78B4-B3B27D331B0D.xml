@@ -1,0 +1,77 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F2FDBB6E-C30E-5AD7-78B4-B3B27D331B0D" name="Oddel_zamest">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<ownerDesignName>projekt</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ZAMESTNANEC_id" id="8F694FB8-44E1-2AC8-4960-58D9BE14ADAE">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<commentInRDBMS><![CDATA[id zaměstnance]]></commentInRDBMS>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="16F6309A-22DB-EC36-E9E2-F9D4FF00AB2F" referredColumn="83053CA8-09D5-0A60-C2D8-BDAB9510717E"/>
+</associations>
+</Column>
+<Column name="ODDELENI_id" id="56F627CC-5741-1BD9-E247-8906C33C4FF4">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<commentInRDBMS><![CDATA[id oddělení, na kterém zaměstnanec pracuje]]></commentInRDBMS>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="C8EC4919-5E96-651F-FBFC-AFA45095ED3A" referredColumn="7D77B85B-4562-643F-7ABC-FF43B3742097"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0506F94B-7883-6FA1-318B-E76A3A4E6429" name="Oddel_zamest_PK">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<ownerDesignName>projekt</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8F694FB8-44E1-2AC8-4960-58D9BE14ADAE"/>
+<colUsage columnID="56F627CC-5741-1BD9-E247-8906C33C4FF4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="40E72F22-C71D-623C-0726-09B09B081815" name="Oddel_zamest_ZAMESTNANEC_FK">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>814CF69B-83E3-9807-5161-C5FE955F2C7B</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8F694FB8-44E1-2AC8-4960-58D9BE14ADAE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BD7E6D19-4E4E-9ABE-9F72-E87A817F17F3" name="Oddel_zamest_ODDELENI_FK">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>814CF69B-83E3-9807-5161-C5FE955F2C7B</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="56F627CC-5741-1BD9-E247-8906C33C4FF4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

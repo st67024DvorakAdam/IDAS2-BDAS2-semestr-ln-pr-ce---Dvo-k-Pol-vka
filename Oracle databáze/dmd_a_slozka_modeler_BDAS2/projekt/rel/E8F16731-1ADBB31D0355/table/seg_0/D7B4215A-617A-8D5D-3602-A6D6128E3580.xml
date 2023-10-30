@@ -1,0 +1,78 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D7B4215A-617A-8D5D-3602-A6D6128E3580" name="ZdravKarta_prubezNem">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<ownerDesignName>projekt</ownerDesignName>
+<ordsAlias>zdravkarta_prubeznem</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ZDRAVOTNI_KARTA_id" id="D5F51882-0E99-D000-0C1E-9EDC5DB21FE5">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<commentInRDBMS><![CDATA[id zdravotní karty do které patří nemoc]]></commentInRDBMS>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="18741709-76C9-AD7B-B81C-DF6C9D2F9D96" referredColumn="248FFE1D-3878-B963-58EA-628103617328"/>
+</associations>
+</Column>
+<Column name="PRUBEZNA_NEMOC_id" id="0EACF2E8-B9AA-CD1A-0733-2CA953501D00">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<commentInRDBMS><![CDATA[id průběžné nemoci, která je v konkrétní zdravotní kartě]]></commentInRDBMS>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F8D58B5C-D029-7C03-BF2D-D85277738D1B" referredColumn="94E7BEED-9DA3-72A0-782E-9BE9ADD773CD"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="7BD16F14-8E9F-9EEA-76A2-3C960A82AF6E" name="ZdravKarta_prubezNem_PK">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<ownerDesignName>projekt</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D5F51882-0E99-D000-0C1E-9EDC5DB21FE5"/>
+<colUsage columnID="0EACF2E8-B9AA-CD1A-0733-2CA953501D00"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="870FB72A-71AC-4E72-EBB8-6A9019EA17E2" name="ZdravKarta_prubezNem_ZDRAVOTNI_KARTA_FK">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>5AD96DB5-5E4B-483B-F640-A930CF5686CC</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D5F51882-0E99-D000-0C1E-9EDC5DB21FE5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7B2305AC-D30C-CA31-244E-350DF78B2F6D" name="ZdravKarta_prubezNem_PRUBEZNA_NEMOC_FK">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>5AD96DB5-5E4B-483B-F640-A930CF5686CC</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0EACF2E8-B9AA-CD1A-0733-2CA953501D00"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

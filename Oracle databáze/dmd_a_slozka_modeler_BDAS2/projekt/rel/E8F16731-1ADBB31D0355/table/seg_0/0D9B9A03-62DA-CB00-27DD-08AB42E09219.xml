@@ -1,0 +1,126 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0D9B9A03-62DA-CB00-27DD-08AB42E09219" name="PRUBEH_HOSPITALIZACE">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>15F887CB-8681-6247-EBA1-8B3AEA3E71A1</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="8DA8ED2B-5465-E4CB-6990-26B1FF51A966">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>F894B10A-AA9D-F2C6-F1C6-DEBE59A22A48</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="datum_nastupu" id="5B62E0B8-D2E6-1CCC-460D-8374A267FB74">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>F7D3405B-4BB8-7D23-7982-F269D0D03403</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="datum_propusteni" id="40355B11-9A45-A933-8AF6-2BB94FE0100F">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>38C1A81C-1B3B-1A37-FFB6-FCA18C90A021</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="popis" id="02BF6BE2-646F-0341-972D-0C217A860E3B">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>FA51048C-26E8-A79A-D240-FC67C7A13B2B</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PACIENT_id" id="575AA309-C988-169B-3F81-4A2FCBA57CFA">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>8BED9846-0EDF-6C09-6276-68BF33D7042B</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="BAE11665-7835-1838-513C-E8055062834B" referredColumn="B6E3339F-9615-C077-79E1-56349E4C44B7"/>
+</associations>
+</Column>
+<Column name="ODDELENI_id" id="4BA2AB33-AF94-4845-04AC-4A8DA9B4040A">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>920919CD-1228-EEE7-758A-DEA912920F80</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="1A59C53C-3238-6353-ED0C-5AA225BA2896" referredColumn="7D77B85B-4562-643F-7ABC-FF43B3742097"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="90E3B211-1F05-4CE4-7D8E-F2DF7F44EDA4" name="PRUBEH_HOSPITALIZACE_PK">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>4AEF9FAE-2AE5-A0E0-1A13-4B9325067054</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8DA8ED2B-5465-E4CB-6990-26B1FF51A966"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7ABBEE98-A6B5-4538-1D98-4FAFC53BA2D4" name="PRUBEH_HOSPITALIZACE_PACIENT_FK">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>32818784-BCFF-B623-DCCB-245A167AF516</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="575AA309-C988-169B-3F81-4A2FCBA57CFA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6D63F729-846E-9FA6-9B59-7127ECBB1E5A" name="PRUBEH_HOSPITALIZACE_ODDELENI_FK">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>3903DF82-E202-F12E-3BDE-7303827749DE</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4BA2AB33-AF94-4845-04AC-4A8DA9B4040A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,64 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D416A193-1EBF-1D9B-A48C-9626027A6A4E" name="ZDRAVOTNI_KARTA">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>7706B7A1-47CC-2225-8408-732589785876</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="248FFE1D-3878-B963-58EA-628103617328">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>4ACAC476-BE0E-8293-AAAD-620CCFA19FB2</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PACIENT_id" id="E59E0A76-AAB9-A519-0EB4-A41B35CAB076">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>81E655CA-A4EC-CF03-17DC-02E3E0A3B287</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="356C1DDB-1138-CFBA-D88F-48658C0713A6" referredColumn="B6E3339F-9615-C077-79E1-56349E4C44B7"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="52B8C21F-08F7-DF43-64CE-00381A284F0F" name="ZDRAVOTNI_KARTA_PK">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>21CC438D-4663-6139-8629-A536A7239B6B</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="248FFE1D-3878-B963-58EA-628103617328"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="13B5CE3B-4AFA-6C98-5411-FAB96879624A" name="ZDRAVOTNI_KARTA_PACIENT_FK">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>4FD6CD23-1AC8-CD57-FA59-24EA074DDE21</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E59E0A76-AAB9-A519-0EB4-A41B35CAB076"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

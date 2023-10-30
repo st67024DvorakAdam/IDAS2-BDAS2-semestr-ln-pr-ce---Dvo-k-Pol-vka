@@ -1,0 +1,103 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="62597D42-685D-67B1-DF1C-0A289E585384" name="Relation_22">
+<createdBy>adysd</createdBy>
+<createdTime>2022-11-16 09:23:27 UTC</createdTime>
+<ownerDesignName>projekt</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="UZITY_LEK_UZITY_LEK_ID" id="15CFF0E0-BDB5-3ED0-BA22-B32EDA168882">
+<createdBy>adysd</createdBy>
+<createdTime>2022-11-16 09:23:27 UTC</createdTime>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PRUBEZNA_NEMOC_id" id="2EF1F8B2-BC74-4E7E-9182-E3F6904A6724">
+<createdBy>adysd</createdBy>
+<createdTime>2022-11-16 09:23:27 UTC</createdTime>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="EBA681B1-45FC-5A9C-8230-60C23550DF79" referredColumn="CA4A49D5-8B5F-4279-1C92-D3D0BF800AD6"/>
+</associations>
+</Column>
+<Column name="PRUBEZNA_NEMOC_nazev" id="4D6CB7C5-FCB8-DDED-4A29-E601F9FB619E">
+<createdBy>adysd</createdBy>
+<createdTime>2022-11-16 09:23:27 UTC</createdTime>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="EBA681B1-45FC-5A9C-8230-60C23550DF79" referredColumn="3B443CAF-1181-46B9-3418-72AAE3769323"/>
+</associations>
+</Column>
+<Column name="UZITE_LEKY_id" id="C0BF3261-B5C6-EAD9-CDD3-FF2DDD660107">
+<createdBy>adysd</createdBy>
+<createdTime>2022-11-16 11:24:29 UTC</createdTime>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="BFAE748F-6D4B-D4FB-2760-303C633907DD" referredColumn="28672787-3F60-7F7B-6A9B-C44EC6824454"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="8B619D92-DB3A-B1A6-1B7D-26AFE2CCD531" name="Relation_22_PK">
+<createdBy>adysd</createdBy>
+<createdTime>2022-11-16 09:23:27 UTC</createdTime>
+<ownerDesignName>projekt</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="15CFF0E0-BDB5-3ED0-BA22-B32EDA168882"/>
+<colUsage columnID="2EF1F8B2-BC74-4E7E-9182-E3F6904A6724"/>
+<colUsage columnID="4D6CB7C5-FCB8-DDED-4A29-E601F9FB619E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F8139774-AA6E-1C24-1AFF-F7AF17CFEA0E" name="Relation_22_UZITY_LEK_FK">
+<createdBy>adysd</createdBy>
+<createdTime>2022-11-16 09:23:27 UTC</createdTime>
+<generatorID>C2F8E286-BC3C-DAE8-AA04-D07D5AB80B2F</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C0BF3261-B5C6-EAD9-CDD3-FF2DDD660107"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="48E13CE5-CCD2-FB43-AA28-8868852DEE99" name="Relation_22_PRUBEZNA_NEMOC_FK">
+<createdBy>adysd</createdBy>
+<createdTime>2022-11-16 09:23:27 UTC</createdTime>
+<generatorID>C2F8E286-BC3C-DAE8-AA04-D07D5AB80B2F</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2EF1F8B2-BC74-4E7E-9182-E3F6904A6724"/>
+<colUsage columnID="4D6CB7C5-FCB8-DDED-4A29-E601F9FB619E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

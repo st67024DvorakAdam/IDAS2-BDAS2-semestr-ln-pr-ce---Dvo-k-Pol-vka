@@ -1,0 +1,112 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="15F887CB-8681-6247-EBA1-8B3AEA3E71A1" name="PRUBEH_HOSPITALIZACE">
+<createdBy>16003</createdBy>
+<createdTime>2022-10-31 12:51:12 UTC</createdTime>
+<ownerDesignName>projekt</ownerDesignName>
+<engineerTo>
+<item key="E8F16731-6869-CEA7-957B-1ADBB31D0355" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="F894B10A-AA9D-F2C6-F1C6-DEBE59A22A48">
+<createdBy>16003</createdBy>
+<createdTime>2022-10-31 13:09:11 UTC</createdTime>
+<ownerDesignName>projekt</ownerDesignName>
+<engineerTo>
+<item key="E8F16731-6869-CEA7-957B-1ADBB31D0355" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="datum_nastupu" id="F7D3405B-4BB8-7D23-7982-F269D0D03403">
+<createdBy>adysd</createdBy>
+<createdTime>2022-11-02 10:26:11 UTC</createdTime>
+<ownerDesignName>projekt</ownerDesignName>
+<engineerTo>
+<item key="E8F16731-6869-CEA7-957B-1ADBB31D0355" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="datum_propusteni" id="38C1A81C-1B3B-1A37-FFB6-FCA18C90A021">
+<createdBy>adysd</createdBy>
+<createdTime>2022-11-02 10:28:15 UTC</createdTime>
+<ownerDesignName>projekt</ownerDesignName>
+<engineerTo>
+<item key="E8F16731-6869-CEA7-957B-1ADBB31D0355" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="popis" id="FA51048C-26E8-A79A-D240-FC67C7A13B2B">
+<createdBy>adysd</createdBy>
+<createdTime>2022-11-02 10:28:34 UTC</createdTime>
+<ownerDesignName>projekt</ownerDesignName>
+<engineerTo>
+<item key="E8F16731-6869-CEA7-957B-1ADBB31D0355" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="8BED9846-0EDF-6C09-6276-68BF33D7042B">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-07 15:53:01 UTC</createdTime>
+<generatorID>32818784-BCFF-B623-DCCB-245A167AF516</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<engineerTo>
+<item key="E8F16731-6869-CEA7-957B-1ADBB31D0355" value="true"/>
+</engineerTo>
+<referedAttribute>FDDF6753-1D1E-FCDB-06B0-F5588EC729C3</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id2" id="920919CD-1228-EEE7-758A-DEA912920F80">
+<createdBy>adysd</createdBy>
+<createdTime>2022-11-10 19:43:01 UTC</createdTime>
+<generatorID>3903DF82-E202-F12E-3BDE-7303827749DE</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<engineerTo>
+<item key="E8F16731-6869-CEA7-957B-1ADBB31D0355" value="true"/>
+</engineerTo>
+<referedAttribute>DFE29A41-0B4B-4083-81B3-D68B2D24A8B1</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="4AEF9FAE-2AE5-A0E0-1A13-4B9325067054" name="PRUBEH_HOSPITALIZACE PK">
+<createdBy>adysd</createdBy>
+<createdTime>2022-11-02 10:26:33 UTC</createdTime>
+<ownerDesignName>projekt</ownerDesignName>
+<engineerTo>
+<item key="E8F16731-6869-CEA7-957B-1ADBB31D0355" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>F894B10A-AA9D-F2C6-F1C6-DEBE59A22A48</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

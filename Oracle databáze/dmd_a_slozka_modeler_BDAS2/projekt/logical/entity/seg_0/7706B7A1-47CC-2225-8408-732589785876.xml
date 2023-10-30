@@ -1,0 +1,59 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="7706B7A1-47CC-2225-8408-732589785876" name="ZDRAVOTNI_KARTA">
+<createdBy>16003</createdBy>
+<createdTime>2022-10-31 12:49:46 UTC</createdTime>
+<ownerDesignName>projekt</ownerDesignName>
+<engineerTo>
+<item key="E8F16731-6869-CEA7-957B-1ADBB31D0355" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="4ACAC476-BE0E-8293-AAAD-620CCFA19FB2">
+<createdBy>16003</createdBy>
+<createdTime>2022-10-31 13:09:00 UTC</createdTime>
+<ownerDesignName>projekt</ownerDesignName>
+<engineerTo>
+<item key="E8F16731-6869-CEA7-957B-1ADBB31D0355" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="81E655CA-A4EC-CF03-17DC-02E3E0A3B287">
+<createdBy>adysd</createdBy>
+<createdTime>2022-11-02 10:33:24 UTC</createdTime>
+<generatorID>4FD6CD23-1AC8-CD57-FA59-24EA074DDE21</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<engineerTo>
+<item key="E8F16731-6869-CEA7-957B-1ADBB31D0355" value="true"/>
+</engineerTo>
+<referedAttribute>FDDF6753-1D1E-FCDB-06B0-F5588EC729C3</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="21CC438D-4663-6139-8629-A536A7239B6B" name="ZDRAVOTNI_KARTA PK">
+<createdBy>adysd</createdBy>
+<createdTime>2022-11-02 10:27:23 UTC</createdTime>
+<ownerDesignName>projekt</ownerDesignName>
+<engineerTo>
+<item key="E8F16731-6869-CEA7-957B-1ADBB31D0355" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>4ACAC476-BE0E-8293-AAAD-620CCFA19FB2</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

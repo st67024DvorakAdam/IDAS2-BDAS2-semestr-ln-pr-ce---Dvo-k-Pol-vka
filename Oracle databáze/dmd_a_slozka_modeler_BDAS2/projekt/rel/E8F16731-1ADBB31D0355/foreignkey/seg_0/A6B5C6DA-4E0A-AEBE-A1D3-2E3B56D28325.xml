@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="A6B5C6DA-4E0A-AEBE-A1D3-2E3B56D28325" containerWithKeyObject="36E77E9B-746F-E0DC-C471-CAC73CD40A7A" localFKIndex="D368EE8A-3F53-706D-4C4E-B6F9C5F5390C" name="DOKTOR_ZAMESTNANEC_FK">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>48956DBA-D690-DB3C-68A2-40583604F2B8</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<referredTableLongName>ZAMESTNANCI</referredTableLongName>
+<arc>E64A0B52-B57E-E212-D1C1-4E3B6B1E57B3</arc>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>1470BCFA-B02F-7B9F-C3C8-F7669FDE23A7</referredTableID>
+<keyObject>4CBDD2BF-9AC6-06DD-B90D-0B929AEAA5F1</keyObject>
+<referredKeyID>4CBDD2BF-9AC6-06DD-B90D-0B929AEAA5F1</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<discriminatorValue>DOKTOR</discriminatorValue>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

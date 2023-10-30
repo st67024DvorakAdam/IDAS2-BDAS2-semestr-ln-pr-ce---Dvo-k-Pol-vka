@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="KonUdaje_pacient" directorySegmentName="seg_0" id="2B61EB31-0A4B-F942-F3C6-9067881ACE15">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-07 15:11:27 UTC</createdTime>
+<ownerDesignName>projekt</ownerDesignName>
+<engineerTo>
+<item key="E8F16731-6869-CEA7-957B-1ADBB31D0355" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>má</nameOnSource>
+<nameOnTarget>patří</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>369C3BBE-70CD-ED06-47F1-841229E4C683</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>E4A0716C-1812-B57E-52DA-C5DAB4C5A7CD</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

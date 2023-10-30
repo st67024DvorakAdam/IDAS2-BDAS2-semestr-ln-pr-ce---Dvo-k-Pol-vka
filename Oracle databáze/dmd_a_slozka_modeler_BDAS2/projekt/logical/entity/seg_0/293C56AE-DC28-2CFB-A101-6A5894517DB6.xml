@@ -1,0 +1,97 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="293C56AE-DC28-2CFB-A101-6A5894517DB6" name="ZPRAVA">
+<createdBy>16003</createdBy>
+<createdTime>2023-10-30 15:08:00 UTC</createdTime>
+<ownerDesignName>projekt</ownerDesignName>
+<engineerTo>
+<item key="E8F16731-6869-CEA7-957B-1ADBB31D0355" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="3C23CBCD-B9B5-C9E7-EB49-300E0F134E61">
+<createdBy>16003</createdBy>
+<createdTime>2023-10-30 15:08:11 UTC</createdTime>
+<ownerDesignName>projekt</ownerDesignName>
+<engineerTo>
+<item key="E8F16731-6869-CEA7-957B-1ADBB31D0355" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="odesilatel_id" id="2A66C458-6468-F9BC-6CF5-B1868ED41D8A">
+<createdBy>16003</createdBy>
+<createdTime>2023-10-30 15:16:07 UTC</createdTime>
+<generatorID>628CB021-7F64-891E-1AAE-C85E8D3CDC20</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<engineerTo>
+<item key="E8F16731-6869-CEA7-957B-1ADBB31D0355" value="true"/>
+</engineerTo>
+<referedAttribute>EDA828D8-BA1D-DC48-5373-994B3DF2AF59</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="prijemce_id" id="755AFFD7-41B9-2D7D-F33D-438C97039ADC">
+<createdBy>16003</createdBy>
+<createdTime>2023-10-30 15:17:58 UTC</createdTime>
+<generatorID>424AE535-3EFB-D6F3-2EA2-3EB11FCABF7F</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<engineerTo>
+<item key="E8F16731-6869-CEA7-957B-1ADBB31D0355" value="true"/>
+</engineerTo>
+<referedAttribute>EDA828D8-BA1D-DC48-5373-994B3DF2AF59</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="obsah" id="4AC40C67-F42A-3699-9B2B-AC5090C045AB">
+<createdBy>16003</createdBy>
+<createdTime>2023-10-30 15:20:28 UTC</createdTime>
+<ownerDesignName>projekt</ownerDesignName>
+<engineerTo>
+<item key="E8F16731-6869-CEA7-957B-1ADBB31D0355" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="casove_razitko" id="0169A9F5-534E-1C91-0387-F45D488B2D27">
+<createdBy>16003</createdBy>
+<createdTime>2023-10-30 15:21:02 UTC</createdTime>
+<ownerDesignName>projekt</ownerDesignName>
+<engineerTo>
+<item key="E8F16731-6869-CEA7-957B-1ADBB31D0355" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="1EEC5FF3-8DAA-F645-616C-12C995CD746E" name="ZPRAVA PK">
+<createdBy>16003</createdBy>
+<createdTime>2023-10-30 15:08:18 UTC</createdTime>
+<ownerDesignName>projekt</ownerDesignName>
+<engineerTo>
+<item key="E8F16731-6869-CEA7-957B-1ADBB31D0355" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>3C23CBCD-B9B5-C9E7-EB49-300E0F134E61</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

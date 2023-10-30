@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="BECFD3C8-97C2-BBA8-A0E4-9BA8AA88E1C5" containerWithKeyObject="7A2FCC26-C8FD-ADC6-FC52-9979350FE6E8" localFKIndex="B30C55A9-678C-2BD6-2BB5-6D3445189ADA" name="KonUdaje_pacient_KONTAKTNI_UDAJE_FK">
+<createdBy>16003</createdBy>
+<createdTime>2022-11-23 15:17:11 UTC</createdTime>
+<generatorID>2B61EB31-0A4B-F942-F3C6-9067881ACE15</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<referredTableLongName>KONTAKTNI_UDAJE</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>7DBCD6E0-4EBE-8B25-7BE3-F265F1A3F146</referredTableID>
+<keyObject>1C370DEC-61D0-4A97-D93E-C91E10040696</keyObject>
+<referredKeyID>1C370DEC-61D0-4A97-D93E-C91E10040696</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

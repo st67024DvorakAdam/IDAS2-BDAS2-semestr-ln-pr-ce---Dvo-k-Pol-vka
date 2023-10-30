@@ -1,0 +1,61 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="EEA90D9F-D0FF-B2EB-8DB3-86CC2E7995F9" name="LOG">
+<createdBy>16003</createdBy>
+<createdTime>2023-10-30 15:04:41 UTC</createdTime>
+<generatorID>93287EF2-DCEE-3ECE-0788-489327ACF7A1</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="4305774D-B92B-FB48-D118-A0CFF0CCA63E">
+<createdBy>16003</createdBy>
+<createdTime>2023-10-30 15:04:41 UTC</createdTime>
+<generatorID>D12E8499-275D-6F97-3D03-B443773986AB</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="zprava" id="2699CD26-380B-A7C7-1A42-8B4482FA62C0">
+<createdBy>16003</createdBy>
+<createdTime>2023-10-30 15:04:41 UTC</createdTime>
+<generatorID>6C2B94F6-5DA8-3EBC-CD6E-EAF48B4A4802</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1024</dataTypeSize>
+<ownDataTypeParameters>1024,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="casove_razitko" id="AC810DC7-E687-BDD3-B33B-05C77CD3BA9F">
+<createdBy>16003</createdBy>
+<createdTime>2023-10-30 15:04:41 UTC</createdTime>
+<generatorID>5BADD9FB-13CE-6953-E0F1-68D1083EB285</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="4BAE78DA-C95D-33CC-5FC8-925291778553" name="LOG_PK">
+<createdBy>16003</createdBy>
+<createdTime>2023-10-30 15:04:41 UTC</createdTime>
+<generatorID>5135F39B-79AC-C267-962D-1C11DB470284</generatorID>
+<ownerDesignName>projekt</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4305774D-B92B-FB48-D118-A0CFF0CCA63E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
