@@ -31,7 +31,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Content="Username" VerticalAlignment="Center" FontSize="14"/>
-                <TextBox Grid.Column="1" Margin="6,0,0,0" Padding="2" Height="25"/>
+                <TextBox Grid.Column="1" MaxWidth="500" Margin="6,0,0,0" Padding="2" Height="25"/>
             </Grid>
 
             <Grid Grid.Row="2" Margin="0,0,0,20">
@@ -40,7 +40,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Content="Password" VerticalAlignment="Center" FontSize="14"/>
-                <PasswordBox Grid.Column="1" Margin="10,0,0,0" Padding="2" Height="25"/>
+                <PasswordBox Grid.Column="1" MaxWidth="100" Margin="10,0,0,0" Padding="2" Height="25"/>
             </Grid>
 
             <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
