@@ -1,18 +1,60 @@
-﻿using System;
+﻿using Database_Hospital_Application.Commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM
 {
     public class MainWindowViewModel : BaseViewModel
     {
         public BaseViewModel CurrentVM { get; }
+        public BaseCommand SubmitCommand { get; set; }
 
         public MainWindowViewModel() 
-        { 
-            CurrentVM = new MainWindowViewModel();
+        {
+            SubmitCommand = new LoginCommand(this,_password,_username);
+
         }
+
+        private string _username;
+
+        public string Username
+        {
+            get
+            {
+                return _username;
+            }
+            set
+            {
+                _username = value;
+                OnPropertyChange(nameof(Username)); 
+            }
+
+        }
+
+        private string _password;
+
+        public string Password
+        {
+            get
+            {
+                return _password;
+            }
+            set
+            {
+                _password = value;
+                OnPropertyChange(nameof(Password));
+            }
+
+        }
+
+        public ICommand LoginCommand { get; }
+        public ICommand CancelCommand { get; }
+
+
     }
 }

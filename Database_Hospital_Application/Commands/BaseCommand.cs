@@ -12,22 +12,22 @@ namespace Database_Hospital_Application.Commands
         public event EventHandler BoolExecChanged;
         public event EventHandler? CanExecuteChanged;
 
-        public virtual bool BoolExec(object parameter)
+        //public virtual bool BoolExec(object parameter)
+        //{
+        //    return true;
+        //}
+
+        public virtual bool CanExecute(object? parameter)
         {
             return true;
         }
 
-        public bool CanExecute(object? parameter)
-        {
-            throw new NotImplementedException();
-        }
+        //public abstract void Exec(object parameter);
 
-        public abstract void Exec(object parameter);
-
-        public void Execute(object? parameter)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void Execute(object? parameter);
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         protected void OnBoolExecChanged() {
             BoolExecChanged?.Invoke(this, new EventArgs());
