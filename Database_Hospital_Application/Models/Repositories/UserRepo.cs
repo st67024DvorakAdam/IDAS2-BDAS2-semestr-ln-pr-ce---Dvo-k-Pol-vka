@@ -39,17 +39,29 @@ namespace Database_Hospital_Application.Models.Repositories
         }
 
         public void RegisterUser(User user) 
-        { 
+        {
+            DatabaseTools.DatabaseTools db = new DatabaseTools.DatabaseTools();
+            
+            // ?????????????????????????????????????????????????????????????????????????????????????????
+            string commandText = "INSERT INTO USERS (name, password) VALUES (:username,:password)";
 
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "username", user.Name }
+                { "password", user.Password }
+                
+            };
+
+            DataTable dataTable = db.ExecuteCommand(commandText, parameters);
         }
         public void GetAllUsers()
         {
-
+            DatabaseTools.DatabaseTools db = new DatabaseTools.DatabaseTools();
         }
 
         public void UpdateUser(User user)
         {
-            string commandText = "";
+            DatabaseTools.DatabaseTools db = new DatabaseTools.DatabaseTools();
         }
     }
 }
