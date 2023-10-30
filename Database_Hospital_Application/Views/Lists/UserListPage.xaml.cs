@@ -10,20 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Database_Hospital_Application.Views
+namespace Database_Hospital_Application.Views.Lists
 {
     /// <summary>
-    /// Interakční logika pro ProfileWindow.xaml
+    /// Interakční logika pro UserListPage.xaml
     /// </summary>
-    public partial class ProfileWindow : Window
+    public partial class UserListPage : Page
     {
-        public ProfileWindow()
+        public UserListPage()
         {
             InitializeComponent();
-
-            
         }
     }
 }

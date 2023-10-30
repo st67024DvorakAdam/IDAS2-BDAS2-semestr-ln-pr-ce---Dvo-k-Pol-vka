@@ -12,7 +12,7 @@ namespace Database_Hospital_Application.Models.Repositories
     public class UserRepo
     {
         // IEnumerable / List ??
-        public List<User> users { get; set; }
+        public ObservableCollection<User> users { get; set; }
 
         public bool LoginUser(string password, string username)
         {
