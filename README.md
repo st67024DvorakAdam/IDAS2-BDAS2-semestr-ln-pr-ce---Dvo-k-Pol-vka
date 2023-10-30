@@ -1,6 +1,6 @@
 # IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka
 # Požadavky
-• 1. min. 10 tabulek navrženého datového modelu i s číselníky; 
+1. min. 10 tabulek navrženého datového modelu i s číselníky; •
 2. min. 2 číselníky, v dokumentaci bude uvedeno, proč byly tabulky vybrány jako číselníky;
 3. Každý umělý primární klíč bude mít vytvořenou sekvenci;
 4. min. 3 pohledy – logicky využité, různého typu; pohledy je nutné využít pro výpis hodnot;
