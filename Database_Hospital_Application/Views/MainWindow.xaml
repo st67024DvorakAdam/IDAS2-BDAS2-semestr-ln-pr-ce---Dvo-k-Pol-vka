@@ -172,7 +172,7 @@
                              Text="{Binding Username}">
 
                         <TextBox.Background>
-                            <ImageBrush ImageSource=""
+                            <ImageBrush ImageSource="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/user-icon.png?raw=true"
                                         Stretch="None"
                                         AlignmentX="Left"/>
                         </TextBox.Background>
@@ -200,7 +200,7 @@
                              local:PasswordBoxHelper.BoundPassword="{Binding Password, Mode=TwoWay}">
 
                         <PasswordBox.Background>
-                            <ImageBrush ImageSource=""
+                            <ImageBrush ImageSource="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/key-icon.png?raw=true"
                                         Stretch="None"
                                         AlignmentX="Left"/>
                         </PasswordBox.Background>
