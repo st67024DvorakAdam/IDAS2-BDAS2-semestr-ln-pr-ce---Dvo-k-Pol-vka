@@ -33,7 +33,15 @@ namespace Database_Hospital_Application
             _viewModel.CloseAction = new Action(this.Close);
         }
 
-        
+        private void minimaze(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 
 

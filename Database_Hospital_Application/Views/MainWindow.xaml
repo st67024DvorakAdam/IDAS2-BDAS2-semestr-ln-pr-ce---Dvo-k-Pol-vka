@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Database_Hospital_Application"
         mc:Ignorable="d"
-        Title="LoginView" Height="550" Width="800"
+        Title="MainWindowView" Height="550" Width="800"
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
@@ -65,7 +65,7 @@
                             FontFamily="Montserrat"
                             Cursor="Hand"
                             Grid.Column="1"
-                            >
+                            Click="minimaze">
 
                         <Button.Style>
                             <Style TargetType="Button">
@@ -98,7 +98,7 @@
                             FontSize="12"
                             FontFamily="Montserrat"
                             Cursor="Hand"
-                            Grid.Column="2"
+                            Grid.Column="2" Click="btnClose_Click"
                             >
 
                         <Button.Style>
