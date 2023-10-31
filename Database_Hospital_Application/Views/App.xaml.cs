@@ -17,8 +17,7 @@ namespace Database_Hospital_Application
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            Models.Repositories.UserRepo userRepo = new Models.Repositories.UserRepo();
-            bool loginResult = userRepo.LoginUser("heslo", "AdminTest");
+            
 
            
 

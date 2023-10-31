@@ -1,4 +1,5 @@
 ﻿using Database_Hospital_Application.Models.Entities;
+using Database_Hospital_Application.Models.DatabaseTools;
 using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
@@ -16,11 +17,10 @@ namespace Database_Hospital_Application.Models.Repositories
         // IEnumerable / List ??
         public ObservableCollection<User> users { get; set; }
 
-        public bool LoginUser(string password, string username)
+        public User LoginUser(string username, string password)
         {
             DatabaseTools.DatabaseTools dbTools = new DatabaseTools.DatabaseTools();
 
-            // Volání funkce
             string commandText = "get_user_salt_and_password";
 
             Dictionary<string, object> parameters = new Dictionary<string, object>
@@ -31,15 +31,22 @@ namespace Database_Hospital_Application.Models.Repositories
             DataTable result = dbTools.ExecuteCommand(commandText, parameters);
             if (result.Rows.Count == 0)
             {
-                return false;
+                return null;
             }
 
-            //string saltFromDb = result.Rows[0]["SALT"].ToString();
             string hashedPasswordFromDb = result.Rows[0]["HESLO"].ToString();
-            //string saltedInputPassword = saltFromDb + password;
-            //string hashedInputPassword = "abc" + password;
-            return password == hashedPasswordFromDb;
 
+            if (password == hashedPasswordFromDb)
+            {
+                User loggedInUser = new User(username, password)
+                {
+                    // TODO Getnout ID, SALT, ROLE_ID
+                    Id = 1,
+                    RoleID = 1
+                };
+                return loggedInUser;
+            }
+            return null;
         }
 
         public void RegisterUser(User user) 

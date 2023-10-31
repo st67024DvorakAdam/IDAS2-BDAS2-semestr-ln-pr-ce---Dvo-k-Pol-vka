@@ -1,4 +1,5 @@
 ﻿using Database_Hospital_Application.Commands;
+using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.Models.Repositories;
 using Database_Hospital_Application.ViewModels.ViewsVM;
 using System.Windows;
@@ -18,10 +19,10 @@ public class LoginCommand : BaseCommand
         UserRepo userRepo = new UserRepo();
         var _username = _mainWindowViewModel.Username;
         var _password = _mainWindowViewModel.Password;
-
-        if(userRepo.LoginUser(_password, _username)) {
+        User us = userRepo.LoginUser(_username, _password);
+        if(us.Name == _username && us.Password == _password) {
             MessageBox.Show("Execute metoda, username: " + _username + " password: " + _password, "Info", MessageBoxButton.OK, MessageBoxImage.Information);
-            _mainWindowViewModel.OpenProfileWindow();
+            _mainWindowViewModel.OpenProfileWindow(us);
         }
     }
 }
