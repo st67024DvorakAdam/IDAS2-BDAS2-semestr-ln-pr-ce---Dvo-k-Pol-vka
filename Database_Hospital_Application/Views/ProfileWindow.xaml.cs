@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Database_Hospital_Application.ViewModels.ViewsVM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace Database_Hospital_Application.Views
 {
     /// <summary>
@@ -19,10 +21,12 @@ namespace Database_Hospital_Application.Views
     /// </summary>
     public partial class ProfileWindow : Window
     {
+        private ProfileWindowViewModel _viewModel;
         public ProfileWindow()
         {
             InitializeComponent();
-
+            _viewModel = new ProfileWindowViewModel();
+            DataContext = _viewModel;
             
         }
     }

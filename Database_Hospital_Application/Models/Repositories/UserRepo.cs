@@ -34,14 +34,10 @@ namespace Database_Hospital_Application.Models.Repositories
                 return false;
             }
 
-            string saltFromDb = result.Rows[0]["SALT"].ToString();
+            //string saltFromDb = result.Rows[0]["SALT"].ToString();
             string hashedPasswordFromDb = result.Rows[0]["HESLO"].ToString();
-
-            string saltedInputPassword = saltFromDb + password;
-            string hashedInputPassword = "abc" + password;
-
-            //MessageBox.Show("heslo: " + hashedPasswordFromDb + " salt: " + saltFromDb, "Info", MessageBoxButton.OK, MessageBoxImage.Information);
-
+            //string saltedInputPassword = saltFromDb + password;
+            //string hashedInputPassword = "abc" + password;
             return password == hashedPasswordFromDb;
 
         }

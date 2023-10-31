@@ -1,4 +1,5 @@
 ﻿using Database_Hospital_Application.Commands;
+using Database_Hospital_Application.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,7 +55,16 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         }
 
-        
+        public void OpenProfileWindow()
+        {
+            ProfileWindow profileWindow = new ProfileWindow();
+            profileWindow.Show();
+            CloseAction?.Invoke();
+        }
+
+        public Action CloseAction { get; set; }
+
+
 
 
     }

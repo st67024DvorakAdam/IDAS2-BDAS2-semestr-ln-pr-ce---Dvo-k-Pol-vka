@@ -45,7 +45,7 @@
 
             <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Content="Přihlásit" Margin="0,0,10,0" Padding="10" FontSize="14" Command="{Binding LoginCommand}"/>
-                <Button Content="Pokračovat bez příhlášení" Padding="10" FontSize="14" Commnad="{Binding ContinueWithoutLoginCommand}"/>
+                <Button Content="Pokračovat bez příhlášení" Padding="10" FontSize="14" Command="{Binding ContinueWithoutLoginCommand}"/>
             </StackPanel>
         </Grid>
     </Grid>

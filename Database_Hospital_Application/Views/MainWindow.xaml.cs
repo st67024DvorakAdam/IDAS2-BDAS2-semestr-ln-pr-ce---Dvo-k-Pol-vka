@@ -29,6 +29,7 @@ namespace Database_Hospital_Application
             InitializeComponent();
             _viewModel = new MainWindowViewModel();
             DataContext = _viewModel;
+            _viewModel.CloseAction = new Action(this.Close);
         }
 
         

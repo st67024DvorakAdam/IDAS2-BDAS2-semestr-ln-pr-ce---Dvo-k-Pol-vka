@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM
 {
-    public class ProfileWindowViewModel
+    public class ProfileWindowViewModel : BaseViewModel
     {
+        public ProfileWindowViewModel() { }
     }
 }
