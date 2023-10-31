@@ -29,5 +29,15 @@ namespace Database_Hospital_Application.Views
             _currentUser = user;
             DataContext = new ProfileWindowViewModel(_currentUser);
         }
+
+        private void minimaze(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }

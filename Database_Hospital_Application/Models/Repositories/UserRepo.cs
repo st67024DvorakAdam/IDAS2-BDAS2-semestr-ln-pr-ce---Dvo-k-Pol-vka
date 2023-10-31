@@ -21,7 +21,7 @@ namespace Database_Hospital_Application.Models.Repositories
         {
             DatabaseTools.DatabaseTools dbTools = new DatabaseTools.DatabaseTools();
 
-            string commandText = "get_user_salt_and_password";
+            string commandText = "get_user";
 
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
@@ -41,8 +41,8 @@ namespace Database_Hospital_Application.Models.Repositories
                 User loggedInUser = new User(username, password)
                 {
                     // TODO Getnout ID, SALT, ROLE_ID
-                    Id = 1,
-                    RoleID = 1
+                    Id = Convert.ToInt32(result.Rows[0]["ID"]),
+                    RoleID = Convert.ToInt32(result.Rows[0]["ROLE_ID"])
                 };
                 return loggedInUser;
             }
