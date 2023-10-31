@@ -26,6 +26,7 @@ namespace Database_Hospital_Application
 
         public MainWindow()
         {
+
             InitializeComponent();
             _viewModel = new MainWindowViewModel();
             DataContext = _viewModel;
