@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using Database_Hospital_Application.Models.Enums;
+using Database_Hospital_Application.Models.Repositories;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM
 {
@@ -50,15 +51,15 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             get => _currentEmpolyee;
             set
             {
-                _currentEmpolyee = value;
+                _currentEmpolyee = EmployeeRepo.ReferenceEquals(_currentUser, value);
                 OnPropertyChange(nameof(CurrentEmpolyee));
             }
         }
 
-        public ProfileWindowViewModel(User currentUser, Employee currentEmpolyee)
+        public ProfileWindowViewModel(User currentUser)
         {
             CurrentUser = currentUser;
-            CurrentEmpolyee = currentEmpolyee;
+           
         }
     }
 }

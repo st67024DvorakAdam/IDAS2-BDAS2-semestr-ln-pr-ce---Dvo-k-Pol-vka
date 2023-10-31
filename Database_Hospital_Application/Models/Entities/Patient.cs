@@ -17,5 +17,6 @@ namespace Database_Hospital_Application.Models.Entities
         public HealthInsurance HealthInsurer { get; set; }
         public Address Address { get; set; }
         public Contact Contact {  get; set; }
+        public PerformedProcedure _PerformedProcedure { get; set; }
     }
 }

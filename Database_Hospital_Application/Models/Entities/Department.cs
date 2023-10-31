@@ -10,5 +10,7 @@ namespace Database_Hospital_Application.Models.Entities
     {
         public int Id { get;}
         public string Name { get; set; }
+
+
     }
 }
