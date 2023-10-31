@@ -22,12 +22,10 @@ namespace Database_Hospital_Application.Commands
             return true;
         }
 
-        //public abstract void Exec(object parameter);
+        
 
         public abstract void Execute(object? parameter);
-        //{
-        //    throw new NotImplementedException();
-        //}
+        
 
         protected void OnBoolExecChanged() {
             BoolExecChanged?.Invoke(this, new EventArgs());

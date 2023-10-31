@@ -11,8 +11,6 @@ public class LoginCommand : BaseCommand
     public LoginCommand(MainWindowViewModel mainWindowViewModel)
     {
         _mainWindowViewModel = mainWindowViewModel;
-        
-        
     }
 
     public override void Execute(object? parameter)
@@ -20,9 +18,9 @@ public class LoginCommand : BaseCommand
         UserRepo userRepo = new UserRepo();
         var _username = _mainWindowViewModel.Username;
         var _password = _mainWindowViewModel.Password;
+
         if(userRepo.LoginUser(_password, _username)) {
         MessageBox.Show("Execute metoda, username: " + _username + " password: " + _password, "Info", MessageBoxButton.OK, MessageBoxImage.Information);
-        //_mainWindowViewModel.ShowMessage("kokos", "Info");
         }
     }
 }

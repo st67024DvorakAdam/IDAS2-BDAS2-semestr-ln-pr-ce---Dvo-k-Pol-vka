@@ -29,56 +29,55 @@ namespace Database_Hospital_Application
             InitializeComponent();
             _viewModel = new MainWindowViewModel();
             DataContext = _viewModel;
-            _viewModel.ShowMessageRequested += ShowMessage;
         }
 
         private void ShowMessage(string message, string caption)
         {
             MessageBox.Show(message, caption);
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //MessageBox.Show("jsme tu", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
     }
 
-    public static class PasswordBoxHelper
-    {
-        public static readonly DependencyProperty BoundPassword =
-            DependencyProperty.RegisterAttached("BoundPassword", typeof(string), typeof(PasswordBoxHelper), new PropertyMetadata(string.Empty, OnBoundPasswordChanged));
 
-        public static string GetBoundPassword(DependencyObject d)
-        {
-            return (string)d.GetValue(BoundPassword);
-        }
 
-        public static void SetBoundPassword(DependencyObject d, string value)
-        {
-            d.SetValue(BoundPassword, value);
-        }
+    /// <summary>
+    /// Bindovani passwordboxu, po změně zustane kurzor na konci textu
+    /// </summary>
+    //public static class PasswordBoxHelper
+    //{
+    //    public static readonly DependencyProperty BoundPassword =
+    //        DependencyProperty.RegisterAttached("BoundPassword", typeof(string), typeof(PasswordBoxHelper), new PropertyMetadata(string.Empty, OnBoundPasswordChanged));
 
-        private static void OnBoundPasswordChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var box = d as PasswordBox;
-            if (box != null)
-            {
-                box.PasswordChanged -= PasswordBox_PasswordChanged;
-                if (GetBoundPassword(d) != box.Password)
-                {
-                    box.Password = GetBoundPassword(d);
-                }
-                box.PasswordChanged += PasswordBox_PasswordChanged;
-            }
-        }
+    //    public static string GetBoundPassword(DependencyObject d)
+    //    {
+    //        return (string)d.GetValue(BoundPassword);
+    //    }
 
-        private static void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-            var box = sender as PasswordBox;
-            SetBoundPassword(box, box.Password);
-        }
+    //    public static void SetBoundPassword(DependencyObject d, string value)
+    //    {
+    //        d.SetValue(BoundPassword, value);
+    //    }
+
+    //    private static void OnBoundPasswordChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    //    {
+    //        var box = d as PasswordBox;
+    //        if (box != null)
+    //        {
+    //            box.PasswordChanged -= PasswordBox_PasswordChanged;
+    //            if (GetBoundPassword(d) != box.Password)
+    //            {
+    //                box.Password = GetBoundPassword(d);
+    //            }
+    //            box.PasswordChanged += PasswordBox_PasswordChanged;
+    //        }
+    //    }
+
+    //    private static void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+    //    {
+    //        var box = sender as PasswordBox;
+    //        SetBoundPassword(box, box.Password);
+    //    }
 
       
-    }
+    //}
 
 }
