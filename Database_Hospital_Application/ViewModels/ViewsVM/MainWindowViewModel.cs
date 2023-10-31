@@ -14,6 +14,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         //public BaseViewModel CurrentVM { get; }
 
         public ICommand LoginCommand { get; }
+        public ICommand ContinueWithoutLoginCommand { get; }
 
         public MainWindowViewModel()
         {
