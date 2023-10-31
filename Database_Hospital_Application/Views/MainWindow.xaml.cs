@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Database_Hospital_Application.ViewModels.ViewsVM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,10 +20,26 @@ namespace Database_Hospital_Application
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
+         
     {
+        private MainWindowViewModel _viewModel;
+
         public MainWindow()
         {
             InitializeComponent();
+            _viewModel = new MainWindowViewModel();
+            DataContext = _viewModel;
+            _viewModel.ShowMessageRequested += ShowMessage;
+        }
+
+        private void ShowMessage(string message, string caption)
+        {
+            MessageBox.Show(message, caption);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //MessageBox.Show("jsme tu", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 
@@ -47,7 +64,10 @@ namespace Database_Hospital_Application
             if (box != null)
             {
                 box.PasswordChanged -= PasswordBox_PasswordChanged;
-                box.Password = GetBoundPassword(d);
+                if (GetBoundPassword(d) != box.Password)
+                {
+                    box.Password = GetBoundPassword(d);
+                }
                 box.PasswordChanged += PasswordBox_PasswordChanged;
             }
         }

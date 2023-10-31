@@ -1,37 +1,28 @@
-﻿using Database_Hospital_Application.Models.Repositories;
+﻿using Database_Hospital_Application.Commands;
+using Database_Hospital_Application.Models.Repositories;
 using Database_Hospital_Application.ViewModels.ViewsVM;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
-namespace Database_Hospital_Application.Commands
+public class LoginCommand : BaseCommand
 {
-    public class LoginCommand : BaseCommand
+    private readonly MainWindowViewModel _mainWindowViewModel;
+    
+
+    public LoginCommand(MainWindowViewModel mainWindowViewModel)
     {
-        private readonly MainWindowViewModel _mainWindowView;
-        private readonly string _password;
-        private readonly string _username;
+        _mainWindowViewModel = mainWindowViewModel;
+        
+        
+    }
 
-        public LoginCommand(MainWindowViewModel mainWindowViewModel, string password, string username)
-        {
-            _mainWindowView = mainWindowViewModel;
-            _password = password;
-            _username = username;
+    public override void Execute(object? parameter)
+    {
+        UserRepo userRepo = new UserRepo();
+        var _username = _mainWindowViewModel.Username;
+        var _password = _mainWindowViewModel.Password;
+        if(userRepo.LoginUser(_password, _username)) {
+        MessageBox.Show("Execute metoda, username: " + _username + " password: " + _password, "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+        //_mainWindowViewModel.ShowMessage("kokos", "Info");
         }
-
-        public override void Execute(object? parameter)
-        {
-            UserRepo userRepo = new UserRepo();
-            if (userRepo.LoginUser(_password, _username))
-            {
-                //_mainWindowView.CurrentVM = 
-                MessageBox.Show("jsme tu", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-        }
-
-
     }
 }

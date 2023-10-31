@@ -12,14 +12,20 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
     public class MainWindowViewModel : BaseViewModel
     {
         public BaseViewModel CurrentVM { get; }
-        public BaseCommand SubmitCommand { get; set; }
+        
+        public event Action<string, string> ShowMessageRequested;
 
-        public MainWindowViewModel() 
+        public ICommand LoginCommand { get; }
+
+        public MainWindowViewModel()
         {
-            SubmitCommand = new LoginCommand(this,_password,_username);
-
+            LoginCommand = new LoginCommand(this);
         }
 
+        //public void ShowMessage(string message, string caption)
+        //{
+        //    ShowMessageRequested?.Invoke(message, caption);
+        //}
         private string _username;
 
         public string Username
@@ -52,8 +58,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         }
 
-        public ICommand LoginCommand { get; }
-        public ICommand CancelCommand { get; }
+        
 
 
     }

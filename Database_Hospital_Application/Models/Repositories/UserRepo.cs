@@ -40,9 +40,9 @@ namespace Database_Hospital_Application.Models.Repositories
             string saltedInputPassword = saltFromDb + password;
             string hashedInputPassword = "abc" + password;
 
-            MessageBox.Show("heslo: " + hashedPasswordFromDb + " salt: " + saltFromDb, "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+            //MessageBox.Show("heslo: " + hashedPasswordFromDb + " salt: " + saltFromDb, "Info", MessageBoxButton.OK, MessageBoxImage.Information);
 
-            return hashedInputPassword == hashedPasswordFromDb;
+            return password == hashedPasswordFromDb;
 
         }
 
