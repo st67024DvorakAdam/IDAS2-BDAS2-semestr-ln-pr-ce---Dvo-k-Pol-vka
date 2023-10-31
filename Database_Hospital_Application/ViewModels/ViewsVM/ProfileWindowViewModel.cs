@@ -44,20 +44,21 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         //    }
         //}
 
-        private User _currentZamestnanec;
-        public User CurrentZamestnanec
+        private Employee _currentEmpolyee;
+        public Employee CurrentEmpolyee
         {
-            get => _currentZamestnanec;
+            get => _currentEmpolyee;
             set
             {
-                _currentZamestnanec = value;
-                OnPropertyChange(nameof(CurrentZamestnanec));
+                _currentEmpolyee = value;
+                OnPropertyChange(nameof(CurrentEmpolyee));
             }
         }
 
-        public ProfileWindowViewModel(User currentUser)
+        public ProfileWindowViewModel(User currentUser, Employee currentEmpolyee)
         {
             CurrentUser = currentUser;
+            CurrentEmpolyee = currentEmpolyee;
         }
     }
 }
