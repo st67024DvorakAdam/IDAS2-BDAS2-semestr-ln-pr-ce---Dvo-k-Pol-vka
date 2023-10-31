@@ -172,7 +172,7 @@
                              Text="{Binding Username}">
 
                         <TextBox.Background>
-                            <ImageBrush ImageSource="https://github.com/RJCodeAdvance/ModernLoginUI-WPF/blob/main/WPF-LoginForm/Images/user-icon.png?raw=true"
+                            <ImageBrush ImageSource=""
                                         Stretch="None"
                                         AlignmentX="Left"/>
                         </TextBox.Background>
@@ -200,7 +200,7 @@
                              local:PasswordBoxHelper.BoundPassword="{Binding Password, Mode=TwoWay}">
 
                         <PasswordBox.Background>
-                            <ImageBrush ImageSource="https://github.com/RJCodeAdvance/ModernLoginUI-WPF/blob/main/WPF-LoginForm/Images/key-icon.png?raw=true"
+                            <ImageBrush ImageSource=""
                                         Stretch="None"
                                         AlignmentX="Left"/>
                         </PasswordBox.Background>
