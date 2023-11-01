@@ -124,15 +124,40 @@
                     </Button>
                 </Grid>
                 
-                <StackPanel Orientation="Horizontal" Height="35" VerticalAlignment="Top" Margin="0,0,300,0">
-                    
-                    <Menu Width="56" Height="19">
-                        <MenuItem Header="Pohled" Width="57">
-                            <MenuItem Header="Uživatelé" />
-                            <MenuItem Header="Zaměstnanci" />
-                            <MenuItem Header="Oddělení" />
-                        </MenuItem>
-                    </Menu>
+                <StackPanel Orientation="Vertical" Width="150">
+
+                    <Button x:Name="btnUsers"                          
+                            BorderThickness="0"
+                            Content="Uživatelé"
+                            Foreground="White"
+                            FontSize="12"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"                           
+                            Margin="0,50,0,0"
+                            >
+
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#462AD8"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#28AEED"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="150" Height="40"
+                                        CornerRadius="20"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
 
                 </StackPanel>
                 <Frame x:Name="Main" Margin="10,40,310,10" Grid.Row="1" />
