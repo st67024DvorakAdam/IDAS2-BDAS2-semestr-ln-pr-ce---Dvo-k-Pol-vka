@@ -40,9 +40,6 @@ namespace Database_Hospital_Application.Views
             Application.Current.Shutdown();
         }
 
-        private void btnUsers_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
     }
 }
