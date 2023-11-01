@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -54,5 +55,20 @@ namespace Database_Hospital_Application.Models.Enums
                 return value.ToString();
             }
         }
+
+        public static RoleEnum GetRoleEnumFromId(int roleId)
+        {
+            foreach (RoleEnum role in Enum.GetValues(typeof(RoleEnum)))
+            {
+                if ((int)role == roleId)
+                {
+                    return role;
+                }
+            }
+
+            throw new Exception("Neznámá role, role_id neodpovídá žádnému enumu");
+        }
+
+
     }
 }

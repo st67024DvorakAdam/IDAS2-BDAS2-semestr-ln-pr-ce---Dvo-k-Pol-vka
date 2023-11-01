@@ -94,11 +94,33 @@ namespace Database_Hospital_Application.Models.Repositories
         {
             
         }
-        public void GetAllUsers()
+        public ObservableCollection<User> GetAllUsers()
         {
-            
-        }
+            DatabaseTools.DatabaseTools dbTools = new DatabaseTools.DatabaseTools();
+            string commandText = "get_all_users";
 
+            DataTable result = dbTools.ExecuteCommand(commandText, null);
+
+            if (result.Rows.Count > 0)
+            {
+                users.Clear(); // Vyčistit kolekci, pokud již obsahuje data
+
+                foreach (DataRow row in result.Rows)
+                {
+                    User user = new User
+                    {
+                        Id = Convert.ToInt32(row["ID"]),
+                        Name = row["JMENO"].ToString(),
+                        Password = row["HESLO"].ToString(),
+                        RoleID = Convert.ToInt32(row["ROLE_ID"]),
+                        Salt = row["SALT"].ToString()                             
+                    };
+                    user.UserRole = RoleExtensions.GetRoleEnumFromId(user.RoleID);
+                    users.Add(user);
+                }
+            }
+            return users;
+        }
         public void UpdateUser(User user)
         {
             

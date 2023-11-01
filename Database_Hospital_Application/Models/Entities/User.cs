@@ -15,7 +15,7 @@ namespace Database_Hospital_Application.Models.Entities
         public string Password { get; set; }
         public string Salt { get; set;  }
         public int RoleID { get; set; }
-        public Employee Employee { get; set; }
+        public Employee Employee { get; set; }       
         public RoleEnum UserRole { get; set; }
 
         
@@ -24,6 +24,8 @@ namespace Database_Hospital_Application.Models.Entities
             Password = password;
         }
 
-        
+        public User()
+        {
+        }
     }
 }

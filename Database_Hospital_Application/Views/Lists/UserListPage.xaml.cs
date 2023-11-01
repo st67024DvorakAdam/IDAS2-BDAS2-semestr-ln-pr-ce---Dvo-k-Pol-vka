@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Database_Hospital_Application.Models.Entities;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +22,7 @@ namespace Database_Hospital_Application.Views.Lists
     /// </summary>
     public partial class UserListPage : Page
     {
-        public UserListPage()
+        public UserListPage(ObservableCollection<User> users)
         {
             InitializeComponent();
         }

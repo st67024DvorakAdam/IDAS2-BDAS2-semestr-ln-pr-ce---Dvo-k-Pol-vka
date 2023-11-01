@@ -149,7 +149,7 @@
                             FontFamily="Montserrat"
                             Cursor="Hand"                           
                             Margin="5"
-                            >
+                            Command="{Binding GetAllUsers}">
 
                         <Button.Style>
                             <Style TargetType="Button">
