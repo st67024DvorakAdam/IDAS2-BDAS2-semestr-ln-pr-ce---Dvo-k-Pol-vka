@@ -7,6 +7,7 @@
         xmlns:vm="clr-namespace:Database_Hospital_Application.ViewModels.ViewsVM"
         mc:Ignorable="d"
         WindowStyle="None"
+        Background="Transparent"
         WindowStartupLocation="CenterScreen"
         Title="ProfileWindow" Height="600" Width="1000">
 
@@ -154,6 +155,7 @@
                                FontWeight="Medium"
                                FontFamily="Montserrat"                             
                                Margin="0,35,0,0"/>
+                     
 
                     <TextBox x:Name="txtUser"
                              FontSize="13"
@@ -181,7 +183,7 @@
                                FontSize="12"
                                FontWeight="Medium"
                                FontFamily="Montserrat"                             
-                               Margin="0,35,0,0"/>
+                               Margin="0,15,0,0"/>
 
                     <TextBlock x:Name="txtRole"
                              FontSize="13"
@@ -191,9 +193,8 @@
                              VerticalAlignment="Center"
                              Height="28"
                              Margin="0,5,0,0"
-                             Padding="20,0,0,0"
-                             Text="{Binding CurrentUserRole}">
-
+                             Padding="20,7,0,0"
+                             Text="{Binding CurrentUser.RoleID}">
                         <TextBlock.Background>
                             <ImageBrush ImageSource="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/user-icon.png?raw=true"
                                         Stretch="None"
@@ -206,7 +207,7 @@
                                FontSize="12"
                                FontWeight="Medium"
                                FontFamily="Montserrat"                             
-                               Margin="0,35,0,0"/>
+                               Margin="0,15,0,0"/>
 
                     <TextBlock x:Name="txtName"
                              FontSize="13"
@@ -216,8 +217,36 @@
                              VerticalAlignment="Center"
                              Height="28"
                              Margin="0,5,0,0"
-                             Padding="20,0,0,0"
-                             Text="{Binding CurrentUserRole}">
+                             Padding="20,7,0,0">
+                        <Run Text="{Binding CurrentUser.Employee.FirstName}" />
+                        <Run Text=" " />
+                        <Run Text="{Binding CurrentUser.Employee.LastName}" />
+                       
+                        <TextBlock.Background>
+                            <ImageBrush ImageSource="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/user-icon.png?raw=true"
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                        </TextBlock.Background>
+                    </TextBlock>
+
+                    <TextBlock Text = "Rodné číslo"
+                               Foreground="DarkGray"
+                               FontSize="12"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"                             
+                               Margin="0,15,0,0"/>
+
+                    <TextBlock x:Name="txtBirthNumber"
+                             FontSize="13"
+                             FontWeight="Medium"
+                             FontFamily="Montserrat"                            
+                             Foreground="White"
+                             VerticalAlignment="Center"
+                             Height="28"
+                             Margin="0,5,0,0"
+                             Padding="20,7,0,0"
+                             Text="{Binding CurrentUser.Employee.BirthNumber}">
+
 
                         <TextBlock.Background>
                             <ImageBrush ImageSource="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/user-icon.png?raw=true"
@@ -226,8 +255,31 @@
                         </TextBlock.Background>
                     </TextBlock>
 
+                    <TextBlock Text = "Oddělení"
+                               Foreground="DarkGray"
+                               FontSize="12"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"                             
+                               Margin="0,15,0,0"/>
+
+                    <TextBlock x:Name="txtDepartment"
+                             FontSize="13"
+                             FontWeight="Medium"
+                             FontFamily="Montserrat"                            
+                             Foreground="White"
+                             VerticalAlignment="Center"
+                             Height="28"
+                             Margin="0,5,0,0"
+                             Padding="20,7,0,0"
+                             Text="{Binding CurrentUser.Employee._department.Name}">
 
 
+                        <TextBlock.Background>
+                            <ImageBrush ImageSource="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/user-icon.png?raw=true"
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                        </TextBlock.Background>
+                    </TextBlock>
 
                 </StackPanel>
 

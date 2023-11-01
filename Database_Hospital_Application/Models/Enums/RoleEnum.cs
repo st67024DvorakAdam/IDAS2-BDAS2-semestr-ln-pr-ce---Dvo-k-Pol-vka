@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Database_Hospital_Application.Models.Enums
 {
-    public enum Role
+    public enum RoleEnum
     {
         [Description("Administrátor")]
         Admin = 1,
@@ -30,7 +30,7 @@ namespace Database_Hospital_Application.Models.Enums
     {
         public static string GetRoleDescription(int roleNumber)
         {
-            foreach (Role role in Enum.GetValues(typeof(Role)))
+            foreach (RoleEnum role in Enum.GetValues(typeof(RoleEnum)))
             {
                 if ((int)role == roleNumber)
                 {

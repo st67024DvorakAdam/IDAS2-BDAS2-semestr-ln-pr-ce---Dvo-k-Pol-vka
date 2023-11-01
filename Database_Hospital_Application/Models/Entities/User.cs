@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Database_Hospital_Application.Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,7 @@ namespace Database_Hospital_Application.Models.Entities
         public string Salt { get; set;  }
         public int RoleID { get; set; }
         public Employee Employee { get; set; }
-        public Role UserRole { get; set; }
+        public RoleEnum UserRole { get; set; }
 
         
         public User(string name, string password) {
