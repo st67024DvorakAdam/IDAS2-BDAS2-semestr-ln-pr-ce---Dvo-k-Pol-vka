@@ -9,6 +9,11 @@
       Title="UserListPage">
 
     <Grid>
-        
+        <DataGrid x:Name="usersDataGrid">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header=" username" />
+                <DataGridTextColumn Header=" role" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>
