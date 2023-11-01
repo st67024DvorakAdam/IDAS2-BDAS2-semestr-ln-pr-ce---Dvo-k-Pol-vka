@@ -14,7 +14,6 @@ namespace Database_Hospital_Application.Models.Entities
         public string LastName { get; set; }
         public long BirthNumber { get; set; }
         public SexEnum Sex { get; set; }
-
         public Department _department { get; set; }
 
         public Employee() { }
