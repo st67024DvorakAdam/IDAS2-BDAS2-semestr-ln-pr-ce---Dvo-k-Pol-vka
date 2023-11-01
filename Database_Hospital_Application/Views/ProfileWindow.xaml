@@ -16,7 +16,7 @@
 
         <Border CornerRadius="10"                    
             BorderThickness="2"
-            Opacity="0.95">
+            Opacity="0.95" RenderTransformOrigin="0.657,0.427">
 
             <Border.BorderBrush>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -123,11 +123,25 @@
                         </Button.Template>
                     </Button>
                 </Grid>
+                
+                <StackPanel Orientation="Horizontal" Height="35" VerticalAlignment="Top" Margin="0,0,300,0">
+                    
+                    <Menu Width="56" Height="19">
+                        <MenuItem Header="Pohled" Width="57">
+                            <MenuItem Header="Uživatelé" />
+                            <MenuItem Header="Zaměstnanci" />
+                            <MenuItem Header="Oddělení" />
+                        </MenuItem>
+                    </Menu>
+
+                </StackPanel>
+                <Frame x:Name="Main" Margin="10,40,310,10" Grid.Row="1" />
 
                 <StackPanel
                             Grid.Row="1"
                             Orientation="Vertical"
-                            Margin="920,0,0,0">
+                            Margin="946,0,0,0"
+                            MinWidth="250">
 
                     <Image Source="https://eduroam.upce.cz/favicon/ms-icon-310x310.png"
                            Width="100" Height="59"/>
