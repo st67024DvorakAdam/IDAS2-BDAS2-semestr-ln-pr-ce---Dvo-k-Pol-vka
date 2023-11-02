@@ -12,7 +12,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
     public class NavigateVM : BaseViewModel
     {
         private object _currentView;
-        private User _currentUser;
+        public User _currentUser;
 
         public User CurrentUser
         {
@@ -52,7 +52,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             // Nastavit defaultní pohled
             CurrentView = new UserVM(); // Měli byste mít vytvořený tento ViewModel
-            CurrentUser = user;
+            
 
             // Inicializace příkazů
             ProfileCommand = new RelayCommand(Profile);

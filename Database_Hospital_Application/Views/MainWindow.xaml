@@ -8,12 +8,13 @@
         
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="1000">
-    <Window.DataContext>
-        <vm:NavigateVM/>
-    </Window.DataContext>
+    
     <Window.Resources>
         <DataTemplate DataType="{x:Type vm:UserVM}">
             <local:UsersListView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:CurrUserVM}">
+            <local:CurrentUserView/>
         </DataTemplate>
 
 
