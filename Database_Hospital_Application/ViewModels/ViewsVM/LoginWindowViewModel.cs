@@ -11,14 +11,14 @@ using System.Windows.Input;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM
 {
-    public class MainWindowViewModel : BaseViewModel
+    public class LoginWindowViewModel : BaseViewModel
     {
         //public BaseViewModel CurrentVM { get; }
 
         public ICommand LoginCommand { get; }
         public ICommand ContinueWithoutLoginCommand { get; }
 
-        public MainWindowViewModel()
+        public LoginWindowViewModel()
         {
             LoginCommand = new LoginCommand(this);
         }

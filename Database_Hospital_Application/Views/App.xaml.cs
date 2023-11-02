@@ -9,22 +9,17 @@ using System.Windows;
 
 namespace Database_Hospital_Application
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
+
     public partial class App : Application
     {
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            
 
-           
-
-           MainWindow = new MainWindow
-           {
-               //DataContext = new MainWindowViewModel()
-           };
+            MainWindow = new LoginWindow
+            {
+                //DataContext = new LoginWindowViewModel()
+            };
 
             MainWindow.Show();
 

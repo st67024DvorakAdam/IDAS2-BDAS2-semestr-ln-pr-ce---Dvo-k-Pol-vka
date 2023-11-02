@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Database_Hospital_Application.Views.Lists
 {
     /// <summary>
-    /// Interakční logika pro EmployeeListPage.xaml
+    /// Interakční logika pro UsersListView.xaml
     /// </summary>
-    public partial class EmployeeListPage : Page
+    public partial class UsersListView : UserControl
     {
-        public EmployeeListPage()
+        public UsersListView()
         {
             InitializeComponent();
         }

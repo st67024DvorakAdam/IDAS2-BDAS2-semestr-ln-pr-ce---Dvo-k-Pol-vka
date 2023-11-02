@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace Database_Hospital_Application.Views
 {
-    /// <summary>
-    /// Interakční logika pro ProfileWindow.xaml
-    /// </summary>
     public partial class ProfileWindow : Window
     {
         private User _currentUser;
@@ -40,6 +37,6 @@ namespace Database_Hospital_Application.Views
             Application.Current.Shutdown();
         }
 
-        
+
     }
 }

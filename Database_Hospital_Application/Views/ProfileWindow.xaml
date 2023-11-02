@@ -12,9 +12,9 @@
         Title="ProfileWindow" Height="800" Width="1200">
 
     <Window.Resources>
-        
+
     </Window.Resources>
-    
+
     <Border CornerRadius="12">
 
 

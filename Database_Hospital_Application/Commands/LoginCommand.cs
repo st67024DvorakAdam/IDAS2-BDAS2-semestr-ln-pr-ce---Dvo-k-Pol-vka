@@ -6,10 +6,10 @@ using System.Windows;
 
 public class LoginCommand : BaseCommand
 {
-    private readonly MainWindowViewModel _mainWindowViewModel;
+    private readonly LoginWindowViewModel _mainWindowViewModel;
     
 
-    public LoginCommand(MainWindowViewModel mainWindowViewModel)
+    public LoginCommand(LoginWindowViewModel mainWindowViewModel)
     {
         _mainWindowViewModel = mainWindowViewModel;
     }
