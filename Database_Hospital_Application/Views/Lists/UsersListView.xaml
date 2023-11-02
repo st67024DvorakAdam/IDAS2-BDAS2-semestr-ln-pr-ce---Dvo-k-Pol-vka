@@ -10,19 +10,40 @@
         <vm:UserVM/>
     </UserControl.DataContext>
     <Grid>
-        <TextBlock Text="Uzivatel :"
-                   Foreground="#DBDBDB"
-                   FontSize="12"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Top"
-                   Margin="70,138,0,0" />
+        <ListView ItemsSource="{Binding UsersList}" Background="Transparent">
 
-        <TextBlock Text="Text"
-                   Foreground="#CED565"
-                   FontSize="12"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Top"
-                   Margin="160,138,0,0" />
+            <ListView.Resources>
 
+                <Style TargetType="GridViewColumnHeader">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                </Style>
+
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="Background" Value="Transparent"/>
+
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#55555555"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.Resources>
+
+
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Jméno" DisplayMemberBinding="{Binding Name}" Width="150"/>
+                    <GridViewColumn Header="Heslo" DisplayMemberBinding="{Binding Password}" Width="150"/>
+                    <GridViewColumn Header="ID Role" DisplayMemberBinding="{Binding RoleID}" Width="100"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </UserControl>

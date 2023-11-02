@@ -103,7 +103,10 @@ namespace Database_Hospital_Application.Models.Repositories
 
             if (result.Rows.Count > 0)
             {
-                users.Clear(); // Vyčistit kolekci, pokud již obsahuje data
+                if (users == null)
+                {
+                    users = new ObservableCollection<User>();
+                }
 
                 foreach (DataRow row in result.Rows)
                 {

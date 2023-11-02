@@ -58,7 +58,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         public void OpenProfileWindow(User user)
         {
-            ProfileWindow profileWindow = new ProfileWindow(user);
+            Views.MainWindow profileWindow = new Views.MainWindow();
             profileWindow.Show();
             CloseAction?.Invoke();
         }
