@@ -51,7 +51,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         public NavigateVM(User user)
         {
             // Nastavit defaultní pohled
-            CurrentView = new UserVM(); // Měli byste mít vytvořený tento ViewModel
+            CurrentUser = user;
+            CurrentView = new CurrUserVM(CurrentUser); // Měli byste mít vytvořený tento ViewModel
             
 
             // Inicializace příkazů

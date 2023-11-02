@@ -12,6 +12,10 @@
         Background="Transparent"
         AllowsTransparency="True">
 
+    <Window.InputBindings>
+        <KeyBinding Key="Enter" Command="{Binding LoginCommand}" />
+    </Window.InputBindings>
+
     <Border CornerRadius="12">
 
 

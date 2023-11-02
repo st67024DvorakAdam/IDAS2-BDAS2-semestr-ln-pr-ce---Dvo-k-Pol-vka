@@ -7,7 +7,6 @@ using System.Windows;
 public class LoginCommand : BaseCommand
 {
     private readonly LoginWindowViewModel _mainWindowViewModel;
-    
 
     public LoginCommand(LoginWindowViewModel mainWindowViewModel)
     {
@@ -37,9 +36,10 @@ public class LoginCommand : BaseCommand
             MessageBox.Show("Execute metoda, username: " + _username + " password: " + _password, "Info", MessageBoxButton.OK, MessageBoxImage.Information);
             _mainWindowViewModel.OpenProfileWindow(us);
         }
-        
-            
+ 
         
     }
+
+
 }
 
