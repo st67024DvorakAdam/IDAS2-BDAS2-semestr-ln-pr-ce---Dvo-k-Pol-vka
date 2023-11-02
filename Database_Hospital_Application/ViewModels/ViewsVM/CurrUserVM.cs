@@ -11,7 +11,7 @@ using Database_Hospital_Application.Models.Repositories;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM
 {
-    public class ProfileWindowViewModel : BaseViewModel
+    public class CurrUserVM : BaseViewModel
     {
         private User _currentUser;
         public User CurrentUser {
@@ -25,7 +25,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
 
 
-        public ProfileWindowViewModel(User currentUser)
+        public CurrUserVM(User currentUser)
         {
             CurrentUser = currentUser;
            

@@ -24,7 +24,7 @@ namespace Database_Hospital_Application.Views
         {
             InitializeComponent();
             _currentUser = user;
-            DataContext = new ProfileWindowViewModel(_currentUser);
+            DataContext = new CurrUserVM(_currentUser);
         }
 
         private void minimaze(object sender, RoutedEventArgs e)
