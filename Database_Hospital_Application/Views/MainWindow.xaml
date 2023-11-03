@@ -7,7 +7,7 @@
         xmlns:Menu="clr-namespace:Database_Hospital_Application.Utils" xmlns:vm="clr-namespace:Database_Hospital_Application.ViewModels.ViewsVM" 
         
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1000">
+        Title="MainWindow" Height="950" Width="1350">
     
     <Window.Resources>
         <DataTemplate DataType="{x:Type vm:UserVM}">
@@ -28,18 +28,18 @@
 
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="230" />
-                <ColumnDefinition Width="770" />
+                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="1010" />
             </Grid.ColumnDefinitions>
 
             <Grid HorizontalAlignment="Left"
-                  Width="228">
+                  Width="300">
 
                 <Border Background="#272B2F"
-                        CornerRadius="20,0,0,20" />
+                        CornerRadius="2,0,0,2" />
 
-                <StackPanel Height="750"
-                            Width="228">
+                <StackPanel Height="900"
+                            Width="300">
 
                     <Menu:Button Style="{StaticResource Button}"
                                  Command="{Binding ProfileCommand}"
@@ -61,7 +61,7 @@
 
 
 
-                            <TextBlock Text="Databáze"
+                            <TextBlock Text="Uživatelé"
                                        Style="{StaticResource TextStyle}" />
 
                         </Grid>
@@ -75,21 +75,192 @@
 
 
 
-                            <TextBlock Text="Nastavení"
+                            <TextBlock Text="Pacienti"
                                        Style="{StaticResource TextStyle}" />
 
                         </Grid>
 
                     </Menu:Button>
+                    <Menu:Button Style="{StaticResource Button}"
+                              Command="{Binding SettingsCommand}">
+
+                        <Grid>
+
+
+
+                            <TextBlock Text="Adresy"
+                                       Style="{StaticResource TextStyle}" />
+
+                        </Grid>
+
+                    </Menu:Button>
+                    <Menu:Button Style="{StaticResource Button}"
+                              Command="{Binding SettingsCommand}">
+
+                        <Grid>
+
+
+
+                            <TextBlock Text="Pojišťovny"
+                                       Style="{StaticResource TextStyle}" />
+
+                        </Grid>
+
+                    </Menu:Button>
+                    <Menu:Button Style="{StaticResource Button}"
+                              Command="{Binding SettingsCommand}">
+
+                        <Grid>
+
+
+
+                            <TextBlock Text="Provedené výkony"
+                                       Style="{StaticResource TextStyle}" />
+
+                        </Grid>
+
+                    </Menu:Button>
+                    <Menu:Button Style="{StaticResource Button}"
+                              Command="{Binding SettingsCommand}">
+
+                        <Grid>
+
+
+
+                            <TextBlock Text="Osobní anamnézy"
+                                       Style="{StaticResource TextStyle}" />
+
+                        </Grid>
+
+                    </Menu:Button>
+                    <Menu:Button Style="{StaticResource Button}"
+                              Command="{Binding SettingsCommand}">
+
+                        <Grid>
+
+
+
+                            <TextBlock Text="Zdravotní karty"
+                                       Style="{StaticResource TextStyle}" />
+
+                        </Grid>
+
+                    </Menu:Button>
+                    <Menu:Button Style="{StaticResource Button}"
+                              Command="{Binding SettingsCommand}">
+
+                        <Grid>
+
+
+
+                            <TextBlock Text="Perůběžné nemoci"
+                                       Style="{StaticResource TextStyle}" />
+
+                        </Grid>
+
+                    </Menu:Button>
+                    <Menu:Button Style="{StaticResource Button}"
+                              Command="{Binding SettingsCommand}">
+
+                        <Grid>
+
+
+
+                            <TextBlock Text="Užité léky"
+                                       Style="{StaticResource TextStyle}" />
+
+                        </Grid>
+
+                    </Menu:Button>
+                    <Menu:Button Style="{StaticResource Button}"
+                              Command="{Binding SettingsCommand}">
+
+                        <Grid>
+
+
+
+                            <TextBlock Text="Kontaktní údaje"
+                                       Style="{StaticResource TextStyle}" />
+
+                        </Grid>
+
+                    </Menu:Button>
+                    <Menu:Button Style="{StaticResource Button}"
+                              Command="{Binding SettingsCommand}">
+
+                        <Grid>
+
+
+
+                            <TextBlock Text="Zaměstnanci"
+                                       Style="{StaticResource TextStyle}" />
+
+                        </Grid>
+
+                    </Menu:Button>
+                    <Menu:Button Style="{StaticResource Button}"
+                              Command="{Binding SettingsCommand}">
+
+                        <Grid>
+
+
+
+                            <TextBlock Text="Fotky"
+                                       Style="{StaticResource TextStyle}" />
+
+                        </Grid>
+
+                    </Menu:Button>
+                    <Menu:Button Style="{StaticResource Button}"
+                              Command="{Binding SettingsCommand}">
+
+                        <Grid>
+
+
+
+                            <TextBlock Text="Role"
+                                       Style="{StaticResource TextStyle}" />
+
+                        </Grid>
+
+                    </Menu:Button>
+                    <Menu:Button Style="{StaticResource Button}"
+                              Command="{Binding SettingsCommand}">
+
+                        <Grid>
+
+
+
+                            <TextBlock Text="Zprávy"
+                                       Style="{StaticResource TextStyle}" />
+
+                        </Grid>
+
+                    </Menu:Button>
+                    <Menu:Button Style="{StaticResource Button}"
+                              Command="{Binding SettingsCommand}">
+
+                        <Grid>
+
+
+
+                            <TextBlock Text="Oddělení"
+                                       Style="{StaticResource TextStyle}" />
+
+                        </Grid>
+
+                    </Menu:Button>
+                    
 
                 </StackPanel>
 
             </Grid>
 
-            <Grid Grid.Column="1" Height="680">
+            <Grid Grid.Column="1" Height="800"
+                  Margin="20">
 
                 <ContentControl x:Name="Pages"
-                                Content="{Binding CurrentView}" />
+                                Content="{Binding CurrentView}" Margin="10,-44,-10,0" />
 
             </Grid>
 
