@@ -16,6 +16,7 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Margin" Value="0,5,0,0"/>
             <Setter Property="Padding" Value="20,0,0,0"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
         <Style x:Key="MySecondTextBlockStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="12"/>
@@ -23,6 +24,7 @@
             <Setter Property="FontFamily" Value="Montserrat"/>
             <Setter Property="Foreground" Value="DarkGray"/>
             <Setter Property="Margin" Value="0,35,0,0"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
     </UserControl.Resources>
     <Grid>
@@ -31,19 +33,30 @@
             Margin="10,10,0,5"
                    Orientation="Vertical"
                    MinWidth="250"
-            HorizontalAlignment="Left" Width="390">
-
-            <Image Source="https://eduroam.upce.cz/favicon/ms-icon-310x310.png"
+            HorizontalAlignment="Center" Width="390">
+            <StackPanel
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left"
+                Orientation="Horizontal">
+                <Image Source="https://eduroam.upce.cz/favicon/ms-icon-310x310.png"
                            Width="100" Height="59"/>
 
-            <TextBlock Text="NEMOCNICE UPCE"
+                <TextBlock Text="NEMOCNICE UPCE"
                                Foreground="White"
                                FontSize="25"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
-                               HorizontalAlignment="Center" Width="214"/>
+                               HorizontalAlignment="Center" 
+                               Margin="0,15,0,0"    
+                           Width="214"/>
+            </StackPanel>
 
-            <Image Source="{Binding CurrentUser.Employee._foto.Image}" Width="100" Height="100" />
+
+            <Image Source="{Binding CurrentUser.Employee._foto.Image}" Width="100" Height="100">
+                <Image.Clip>
+                    <EllipseGeometry Center="50,50" RadiusX="50" RadiusY="50" />
+                </Image.Clip>
+            </Image>
 
 
             <TextBlock Text="Username" Style="{StaticResource MySecondTextBlockStyle}"/>
@@ -53,7 +66,7 @@
 
             <TextBlock Text="RoleID" Style="{StaticResource MySecondTextBlockStyle}"/>
             <TextBlock x:Name="txtRoleId" Style="{StaticResource MyTextBlockStyle}"
-                   Text="{Binding CurrentUser.RoleID}">
+                   Text="{Binding CurrentUser.UserRole}">
             </TextBlock>
 
             <TextBlock Text="Jméno" Style="{StaticResource MySecondTextBlockStyle}"/>

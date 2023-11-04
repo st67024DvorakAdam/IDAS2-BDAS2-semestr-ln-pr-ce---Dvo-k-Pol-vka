@@ -83,6 +83,7 @@ namespace Database_Hospital_Application.Models.Repositories
                     Id = Convert.ToInt32(result.Rows[0]["ID"]),
                     RoleID = Convert.ToInt32(result.Rows[0]["ROLE_ID"].ToString()),
                     Salt = (string)result.Rows[0]["SALT"],
+                    UserRole = RoleExtensions.GetRoleEnumFromId(Convert.ToInt32(result.Rows[0]["ROLE_ID"].ToString())),
                     Employee = new Employee(Convert.ToInt32(result2.Rows[0]["ID"]))
                     {
                         FirstName = (string)result2.Rows[0]["JMENO"],
@@ -124,24 +125,17 @@ namespace Database_Hospital_Application.Models.Repositories
                     {
                         f.Image = bmimg;
                         loggedInUser.Employee._foto = f;
+                    }
+                    
+                }
+                else
+                {
+                    Foto f = new Foto();
+                    f.Image = new BitmapImage(new Uri("https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/raw/main/Images/no-profile-photo-icon.png"));
+                    loggedInUser.Employee._foto = f; 
+                }
 
-                        //Window imageWindow = new Window
-                        //{
-                        //    Title = "Obrázek",
-                        //    Width = 400,
-                        //    Height = 300,
-                        //    Content = new Image
-                        //    {
-                        //        Source = loggedInUser.Employee._foto.Image,
-                        //        Stretch = Stretch.Uniform,
-                        //    }
-                        //};
-
-                        //imageWindow.ShowDialog();
-                    }         
-                }                
-
-                    return loggedInUser;
+                return loggedInUser;
             }
             return null;
         }
