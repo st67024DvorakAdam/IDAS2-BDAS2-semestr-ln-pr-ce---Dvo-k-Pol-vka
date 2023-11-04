@@ -8,7 +8,7 @@ namespace Database_Hospital_Application.Models.Entities
 {
     public class Department
     {
-        public int Id { get;}
+        public int Id { get; set; }
         public string Name { get; set; }
 
 

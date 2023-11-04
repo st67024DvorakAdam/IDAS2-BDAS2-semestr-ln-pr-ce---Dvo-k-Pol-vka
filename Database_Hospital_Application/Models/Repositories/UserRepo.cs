@@ -10,6 +10,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Database_Hospital_Application.Models.Enums;
+using System.Xml.Linq;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
+using System.Windows.Controls;
 
 namespace Database_Hospital_Application.Models.Repositories
 {
@@ -58,10 +62,16 @@ namespace Database_Hospital_Application.Models.Repositories
             };
 
             DataTable result3 = dbTools.ExecuteCommand(commandText3, parameters3);
-            if (result3.Rows.Count == 0)
+
+
+            string commandText4 = "GetEmployeeImage";
+
+            Dictionary<string, object> parameters4 = new Dictionary<string, object>
             {
-                return null;
-            }
+                { "p_employee_id", Convert.ToInt32(result.Rows[0]["ZAMESTNANEC_ID"]) }
+            };
+
+            DataTable result4 = dbTools.ExecuteCommand(commandText4, parameters4);         
 
             string hashedPasswordFromDb = result.Rows[0]["HESLO"].ToString();
 
@@ -73,19 +83,65 @@ namespace Database_Hospital_Application.Models.Repositories
                     Id = Convert.ToInt32(result.Rows[0]["ID"]),
                     RoleID = Convert.ToInt32(result.Rows[0]["ROLE_ID"].ToString()),
                     Salt = (string)result.Rows[0]["SALT"],
-                    Employee = new Employee
+                    Employee = new Employee(Convert.ToInt32(result2.Rows[0]["ID"]))
                     {
                         FirstName = (string)result2.Rows[0]["JMENO"],
                         LastName = (string)result2.Rows[0]["PRIJMENI"],
                         BirthNumber = Convert.ToInt64(result2.Rows[0]["RODNE_CISLO"]),
-                        Sex = SexEnumParser.GetEnumFromString((string)result2.Rows[0]["POHLAVI"]),
-                        _department = new Department
-                        {
-                            Name = (string)result3.Rows[0]["NAZEV"]
-                        }
+                        Sex = SexEnumParser.GetEnumFromString((string)result2.Rows[0]["POHLAVI"])
                     }
                 };
-                return loggedInUser;
+
+                if (result3.Rows.Count != 0)
+                {
+                    Department d = new Department
+                    {
+                        Id = Convert.ToInt32(result3.Rows[0]["ID"]),    
+                        Name = (string)result3.Rows[0]["NAZEV"]
+                    };
+                    loggedInUser.Employee._department = d;
+                }
+                else
+                {
+                    Department d = new Department
+                    {
+                        Name = "Žádné oddělení pod mým vedením."
+                    };
+                    loggedInUser.Employee._department = d;
+                }
+
+
+                if (result4.Rows.Count != 0)
+                {
+                    Foto f = new Foto
+                    {
+                        Id = Convert.ToInt32(result4.Rows[0]["ID"]),                        
+                    };
+
+                    byte[] imageBytes = (byte[])result4.Rows[0]["obrazek"];
+                    BitmapImage bmimg = FotoExtension.ConvertBytesToBitmapImage(imageBytes);
+                    if (bmimg != null)
+                    {
+                        f.Image = bmimg;
+                        loggedInUser.Employee._foto = f;
+
+                        //Window imageWindow = new Window
+                        //{
+                        //    Title = "Obrázek",
+                        //    Width = 400,
+                        //    Height = 300,
+                        //    Content = new Image
+                        //    {
+                        //        Source = loggedInUser.Employee._foto.Image,
+                        //        Stretch = Stretch.Uniform,
+                        //    }
+                        //};
+
+                        //imageWindow.ShowDialog();
+                    }         
+                }                
+
+                    return loggedInUser;
             }
             return null;
         }

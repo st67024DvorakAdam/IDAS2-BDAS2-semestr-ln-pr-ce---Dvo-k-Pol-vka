@@ -15,8 +15,14 @@ namespace Database_Hospital_Application.Models.Entities
         public long BirthNumber { get; set; }
         public SexEnum Sex { get; set; }
         public Department _department { get; set; }
+        public Foto _foto { get; set; }
 
         public Employee() { }
+
+        public Employee(int id) 
+        {
+            Id = id;
+        }
 
         public Employee(int id, string firstName, string lastName, int birthNumber, SexEnum sex)
         {

@@ -5,8 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Database_Hospital_Application.Views.Lists"
              xmlns:vm="clr-namespace:Database_Hospital_Application.ViewModels.ViewsVM"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d" d:DesignWidth="800" Height="583">
     <UserControl.Resources>
         <Style x:Key="MyTextBlockStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="13"/>
@@ -44,6 +43,9 @@
                                FontFamily="Montserrat"
                                HorizontalAlignment="Center" Width="214"/>
 
+            <Image Source="{Binding CurrentUser.Employee._foto.Image}" Width="100" Height="100" />
+
+
             <TextBlock Text="Username" Style="{StaticResource MySecondTextBlockStyle}"/>
             <TextBlock x:Name="txtUser" Style="{StaticResource MyTextBlockStyle}"
                    Text="{Binding CurrentUser.Name}">
@@ -66,7 +68,7 @@
                    Text="{Binding CurrentUser.Employee.BirthNumber}">
             </TextBlock>
 
-            <TextBlock Text="Oddělení" Style="{StaticResource MySecondTextBlockStyle}"/>
+            <TextBlock Style="{StaticResource MySecondTextBlockStyle}"><Run Language="cs-cz" Text="Vedu oddělení"/></TextBlock>
             <TextBlock x:Name="txtDepartment" Style="{StaticResource MyTextBlockStyle}"
                    Text="{Binding CurrentUser.Employee._department.Name}">
             </TextBlock>
