@@ -16,7 +16,9 @@
         <DataTemplate DataType="{x:Type vm:CurrUserVM}">
             <local:CurrentUserView/>
         </DataTemplate>
-
+        <DataTemplate DataType="{x:Type vm:AddressesVM}">
+            <local:AddressesListView/>
+        </DataTemplate>
 
     </Window.Resources>
     <Grid>
@@ -55,7 +57,7 @@
                     </Menu:Button>
 
                     <Menu:Button Style="{StaticResource Button}"
-                              Command="{Binding DatabaseCommand}">
+                              Command="{Binding UsersListCommand}">
 
                         <Grid>
 
@@ -69,7 +71,7 @@
                     </Menu:Button>
 
                     <Menu:Button Style="{StaticResource Button}"
-                              Command="{Binding SettingsCommand}">
+                              Command="{Binding PacientsListCommand}">
 
                         <Grid>
 
@@ -82,7 +84,7 @@
 
                     </Menu:Button>
                     <Menu:Button Style="{StaticResource Button}"
-                              Command="{Binding SettingsCommand}">
+                              Command="{Binding AddressesListCommand}">
 
                         <Grid>
 
@@ -260,7 +262,7 @@
                   Margin="20">
 
                 <ContentControl x:Name="Pages"
-                                Content="{Binding CurrentView}" Margin="10,-44,-10,0" />
+                                Content="{Binding CurrentView}" Margin="10,0,-10,0" />
 
             </Grid>
 

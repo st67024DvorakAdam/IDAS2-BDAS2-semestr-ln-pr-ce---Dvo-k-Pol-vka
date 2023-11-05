@@ -19,7 +19,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             get => _currentUser;
             set
             {
-                if(_currentUser!= value)
+                if (_currentUser != value)
                 {
                     _currentUser = value;
                     OnPropertyChange(nameof(CurrentUser));
@@ -40,25 +40,28 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             }
         }
 
-        public ICommand DatabaseCommand { get; }
+        public ICommand UsersListCommand { get; }
         public ICommand ProfileCommand { get; }
-        public ICommand SettingsCommand { get; }
+        public ICommand PacientsListCommand { get; }
+        public ICommand AddressesListCommand { get; }
 
         private void Profile(object obj) => CurrentView = new CurrUserVM(CurrentUser);
-        private void Database(object obj) => CurrentView = new UserVM();
-        private void Settings(object obj) => CurrentView = new CurrUserVM(new Models.Entities.User("david", "heslo"));
+        private void Users(object obj) => CurrentView = new UserVM();
+        private void Pacients(object obj) => CurrentView = new UserVM();//PacientsVM();
+        private void Addresses(object obj) => CurrentView = new AddressesVM();
 
         public NavigateVM(User user)
         {
             // Nastavit defaultní pohled
             CurrentUser = user;
             CurrentView = new CurrUserVM(CurrentUser); // Měli byste mít vytvořený tento ViewModel
-            
+
 
             // Inicializace příkazů
             ProfileCommand = new RelayCommand(Profile);
-            DatabaseCommand = new RelayCommand(Database);
-            SettingsCommand = new RelayCommand(Settings);
+            UsersListCommand = new RelayCommand(Users);
+            PacientsListCommand = new RelayCommand(Pacients);
+            AddressesListCommand = new RelayCommand(Addresses);
 
             // Další inicializace...
         }
