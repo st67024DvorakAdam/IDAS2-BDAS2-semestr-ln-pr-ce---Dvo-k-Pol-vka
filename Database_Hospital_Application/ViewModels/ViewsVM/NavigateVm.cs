@@ -44,11 +44,13 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         public ICommand ProfileCommand { get; }
         public ICommand PacientsListCommand { get; }
         public ICommand AddressesListCommand { get; }
+        public ICommand HealthInsurancesListCommand { get; }
 
         private void Profile(object obj) => CurrentView = new CurrUserVM(CurrentUser);
         private void Users(object obj) => CurrentView = new UserVM();
         private void Pacients(object obj) => CurrentView = new UserVM();//PacientsVM();
         private void Addresses(object obj) => CurrentView = new AddressesVM();
+        private void HealthInsurances(object obj) => CurrentView = new HealthInsurancesVM();
 
         public NavigateVM(User user)
         {
@@ -62,6 +64,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             UsersListCommand = new RelayCommand(Users);
             PacientsListCommand = new RelayCommand(Pacients);
             AddressesListCommand = new RelayCommand(Addresses);
+            HealthInsurancesListCommand = new RelayCommand(HealthInsurances);
 
             // Další inicializace...
         }
