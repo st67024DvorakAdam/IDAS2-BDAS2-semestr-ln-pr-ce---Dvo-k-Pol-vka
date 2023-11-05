@@ -16,6 +16,7 @@ namespace Database_Hospital_Application.Models.Entities
         public SexEnum Sex { get; set; }
         public Department _department { get; set; }
         public Foto _foto { get; set; }
+        public EmployeeType _employeeType { get; set; }
 
         public Employee() { }
 
