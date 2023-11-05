@@ -25,6 +25,9 @@
         <DataTemplate DataType="{x:Type vm:PerformedProceduresVM}">
             <local:PerformedProceduresListView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:PersonalMedicalHistoriesVM}">
+            <local:PersonalMedicalHistoriesView/>
+        </DataTemplate>
 
     </Window.Resources>
     <Grid>
@@ -129,7 +132,7 @@
 
                     </Menu:Button>
                     <Menu:Button Style="{StaticResource Button}"
-                              Command="{Binding SettingsCommand}">
+                              Command="{Binding PersonalMedicalHistoriesListCommand}">
 
                         <Grid>
 
