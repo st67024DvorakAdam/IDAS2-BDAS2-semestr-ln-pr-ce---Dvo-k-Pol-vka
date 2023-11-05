@@ -22,6 +22,9 @@
         <DataTemplate DataType="{x:Type vm:HealthInsurancesVM}">
             <local:HealthInsurancesListView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:PerformedProceduresVM}">
+            <local:PerformedProceduresListView/>
+        </DataTemplate>
 
     </Window.Resources>
     <Grid>
@@ -113,7 +116,7 @@
 
                     </Menu:Button>
                     <Menu:Button Style="{StaticResource Button}"
-                              Command="{Binding SettingsCommand}">
+                              Command="{Binding PerformedProceduresListCommand}">
 
                         <Grid>
 

@@ -42,21 +42,21 @@ namespace Database_Hospital_Application.Models.Repositories
             return healthInsurances;
         }
 
-        public void AddAddress(Address address)
+        public void AddHealthInsurance(HealthInsurance healthInsurance)
         {
 
         }
 
-        public void DeleteAddress(int id)
+        public void DeleteHealthInsurance(int id)
         {
 
         }
-        public void UpdateAddress(Address address)
+        public void UpdateHealthInsurance(HealthInsurance healthInsurance)
         {
 
         }
 
-        public void DeleteAllAddresses()
+        public void DeleteAllHealthInsurances()
         {
 
         }

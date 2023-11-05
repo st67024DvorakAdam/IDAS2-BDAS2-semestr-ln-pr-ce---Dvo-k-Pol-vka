@@ -1,5 +1,6 @@
 ﻿using Database_Hospital_Application.Commands;
 using Database_Hospital_Application.Models.Entities;
+using Database_Hospital_Application.Models.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,12 +46,14 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         public ICommand PacientsListCommand { get; }
         public ICommand AddressesListCommand { get; }
         public ICommand HealthInsurancesListCommand { get; }
+        public ICommand PerformedProceduresListCommand { get; }
 
         private void Profile(object obj) => CurrentView = new CurrUserVM(CurrentUser);
         private void Users(object obj) => CurrentView = new UserVM();
         private void Pacients(object obj) => CurrentView = new UserVM();//PacientsVM();
         private void Addresses(object obj) => CurrentView = new AddressesVM();
         private void HealthInsurances(object obj) => CurrentView = new HealthInsurancesVM();
+        private void PerformedProcedures(object obj) => CurrentView = new PerformedProceduresVM();
 
         public NavigateVM(User user)
         {
@@ -65,6 +68,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             PacientsListCommand = new RelayCommand(Pacients);
             AddressesListCommand = new RelayCommand(Addresses);
             HealthInsurancesListCommand = new RelayCommand(HealthInsurances);
+            PerformedProceduresListCommand = new RelayCommand(PerformedProcedures);
 
             // Další inicializace...
         }
