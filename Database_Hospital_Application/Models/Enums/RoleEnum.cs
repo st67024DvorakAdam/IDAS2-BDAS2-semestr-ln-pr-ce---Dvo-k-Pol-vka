@@ -24,7 +24,10 @@ namespace Database_Hospital_Application.Models.Enums
         Assistant = 4,
 
         [Description("Host bez přihlášení")]
-        Guest = 5
+        Guest = 5,
+
+        [Description("SuperUser")]
+        SuperUser = 6
     }
 
     public static class RoleExtensions

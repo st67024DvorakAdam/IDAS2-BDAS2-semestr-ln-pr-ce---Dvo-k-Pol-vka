@@ -59,9 +59,37 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         public void OpenProfileWindow(User user)
         {
             Views.MainWindow profileWindow = new Views.MainWindow();
-            profileWindow.DataContext = new NavigateVM(user); 
-            profileWindow.Show();
-            CloseAction?.Invoke();
+            switch (user.RoleID)
+            {
+                case 1:
+                    profileWindow.DataContext = new NavigateVM(user);
+                    profileWindow.Show();
+                    CloseAction?.Invoke();
+                    break;
+                case 2:
+                    
+                    // budoucí window pro doctora
+                    
+                    break;
+                case 3:
+                    
+                    // budoucí window pro sestru
+                    
+                    break;
+                case 4:
+                    
+                    // budoucí window pro asistenta
+                    
+                    break;
+                case 6:
+                    profileWindow.DataContext = new NavigateVM(user);
+                    profileWindow.Show();
+                    CloseAction?.Invoke();
+                    break;
+                default:
+                    break;
+            }
+            
         }
 
         public Action CloseAction { get; set; }

@@ -23,4 +23,11 @@
     <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="3.21.120" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ViewModels\ViewsVM\DoctorVM\" />
+    <Folder Include="ViewModels\ViewsVM\AssistantVM\" />
+    <Folder Include="ViewModels\ViewsVM\AdminVm\" />
+    <Folder Include="ViewModels\ViewsVM\NurseVM\" />
+  </ItemGroup>
+
 </Project>

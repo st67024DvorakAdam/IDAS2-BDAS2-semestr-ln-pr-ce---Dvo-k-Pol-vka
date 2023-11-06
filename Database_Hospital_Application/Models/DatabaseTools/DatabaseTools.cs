@@ -21,7 +21,7 @@ namespace Database_Hospital_Application.Models.DatabaseTools
             OracleConnection conn = dbConnection.GetConnection();
             if (conn.State == ConnectionState.Closed)
             {
-                conn.Open();
+                conn.OpenAsync();
             }
         }
 
@@ -31,7 +31,7 @@ namespace Database_Hospital_Application.Models.DatabaseTools
             OracleConnection conn = dbConnection.GetConnection();
             if (conn.State == ConnectionState.Open)
             {
-                conn.Close();
+                conn.CloseAsync();
             }
         }
 

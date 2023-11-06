@@ -6,38 +6,46 @@ using System.Windows;
 
 public class LoginCommand : BaseCommand
 {
-    private readonly LoginWindowViewModel _mainWindowViewModel;
+    private readonly LoginWindowViewModel _loginWindowViewModel;
 
     public LoginCommand(LoginWindowViewModel mainWindowViewModel)
     {
-        _mainWindowViewModel = mainWindowViewModel;
+        _loginWindowViewModel = mainWindowViewModel;
     }
 
     public override void Execute(object? parameter)
     {
         
         UserRepo userRepo = new UserRepo();
-        var _username = _mainWindowViewModel.Username;
-        var _password = _mainWindowViewModel.Password;
-        User us = userRepo.LoginUser(_username, _password);
-
+        var _username = _loginWindowViewModel.Username;
+        var _password = _loginWindowViewModel.Password;
+        
         if (_username == null || _password == null) {
             MessageBox.Show("Vyplňte prosím všechna pole! ", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
             return; }
 
-        
-        if(us == null)
+
+        if (_username != null && _password != null)
         {
-            MessageBox.Show("Zadané přihlašovací údaje se neschodují!", "Info", MessageBoxButton.OK, MessageBoxImage.Error);
-            return;
+           User us = userRepo.LoginUser(_username, _password);
+
+        
+            if (us == null)
+            {
+                MessageBox.Show("Zadané přihlašovací údaje se neschodují!", "Info", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (us.Name == _username && us.Password == _password)
+            {
+                MessageBox.Show("Execute metoda, username: " + _username + " password: " + _password, "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                _loginWindowViewModel.OpenProfileWindow(us);
+               
+
+            }
         }
 
-        if(us.Name == _username && us.Password == _password) {
-            MessageBox.Show("Execute metoda, username: " + _username + " password: " + _password, "Info", MessageBoxButton.OK, MessageBoxImage.Information);
-            _mainWindowViewModel.OpenProfileWindow(us);
-        }
- 
-        
+
     }
 
 
