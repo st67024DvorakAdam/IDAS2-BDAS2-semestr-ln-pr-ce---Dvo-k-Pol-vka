@@ -12,17 +12,28 @@ namespace Database_Hospital_Application.Models.Entities
         public int Id { get; set; }
         public long BirthNumberOfPatient { get; set; }
         public ObservableCollection<Illness> Illnesses { get; set; }
-        public string IllnessesInString {  get; set; }
+        public string StringVersionOfIllnesses { get; private set; }
         public int IdOfPatient {  get; set; }
 
         public void MakeStringVersionOfIllnesses()
         {
-            string text = "";
-            foreach(var i in Illnesses)
+            if (Illnesses != null && Illnesses.Count > 0)
             {
-                text += $"{i.Name}, ";
+                StringBuilder sb = new StringBuilder();
+                foreach (Illness illness in Illnesses)
+                {
+                    if (sb.Length > 0)
+                    {
+                        sb.Append(", ");
+                    }
+                    sb.Append(illness.Name);
+                }
+                StringVersionOfIllnesses = sb.ToString();
             }
-            IllnessesInString = text;
+            else
+            {
+                StringVersionOfIllnesses = string.Empty;
+            }
         }
     }
 }

@@ -12,22 +12,24 @@ namespace Database_Hospital_Application.Models.Repositories
 {
     public class MedicalCardsRepo
     {
+        private DatabaseTools.DatabaseTools dbTools = new DatabaseTools.DatabaseTools();
+
         public ObservableCollection<MedicalCard> medicalCards { get; set; }
 
-        public ObservableCollection<MedicalCard> GetAllMedicalCards()
+        public MedicalCardsRepo()
         {
-            DatabaseTools.DatabaseTools dbTools = new DatabaseTools.DatabaseTools();
-            string commandText = "get_all_medical_cards";
+            medicalCards = new ObservableCollection<MedicalCard>();
+        }
 
-            DataTable result = dbTools.ExecuteCommand(commandText, null);
+        public async Task<ObservableCollection<MedicalCard>> GetAllMedicalCardsAsync()
+        {
+            string commandText = "get_all_medical_cards"; // Předpokládáme, že je to název uložené procedury
+            DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
+
+            medicalCards.Clear(); // Vyčistíme stávající kolekci před načtením nových dat
 
             if (result.Rows.Count > 0)
             {
-                if (medicalCards == null)
-                {
-                    medicalCards = new ObservableCollection<MedicalCard>();
-                }
-
                 foreach (DataRow row in result.Rows)
                 {
                     MedicalCard medicalCard = new MedicalCard
@@ -35,27 +37,21 @@ namespace Database_Hospital_Application.Models.Repositories
                         Id = Convert.ToInt32(row["ID"]),
                         BirthNumberOfPatient = Convert.ToInt64(row["RODNE_CISLO"]),
                         IdOfPatient = Convert.ToInt32(row["PACIENT_ID"]),
+                        Illnesses = new ObservableCollection<Illness>()
                     };
-                    medicalCard.Illnesses = new ObservableCollection<Illness>();
 
                     string illnessesData = row["prubezna_nemoc_nazev"].ToString();
-
                     if (!string.IsNullOrEmpty(illnessesData))
                     {
-                        // Rozdělte informace o nemocích na jednotlivé položky (předpokládáme oddělovač, např. čárku).
                         string[] illnessesArray = illnessesData.Split(',');
-
                         foreach (string illnessName in illnessesArray)
                         {
-                            Illness illness = new Illness
-                            {
-                                Name = illnessName.Trim() // Můžete odstranit nadbytečné mezery
-                            };
+                            Illness illness = new Illness { Name = illnessName.Trim() };
                             medicalCard.Illnesses.Add(illness);
                         }
-                        medicalCard.MakeStringVersionOfIllnesses();
                     }
 
+                    medicalCard.MakeStringVersionOfIllnesses(); // Tuto metodu je třeba upravit, aby byla kompatibilní s asynchronním zpracováním
                     medicalCards.Add(medicalCard);
                 }
             }

@@ -19,21 +19,17 @@ namespace Database_Hospital_Application.Models.Repositories
 {
     public class UserRepo
     {
-        // IEnumerable / List ??
+        private DatabaseTools.DatabaseTools dbTools = new DatabaseTools.DatabaseTools();
+
         public ObservableCollection<User> users { get; set; }
 
-        public User LoginUser(string username, string password)
+        public async Task<User> LoginUserAsync(string username, string password)
         {
-            DatabaseTools.DatabaseTools dbTools = new DatabaseTools.DatabaseTools();
-
             string commandText = "get_user";
+            Dictionary<string, object> parameters = new Dictionary<string, object> { { "p_jmeno", username } };
+            DataTable result = await dbTools.ExecuteCommandAsync(commandText, parameters);
 
-            Dictionary<string, object> parameters = new Dictionary<string, object>
-            {
-                { "p_jmeno", username }
-            };
-
-            DataTable result = dbTools.ExecuteCommand(commandText, parameters);
+            
             if (result.Rows.Count == 0)
             {
                 return null;
@@ -47,7 +43,7 @@ namespace Database_Hospital_Application.Models.Repositories
                 { "p_id", Convert.ToInt32(result.Rows[0]["ZAMESTNANEC_ID"]) }
             };
 
-            DataTable result2 = dbTools.ExecuteCommand(commandText2, parameters2);
+            DataTable result2 = await dbTools.ExecuteCommandAsync(commandText2, parameters2);
             if (result2.Rows.Count == 0)
             {
                 return null;
@@ -61,7 +57,7 @@ namespace Database_Hospital_Application.Models.Repositories
                 { "p_id", Convert.ToInt32(result2.Rows[0]["ID"]) }
             };
 
-            DataTable result3 = dbTools.ExecuteCommand(commandText3, parameters3);
+            DataTable result3 = await dbTools.ExecuteCommandAsync(commandText3, parameters3);
 
 
             string commandText4 = "GetEmployeeImage";
@@ -71,7 +67,7 @@ namespace Database_Hospital_Application.Models.Repositories
                 { "p_employee_id", Convert.ToInt32(result.Rows[0]["ZAMESTNANEC_ID"]) }
             };
 
-            DataTable result4 = dbTools.ExecuteCommand(commandText4, parameters4);         
+            DataTable result4 = await dbTools.ExecuteCommandAsync(commandText4, parameters4);         
 
             string hashedPasswordFromDb = result.Rows[0]["HESLO"].ToString();
 
@@ -144,12 +140,12 @@ namespace Database_Hospital_Application.Models.Repositories
         {
             
         }
-        public ObservableCollection<User> GetAllUsers()
+        public async Task<ObservableCollection<User>> GetAllUsersAsync()
         {
-            DatabaseTools.DatabaseTools dbTools = new DatabaseTools.DatabaseTools();
+            ObservableCollection<User> users = new ObservableCollection<User>();
             string commandText = "get_all_users";
+            DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
 
-            DataTable result = dbTools.ExecuteCommand(commandText, null);
 
             if (result.Rows.Count > 0)
             {
@@ -181,11 +177,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public bool IsAdmin(User user)
         {
-            if (user.RoleID == 1)
-            {
-                return true;
-            }
-            return false;
+            return user.RoleID == 1;
         }
     }
 }

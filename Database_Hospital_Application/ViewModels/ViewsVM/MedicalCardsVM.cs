@@ -16,18 +16,18 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         public ObservableCollection<MedicalCard> MedicalCardsList
         {
             get { return _medicalCardsList; }
-            set
-            {
-                _medicalCardsList = value;
-                OnPropertyChange(nameof(MedicalCardsList));
-            }
+            set { _medicalCardsList = value; OnPropertyChange(nameof(MedicalCardsList)); }
         }
-
 
         public MedicalCardsVM()
         {
+            LoadMedicalCardsAsync();
+        }
+
+        private async Task LoadMedicalCardsAsync()
+        {
             MedicalCardsRepo repo = new MedicalCardsRepo();
-            MedicalCardsList = repo.GetAllMedicalCards();
+            MedicalCardsList = await repo.GetAllMedicalCardsAsync();
         }
     }
 }

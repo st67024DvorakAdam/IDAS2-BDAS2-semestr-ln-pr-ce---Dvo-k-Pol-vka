@@ -11,22 +11,24 @@ namespace Database_Hospital_Application.Models.Repositories
 {
     public class PerformedProceduresRepo
     {
+        private DatabaseTools.DatabaseTools dbTools = new DatabaseTools.DatabaseTools();
+
         public ObservableCollection<PerformedProcedure> performedProcedures { get; set; }
 
-        public ObservableCollection<PerformedProcedure> GetAllPerformedProcedures()
+        public PerformedProceduresRepo()
         {
-            DatabaseTools.DatabaseTools dbTools = new DatabaseTools.DatabaseTools();
-            string commandText = "get_all_performed_procedures";
+            performedProcedures = new ObservableCollection<PerformedProcedure>();
+        }
 
-            DataTable result = dbTools.ExecuteCommand(commandText, null);
+        public async Task<ObservableCollection<PerformedProcedure>> GetAllPerformedProceduresAsync()
+        {
+            string commandText = "get_all_performed_procedures";
+            DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
+
+            performedProcedures.Clear();
 
             if (result.Rows.Count > 0)
             {
-                if (performedProcedures == null)
-                {
-                    performedProcedures = new ObservableCollection<PerformedProcedure>();
-                }
-
                 foreach (DataRow row in result.Rows)
                 {
                     PerformedProcedure performedProcedure = new PerformedProcedure
@@ -34,7 +36,7 @@ namespace Database_Hospital_Application.Models.Repositories
                         Id = Convert.ToInt32(row["ID"]),
                         Name = row["NAZEV"].ToString(),
                         Price = Convert.ToInt32(row["CENA"]),
-                        IsCoveredByInsurence = (Convert.ToInt32(row["HRAZENO_POJISTOVNOU"])) == 1 ? true : false,
+                        IsCoveredByInsurence = (Convert.ToInt32(row["HRAZENO_POJISTOVNOU"])) == 1,
                         IdOfPatient = Convert.ToInt32(row["PACIENT_ID"]),
                         BirthNumberOfPatient = Convert.ToInt64(row["RODNE_CISLO"])
                     };

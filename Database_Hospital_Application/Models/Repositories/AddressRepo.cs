@@ -13,14 +13,21 @@ namespace Database_Hospital_Application.Models.Repositories
 {
     public class AddressRepo
     {
+        private DatabaseTools.DatabaseTools dbTools = new DatabaseTools.DatabaseTools();
+
         public ObservableCollection<Address> addresses { get; set; }
 
-        public ObservableCollection<Address> GetAllAddresses()
+        public AddressRepo()
         {
-            DatabaseTools.DatabaseTools dbTools = new DatabaseTools.DatabaseTools();
-            string commandText = "get_all_addresses";
+            addresses = new ObservableCollection<Address>();
+        }
 
-            DataTable result = dbTools.ExecuteCommand(commandText, null);
+        public async Task<ObservableCollection<Address>> GetAllAddressesAsync()
+        {
+            ObservableCollection<Address> addresses = new ObservableCollection<Address>();
+            string commandText = "get_all_addresses";
+            DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
+
 
             if (result.Rows.Count > 0)
             {

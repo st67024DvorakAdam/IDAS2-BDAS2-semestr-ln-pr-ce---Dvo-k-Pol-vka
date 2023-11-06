@@ -13,7 +13,7 @@ public class LoginCommand : BaseCommand
         _loginWindowViewModel = mainWindowViewModel;
     }
 
-    public override void Execute(object? parameter)
+    public override async void Execute(object? parameter)
     {
         
         UserRepo userRepo = new UserRepo();
@@ -27,7 +27,7 @@ public class LoginCommand : BaseCommand
 
         if (_username != null && _password != null)
         {
-           User us = userRepo.LoginUser(_username, _password);
+           User us = await userRepo.LoginUserAsync(_username, _password);
 
         
             if (us == null)

@@ -11,21 +11,24 @@ namespace Database_Hospital_Application.Models.Repositories
 {
     public class HealthInsurancesRepo
     {
+        private DatabaseTools.DatabaseTools dbTools;
+
+        public HealthInsurancesRepo()
+        {
+            dbTools = new DatabaseTools.DatabaseTools();
+            healthInsurances = new ObservableCollection<HealthInsurance>();
+        }
+
         public ObservableCollection<HealthInsurance> healthInsurances { get; set; }
 
-        public ObservableCollection<HealthInsurance> GetAllHealthInsurances()
+        public async Task<ObservableCollection<HealthInsurance>> GetAllHealthInsurancesAsync()
         {
-            DatabaseTools.DatabaseTools dbTools = new DatabaseTools.DatabaseTools();
-            string commandText = "get_all_health_insurances";
-
-            DataTable result = dbTools.ExecuteCommand(commandText, null);
+            string commandText = "get_all_health_insurances"; 
+            DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
 
             if (result.Rows.Count > 0)
             {
-                if (healthInsurances == null)
-                {
-                    healthInsurances = new ObservableCollection<HealthInsurance>();
-                }
+                healthInsurances.Clear(); 
 
                 foreach (DataRow row in result.Rows)
                 {

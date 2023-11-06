@@ -26,8 +26,12 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         public PatientVM()
         {
-            //PatientRepo repo = new PatientRepo();
-            //PatientsList = repo.GetAllPatients();
+            LoadPatientsAsync();
+        }
+        private async Task LoadPatientsAsync()
+        {
+            PatientRepo repo = new PatientRepo();
+            PatientsList = await repo.GetPatientsAsync();
         }
     }
 }

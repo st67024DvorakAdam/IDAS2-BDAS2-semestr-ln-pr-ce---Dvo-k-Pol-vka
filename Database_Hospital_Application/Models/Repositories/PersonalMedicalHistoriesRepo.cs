@@ -11,21 +11,23 @@ namespace Database_Hospital_Application.Models.Repositories
 {
     public class PersonalMedicalHistoriesRepo
     {
+        private DatabaseTools.DatabaseTools dbTools = new DatabaseTools.DatabaseTools();
+
         public ObservableCollection<PersonalMedicalHistory> personalMedicalHistories { get; set; }
 
-        public ObservableCollection<PersonalMedicalHistory> GetAllPersonalMedicalHistories()
+        public PersonalMedicalHistoriesRepo()
         {
-            DatabaseTools.DatabaseTools dbTools = new DatabaseTools.DatabaseTools();
-            string commandText = "get_all_personal_medical_histories";
+            personalMedicalHistories = new ObservableCollection<PersonalMedicalHistory>();
+        }
 
-            DataTable result = dbTools.ExecuteCommand(commandText, null);
+        public async Task<ObservableCollection<PersonalMedicalHistory>> GetAllPersonalMedicalHistoriesAsync()
+        {
+            string commandText = "get_all_personal_medical_histories";
+            DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
 
             if (result.Rows.Count > 0)
             {
-                if (personalMedicalHistories == null)
-                {
-                    personalMedicalHistories = new ObservableCollection<PersonalMedicalHistory>();
-                }
+                personalMedicalHistories.Clear(); 
 
                 foreach (DataRow row in result.Rows)
                 {
@@ -42,6 +44,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
             return personalMedicalHistories;
         }
+
 
         public void AddPersonalMedicalHistory(PersonalMedicalHistory personalMedicalHistory)
         {

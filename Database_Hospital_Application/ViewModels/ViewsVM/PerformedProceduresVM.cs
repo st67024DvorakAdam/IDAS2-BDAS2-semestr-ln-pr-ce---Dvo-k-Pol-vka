@@ -9,25 +9,25 @@ using System.Threading.Tasks;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM
 {
-    public class PerformedProceduresVM: BaseViewModel
+    public class PerformedProceduresVM : BaseViewModel
     {
-        private ObservableCollection<PerformedProcedure> _performedProceduresList;
+        public ObservableCollection<PerformedProcedure> _performedProceduresList;
 
         public ObservableCollection<PerformedProcedure> PerformedProceduresList
         {
             get { return _performedProceduresList; }
-            set
-            {
-                _performedProceduresList = value;
-                OnPropertyChange(nameof(PerformedProceduresList));
-            }
+            set { _performedProceduresList = value; OnPropertyChange(nameof(PerformedProceduresList)); }
         }
-
 
         public PerformedProceduresVM()
         {
+            LoadPerformedProceduresAsync();
+        }
+
+        private async Task LoadPerformedProceduresAsync()
+        {
             PerformedProceduresRepo repo = new PerformedProceduresRepo();
-            PerformedProceduresList = repo.GetAllPerformedProcedures();
+            PerformedProceduresList = await repo.GetAllPerformedProceduresAsync();
         }
     }
 }

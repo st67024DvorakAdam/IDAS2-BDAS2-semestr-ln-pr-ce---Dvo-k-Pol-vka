@@ -11,23 +11,27 @@ namespace Database_Hospital_Application.Models.Repositories
 {
     public class PatientRepo
     {
+        private DatabaseTools.DatabaseTools dbTools;
+        // Konstruktor
+        public PatientRepo()
+        {
+            dbTools = new DatabaseTools.DatabaseTools();
+            patients = new ObservableCollection<Patient>();
+        }
+
         public ObservableCollection<Patient> patients { get; set; }
 
-        public ObservableCollection<Patient> GetAllPatients()
+        public async Task<ObservableCollection<Patient>> GetPatientsAsync()
         {
-            DatabaseTools.DatabaseTools dbTools = new DatabaseTools.DatabaseTools();
             string commandText = "get_all_patients";
 
-            DataTable result = dbTools.ExecuteCommand(commandText, null);
+            DataTable dataTable = await dbTools.ExecuteCommandAsync(commandText);
 
-            if (result.Rows.Count > 0)
+            if (dataTable.Rows.Count > 0)
             {
-                if (patients == null)
-                {
-                    patients = new ObservableCollection<Patient>();
-                }
+                patients.Clear();
 
-                foreach (DataRow row in result.Rows)
+                foreach (DataRow row in dataTable.Rows)
                 {
                     Patient patient = new Patient
                     {

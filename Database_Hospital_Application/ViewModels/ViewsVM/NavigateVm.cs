@@ -61,12 +61,12 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         public NavigateVM(User user)
         {
-            // Nastavit defaultní pohled
+            //defaultní pohled
             CurrentUser = user;
-            CurrentView = new CurrUserVM(CurrentUser); // Měli byste mít vytvořený tento ViewModel
+            CurrentView = new CurrUserVM(CurrentUser); 
 
 
-            // Inicializace příkazů
+            //Inicializace příkazů
             ProfileCommand = new RelayCommand(Profile);
             UsersListCommand = new RelayCommand(Users);
             PacientsListCommand = new RelayCommand(Pacients);
@@ -76,7 +76,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             PersonalMedicalHistoriesListCommand = new RelayCommand(PersonalMedicalHistories);
             MedicalCardsListCommand = new RelayCommand(MedicalCards);
 
-            // Další inicializace...
+            
         }
     }
 }

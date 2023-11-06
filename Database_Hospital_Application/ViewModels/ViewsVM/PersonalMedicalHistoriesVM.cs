@@ -9,25 +9,25 @@ using System.Threading.Tasks;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM
 {
-    public class PersonalMedicalHistoriesVM :BaseViewModel
+    public class PersonalMedicalHistoriesVM : BaseViewModel
     {
-        private ObservableCollection<PersonalMedicalHistory> _personalMedicalHistoriesList;
+        public ObservableCollection<PersonalMedicalHistory> _personalMedicalHistoriesList;
 
         public ObservableCollection<PersonalMedicalHistory> PersonalMedicalHistoriesList
         {
             get { return _personalMedicalHistoriesList; }
-            set
-            {
-                _personalMedicalHistoriesList = value;
-                OnPropertyChange(nameof(PersonalMedicalHistoriesList));
-            }
+            set { _personalMedicalHistoriesList = value; OnPropertyChange(nameof(PersonalMedicalHistoriesList)); }
         }
-
 
         public PersonalMedicalHistoriesVM()
         {
+            LoadPersonalMedicalHistoriesAsync();
+        }
+
+        private async Task LoadPersonalMedicalHistoriesAsync()
+        {
             PersonalMedicalHistoriesRepo repo = new PersonalMedicalHistoriesRepo();
-            PersonalMedicalHistoriesList = repo.GetAllPersonalMedicalHistories();
+            PersonalMedicalHistoriesList = await repo.GetAllPersonalMedicalHistoriesAsync();
         }
     }
 }

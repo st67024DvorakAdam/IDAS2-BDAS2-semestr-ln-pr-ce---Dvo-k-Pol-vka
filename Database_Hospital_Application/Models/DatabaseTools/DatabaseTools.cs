@@ -1,11 +1,7 @@
-﻿using Database_Hospital_Application.Models.Entities;
-using Oracle.ManagedDataAccess.Client;
+﻿using Oracle.ManagedDataAccess.Client;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
-using System.Linq;
-using System.Text;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Database_Hospital_Application.Models.DatabaseTools
@@ -13,46 +9,50 @@ namespace Database_Hospital_Application.Models.DatabaseTools
     public class DatabaseTools
     {
         private readonly DatabaseConnection dbConnection;
-        public DatabaseTools() { dbConnection = new DatabaseConnection(); }
 
-        // Otevření připojení
-        private void OpenDB()
+        public DatabaseTools()
+        {
+            dbConnection = new DatabaseConnection();
+        }
+
+        // Asynchronní otevření připojení
+        private async Task OpenDBAsync()
         {
             OracleConnection conn = dbConnection.GetConnection();
             if (conn.State == ConnectionState.Closed)
             {
-                conn.OpenAsync();
+                await conn.OpenAsync();
             }
         }
 
-        // Zavření spojení
-        private void CloseDB()
+        // Asynchronní zavření spojení
+        private async Task CloseDBAsync()
         {
             OracleConnection conn = dbConnection.GetConnection();
             if (conn.State == ConnectionState.Open)
             {
-                conn.CloseAsync();
+                await conn.CloseAsync();
             }
         }
 
-
-        // Vrací danou tabulku dat z db
-        public DataTable ExecuteCommand(string commandText, Dictionary<string, object> parameters = null)
+        // Asynchronní vracení datové tabulky z databáze
+        public async Task<DataTable> ExecuteCommandAsync(string commandText, Dictionary<string, object> parameters = null)
         {
             DataTable dataTable = new DataTable();
             OracleConnection conn = dbConnection.GetConnection();
-
             try
             {
-                OpenDB();
-                using (OracleCommand command = new OracleCommand(commandText, conn))
-                {
-                    command.CommandType = CommandType.StoredProcedure; // Specifikujeme, že voláme proceduru
+                await OpenDBAsync();
 
-                    OracleParameter outputParameter = new OracleParameter();
-                    outputParameter.ParameterName = "cursor";
-                    outputParameter.OracleDbType = OracleDbType.RefCursor;
-                    outputParameter.Direction = ParameterDirection.ReturnValue; // Nastavíme, že se jedná o výstupní hodnotu
+                using (OracleCommand command = conn.CreateCommand())
+                {
+                    command.CommandText = commandText;
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    OracleParameter outputParameter = new OracleParameter("cursor", OracleDbType.RefCursor)
+                    {
+                        Direction = ParameterDirection.ReturnValue
+                    };
                     command.Parameters.Add(outputParameter);
 
                     if (parameters != null)
@@ -66,7 +66,7 @@ namespace Database_Hospital_Application.Models.DatabaseTools
 
                     using (OracleDataAdapter adapter = new OracleDataAdapter(command))
                     {
-                        adapter.Fill(dataTable);
+                        await Task.Run(() => adapter.Fill(dataTable));
                     }
                 }
             }
@@ -76,14 +76,10 @@ namespace Database_Hospital_Application.Models.DatabaseTools
             }
             finally
             {
-                CloseDB();
+                await CloseDBAsync();
             }
+
             return dataTable;
-            
         }
-
-
-
-
     }
 }

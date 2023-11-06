@@ -11,8 +11,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 {
     public class UserVM : BaseViewModel
     {
-        private ObservableCollection<User> _usersList;
-        private ObservableCollection<Patient> _patientList;
+        public ObservableCollection<User> _usersList;
+        public ObservableCollection<Patient> _patientList;
 
         public ObservableCollection<User> UsersList
         {
@@ -34,9 +34,13 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         public UserVM()
         {
+            LoadUsersAsync();
+        }
+        private async Task LoadUsersAsync()
+        {
             UserRepo repo = new UserRepo();
-            UsersList = repo.GetAllUsers();
-            //PatientList = repo.GetAllUsers();
+            UsersList = await repo.GetAllUsersAsync();
+            // PatientList = await repo.GetAllPatientsAsync();
         }
     }
 }
