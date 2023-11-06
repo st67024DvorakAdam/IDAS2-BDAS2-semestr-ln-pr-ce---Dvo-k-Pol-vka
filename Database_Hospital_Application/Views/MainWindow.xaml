@@ -28,7 +28,9 @@
         <DataTemplate DataType="{x:Type vm:PersonalMedicalHistoriesVM}">
             <local:PersonalMedicalHistoriesView/>
         </DataTemplate>
-
+        <DataTemplate DataType="{x:Type vm:MedicalCardsVM}">
+            <local:MedicalCardsListView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
 
@@ -145,7 +147,7 @@
 
                     </Menu:Button>
                     <Menu:Button Style="{StaticResource Button}"
-                              Command="{Binding SettingsCommand}">
+                              Command="{Binding MedicalCardsListCommand}">
 
                         <Grid>
 
@@ -158,13 +160,13 @@
 
                     </Menu:Button>
                     <Menu:Button Style="{StaticResource Button}"
-                              Command="{Binding SettingsCommand}">
+                              Command="{Binding Command}">
 
                         <Grid>
 
 
 
-                            <TextBlock Text="Perůběžné nemoci"
+                            <TextBlock Text="Průběžné nemoci"
                                        Style="{StaticResource TextStyle}" />
 
                         </Grid>

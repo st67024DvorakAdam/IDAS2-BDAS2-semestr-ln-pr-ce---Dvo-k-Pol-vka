@@ -48,6 +48,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         public ICommand HealthInsurancesListCommand { get; }
         public ICommand PerformedProceduresListCommand { get; }
         public ICommand PersonalMedicalHistoriesListCommand { get; }
+        public ICommand MedicalCardsListCommand { get; }
 
         private void Profile(object obj) => CurrentView = new CurrUserVM(CurrentUser);
         private void Users(object obj) => CurrentView = new UserVM();
@@ -56,6 +57,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         private void HealthInsurances(object obj) => CurrentView = new HealthInsurancesVM();
         private void PerformedProcedures(object obj) => CurrentView = new PerformedProceduresVM();
         private void PersonalMedicalHistories(object obj) => CurrentView = new PersonalMedicalHistoriesVM();
+        private void MedicalCards(object obj) => CurrentView = new MedicalCardsVM();
 
         public NavigateVM(User user)
         {
@@ -72,6 +74,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             HealthInsurancesListCommand = new RelayCommand(HealthInsurances);
             PerformedProceduresListCommand = new RelayCommand(PerformedProcedures);
             PersonalMedicalHistoriesListCommand = new RelayCommand(PersonalMedicalHistories);
+            MedicalCardsListCommand = new RelayCommand(MedicalCards);
 
             // Další inicializace...
         }

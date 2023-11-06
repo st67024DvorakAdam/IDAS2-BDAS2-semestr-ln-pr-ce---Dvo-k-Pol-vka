@@ -11,6 +11,18 @@ namespace Database_Hospital_Application.Models.Entities
     {
         public int Id { get; set; }
         public long BirthNumberOfPatient { get; set; }
-        public ObservableCollection<Illness> illnesses { get; set; }
+        public ObservableCollection<Illness> Illnesses { get; set; }
+        public string IllnessesInString {  get; set; }
+        public int IdOfPatient {  get; set; }
+
+        public void MakeStringVersionOfIllnesses()
+        {
+            string text = "";
+            foreach(var i in Illnesses)
+            {
+                text += $"{i.Name}, ";
+            }
+            IllnessesInString = text;
+        }
     }
 }
