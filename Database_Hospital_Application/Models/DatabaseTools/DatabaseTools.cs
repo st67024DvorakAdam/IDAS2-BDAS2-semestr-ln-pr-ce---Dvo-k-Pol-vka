@@ -64,9 +64,9 @@ namespace Database_Hospital_Application.Models.DatabaseTools
                         }
                     }
 
-                    using (OracleDataAdapter adapter = new OracleDataAdapter(command))
+                    using (OracleDataReader reader = (OracleDataReader)await command.ExecuteReaderAsync())
                     {
-                        await Task.Run(() => adapter.Fill(dataTable));
+                        dataTable.Load(reader); 
                     }
                 }
             }
