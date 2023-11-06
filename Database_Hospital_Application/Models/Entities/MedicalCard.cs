@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Database_Hospital_Application.Models.Entities
 {
@@ -35,5 +36,28 @@ namespace Database_Hospital_Application.Models.Entities
                 StringVersionOfIllnesses = string.Empty;
             }
         }
+
+
+        //public async Task MakeStringVersionOfIllnessesAsync()
+        //{
+        //    if (Illnesses != null && Illnesses.Count > 0)
+        //    {
+        //        StringBuilder sb = new StringBuilder();
+        //        foreach (Illness illness in Illnesses)
+        //        {
+        //            if (sb.Length > 0)
+        //            {
+        //                sb.Append(", ");
+        //            }
+        //            sb.Append(illness.Name);
+        //        }
+        //        StringVersionOfIllnesses = sb.ToString();
+        //    }
+        //    else
+        //    {
+        //        StringVersionOfIllnesses = string.Empty;
+        //    }
+        //}
+
     }
 }

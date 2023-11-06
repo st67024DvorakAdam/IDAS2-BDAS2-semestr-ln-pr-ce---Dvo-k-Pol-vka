@@ -41,7 +41,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Rodné číslo pacienta" DisplayMemberBinding="{Binding BirthNumberOfPatient}" Width="150"/>
-                    <GridViewColumn Header="Nemoci" DisplayMemberBinding="{Binding IllnessesInString}" Width="450"/>
+                    <GridViewColumn Header="Nemoci" DisplayMemberBinding="{Binding StringVersionOfIllnesses}" Width="450"/>
                 </GridView>
             </ListView.View>
         </ListView>

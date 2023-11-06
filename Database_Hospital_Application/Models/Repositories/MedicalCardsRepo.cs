@@ -23,7 +23,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<ObservableCollection<MedicalCard>> GetAllMedicalCardsAsync()
         {
-            string commandText = "get_all_medical_cards"; // Předpokládáme, že je to název uložené procedury
+            string commandText = "get_all_medical_cards"; 
             DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
 
             medicalCards.Clear(); // Vyčistíme stávající kolekci před načtením nových dat
@@ -51,11 +51,10 @@ namespace Database_Hospital_Application.Models.Repositories
                         }
                     }
 
-                    medicalCard.MakeStringVersionOfIllnesses(); // Tuto metodu je třeba upravit, aby byla kompatibilní s asynchronním zpracováním
+                    medicalCard.MakeStringVersionOfIllnesses(); 
                     medicalCards.Add(medicalCard);
                 }
             }
-
             return medicalCards;
         }
 

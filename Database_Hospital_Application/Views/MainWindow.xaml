@@ -16,6 +16,9 @@
         <DataTemplate DataType="{x:Type vm:CurrUserVM}">
             <local:CurrentUserView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:PatientVM}">
+            <local:PatientListView/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type vm:AddressesVM}">
             <local:AddressesListView/>
         </DataTemplate>
@@ -30,6 +33,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:MedicalCardsVM}">
             <local:MedicalCardsListView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:IllnessesVM}">
+            <local:IllnessesListView/>
         </DataTemplate>
     </Window.Resources>
     <Grid>
@@ -82,7 +88,7 @@
                     </Menu:Button>
 
                     <Menu:Button Style="{StaticResource Button}"
-                              Command="{Binding PacientsListCommand}">
+                              Command="{Binding PatientsListCommand}">
 
                         <Grid>
 
@@ -160,7 +166,7 @@
 
                     </Menu:Button>
                     <Menu:Button Style="{StaticResource Button}"
-                              Command="{Binding Command}">
+                              Command="{Binding IllnessesListCommand}">
 
                         <Grid>
 

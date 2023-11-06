@@ -43,21 +43,23 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         public ICommand UsersListCommand { get; }
         public ICommand ProfileCommand { get; }
-        public ICommand PacientsListCommand { get; }
+        public ICommand PatientsListCommand { get; }
         public ICommand AddressesListCommand { get; }
         public ICommand HealthInsurancesListCommand { get; }
         public ICommand PerformedProceduresListCommand { get; }
         public ICommand PersonalMedicalHistoriesListCommand { get; }
         public ICommand MedicalCardsListCommand { get; }
+        public ICommand IllnessesListCommand { get; }
 
         private void Profile(object obj) => CurrentView = new CurrUserVM(CurrentUser);
         private void Users(object obj) => CurrentView = new UserVM();
-        private void Pacients(object obj) => CurrentView = new UserVM();//PacientsVM();
+        private void Patients(object obj) => CurrentView = new PatientVM();
         private void Addresses(object obj) => CurrentView = new AddressesVM();
         private void HealthInsurances(object obj) => CurrentView = new HealthInsurancesVM();
         private void PerformedProcedures(object obj) => CurrentView = new PerformedProceduresVM();
         private void PersonalMedicalHistories(object obj) => CurrentView = new PersonalMedicalHistoriesVM();
         private void MedicalCards(object obj) => CurrentView = new MedicalCardsVM();
+        private void Illnesses(object obj) => CurrentView = new IllnessesVM();
 
         public NavigateVM(User user)
         {
@@ -69,14 +71,16 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             //Inicializace příkazů
             ProfileCommand = new RelayCommand(Profile);
             UsersListCommand = new RelayCommand(Users);
-            PacientsListCommand = new RelayCommand(Pacients);
+            PatientsListCommand = new RelayCommand(Patients);
             AddressesListCommand = new RelayCommand(Addresses);
             HealthInsurancesListCommand = new RelayCommand(HealthInsurances);
             PerformedProceduresListCommand = new RelayCommand(PerformedProcedures);
             PersonalMedicalHistoriesListCommand = new RelayCommand(PersonalMedicalHistories);
             MedicalCardsListCommand = new RelayCommand(MedicalCards);
+            IllnessesListCommand = new RelayCommand(Illnesses);
 
-            
+
+
         }
     }
 }
