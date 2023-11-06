@@ -23,11 +23,15 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             }
         }
 
-
         public HealthInsurancesVM()
         {
+          LoadHealthInsurancesAsync();
+        }
+
+        private async Task LoadHealthInsurancesAsync()
+        {
             HealthInsurancesRepo repo = new HealthInsurancesRepo();
-            HealthInsurancesList = repo.GetAllHealthInsurances();
+            HealthInsurancesList = await repo.GetAllHealthInsurancesAsync();
         }
     }
 }

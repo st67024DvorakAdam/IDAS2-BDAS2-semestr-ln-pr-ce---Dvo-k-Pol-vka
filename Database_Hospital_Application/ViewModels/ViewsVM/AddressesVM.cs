@@ -26,8 +26,13 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         public AddressesVM()
         {
+            LoadAddressesAsync();
+        }
+
+        private async Task LoadAddressesAsync()
+        {
             AddressRepo repo = new AddressRepo();
-            AddressesList = repo.GetAllAddresses();
+            AddressesList = await repo.GetAllAddressesAsync();
         }
     }
 }
