@@ -178,5 +178,14 @@ namespace Database_Hospital_Application.Models.Repositories
         {
             
         }
+
+        public bool IsAdmin(User user)
+        {
+            if (user.RoleID == 1)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
