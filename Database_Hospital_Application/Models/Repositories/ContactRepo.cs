@@ -1,4 +1,5 @@
 ﻿using Database_Hospital_Application.Models.Entities;
+using Database_Hospital_Application.ViewModels.ViewsVM;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -88,6 +89,32 @@ namespace Database_Hospital_Application.Models.Repositories
         public void DeleteAllContacts()
         {
 
+        }
+
+        public async Task<ObservableCollection<Contact>> GetContactsByEmployeeIdAsync(int employeeId)
+        {
+            ObservableCollection<Contact> contacts = new ObservableCollection<Contact>();
+            string commandText = "get_contacts_by_employee_id";
+
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "p_employee_id", employeeId }
+            };
+
+            DataTable result = await dbTools.ExecuteCommandAsync(commandText, parameters);
+
+            foreach (DataRow row in result.Rows)
+            {
+                Contact contact = new Contact
+                {
+                    Id = Convert.ToInt32(row["ID"]),
+                    Email = row["EMAIL"].ToString(),
+                    PhoneNumber = Convert.ToInt32(row["TELEFON"])
+                };
+                contacts.Add(contact);
+            }
+
+            return contacts;
         }
     }
 }

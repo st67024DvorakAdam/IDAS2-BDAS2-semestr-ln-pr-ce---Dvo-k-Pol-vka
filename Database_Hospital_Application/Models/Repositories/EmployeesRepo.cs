@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Navigation;
 
 namespace Database_Hospital_Application.Models.Repositories
 {
@@ -74,5 +75,38 @@ namespace Database_Hospital_Application.Models.Repositories
         {
 
         }
+
+        public async Task<Employee> GetEmployeeByIdAsync(int employeeId)
+        {
+            string commandText = "get_employee_by_id";
+
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "p_id", employeeId }
+            };
+
+            DataTable result = await dbTools.ExecuteCommandAsync(commandText, parameters);
+
+            if (result.Rows.Count > 0)
+            {
+                DataRow row = result.Rows[0];
+
+                Employee employee = new Employee
+                {
+                    Id = employeeId,
+                    FirstName = row["JMENO"].ToString(),
+                    LastName = row["PRIJMENI"].ToString(),
+                    BirthNumber = Convert.ToInt64(row["RODNE_CISLO"]),
+                    Sex = SexEnumParser.GetEnumFromString(row["POHLAVI"].ToString()),
+                    
+                    // _department a _foto by měly být naplněný zvlášť
+                };
+
+                return employee;
+            }
+
+            return null;
+        }
+
     }
 }
