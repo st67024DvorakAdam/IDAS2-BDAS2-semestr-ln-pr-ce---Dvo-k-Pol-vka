@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,4 +19,18 @@ namespace Database_Hospital_Application.Models.Enums
         [Description("Asistent")]
         Assistant = 3
     }
+
+
+    public static class EmployeeTypeExtensions
+    {
+        public static EmployeeType GetEnumFromString(string input)
+        {
+            if (input.ToLower() == "doktor") return EmployeeType.Doctor;
+            else if (input.ToLower() == "sestra") return EmployeeType.Nurse;
+            else if (input.ToLower() == "asistent") return EmployeeType.Assistant;
+            else throw new Exception("Neplatný výčtový typ EmployeeType");
+        }
+
+    }
+
 }

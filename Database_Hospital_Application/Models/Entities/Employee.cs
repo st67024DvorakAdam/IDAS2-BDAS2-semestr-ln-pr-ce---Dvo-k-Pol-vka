@@ -9,7 +9,7 @@ namespace Database_Hospital_Application.Models.Entities
 {
     public class Employee
     {
-        public int Id { get; }
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public long BirthNumber { get; set; }
@@ -17,6 +17,7 @@ namespace Database_Hospital_Application.Models.Entities
         public Department _department { get; set; }
         public Foto _foto { get; set; }
         public EmployeeType _employeeType { get; set; }
+        public int IdOfSuperiorEmployee { get; set; } //nadřízený
 
         public Employee() { }
 

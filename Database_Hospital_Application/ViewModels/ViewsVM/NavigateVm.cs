@@ -50,6 +50,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         public ICommand PersonalMedicalHistoriesListCommand { get; }
         public ICommand MedicalCardsListCommand { get; }
         public ICommand IllnessesListCommand { get; }
+        public ICommand DrugsListCommand { get; }
+        public ICommand EmployeesListCommand { get; }
 
         private void Profile(object obj) => CurrentView = new CurrUserVM(CurrentUser);
         private void Users(object obj) => CurrentView = new UserVM();
@@ -60,6 +62,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         private void PersonalMedicalHistories(object obj) => CurrentView = new PersonalMedicalHistoriesVM();
         private void MedicalCards(object obj) => CurrentView = new MedicalCardsVM();
         private void Illnesses(object obj) => CurrentView = new IllnessesVM();
+        private void Drugs(object obj) => CurrentView = new DrugsVM();
+        private void Employees(object obj) => CurrentView = new EmployeeVM();
 
         public NavigateVM(User user)
         {
@@ -78,8 +82,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             PersonalMedicalHistoriesListCommand = new RelayCommand(PersonalMedicalHistories);
             MedicalCardsListCommand = new RelayCommand(MedicalCards);
             IllnessesListCommand = new RelayCommand(Illnesses);
-
-
+            DrugsListCommand = new RelayCommand(Drugs);
+            EmployeesListCommand = new RelayCommand(Employees);
 
         }
     }
