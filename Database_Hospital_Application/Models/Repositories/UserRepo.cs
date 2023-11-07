@@ -14,6 +14,8 @@ using System.Xml.Linq;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using System.Windows.Controls;
+using Database_Hospital_Application.Models.Tools;
+using Database_Hospital_Application.ViewModels.ViewsVM;
 
 namespace Database_Hospital_Application.Models.Repositories
 {
@@ -136,10 +138,45 @@ namespace Database_Hospital_Application.Models.Repositories
             return null;
         }
 
-        public void RegisterUser(User user) 
+
+        public async Task RegisterUserAsync(User user) 
         {
-            
+            if(user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
+            string salt = PasswordHasher.GenerateSalt();
+            string passwordHash = PasswordHasher.HashPassword(user.Password, salt);
+
+            user.Salt = salt;
+            user.Password = passwordHash;
+
+            var parameters = new Dictionary<string, object>
+            {
+                // USER
+                {"p_jmeno", user.Name},
+                {"p_heslo", user.Password},
+                {"p_salt", user.Salt},
+                {"p_role_id", user.RoleID},
+                // EMPLOYEE
+                { "p_first_name", user.Employee.FirstName },
+                { "p_last_name", user.Employee.LastName },
+                { "p_birth_number", user.Employee.BirthNumber },
+                { "p_sex", user.Employee.Sex.ToString() },
+                // DEPARTMENT
+                { "p_department_name", user.Employee._department?.Name },
+                // PHOTO
+                //{ "p_foto", user.Employee._foto != null ? FotoExtension.ConvertBitmapImageToBytes(foto.Image) : null }
+   
+            };
+
+
+            string commandText = "register_user";
+
+            await dbTools.ExecuteCommandAsync(commandText, parameters);
         }
+
         public async Task<ObservableCollection<User>> GetAllUsersAsync()
         {
             ObservableCollection<User> users = new ObservableCollection<User>();
