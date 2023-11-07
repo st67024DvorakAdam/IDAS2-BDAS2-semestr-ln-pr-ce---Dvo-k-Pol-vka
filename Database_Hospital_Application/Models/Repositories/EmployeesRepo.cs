@@ -38,13 +38,15 @@ namespace Database_Hospital_Application.Models.Repositories
                         FirstName = row["JMENO"].ToString(),
                         LastName = row["PRIJMENI"].ToString(),
                         BirthNumber = Convert.ToInt64(row["RODNE_CISLO"]),
-                        IdOfSuperiorEmployee = Convert.ToInt32(row["ZAMESTNANEC_ID"]),
+                        IdOfSuperiorEmployee = row.IsNull("ZAMESTNANEC_ID") ? 0 : Convert.ToInt32(row["ZAMESTNANEC_ID"]),
+
                         _foto = new Foto
                         {
-                            Id = Convert.ToInt32(row["FOTO_ID"]),
-                            //zde by mohlo být doplnění dalších vlastností
+                            Id = row.IsNull("FOTO_ID") ? 0 : Convert.ToInt32(row["FOTO_ID"])
+                            
                         }
                     };
+                    
                     employee.Sex = SexEnumParser.GetEnumFromString(row["POHLAVI"].ToString());
                     employee._employeeType = EmployeeTypeExtensions.GetEnumFromString(row["ZAMESTNANEC_TYPE"].ToString());
                     
