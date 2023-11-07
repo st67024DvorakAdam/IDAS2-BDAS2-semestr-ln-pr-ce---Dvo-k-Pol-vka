@@ -87,7 +87,9 @@
                         <Grid>
 
 
-
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-users-30.png?raw=true"
+                                   Height="30"
+                                   Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
                             <TextBlock Text="Uživatelé"
                                        Style="{StaticResource TextStyle}" />
 
@@ -101,7 +103,9 @@
                         <Grid>
 
 
-
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-patient-30.png?raw=true"
+                                   Height="30"
+                                   Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
                             <TextBlock Text="Pacienti"
                                        Style="{StaticResource TextStyle}" />
 
@@ -113,7 +117,9 @@
 
                         <Grid>
 
-
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-address-30.png?raw=true"
+                                   Height="30"
+                                   Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
 
                             <TextBlock Text="Adresy"
                                        Style="{StaticResource TextStyle}" />
@@ -127,7 +133,9 @@
                         <Grid>
 
 
-
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-insurance-30.png?raw=true"
+                                   Height="30"
+                                   Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
                             <TextBlock Text="Pojišťovny"
                                        Style="{StaticResource TextStyle}" />
 
@@ -139,7 +147,9 @@
 
                         <Grid>
 
-
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-surgery-30.png?raw=true"
+                                   Height="30"
+                                   Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
 
                             <TextBlock Text="Provedené výkony"
                                        Style="{StaticResource TextStyle}" />
@@ -152,7 +162,9 @@
 
                         <Grid>
 
-
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-profile-30.png?raw=true"
+                                   Height="30"
+                                   Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
 
                             <TextBlock Text="Osobní anamnézy"
                                        Style="{StaticResource TextStyle}" />
@@ -165,7 +177,9 @@
 
                         <Grid>
 
-
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-magnetic-card-30.png?raw=true"
+                                   Height="30"
+                                   Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
 
                             <TextBlock Text="Zdravotní karty"
                                        Style="{StaticResource TextStyle}" />
@@ -178,7 +192,9 @@
 
                         <Grid>
 
-
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-person-30.png?raw=true"
+                                   Height="30"
+                                   Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
 
                             <TextBlock Text="Průběžné nemoci"
                                        Style="{StaticResource TextStyle}" />
@@ -191,7 +207,9 @@
 
                         <Grid>
 
-
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-person-30.png?raw=true"
+                                   Height="30"
+                                   Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
 
                             <TextBlock Text="Užité léky"
                                        Style="{StaticResource TextStyle}" />
@@ -204,7 +222,9 @@
 
                         <Grid>
 
-
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-person-30.png?raw=true"
+                                   Height="30"
+                                   Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
 
                             <TextBlock Text="Kontaktní údaje"
                                        Style="{StaticResource TextStyle}" />
@@ -217,7 +237,9 @@
 
                         <Grid>
 
-
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-person-30.png?raw=true"
+                                   Height="30"
+                                   Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
 
                             <TextBlock Text="Zaměstnanci"
                                        Style="{StaticResource TextStyle}" />
@@ -231,7 +253,9 @@
                         <Grid>
 
 
-
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-person-30.png?raw=true"
+                                   Height="30"
+                                   Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
                             <TextBlock Text="Fotky"
                                        Style="{StaticResource TextStyle}" />
 
@@ -244,7 +268,9 @@
                         <Grid>
 
 
-
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-person-30.png?raw=true"
+                                   Height="30"
+                                   Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
                             <TextBlock Text="Role"
                                        Style="{StaticResource TextStyle}" />
 
@@ -257,7 +283,9 @@
                         <Grid>
 
 
-
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-person-30.png?raw=true"
+                                   Height="30"
+                                   Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
                             <TextBlock Text="Zprávy"
                                        Style="{StaticResource TextStyle}" />
 
@@ -269,7 +297,9 @@
 
                         <Grid>
 
-
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-person-30.png?raw=true"
+                                   Height="30"
+                                   Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
 
                             <TextBlock Text="Oddělení"
                                        Style="{StaticResource TextStyle}" />
