@@ -60,7 +60,13 @@
                 <DataGridTextColumn Header="Přípona" Binding="{Binding Suffix}" Width="150"/>
                 <DataGridTextColumn Header="Datum nahrání" Binding="{Binding DateOfUpload}" Width="150"/>
                 <DataGridTextColumn Header="Datum modifikace" Binding="{Binding DateOfModification}" Width="150"/>
-                <DataGridTextColumn Header="Foto" Binding="{Binding Image}" Width="150"/>
+                <DataGridTemplateColumn Header="Foto" Width="150">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Image}" Width="25" Height="25" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
 
 
