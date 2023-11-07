@@ -50,6 +50,9 @@
         <DataTemplate DataType="{x:Type vm:PhotoVM }">
             <local:PhotosListView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:DepartmentVM }">
+            <local:DepartmentsListView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
 
@@ -300,7 +303,7 @@
 
                     </Menu:Button>
                     <Menu:Button Style="{StaticResource Button}"
-                              Command="{Binding SettingsCommand}">
+                              Command="{Binding DepartmentsListCommand}">
 
                         <Grid>
 
