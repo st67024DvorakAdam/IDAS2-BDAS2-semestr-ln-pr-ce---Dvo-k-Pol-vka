@@ -71,7 +71,7 @@
                               IsChecked="True">
 
                         <Grid>
-                            <Image Source="/images/profile.png"
+                            <Image Source="/images/icons8-person-30.png"
                                    Height="30"
                                    Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
                             <TextBlock Text="Profil"
