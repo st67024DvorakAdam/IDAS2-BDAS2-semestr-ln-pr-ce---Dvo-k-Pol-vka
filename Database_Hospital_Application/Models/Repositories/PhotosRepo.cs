@@ -42,8 +42,8 @@ namespace Database_Hospital_Application.Models.Repositories
                         Id = Convert.ToInt32(row["ID"]),
                         Name = row["NAZEV_SOUBORU"].ToString(),
                         Suffix = row["PRIPONA"].ToString(),
-                        DateOfUpload = (Oracle.ManagedDataAccess.Types.OracleDate)row["DATUM_NAHRANI"].ToString(),
-                        DateOfModification = (Oracle.ManagedDataAccess.Types.OracleDate)row["DATUM_MODIFIKACE"].ToString(),
+                        //DateOfUpload = (Oracle.ManagedDataAccess.Types.OracleDate)row["DATUM_NAHRANI"].ToString(),
+                        //DateOfModification = (Oracle.ManagedDataAccess.Types.OracleDate)row["DATUM_MODIFIKACE"].ToString(),
                     };
 
                     byte[] imageBytes = (byte[])result.Rows[0]["obrazek"];
