@@ -34,5 +34,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             AddressRepo repo = new AddressRepo();
             AddressesList = await repo.GetAllAddressesAsync();
         }
+
     }
 }
