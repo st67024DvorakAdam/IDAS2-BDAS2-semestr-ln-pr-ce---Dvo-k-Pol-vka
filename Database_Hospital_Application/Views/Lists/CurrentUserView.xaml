@@ -30,10 +30,10 @@
     <Grid>
 
         <StackPanel
-            Margin="10,0,0,5"
+            Margin="5,0,0,5"
                    Orientation="Vertical"
                    MinWidth="250"
-            HorizontalAlignment="Left" Width="390">
+            HorizontalAlignment="Center" Width="800">
             <StackPanel
                 VerticalAlignment="Top"
                 HorizontalAlignment="Left"
@@ -87,12 +87,6 @@
             </TextBlock>
 
 
-        </StackPanel>
-        <StackPanel
-            Margin="400,10,0,5"
-            Orientation="Vertical"
-            MinWidth="250"
-            HorizontalAlignment="Left" Width="390">
         </StackPanel>
     </Grid>
 </UserControl>
