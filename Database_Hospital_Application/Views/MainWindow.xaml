@@ -41,6 +41,9 @@
         <DataTemplate DataType="{x:Type vm:DrugsVM}">
             <local:DrugsListView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ContactsVM }">
+            <local:ContactsListView/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type vm:EmployeeVM }">
             <local:EmployeesListView/>
         </DataTemplate>
@@ -219,7 +222,7 @@
 
                     </Menu:Button>
                     <Menu:Button Style="{StaticResource Button}"
-                              Command="{Binding SettingsCommand}">
+                              Command="{Binding ContactsListCommand}">
 
                         <Grid>
 
