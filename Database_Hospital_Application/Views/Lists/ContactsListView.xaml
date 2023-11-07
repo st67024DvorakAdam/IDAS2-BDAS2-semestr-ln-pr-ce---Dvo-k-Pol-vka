@@ -34,7 +34,7 @@
                     <Setter Property="Background" Value="Transparent"/>
                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                     <Setter Property="VerticalContentAlignment" Value="Center"/>
-                    <Setter Property="Height" Value="30"/>
+                    <Setter Property="Height" Value="80"/>
                     <Setter Property="FontSize" Value="20"/>
                 </Style>
                 <Style TargetType="DataGridRow">
@@ -61,13 +61,25 @@
                 <DataGridTextColumn Binding="{Binding StringVersionOfIdsOfPatients}" Width="*">
                     <DataGridTextColumn.Header>
                         <TextBlock>
-                        <TextBlock Text="Id pacientů vlastnících"/>
+                        <TextBlock Text="Id pacientů"/>
+                        <LineBreak />
+                        <TextBlock Text="vlastnících"/>
                         <LineBreak />
                         <TextBlock Text="tento kontakt"/>
                         </TextBlock>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Id zaměstnanců vlastnících tento kontakt" Binding="{Binding StringVersionOfIdsOfEmployees}" Width="*"/>
+                <DataGridTextColumn Binding="{Binding StringVersionOfIdsOfEmployees}" Width="*">
+                    <DataGridTextColumn.Header>
+                        <TextBlock>
+                        <TextBlock Text="Id zaměstnanců"/>
+                        <LineBreak />
+                        <TextBlock Text="vlastnících"/>
+                        <LineBreak />
+                        <TextBlock Text="tento kontakt"/>
+                        </TextBlock>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
             </DataGrid.Columns>
 
 
