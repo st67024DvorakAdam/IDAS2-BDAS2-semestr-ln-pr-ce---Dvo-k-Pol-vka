@@ -12,6 +12,10 @@ namespace Database_Hospital_Application.Models.Entities
     public class Foto
     {
         public int Id { get; set; }
+        public string Name { get; set; }
+        public string Suffix { get; set; } //přípona
+        public OracleDate DateOfUpload { get; set; }
+        public OracleDate DateOfModification { get; set; }
         public BitmapImage Image { get; set; }
     }
 

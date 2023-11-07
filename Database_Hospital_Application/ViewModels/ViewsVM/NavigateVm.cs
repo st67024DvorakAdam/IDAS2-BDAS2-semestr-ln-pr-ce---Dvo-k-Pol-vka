@@ -53,6 +53,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         public ICommand DrugsListCommand { get; }
         public ICommand ContactsListCommand { get; }
         public ICommand EmployeesListCommand { get; }
+        public ICommand PhotosListCommand { get; }
+        public ICommand RolesListCommand { get; }
+        public ICommand MessagesListCommand { get; }
+        public ICommand DepartmentsListCommand { get; }
+        public ICommand LogsListCommand { get; }
 
         private void Profile(object obj) => CurrentView = new CurrUserVM(CurrentUser);
         private void Users(object obj) => CurrentView = new UserVM();
@@ -66,6 +71,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         private void Drugs(object obj) => CurrentView = new DrugsVM();
         private void Contacts(object obj) => CurrentView = new ContactsVM();
         private void Employees(object obj) => CurrentView = new EmployeeVM();
+        private void Photos(object obj) => CurrentView = new PhotoVM();
+        //private void Messages(object obj) => CurrentView = new MessageVM();
+        //private void Roles(object obj) => CurrentView = new RoleVM();
+        //private void Departments(object obj) => CurrentView = new DepartmentVM();
+        //private void Logs(object obj) => CurrentView = new LogVM();
 
         public NavigateVM(User user)
         {
@@ -87,6 +97,12 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             DrugsListCommand = new RelayCommand(Drugs);
             EmployeesListCommand = new RelayCommand(Employees);
             ContactsListCommand = new RelayCommand(Contacts);
+            PhotosListCommand = new RelayCommand(Photos);
+            //RolesListCommand = new RelayCommand(Roles);
+            //MessagesListCommand = new RelayCommand(Messages);
+            //DepartmentsListCommand = new RelayCommand(Departments);
+            //LogsListCommand = new RelayCommand(Logs);
+
         }
     }
 }

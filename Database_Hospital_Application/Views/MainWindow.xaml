@@ -47,6 +47,9 @@
         <DataTemplate DataType="{x:Type vm:EmployeeVM }">
             <local:EmployeesListView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:PhotoVM }">
+            <local:PhotosListView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
 
@@ -252,7 +255,7 @@
 
                     </Menu:Button>
                     <Menu:Button Style="{StaticResource Button}"
-                              Command="{Binding SettingsCommand}">
+                              Command="{Binding PhotosListCommand}">
 
                         <Grid>
 
@@ -311,7 +314,21 @@
                         </Grid>
 
                     </Menu:Button>
-                    
+                    <Menu:Button Style="{StaticResource Button}"
+                              Command="{Binding SettingsCommand}">
+
+                        <Grid>
+
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-person-30.png?raw=true"
+                                   Height="30"
+                                   Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
+
+                            <TextBlock Text="Logy"
+                                       Style="{StaticResource TextStyle}" />
+
+                        </Grid>
+
+                    </Menu:Button>
 
                 </StackPanel>
 
