@@ -9,27 +9,18 @@ namespace Database_Hospital_Application.Commands
 {
     public abstract class BaseCommand : ICommand
     {
-        public event EventHandler BoolExecChanged;
-        public event EventHandler? CanExecuteChanged;
+        public event EventHandler CanExecuteChanged;
 
-        //public virtual bool BoolExec(object parameter)
-        //{
-        //    return true;
-        //}
-
-        public virtual bool CanExecute(object? parameter)
+        public virtual bool CanExecute(object parameter)
         {
-            return true;
+            return true; 
         }
 
-        
+        public abstract void Execute(object parameter);
 
-        public abstract void Execute(object? parameter);
-        
-
-        protected void OnBoolExecChanged() {
-            BoolExecChanged?.Invoke(this, new EventArgs());
+        protected void RaiseCanExecuteChanged()
+        {
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
-        
     }
 }

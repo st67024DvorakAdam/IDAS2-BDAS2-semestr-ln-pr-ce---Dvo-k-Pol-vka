@@ -14,6 +14,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
 
@@ -23,8 +24,8 @@
         
         <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="UŽIVATELÉ" VerticalAlignment="Center" FontSize="40" Margin="0,0,0,35" Foreground="White" FontWeight="Bold"/>
 
-        
-        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding UsersList}" Background="Transparent" 
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding UsersList}" SelectedItem="{Binding SelectedUser}" Background="Transparent" 
                   AlternatingRowBackground="Transparent" 
                   AreRowDetailsFrozen="True" CanUserAddRows="False" CanUserDeleteRows="False" 
                   CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single" 
@@ -72,5 +73,11 @@
                 </Style>
             </DataGrid.CellStyle>
         </DataGrid>
+        </ScrollViewer>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10">
+            <Button Content="Přidat" Margin="5" Padding="10,3" Command="{Binding AddUserCommand}"/>
+            <Button Content="Upravit" Margin="5" Padding="10,3" Command="{Binding EditUserCommand}"/>
+            <Button Content="Odebrat" Margin="5" Padding="10,3" Command="{Binding DeleteUserCommand}"/>
+        </StackPanel>
     </Grid>
 </UserControl>
