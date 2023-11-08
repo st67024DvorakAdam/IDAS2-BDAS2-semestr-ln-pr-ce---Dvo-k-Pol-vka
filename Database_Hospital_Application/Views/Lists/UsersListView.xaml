@@ -5,79 +5,116 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:Database_Hospital_Application.ViewModels.ViewsVM"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="1000"
+             >
     <UserControl.DataContext>
         <vm:UserVM/>
     </UserControl.DataContext>
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
 
+        <!-- Levý sloupec s existujícím obsahem -->
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
+            <TextBox Grid.Row="0" Margin="10" Height="25" Width="150" HorizontalAlignment="Left" Text="Vyhledávání..." Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray" VerticalContentAlignment="Center" CaretBrush="White"/>
 
-        <TextBox Grid.Row="0" Margin="10" Height="25" Width="150" HorizontalAlignment="Left" Text="Vyhledávání..." Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray" VerticalContentAlignment="Center" CaretBrush="White"/>
+            <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="UŽIVATELÉ" VerticalAlignment="Center" FontSize="40" Margin="0,0,0,35" Foreground="White" FontWeight="Bold"/>
 
-        
-        <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="UŽIVATELÉ" VerticalAlignment="Center" FontSize="40" Margin="0,0,0,35" Foreground="White" FontWeight="Bold"/>
-
-        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding UsersList}" SelectedItem="{Binding SelectedUser}" Background="Transparent" 
+            <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding UsersList}" SelectedItem="{Binding SelectedUser}" Background="Transparent" 
                   AlternatingRowBackground="Transparent" 
                   AreRowDetailsFrozen="True" CanUserAddRows="False" CanUserDeleteRows="False" 
                   CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single" 
                   SelectionUnit="FullRow" GridLinesVisibility="None" HeadersVisibility="Column" 
                   IsReadOnly="True" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1">
 
-            <DataGrid.Resources>
-                <Style TargetType="DataGridColumnHeader">
-                    <Setter Property="Foreground" Value="White"/>
-                    <Setter Property="FontWeight" Value="Bold"/>
-                    <Setter Property="Background" Value="Transparent"/>
-                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                    <Setter Property="VerticalContentAlignment" Value="Center"/>
-                    <Setter Property="Height" Value="30"/>
-                    <Setter Property="FontSize" Value="20"/>
-                </Style>
-                <Style TargetType="DataGridRow">
-                    <Setter Property="Background" Value="Transparent"/>
-                    <Setter Property="Height" Value="40"/>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#272B2F"/>
-                        </Trigger>
-                        <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" Value="#272B2F"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </DataGrid.Resources>
+                    <DataGrid.Resources>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            <Setter Property="Height" Value="30"/>
+                            <Setter Property="FontSize" Value="20"/>
+                        </Style>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Height" Value="40"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#272B2F"/>
+                                </Trigger>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="#272B2F"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.Resources>
 
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Jméno" Binding="{Binding Name}" Width="*"/>
-                <DataGridTextColumn Header="Heslo" Binding="{Binding Password}" Width="*"/>
-                <DataGridTextColumn Header="ID Role" Binding="{Binding RoleID}" Width="*"/>
-            </DataGrid.Columns>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Jméno" Binding="{Binding Name}" Width="*"/>
+                        <DataGridTextColumn Header="Heslo" Binding="{Binding Password}" Width="*"/>
+                        <DataGridTextColumn Header="ID Role" Binding="{Binding RoleID}" Width="*"/>
+                    </DataGrid.Columns>
 
-            <DataGrid.CellStyle>
-                <Style TargetType="DataGridCell">
-                    <Setter Property="Foreground" Value="White"/>
-                    <Setter Property="FontSize" Value="14"/>
-                    <Setter Property="Background" Value="Transparent"/>
-                    <Setter Property="BorderBrush" Value="Transparent"/>
-                    <Setter Property="HorizontalAlignment" Value="Center"/>
-                    <Setter Property="VerticalAlignment" Value="Center"/>
-                </Style>
-            </DataGrid.CellStyle>
-        </DataGrid>
-        </ScrollViewer>
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10">
-            <Button Content="Přidat" Margin="5" Padding="10,3" Command="{Binding AddUserCommand}"/>
-            <Button Content="Upravit" Margin="5" Padding="10,3" Command="{Binding EditUserCommand}"/>
-            <Button Content="Odebrat" Margin="5" Padding="10,3" Command="{Binding DeleteUserCommand}"/>
-        </StackPanel>
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontSize" Value="14"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGrid.CellStyle>
+                </DataGrid>
+            </ScrollViewer>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10">
+                <Button Content="Přidat" Margin="5" Padding="10,3" Command="{Binding AddUserCommand}"/>
+                <Button Content="Upravit" Margin="5" Padding="10,3" Command="{Binding EditUserCommand}"/>
+                <Button Content="Odebrat" Margin="5" Padding="10,3" Command="{Binding DeleteUserCommand}"/>
+            </StackPanel>
+        </Grid>
+
+
+        <Grid Grid.Column="1" Margin="10">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+                <TextBox Grid.Row="0" Margin="10" Height="25" Width="100" HorizontalAlignment="Left" 
+                     Background="Transparent" 
+                     Foreground="White" BorderThickness="1" BorderBrush="Gray" 
+                     VerticalContentAlignment="Center" CaretBrush="White"/>
+
+                <PasswordBox Grid.Row="1" Margin="10" Height="25" Width="100" HorizontalAlignment="Left" 
+                         Background="Transparent" 
+                         Foreground="White" BorderThickness="1" BorderBrush="Gray" 
+                         VerticalContentAlignment="Center" CaretBrush="White"/>
+
+                <TextBox Grid.Row="2" Margin="10" Height="25" Width="100" HorizontalAlignment="Left" 
+                     Background="Transparent" 
+                     Foreground="White" BorderThickness="1" BorderBrush="Gray" 
+                     VerticalContentAlignment="Center" CaretBrush="White"/>
+
+                <Button Grid.Row="3" Content="Přidat" Margin="10,22,170,0" Padding="10,3"  Width="100"
+                    Command="{Binding AddNewUserCommand}" VerticalAlignment="Top"/>
+            </Grid>
+
     </Grid>
 </UserControl>

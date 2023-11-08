@@ -62,6 +62,23 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         private void AddUserAction(object parameter)
         {
             
+            //var dialog = new AddUserDialog(); 
+
+           
+            //var addUserVM = new AddUserVM();
+            //dialog.DataContext = addUserVM;
+
+            //if (dialog.ShowDialog() == true)
+            //{
+                
+            //    var newUser = addUserVM.NewUser;
+
+                
+            //    _userRepo.RegisterUserAsync(newUser);
+
+                
+            //    LoadUsersAsync();
+            //}
         }
 
         private void DeleteUserAction(object parameter)
