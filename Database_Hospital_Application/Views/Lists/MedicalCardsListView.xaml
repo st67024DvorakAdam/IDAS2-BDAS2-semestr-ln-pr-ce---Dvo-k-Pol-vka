@@ -11,39 +11,53 @@
         <vm:MedicalCardsVM/>
     </UserControl.DataContext>
     <Grid>
-        <ListView ItemsSource="{Binding MedicalCardsList}" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-            <ListView.Resources>
+        <TextBox Grid.Row="0" Margin="10" Height="25" Width="150" HorizontalAlignment="left" Text="Vyhledávání..." Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="gray" VerticalContentAlignment="Center" CaretBrush="White"/>
 
-                <Style TargetType="GridViewColumnHeader">
+        <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="ADRESY" VerticalAlignment="Center" FontSize="40" Margin="0,0,0,35" Foreground="White" FontWeight="Bold"/>
+
+
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding MedicalCardsList}" Background="Transparent" 
+                  AlternatingRowBackground="Transparent" 
+                  AreRowDetailsFrozen="True" CanUserAddRows="False" CanUserDeleteRows="False" 
+                  CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single" 
+                  SelectionUnit="FullRow" GridLinesVisibility="None" HeadersVisibility="Column" 
+                  IsReadOnly="True" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Rodné číslo pacienta" Binding="{Binding BirthNumberOfPatient}" Width="150"/>
+                <DataGridTextColumn Header="Nemoci" Binding="{Binding StringVersionOfIllnesses}" Width="450"/>
+            </DataGrid.Columns>
+
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="Foreground" Value="White"/>
                     <Setter Property="FontWeight" Value="Bold"/>
                     <Setter Property="Background" Value="Transparent"/>
                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                     <Setter Property="VerticalContentAlignment" Value="Center"/>
                 </Style>
-
-                <Style TargetType="ListViewItem">
+                <Style TargetType="{x:Type DataGridRow}">
                     <Setter Property="Foreground" Value="White"/>
                     <Setter Property="FontSize" Value="14"/>
-                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
                     <Setter Property="Background" Value="Transparent"/>
-
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
                     <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
+                        <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True">
                             <Setter Property="Background" Value="#55555555"/>
-                        </Trigger>
+                        </DataTrigger>
                     </Style.Triggers>
                 </Style>
-            </ListView.Resources>
-
-
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Rodné číslo pacienta" DisplayMemberBinding="{Binding BirthNumberOfPatient}" Width="150"/>
-                    <GridViewColumn Header="Nemoci" DisplayMemberBinding="{Binding StringVersionOfIllnesses}" Width="450"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+            </DataGrid.Resources>
+        </DataGrid>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10">
+            <Button Content="Přidat" Margin="5" Padding="10,3" Command="{Binding AddUserCommand}"/>
+            <Button Content="Upravit" Margin="5" Padding="10,3" Command="{Binding EditUserCommand}"/>
+            <Button Content="Odebrat" Margin="5" Padding="10,3" Command="{Binding DeleteUserCommand}"/>
+        </StackPanel>
     </Grid>
 </UserControl>

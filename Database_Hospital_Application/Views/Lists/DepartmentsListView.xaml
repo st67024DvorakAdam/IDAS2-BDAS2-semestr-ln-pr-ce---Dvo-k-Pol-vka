@@ -34,7 +34,7 @@
                     <Setter Property="Background" Value="Transparent"/>
                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                     <Setter Property="VerticalContentAlignment" Value="Center"/>
-                    <Setter Property="Height" Value="80"/>
+                    <Setter Property="Height" Value="30"/>
                     <Setter Property="FontSize" Value="20"/>
                 </Style>
                 <Style TargetType="DataGridRow">
@@ -43,12 +43,9 @@
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" Value="#272B2F"/>
-
                         </Trigger>
-
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="Background" Value="#272B2F"/>
-
                         </Trigger>
                     </Style.Triggers>
                 </Style>
@@ -72,5 +69,10 @@
                 </Style>
             </DataGrid.CellStyle>
         </DataGrid>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10">
+            <Button Content="Přidat" Margin="5" Padding="10,3" Command="{Binding AddUserCommand}"/>
+            <Button Content="Upravit" Margin="5" Padding="10,3" Command="{Binding EditUserCommand}"/>
+            <Button Content="Odebrat" Margin="5" Padding="10,3" Command="{Binding DeleteUserCommand}"/>
+        </StackPanel>
     </Grid>
 </UserControl>

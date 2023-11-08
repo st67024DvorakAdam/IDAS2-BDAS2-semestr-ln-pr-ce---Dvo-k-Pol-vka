@@ -15,6 +15,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <TextBox Grid.Row="0" Margin="10" Height="25" Width="150" HorizontalAlignment="left" Text="Vyhledávání..." Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="gray" VerticalContentAlignment="Center" CaretBrush="White"/>
@@ -81,5 +82,10 @@
                 </Style>
             </DataGrid.CellStyle>
         </DataGrid>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10">
+            <Button Content="Přidat" Margin="5" Padding="10,3" Command="{Binding AddPhotoCommand}"/>
+            <Button Content="Upravit" Margin="5" Padding="10,3" Command="{Binding EditPhotoCommand}"/>
+            <Button Content="Odebrat" Margin="5" Padding="10,3" Command="{Binding DeletePhotoCommand}"/>
+        </StackPanel>
     </Grid>
 </UserControl>
