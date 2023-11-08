@@ -276,7 +276,7 @@
 
                     </Menu:Button>
                     <Menu:Button Style="{StaticResource Button}"
-                              Command="{Binding SettingsCommand}">
+                              Command="{Binding RolesListCommand}">
 
                         <Grid>
 
@@ -291,7 +291,7 @@
 
                     </Menu:Button>
                     <Menu:Button Style="{StaticResource Button}"
-                              Command="{Binding SettingsCommand}">
+                              Command="{Binding MessagesListCommand}">
 
                         <Grid>
 

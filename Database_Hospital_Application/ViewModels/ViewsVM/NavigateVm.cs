@@ -72,8 +72,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         private void Contacts(object obj) => CurrentView = new ContactsVM();
         private void Employees(object obj) => CurrentView = new EmployeeVM();
         private void Photos(object obj) => CurrentView = new PhotoVM();
-        //private void Messages(object obj) => CurrentView = new MessageVM();
-        //private void Roles(object obj) => CurrentView = new RoleVM();
+        private void Messages(object obj) => CurrentView = new MessagesVM();
+        private void Roles(object obj) => CurrentView = new RolesVM();
         //private void Departments(object obj) => CurrentView = new DepartmentVM();
         //private void Logs(object obj) => CurrentView = new LogVM();
 
@@ -98,8 +98,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             EmployeesListCommand = new RelayCommand(Employees);
             ContactsListCommand = new RelayCommand(Contacts);
             PhotosListCommand = new RelayCommand(Photos);
-            //RolesListCommand = new RelayCommand(Roles);
-            //MessagesListCommand = new RelayCommand(Messages);
+            RolesListCommand = new RelayCommand(Roles);
+            MessagesListCommand = new RelayCommand(Messages);
             //DepartmentsListCommand = new RelayCommand(Departments);
             //LogsListCommand = new RelayCommand(Logs);
 
