@@ -1,4 +1,5 @@
 ﻿using Database_Hospital_Application.Models.Entities;
+using Database_Hospital_Application.Models.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,7 +22,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         public MessagesVM()
         {
-            _messagesList = new ObservableCollection<Message>();
+            LoadMessagesAsync();
+            //_messagesList = new ObservableCollection<Message>();
 
         }
 
@@ -77,6 +79,12 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             {
                 MessagesList.Remove(_selectedMessage);
             }
+        }
+
+        private async Task LoadMessagesAsync()
+        {
+            MessageRepo repo = new MessageRepo();
+            MessagesList = await repo.GetAllMessagesAsync();
         }
     }
 }

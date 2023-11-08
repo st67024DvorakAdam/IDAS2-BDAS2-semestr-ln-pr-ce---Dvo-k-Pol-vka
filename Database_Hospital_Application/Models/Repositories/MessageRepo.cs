@@ -4,6 +4,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Database_Hospital_Application.Models.Repositories
 {
@@ -32,9 +33,9 @@ namespace Database_Hospital_Application.Models.Repositories
                     {
                         ID = Convert.ToInt32(row["ID"]),
                         Content = row["OBSAH"].ToString(),
-                        Sender = Convert.ToInt32(row["ODESILATEL_ID"]),
-                        Recipient = Convert.ToInt32(row["PRIJEMCE_ID"]),
-                        DateSent = Convert.ToDateTime(row["DATUM_ODESLANI"])
+                        Sender = Convert.ToInt32(row["UZIVATEL_ID"]),
+                        Recipient = Convert.ToInt32(row["UZIVATEL_ID2"]),
+                        DateSent = new Oracle.ManagedDataAccess.Types.OracleTimeStamp(Convert.ToDateTime(row["CASOVE_RAZITKO"]))
                         
                     };
                     messages.Add(message);
