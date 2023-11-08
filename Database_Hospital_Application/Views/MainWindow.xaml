@@ -7,7 +7,7 @@
         xmlns:Menu="clr-namespace:Database_Hospital_Application.Utils" xmlns:vm="clr-namespace:Database_Hospital_Application.ViewModels.ViewsVM" 
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
-        Title="Hospital UPCE" Height="950" Width="1350" MinHeight="950" MinWidth="1050"
+        Title="Hospital UPCE" Height="1000" Width="1350" MinHeight="980" MinWidth="1050"
         Icon="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-hospital-64.png?raw=true">
     
     <Window.Resources>
@@ -53,6 +53,8 @@
         <DataTemplate DataType="{x:Type vm:DepartmentVM }">
             <local:DepartmentsListView/>
         </DataTemplate>
+        
+        
     </Window.Resources>
     <Grid>
 
@@ -69,11 +71,12 @@
 
             <Grid HorizontalAlignment="Left"
                   Width="300">
-
-                <Border Background="#272B2F"
+                
+                    <Border Background="#272B2F"
                         CornerRadius="2,0,0,2" />
-
-                <StackPanel Height="900"
+               
+                
+                <StackPanel Height="950" MinHeight="950"
                             Width="300">
 
                     <Menu:Button Style="{StaticResource Button}"
@@ -334,12 +337,12 @@
                     </Menu:Button>
 
                 </StackPanel>
-
+                
             </Grid>
 
-            <Border Grid.Column="1" Margin="15" Background="#1a1f1f" CornerRadius="20" Height="880">
+            <Border Grid.Column="1" Margin="15" Background="#1a1f1f" CornerRadius="20" Height="920">
                 
-                <Grid Height="850">
+                <Grid Height="890">
                     <ContentControl x:Name="Pages" Content="{Binding CurrentView}" Margin="0,0,0,0"/>
                 </Grid>
             </Border>

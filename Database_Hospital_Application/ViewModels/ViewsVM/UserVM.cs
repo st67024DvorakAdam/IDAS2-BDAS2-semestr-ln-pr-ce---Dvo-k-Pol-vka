@@ -68,5 +68,18 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             
         }
+
+        private bool CanEditUser(object parameter)
+        {
+            return SelectedUser != null;
+        }
+        private bool CanAddUser(object parameter)
+        {
+            return true; 
+        }
+        private bool CanDeleteUser(object parameter)
+        {
+            return SelectedUser != null;
+        }
     }
 }
