@@ -12,9 +12,9 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 {
     public class RolesVM : BaseViewModel
     {
-        public ObservableCollection<RoleEnum> _rolesList;
+        public ObservableCollection<string> _rolesList;
 
-        public ObservableCollection<RoleEnum> RolesList
+        public ObservableCollection<string> RolesList
         {
             get { return _rolesList; }
             set { _rolesList = value; OnPropertyChange(nameof(RolesList)); }
@@ -22,13 +22,13 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         public RolesVM()
         {
-            LoadPhotosAsync();
+            LoadRolesAsync();
         }
 
-        private async Task LoadPhotosAsync()
+        private async Task LoadRolesAsync()
         {
             RolesRepo  repo = new RolesRepo();
-            RolesList = await repo.GetAllRoleEnumsAsync();
+            RolesList = await repo.GetAllRoleDescriptionsAsync();
         }
     }
 }

@@ -15,16 +15,16 @@ namespace Database_Hospital_Application.Models.Repositories
     {
         private DatabaseTools.DatabaseTools dbTools = new DatabaseTools.DatabaseTools();
 
-        public ObservableCollection<RoleEnum> roles { get; set; }
+        public ObservableCollection<string> roles { get; set; }
 
         public RolesRepo()
         {
-            roles = new ObservableCollection<RoleEnum>();
+            roles = new ObservableCollection<string>();
         }
 
-        public async Task<ObservableCollection<RoleEnum>> GetAllRoleEnumsAsync()
+        public async Task<ObservableCollection<string>> GetAllRoleDescriptionsAsync()
         {
-            ObservableCollection<RoleEnum> roles = new ObservableCollection<RoleEnum>();
+            ObservableCollection<string> roles = new ObservableCollection<string>();
             string commandText = "get_all_roles";
             DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
 
@@ -33,12 +33,12 @@ namespace Database_Hospital_Application.Models.Repositories
             {
                 if (roles == null)
                 {
-                    roles = new ObservableCollection<RoleEnum>();
+                    roles = new ObservableCollection<string>();
                 }
 
                 foreach (DataRow row in result.Rows)
                 {
-                    RoleEnum role = RoleExtensions.GetRoleEnumFromId(Convert.ToInt32(row["ID"]));
+                    string role = row["NAZEV"].ToString();
 
                     roles.Add(role);
                 }
@@ -46,23 +46,25 @@ namespace Database_Hospital_Application.Models.Repositories
             return roles;
         }
 
-        public void AddRoleEnums(RoleEnum ŕole)
-        {
+        //následující asi není potřeba:
 
-        }
+        //public void AddRoleeDescription(string role)
+        //{
 
-        public void DeleteRoleEnums(int id)
-        {
+        //}
 
-        }
-        public void UpdateRoleEnums(RoleEnum role)
-        {
+        //public void DeleteRoleeDescription(int id)
+        //{
 
-        }
+        //}
+        //public void UpdateRoleeDescription(string role)
+        //{
 
-        public void DeleteAllRoleEnums()
-        {
+        //}
 
-        }
+        //public void DeleteAllRoleeDescriptions()
+        //{
+
+        //}
     }
 }
