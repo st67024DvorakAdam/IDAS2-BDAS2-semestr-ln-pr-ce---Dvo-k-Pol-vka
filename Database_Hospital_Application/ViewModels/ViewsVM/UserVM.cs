@@ -4,9 +4,11 @@ using Database_Hospital_Application.Models.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM
@@ -29,6 +31,22 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             }
         }
 
+        // Hledaný řetezec v TextBoxu pro vyhledávání
+        private string _searchText;
+        public ICollectionView UsersView { get; private set; }
+
+        public string SearchText
+        {
+            get { return _searchText; }
+            set
+            {
+                _searchText = value;
+                OnPropertyChange(nameof(SearchText));
+                UsersView.Refresh();
+            }
+        }
+
+
         // Příkazy pro tlačítka
         public ICommand EditUserCommand { get; private set; }
         public ICommand AddUserCommand { get; private set; }
@@ -44,7 +62,10 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         private async Task LoadUsersAsync()
         {
             UsersList = await _userRepo.GetAllUsersAsync();
-            // PatientList = await repo.GetAllPatientsAsync(); 
+            var users = await _userRepo.GetAllUsersAsync();
+            UsersList = new ObservableCollection<User>(users);
+            UsersView = CollectionViewSource.GetDefaultView(UsersList);
+            UsersView.Filter = UserFilter;
         }
 
         private void InitializeCommands()
@@ -97,6 +118,17 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         private bool CanDeleteUser(object parameter)
         {
             return SelectedUser != null;
+        }
+
+        private bool UserFilter(object item)
+        {
+            if (string.IsNullOrWhiteSpace(_searchText)) return true;
+
+            var user = item as User;
+            if (user == null) return false;
+
+            return user.Name.Contains(_searchText, StringComparison.OrdinalIgnoreCase)
+                || user.RoleID.ToString().Contains(_searchText);
         }
     }
 }
