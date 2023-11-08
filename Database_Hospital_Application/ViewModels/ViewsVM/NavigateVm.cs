@@ -74,8 +74,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         private void Photos(object obj) => CurrentView = new PhotoVM();
         private void Messages(object obj) => CurrentView = new MessagesVM();
         private void Roles(object obj) => CurrentView = new RolesVM();
-        //private void Departments(object obj) => CurrentView = new DepartmentVM();
-        //private void Logs(object obj) => CurrentView = new LogVM();
+        private void Departments(object obj) => CurrentView = new DepartmentVM();
+        private void Logs(object obj) => CurrentView = new LogsVM();
 
         public NavigateVM(User user)
         {
@@ -100,8 +100,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             PhotosListCommand = new RelayCommand(Photos);
             RolesListCommand = new RelayCommand(Roles);
             MessagesListCommand = new RelayCommand(Messages);
-            //DepartmentsListCommand = new RelayCommand(Departments);
-            //LogsListCommand = new RelayCommand(Logs);
+            DepartmentsListCommand = new RelayCommand(Departments);
+            LogsListCommand = new RelayCommand(Logs);
 
         }
     }
