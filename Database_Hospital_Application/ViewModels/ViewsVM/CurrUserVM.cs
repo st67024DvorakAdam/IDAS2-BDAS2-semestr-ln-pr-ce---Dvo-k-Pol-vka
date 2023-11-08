@@ -11,11 +11,15 @@ using Database_Hospital_Application.Models.Repositories;
 using Database_Hospital_Application.Commands;
 using System.Windows.Input;
 using System.Windows;
+using Database_Hospital_Application.Models.Tools;
+using System.CodeDom;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM
 {
     public class CurrUserVM : BaseViewModel
     {
+        private OpenFileDialogService fileDialogService;
+
         private User _currentUser;
         public User CurrentUser {
             get => _currentUser;
@@ -31,8 +35,10 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         public CurrUserVM(User currentUser)
         {
             CurrentUser = currentUser;
-           
+            this.fileDialogService = new OpenFileDialogService();
         }
+
+
 
         private ICommand _editPhotoCommand;
         public ICommand EditPhotoCommand
@@ -49,14 +55,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         private void EditPhoto(object parameter)
         {
-            // Zde implementujte logiku pro editaci fotky, včetně zobrazení dialogu pro výběr souboru.
-            // Po úspěšném výběru souboru aktualizujte CurrentUser.Employee._foto.Image
-            // a provedete další operace, např. uložení do databáze.
-            MessageBox.Show("jsem tu");
-
-            //tohle pak dodělám
+            var fileName = fileDialogService.OpenFileDialog();
+            MessageBox.Show(fileName);
+            //nejprve data aktualizovat
+            //v userrepo mít metodu pro zápis do db
         }
-
 
     }
 }
