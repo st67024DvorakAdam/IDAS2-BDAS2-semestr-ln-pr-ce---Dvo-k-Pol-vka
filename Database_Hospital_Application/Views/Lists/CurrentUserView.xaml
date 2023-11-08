@@ -57,6 +57,7 @@
                     <EllipseGeometry Center="50,50" RadiusX="50" RadiusY="50" />
                 </Image.Clip>
             </Image>
+            <Button Content="Edit Photo" Command="{Binding EditPhotoCommand}" Margin="10" />
 
 
             <TextBlock Text="Username" Style="{StaticResource MySecondTextBlockStyle}"/>
