@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows;
 using Database_Hospital_Application.Models.Tools;
 using System.CodeDom;
+using System.IO;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM
 {
@@ -55,10 +56,14 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         private void EditPhoto(object parameter)
         {
-            var fileName = fileDialogService.OpenFileDialog();
-            MessageBox.Show(fileName);
-            //nejprve data aktualizovat
-            //v userrepo mít metodu pro zápis do db
+            var selectedFilePath = fileDialogService.OpenFileDialog();
+            byte[] imageBytes = File.ReadAllBytes(selectedFilePath);
+            CurrentUser.Employee._foto.Image = FotoExtension.ConvertBytesToBitmapImage(imageBytes);
+            UserRepo ur = new UserRepo();
+            //MessageBox.Show(FotoExtension.BitmapImageToBytes(CurrentUser.Employee._foto.Image).ToString());
+            ur.UploadPhotoAsync(CurrentUser.Employee.Id, FotoExtension.BitmapImageToBytes(CurrentUser.Employee._foto.Image));
+
+            OnPropertyChange(nameof(CurrentUser));
         }
 
     }

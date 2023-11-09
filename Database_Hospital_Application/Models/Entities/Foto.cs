@@ -38,6 +38,18 @@ namespace Database_Hospital_Application.Models.Entities
                 return bitmapImage;
             }
         }
+
+        public static byte[] BitmapImageToBytes(BitmapImage bitmapImage)
+        {
+            using (MemoryStream stream = new MemoryStream())
+            {
+                JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
+                encoder.Save(stream);
+                return stream.ToArray();
+            }
+        }
+
     }
 
 }

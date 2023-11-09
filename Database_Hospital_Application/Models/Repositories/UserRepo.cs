@@ -216,5 +216,30 @@ namespace Database_Hospital_Application.Models.Repositories
         {
             return user.RoleID == 1;
         }
+
+        public async Task UploadPhotoAsync(int employeeId, byte[] photoBytes)
+        {
+            try
+            {
+                // Uložená procedura pro aktualizaci fotografie zaměstnance
+                string storedProcedure = "update_employee_photo";
+
+                // Parametry pro uloženou proceduru
+                var parameters = new Dictionary<string, object>
+        {
+            { "p_employee_id", employeeId },
+            { "p_photo_blob", photoBytes }
+        };
+
+                // Zavolání uložené procedury
+                await dbTools.ExecuteCommandAsync(storedProcedure, parameters);
+            }
+            catch (Exception ex)
+            {
+                // Zpracování výjimky při chybě
+                MessageBox.Show($"Chyba při nahrávání fotografie: {ex.Message}", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
     }
 }
