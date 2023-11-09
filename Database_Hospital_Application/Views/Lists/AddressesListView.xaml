@@ -11,17 +11,28 @@
     <UserControl.DataContext>
         <vm:AddressesVM/>
     </UserControl.DataContext>
-    
+
     <Grid>
+        <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="300"/>
+    </Grid.ColumnDefinitions>
+    <Grid Grid.Column="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBox Grid.Row="0" Margin="10" Height="25" Width="150" HorizontalAlignment="left" Text="Vyhledávání..." Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="gray" VerticalContentAlignment="Center" CaretBrush="White"/>
-        
-        <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="ADRESY" VerticalAlignment="Center" FontSize="40" Margin="0,0,0,35" Foreground="White" FontWeight="Bold"/>
+            <TextBlock Grid.Row="0" Margin="10" Foreground="Gray" VerticalAlignment="Top">
+             Vyhledávání...
+            </TextBlock>
+            <TextBox Grid.Row="0" Margin="10" Height="25" Width="150" HorizontalAlignment="Left"
+            Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" 
+            Background="Transparent" Foreground="White" BorderThickness="1" 
+            BorderBrush="Gray" VerticalContentAlignment="Center" CaretBrush="White"/>
+
+            <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="ADRESY" VerticalAlignment="Center" FontSize="40" Margin="0,0,0,35" Foreground="White" FontWeight="Bold"/>
         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding AddressesList}" Background="Transparent" 
                   AlternatingRowBackground="Transparent" 
                   AreRowDetailsFrozen="True" CanUserAddRows="False" CanUserDeleteRows="False" 
@@ -81,5 +92,56 @@
             <Button Content="Upravit" Margin="5" Padding="10,3" Command="{Binding EditUserCommand}"/>
             <Button Content="Odebrat" Margin="5" Padding="10,3" Command="{Binding DeleteUserCommand}"/>
         </StackPanel>
+        
+    </Grid>
+        <Grid Grid.Column="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Text="Nová adresa" Foreground="White" FontSize="20" FontWeight="Bold"
+               HorizontalAlignment="Center" Margin="10"/>
+
+            <TextBlock Grid.Row="1" Text="Ulice" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
+            <TextBox Grid.Row="2" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
+             Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
+             VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding NewAddress.Street}"/>
+
+            <TextBlock Grid.Row="3" Text="Město" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
+            <TextBox Grid.Row="4" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
+             Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
+             VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding NewAddress.City}"/>
+
+            <TextBlock Grid.Row="5" Text="Číslo popisné" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
+            <TextBox Grid.Row="6" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
+             Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
+             VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding NewAddress.HouseNumber}"
+             PreviewTextInput="TextBox_PreviewTextInput" InputScope="Number"/>
+
+            <TextBlock Grid.Row="7" Text="Země" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
+            <TextBox Grid.Row="8" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
+             Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
+             VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding NewAddress.Country}"/>
+
+            <TextBlock Grid.Row="9" Text="PSČ" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
+            <TextBox Grid.Row="10" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
+             Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
+             VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding NewAddress.ZipCode}"
+             PreviewTextInput="TextBox_PreviewTextInput" InputScope="Number"/>
+            
+            <Button Grid.Row="11" Content="Přidat" Margin="10" Padding="10,3" Width="200" HorizontalAlignment="Center"
+            Command="{Binding AddNewAddressCommand}" VerticalAlignment="Top"/>
+        </Grid>
     </Grid>
 </UserControl>

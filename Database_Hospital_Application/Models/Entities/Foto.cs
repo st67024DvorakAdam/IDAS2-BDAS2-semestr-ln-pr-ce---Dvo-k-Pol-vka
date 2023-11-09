@@ -34,6 +34,7 @@ namespace Database_Hospital_Application.Models.Entities
                 bitmapImage.BeginInit();
                 bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
                 bitmapImage.StreamSource = stream;
+                bitmapImage.UriSource = null;
                 bitmapImage.EndInit();
                 return bitmapImage;
             }

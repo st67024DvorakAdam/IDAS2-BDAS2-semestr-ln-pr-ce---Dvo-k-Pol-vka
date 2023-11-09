@@ -54,8 +54,20 @@ namespace Database_Hospital_Application.Models.Repositories
             return addresses;
         }
 
-        public void AddAddress(Address address)
+        public async Task AddAddress(Address address)
         {
+            string commandText = "add_address";
+
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_ulice", address.Street },
+                { "p_mesto", address.City },
+                { "p_cislo_popisne", address.HouseNumber },
+                { "p_stat", address.Country },
+                { "p_psc", address.ZipCode }
+            };
+
+            await dbTools.ExecuteNonQueryAsync(commandText, parameters);
 
         }
 

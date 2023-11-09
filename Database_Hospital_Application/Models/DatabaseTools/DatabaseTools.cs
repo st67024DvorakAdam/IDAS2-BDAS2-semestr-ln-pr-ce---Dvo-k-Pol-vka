@@ -81,5 +81,76 @@ namespace Database_Hospital_Application.Models.DatabaseTools
 
             return dataTable;
         }
+
+        public async Task<int> ExecuteNonQueryAsync(string commandText, Dictionary<string, object> parameters = null)
+        {
+            OracleConnection conn = dbConnection.GetConnection();
+            int affectedRows = 0;
+            try
+            {
+                await OpenDBAsync();
+
+                using (OracleCommand command = conn.CreateCommand())
+                {
+                    command.CommandText = commandText;
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    if (parameters != null)
+                    {
+                        foreach (var parameter in parameters)
+                        {
+                            OracleParameter oracleParameter = new OracleParameter(parameter.Key, parameter.Value);
+                            command.Parameters.Add(oracleParameter);
+                        }
+                    }
+
+                    affectedRows = await command.ExecuteNonQueryAsync();
+                }
+            }
+            catch (OracleException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                await CloseDBAsync();
+            }
+
+            return affectedRows;
+        }
+
+        public async Task<int> ExecuteNonQueryAsync(string commandText, List<OracleParameter> parameters = null)
+        {
+            
+            OracleConnection conn = dbConnection.GetConnection();
+            int affectedRows = 0;
+            try
+            {
+                await OpenDBAsync();
+
+                using (OracleCommand command = conn.CreateCommand())
+                {
+                    command.CommandText = commandText;
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    if (parameters != null)
+                    {
+                        command.Parameters.AddRange(parameters.ToArray());
+                    }
+
+                    affectedRows = await command.ExecuteNonQueryAsync();
+                }
+            }
+            catch (OracleException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                await CloseDBAsync();
+            }
+
+            return affectedRows;
+        }
     }
 }

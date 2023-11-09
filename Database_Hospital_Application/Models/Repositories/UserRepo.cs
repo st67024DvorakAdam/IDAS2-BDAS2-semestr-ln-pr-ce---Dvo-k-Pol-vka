@@ -221,22 +221,29 @@ namespace Database_Hospital_Application.Models.Repositories
         {
             try
             {
-                // Uložená procedura pro aktualizaci fotografie zaměstnance
                 string storedProcedure = "update_employee_photo";
 
-                // Parametry pro uloženou proceduru
-                var parameters = new Dictionary<string, object>
-        {
-            { "p_employee_id", employeeId },
-            { "p_photo_blob", photoBytes }
-        };
+                
+                OracleParameter pEmployeeId = new OracleParameter("p_employee_id", OracleDbType.Int32)
+                {
+                    Value = employeeId,
+                    Direction = ParameterDirection.Input
+                };
 
-                // Zavolání uložené procedury
-                await dbTools.ExecuteCommandAsync(storedProcedure, parameters);
+                OracleParameter pPhotoBlob = new OracleParameter("p_photo_blob", OracleDbType.Blob)
+                {
+                    Value = photoBytes,
+                    Direction = ParameterDirection.Input
+                };
+
+               
+                var parameters = new List<OracleParameter> { pEmployeeId, pPhotoBlob };
+
+                
+                await dbTools.ExecuteNonQueryAsync(storedProcedure, parameters);
             }
             catch (Exception ex)
             {
-                // Zpracování výjimky při chybě
                 MessageBox.Show($"Chyba při nahrávání fotografie: {ex.Message}", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
