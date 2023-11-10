@@ -27,7 +27,7 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
         public EditAddressVM(Address address)
         {
             EditableAddress = address;
-            SaveCommand = new AsyncRelayCommand(async (o) => await SaveActionAsync(), (o) => CanSaveExecute(o));
+            SaveCommand = new AsyncRelayCommand(async (o) => await SaveActionAsync());
             CancelCommand = new RelayCommand(CancelAction);
         }
         private bool CanSaveExecute(object parameter)
@@ -40,31 +40,40 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
         {
             try
             {
-                
                 AddressRepo addressRepo = new AddressRepo();
-                await addressRepo.UpdateAddress(EditableAddress);
-                OnClosingRequest();
+                int affectedRows = await addressRepo.UpdateAddress(EditableAddress);
+                if (affectedRows == 0)
+                {   
+                    MessageBox.Show("Adresu se nepodařilo změnit", "Not Ok", MessageBoxButton.OK, MessageBoxImage.Information);
+                   
+                }
+                else
+                {
+                     MessageBox.Show("Adresa byla úspšně aktualizována","Ok", MessageBoxButton.OK, MessageBoxImage.Information);
+                     OnClosingRequest();
+                }
+                
+                
             }
             catch (Exception ex)
-            {   
-                MessageBox.Show("Nepodařilo se provést změny: " + ex.Message, "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+            {
                 OnClosingRequest(); 
             }
         }
 
-        private void CancelAction(object parameter)
+        public void CancelAction(object parameter)
         {
             OnClosingRequest();
         }
 
         public event EventHandler ClosingRequest;
 
-        protected void OnClosingRequest()
+        public void OnClosingRequest()
         {
-            if (this.ClosingRequest != null)
+            Application.Current.Dispatcher.Invoke(() =>
             {
-                this.ClosingRequest(this, EventArgs.Empty);
-            }
+                ClosingRequest?.Invoke(this, EventArgs.Empty);
+            });
         }
     }
 }

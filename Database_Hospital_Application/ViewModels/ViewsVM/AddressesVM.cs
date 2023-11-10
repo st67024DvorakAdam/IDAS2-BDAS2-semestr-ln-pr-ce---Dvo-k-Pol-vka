@@ -29,6 +29,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             {
                 _addressesList = value;
                 OnPropertyChange(nameof(AddressesList));
+                
             }
         }
 
@@ -93,7 +94,9 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             AddressRepo addressRepo = new AddressRepo();
             addressRepo.AddAddress(NewAddress);
             LoadAddressesAsync();
-
+            AddressesView = CollectionViewSource.GetDefaultView(AddressesList);
+            AddressesView.Filter = AddressFilter;
+            NewAddress = new Address();
         }
 
         
@@ -135,6 +138,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         private bool AddressFilter(object item)
         {
+            
             if (string.IsNullOrWhiteSpace(_searchText)) return true;
 
             var address = item as Address;
@@ -160,10 +164,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             if (!CanEdit()) return;
             
-            var editVM = new EditAddressVM(SelectedAddress);
+            
+            EditAddressVM editVM = new EditAddressVM(SelectedAddress);
 
-            var editDialog = new EditAddressDialog(); 
-            editDialog.DataContext = editVM;
+            EditAddressDialog editDialog = new EditAddressDialog(editVM); 
+           
             
             editDialog.ShowDialog();
 
@@ -171,10 +176,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             if (editDialog.DialogResult == true)
             {
                 LoadAddressesAsync();
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    editDialog.Close();
-                });
+                
+
             }
 
         }

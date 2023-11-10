@@ -84,15 +84,20 @@ namespace Database_Hospital_Application.Models.Repositories
             return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
 
         }
-        public async Task UpdateAddress(Address address)
+        public async Task<int> UpdateAddress(Address address)
         {
-            string commandText = "update_address_by_id";
+            string commandText = "update_address";
 
             var parameters = new Dictionary<string, object>
             {
-                {"p_id", address.Id }
+                {"p_id", address.Id },
+                { "p_ulice", address.Street },
+                { "p_mesto", address.City },
+                { "p_cislo_popisne", address.HouseNumber },
+                { "p_stat", address.Country },
+                { "p_psc", address.ZipCode }
             };
-            await dbTools.ExecuteNonQueryAsync(commandText, parameters);
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
 
         public void DeleteAllAddresses()

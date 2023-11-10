@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,15 +21,24 @@ namespace Database_Hospital_Application.Views.Lists.Dialogs.Address
     /// </summary>
     public partial class EditAddressDialog : Window
     {
-        public EditAddressDialog()
+        public EditAddressDialog(EditAddressVM viewModel)
         {
-            InitializeComponent();
-            var viewModel = new EditAddressVM(new Database_Hospital_Application.Models.Entities.Address());
-            DataContext = viewModel;
 
+            DataContext = viewModel;
             viewModel.ClosingRequest += (sender, e) => this.Close();
+            InitializeComponent();
+            
         }
 
-        
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextAllowed(e.Text);
+        }
+
+        private static bool IsTextAllowed(string text)
+        {
+            return !Regex.IsMatch(text, "[^0-9]");
+        }
+
     }
 }
