@@ -46,7 +46,7 @@ namespace Database_Hospital_Application.Models.Repositories
                         DateOfModification = new Oracle.ManagedDataAccess.Types.OracleDate(Convert.ToDateTime(row["DATUM_MODIFIKACE"]))
                     };
 
-                    byte[] imageBytes = (byte[])result.Rows[0]["obrazek"];
+                    byte[] imageBytes = (byte[])row["obrazek"];
                     BitmapImage bmimg = FotoExtension.ConvertBytesToBitmapImage(imageBytes);
                     if (bmimg != null) photo.Image = bmimg;
                     else photo.Image = new BitmapImage(new Uri("https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/raw/main/Images/no-profile-photo-icon.png"));

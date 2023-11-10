@@ -64,7 +64,7 @@
                 <DataGridTemplateColumn Header="Foto" Width="150">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image Width="25" Height="25" Loaded="Image_Loaded"/>
+                            <Image Source="{Binding Image}" Width="25" Height="25"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

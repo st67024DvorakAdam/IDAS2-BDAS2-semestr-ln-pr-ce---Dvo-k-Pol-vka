@@ -25,13 +25,13 @@ namespace Database_Hospital_Application.Views.Lists
         {
             InitializeComponent();
         }
-        private void Image_Loaded(object sender, RoutedEventArgs e)
-        {
-            var img = sender as Image;
-            if (img != null && img.DataContext is Foto photo)
-            {
-                img.Source = photo.Image; 
-            }
-        }
+        //private void Image_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    var img = sender as Image;
+        //    if (img != null && img.DataContext is Foto photo)
+        //    {
+        //        img.Source = photo.Image; 
+        //    }
+        //}
     }
 }
