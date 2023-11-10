@@ -84,7 +84,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public void DeleteAllHealthInsurances()
         {
-
+            throw new NotImplementedException();
         }
     }
 }
