@@ -47,16 +47,39 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task AddHealthInsurance(HealthInsurance healthInsurance)
         {
-            
+            string commandText = "add_insurance";
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_name", healthInsurance.Name},
+                { "p_code", healthInsurance.Code}
+            };
+
+            await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
 
-        public async Task DeleteHealthInsurance(int id)
+        public async Task<int> DeleteHealthInsurance(int id)
         {
+            string commandText = "add_insurance_by_id";
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_name", id}
+                
+            };
 
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
-        public void UpdateHealthInsurance(HealthInsurance healthInsurance)
+        public async Task<int> UpdateHealthInsurance(HealthInsurance healthInsurance)
         {
+            string commandText = "add_insurance_by_id";
+            var parameters = new Dictionary<string, object>
+            {
+                {"p_id", healthInsurance.Id},
+                { "p_name", healthInsurance.Name},
+                {"p_code", healthInsurance.Code}
 
+            };
+
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
 
         public void DeleteAllHealthInsurances()

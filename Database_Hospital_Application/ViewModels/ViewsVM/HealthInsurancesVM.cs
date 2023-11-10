@@ -27,7 +27,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             }
         }
 
-        // Příkazy
+        // Buttony
         public ICommand AddCommand { get; private set; }
         public ICommand DeleteCommand { get; private set; }
         public ICommand EditCommand { get; private set; }
