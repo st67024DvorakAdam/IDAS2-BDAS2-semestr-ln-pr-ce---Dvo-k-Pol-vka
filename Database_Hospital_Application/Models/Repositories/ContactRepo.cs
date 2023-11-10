@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -72,18 +73,41 @@ namespace Database_Hospital_Application.Models.Repositories
             return contacts;
         }
 
-        public void AddContact(Contact contact)
+        public async Task AddContact(Contact contact)
         {
+            string commandText = "add_contact";
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_email", contact.Email },
+                { "p_phone", contact.PhoneNumber }
+            };
+
+            await dbTools.ExecuteNonQueryAsync(commandText, parameters);
 
         }
 
-        public void DeleteContact(int id)
+        public async Task<int> DeleteContact(int id)
         {
+            string commandText = "add_contact_by_id";
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_id", id }
+            };
 
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
-        public void UpdateContact(Contact contact)
-        {
 
+        public async Task<int> UpdateContact(Contact contact)
+        {
+            string commandText = "update_contact";
+
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_email", contact.Email },
+                { "p_phone", contact.PhoneNumber }
+            };
+
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
 
         public void DeleteAllContacts()

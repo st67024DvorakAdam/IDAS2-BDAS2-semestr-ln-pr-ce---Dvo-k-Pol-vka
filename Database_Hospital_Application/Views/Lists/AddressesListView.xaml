@@ -54,16 +54,12 @@
                     <Setter Property="Background" Value="Transparent"/>
                     <Setter Property="Height" Value="40"/>
                     <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#272B2F"/>
-                            
-                        </Trigger>
-                            
-
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#272B2F"/>
+                            </Trigger>
                             <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" Value="#272B2F"/>
-
-                        </Trigger>
+                                <Setter Property="Background" Value="#272B2F"/>
+                            </Trigger>
                     </Style.Triggers>
                 </Style>
             </DataGrid.Resources>

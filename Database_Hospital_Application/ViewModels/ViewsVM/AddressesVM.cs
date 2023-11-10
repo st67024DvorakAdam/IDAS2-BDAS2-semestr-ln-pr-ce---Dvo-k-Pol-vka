@@ -43,10 +43,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             AddNewAddressCommand = new RelayCommand(AddNewAddressAction);
             EditCommand = new RelayCommand(EditAction);
         }
-        private bool CanExecuteDelete(object parameter)
-        {
-            return SelectedAddress != null;
-        }
+        
         private async void DeleteAddressAction(object parameter)
         {
             if (SelectedAddress == null) return;

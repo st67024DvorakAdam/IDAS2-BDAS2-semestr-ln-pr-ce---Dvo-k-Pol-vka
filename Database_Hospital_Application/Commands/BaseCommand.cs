@@ -18,7 +18,7 @@ namespace Database_Hospital_Application.Commands
 
         public abstract void Execute(object parameter);
 
-        protected void RaiseCanExecuteChanged()
+        public void RaiseCanExecuteChanged()
         {
             CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
