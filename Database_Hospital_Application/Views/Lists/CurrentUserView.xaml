@@ -52,12 +52,43 @@
             </StackPanel>
 
 
-            <Image Source="{Binding CurrentUser.Employee._foto.Image}" Width="100" Height="100">
-                <Image.Clip>
-                    <EllipseGeometry Center="50,50" RadiusX="50" RadiusY="50" />
-                </Image.Clip>
-            </Image>
-            <Button Content="Edit Photo" Command="{Binding EditPhotoCommand}" Margin="10" />
+            <Grid>
+                <!-- Obrázek s kulatým ořezem -->
+                <Image Source="{Binding CurrentUser.Employee._foto.Image}" Width="100" Height="100">
+                    <Image.Clip>
+                        <EllipseGeometry Center="50,50" RadiusX="50" RadiusY="50" />
+                    </Image.Clip>
+                </Image>
+
+                <!-- Grid pro umístění tlačítka do pravého dolního rohu obrázku -->
+                <Grid>
+                    <Button Command="{Binding EditPhotoCommand}" Margin="70,70,0,0">
+                        
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Width" Value="30"/>
+                                <Setter Property="Height" Value="30"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Grid>
+                                                <Ellipse Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Fill="LightGray"/>
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Style>
+                        <Button.Content>
+                            <Image Source="https://raw.githubusercontent.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/main/Images/icons8-pencil-24.png"/>
+                        </Button.Content>
+                    </Button>
+                </Grid>
+            </Grid>
+
 
 
             <TextBlock Text="Username" Style="{StaticResource MySecondTextBlockStyle}"/>
