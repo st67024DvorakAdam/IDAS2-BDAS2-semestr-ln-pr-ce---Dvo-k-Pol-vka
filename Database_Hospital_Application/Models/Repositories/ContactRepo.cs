@@ -88,7 +88,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<int> DeleteContact(int id)
         {
-            string commandText = "add_contact_by_id";
+            string commandText = "delete_contact_by_id";
             var parameters = new Dictionary<string, object>
             {
                 { "p_id", id }
@@ -103,6 +103,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
             var parameters = new Dictionary<string, object>
             {
+                {"p_id", contact.Id },
                 { "p_email", contact.Email },
                 { "p_phone", contact.PhoneNumber }
             };

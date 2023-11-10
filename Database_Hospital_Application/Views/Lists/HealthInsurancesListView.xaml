@@ -11,58 +11,105 @@
         <vm:HealthInsurancesVM/>
     </UserControl.DataContext>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Margin="10" Foreground="Gray" VerticalAlignment="Top">
+             Vyhledávání...
+            </TextBlock>
+            <TextBox Grid.Row="0" Margin="10" Height="25" Width="150" HorizontalAlignment="Left"
+            Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" 
+            Background="Transparent" Foreground="White" BorderThickness="1" 
+            BorderBrush="Gray" VerticalContentAlignment="Center" CaretBrush="White"/>
+
+            <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="Zdraotní pojištovny" VerticalAlignment="Center" FontSize="40" Margin="0,0,0,35" Foreground="White" FontWeight="Bold"/>
+            <DataGrid x:Name="AddressesDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding HealthInsurancesList}" Background="Transparent" 
+                  SelectedItem="{Binding SelectedInsurance, Mode=TwoWay}"
+                  AreRowDetailsFrozen="True" CanUserAddRows="False" CanUserDeleteRows="False"
+                  CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single" 
+                  SelectionUnit="FullRow" GridLinesVisibility="None" HeadersVisibility="Column" 
+                  IsReadOnly="False" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1">
+
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="Height" Value="30"/>
+                        <Setter Property="FontSize" Value="20"/>
+                    </Style>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Height" Value="40"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#272B2F"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#272B2F"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.Resources>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Název" Binding="{Binding Name}" Width="300"/>
+                    <DataGridTextColumn Header="Zkratka" Binding="{Binding Code}" Width="150"/>
+                </DataGrid.Columns>
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="BorderBrush" Value="Transparent"/>
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                    </Style>
+                </DataGrid.CellStyle>
+            </DataGrid>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10" >
+                <Button Content="Upravit" Margin="5" Padding="10,3" Command="{Binding EditCommand}" Height="30" FontSize="15"/>
+                <Button Content="Odebrat" Margin="5" Padding="10,3" Command="{Binding DeleteCommand}" Height="30" FontSize="15"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Text="Nová zdrav. pojišťovna" Foreground="White" FontSize="20" FontWeight="Bold"
+               HorizontalAlignment="Center" Margin="10"/>
+
+            <TextBlock Grid.Row="1" Text="Název" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
+            <TextBox Grid.Row="2" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
+             Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
+             VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding NewInsurance.Name}"/>
+
+            <TextBlock Grid.Row="3" Text="Zkratka" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
+            <TextBox Grid.Row="4" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
+             Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
+             VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding NewInsurance.Code}"/>
 
 
 
-        <TextBox Grid.Row="0" Margin="10" Height="25" Width="150" HorizontalAlignment="Left" Text="Vyhledávání..." Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray" VerticalContentAlignment="Center" CaretBrush="White"/>
-
-
-        <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="UŽIVATELÉ" VerticalAlignment="Center" FontSize="40" Margin="0,0,0,35" Foreground="White" FontWeight="Bold"/>
-
-        <DataGrid ItemsSource="{Binding HealthInsurancesList}" Background="Transparent" AutoGenerateColumns="False" CanUserAddRows="False" 
-                  CanUserDeleteRows="False" CanUserResizeRows="False" SelectionMode="Single" HeadersVisibility="Column"
-                  GridLinesVisibility="None" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                  RowBackground="Transparent" AlternationCount="2" Grid.Row="1">
-
-            <DataGrid.Resources>
-                <Style TargetType="DataGridColumnHeader">
-                    <Setter Property="Foreground" Value="White"/>
-                    <Setter Property="FontWeight" Value="Bold"/>
-                    <Setter Property="Background" Value="Transparent"/>
-                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                    <Setter Property="VerticalContentAlignment" Value="Center"/>
-                </Style>
-                <Style TargetType="DataGridRow">
-                    <Setter Property="Foreground" Value="White"/>
-                    <Setter Property="FontSize" Value="14"/>
-                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                    <Setter Property="VerticalContentAlignment" Value="Center"/>
-                    <Setter Property="Background" Value="Transparent"/>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#55555555"/>
-                        </Trigger>
-                        <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" Value="#333333"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </DataGrid.Resources>
-
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Název" Binding="{Binding Name}" Width="300"/>
-                <DataGridTextColumn Header="Zkratka" Binding="{Binding Code}" Width="150"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10">
-            <Button Content="Přidat" Margin="5" Padding="10,3" Command="{Binding AddUserCommand}"/>
-            <Button Content="Upravit" Margin="5" Padding="10,3" Command="{Binding EditUserCommand}"/>
-            <Button Content="Odebrat" Margin="5" Padding="10,3" Command="{Binding DeleteUserCommand}"/>
-        </StackPanel>
+            <Button Grid.Row="11" Content="Přidat" Margin="10" Padding="10,3" Width="200" HorizontalAlignment="Center"
+            Command="{Binding AddCommand}" VerticalAlignment="Top"/>
+        </Grid>
     </Grid>
 </UserControl>

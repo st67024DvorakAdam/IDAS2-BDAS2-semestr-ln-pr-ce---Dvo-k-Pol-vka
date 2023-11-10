@@ -45,12 +45,12 @@ namespace Database_Hospital_Application.Models.Repositories
             return healthInsurances;
         }
 
-        public void AddHealthInsurance(HealthInsurance healthInsurance)
+        public async Task AddHealthInsurance(HealthInsurance healthInsurance)
         {
-
+            
         }
 
-        public void DeleteHealthInsurance(int id)
+        public async Task DeleteHealthInsurance(int id)
         {
 
         }

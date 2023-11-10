@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Database_Hospital_Application.ViewModels.Dialogs.Edit;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,18 +12,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Database_Hospital_Application.Views.Lists
+namespace Database_Hospital_Application.Views.Lists.Dialogs.HealthInsurance
 {
     /// <summary>
-    /// Interakční logika pro HealthInsurancesListView.xaml
+    /// Interakční logika pro EditInsuranceDialog.xaml
     /// </summary>
-    public partial class HealthInsurancesListView : UserControl
+    public partial class EditInsuranceDialog : Window
     {
-        public HealthInsurancesListView()
+        public EditInsuranceDialog(EditInsuranceVM viewModel)
         {
+            DataContext = viewModel;
+            viewModel.ClosingRequest += (sender, e) => this.Close();
             InitializeComponent();
         }
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
