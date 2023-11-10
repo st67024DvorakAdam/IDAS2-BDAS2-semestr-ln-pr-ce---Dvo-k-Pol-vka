@@ -9,15 +9,10 @@ namespace Database_Hospital_Application.Models.Tools
 {
     public class DialogService : IDialogService
     {
-        public bool? ShowDialog(Type dialogType, object viewModel)
+        public Task<bool> ConfirmAsync(string message, string title)
         {
-            var dialog = (Window)Activator.CreateInstance(dialogType);
-            if (dialog == null)
-                throw new InvalidOperationException("Dialog nemůže být otevřen.");
-
-            dialog.DataContext = viewModel;
-
-            return dialog.ShowDialog();
+            var result = MessageBox.Show(message, title, MessageBoxButton.YesNo, MessageBoxImage.Question);
+            return Task.FromResult(result == MessageBoxResult.Yes);
         }
     }
 }

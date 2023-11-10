@@ -8,6 +8,6 @@ namespace Database_Hospital_Application.Models.Tools
 {
     public interface IDialogService
     {
-        bool? ShowDialog(Type dialogType, object viewModel);
+        Task<bool> ConfirmAsync(string message, string title);
     }
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -71,13 +72,27 @@ namespace Database_Hospital_Application.Models.Repositories
 
         }
 
-        public void DeleteAddress(int id)
+        public async Task<int> DeleteAddress(int id)
         {
+            string commandText = "delete_address_by_id";
+
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_id", id }
+            };
+
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
 
         }
-        public void UpdateAddress(Address address)
+        public async Task UpdateAddress(Address address)
         {
+            string commandText = "update_address_by_id";
 
+            var parameters = new Dictionary<string, object>
+            {
+                {"p_id", address.Id }
+            };
+            await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
 
         public void DeleteAllAddresses()

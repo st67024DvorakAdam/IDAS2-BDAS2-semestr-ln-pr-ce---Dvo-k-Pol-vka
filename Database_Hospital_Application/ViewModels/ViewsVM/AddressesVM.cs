@@ -1,6 +1,9 @@
 ﻿using Database_Hospital_Application.Commands;
 using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.Models.Repositories;
+using Database_Hospital_Application.Models.Tools;
+using Database_Hospital_Application.ViewModels.Dialogs.Edit;
+using Database_Hospital_Application.Views.Lists.Dialogs.Address;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,6 +11,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -30,11 +35,46 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         // BUTTONS
         public ICommand AddNewAddressCommand { get; private set; }
 
+        public ICommand DeleteAddressCommand { get; private set; }
         private void InitializeCommands()
         {
-            
+            DeleteAddressCommand = new RelayCommand(DeleteAddressAction);
             AddNewAddressCommand = new RelayCommand(AddNewAddressAction);
-            
+            EditCommand = new RelayCommand(EditAction);
+        }
+        private bool CanExecuteDelete(object parameter)
+        {
+            return SelectedAddress != null;
+        }
+        private async void DeleteAddressAction(object parameter)
+        {
+            if (SelectedAddress == null) return;
+
+            AddressRepo addressRepo = new AddressRepo();
+
+            int affectedRows = await addressRepo.DeleteAddress(SelectedAddress.Id);
+
+            if (affectedRows == 0)
+            {
+                MessageBox.Show("Adresa nemohla být odstraněna.", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                MessageBox.Show("Adresa byla úspěšně odstraněna", "Passed", MessageBoxButton.OK, MessageBoxImage.Information);
+                await LoadAddressesAsync();
+            }
+        }
+
+        private Address _selectedAddress;
+        public Address SelectedAddress
+        {
+            get { return _selectedAddress; }
+            set
+            {
+                _selectedAddress = value;
+                OnPropertyChange(nameof(SelectedAddress));
+                CommandManager.InvalidateRequerySuggested();
+            }
         }
 
         private Address _newAddress;
@@ -56,6 +96,9 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         }
 
+        
+        ///KONSTRUKTOR ////////////////////////////////////////////////////////////////////////////////////////
+        
         public AddressesVM()
         {
             LoadAddressesAsync();
@@ -63,6 +106,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             AddressesView.Filter = AddressFilter;
             NewAddress = new Address();
             InitializeCommands();
+            
         }
 
         private async Task LoadAddressesAsync()
@@ -104,5 +148,37 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         }
         //FILTER/////////////////////////////////////////////////////////////////////
 
+        //EDIT///////////////////////////////////////////////////////////////////////
+        
+
+        public ICommand EditCommand { get; private set; }
+        private bool CanEdit()
+        {
+            return SelectedAddress != null;
+        }
+        private void EditAction(object parametr)
+        {
+            if (!CanEdit()) return;
+            
+            var editVM = new EditAddressVM(SelectedAddress);
+
+            var editDialog = new EditAddressDialog(); 
+            editDialog.DataContext = editVM;
+            
+            editDialog.ShowDialog();
+
+            
+            if (editDialog.DialogResult == true)
+            {
+                LoadAddressesAsync();
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    editDialog.Close();
+                });
+            }
+
+        }
+
+        
     }
 }

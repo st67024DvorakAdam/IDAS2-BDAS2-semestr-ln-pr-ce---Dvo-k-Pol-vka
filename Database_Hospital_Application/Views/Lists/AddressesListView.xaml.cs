@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Database_Hospital_Application.ViewModels.ViewsVM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,7 @@ namespace Database_Hospital_Application.Views.Lists
         public AddressesListView()
         {
             InitializeComponent();
+            
         }
 
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -35,5 +37,8 @@ namespace Database_Hospital_Application.Views.Lists
         {
             return !Regex.IsMatch(text, "[^0-9]");
         }
+       
+
+        
     }
 }
