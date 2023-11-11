@@ -19,7 +19,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         private UserRepo _userRepo;
 
         public ObservableCollection<User> UsersList { get; set; }
-        public ObservableCollection<Patient> PatientList { get; set; }
+        public ObservableCollection<Patient> PatientList { get; set; } //na co to tu je?
 
         public User SelectedUser
         {

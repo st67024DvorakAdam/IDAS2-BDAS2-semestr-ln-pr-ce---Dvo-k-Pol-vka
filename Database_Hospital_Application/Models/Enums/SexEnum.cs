@@ -22,5 +22,12 @@ namespace Database_Hospital_Application.Models.Enums
             else if (input.ToLower() == "žena") return SexEnum.Female;
             else throw new Exception("Neplatný výčtový typ SexEnum");
         }
+
+        public static string GetStringFromEnumEnglish(SexEnum? sex)
+        {
+            if (sex == SexEnum.Male) return "Male";
+            else if (sex == SexEnum.Female) return "Female";
+            else return "Neodpovídá žádnému pohaví";
+        }
     }
 }
