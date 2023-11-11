@@ -31,6 +31,14 @@ namespace Database_Hospital_Application.Models.Enums
             else throw new Exception("Neplatný výčtový typ EmployeeType");
         }
 
+        public static string GetStringFormEnumEnglish(EmployeeType employeeType)
+        {
+            if (employeeType == EmployeeType.Doctor) return "Doctor";
+            else if (employeeType == EmployeeType.Nurse) return "Nurse";
+            else if (employeeType == EmployeeType.Assistant) return "Assistant";
+            else return "Neurčený typ zaměstnance - EnumType";
+        }
+
     }
 
 }
