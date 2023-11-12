@@ -72,6 +72,21 @@ namespace Database_Hospital_Application.Models.Enums
             throw new Exception("Neznámá role, role_id neodpovídá žádnému enumu");
         }
 
+        public static RoleEnum GetRoleEnumFromString(string input)
+        {
+            if (input.ToLower() == "superuživatel"
+                || (input.ToLower() == "super uživatel")
+                || (input.ToLower() == "superuser")
+                || (input.ToLower() == "super user")
+                ) { return RoleEnum.SuperUser; }
+            else if (input.ToLower() == "admin" || input.ToLower() == "administrátor") { return RoleEnum.Admin; }
+            else if (input.ToLower() == "doctor" || input.ToLower() == "doktor") { return RoleEnum.Doctor; }
+            else if (input.ToLower() == "nurse" || input.ToLower() == "sestra" || input.ToLower() == "sestřička") { return RoleEnum.Nurse; }
+            else if (input.ToLower() == "assistant" || input.ToLower() == "asistent") { return RoleEnum.Assistant; }
+            else if (input.ToLower() == "host bez přihlášení" || input.ToLower() == "host" || input.ToLower() == "guest") { return RoleEnum.Guest; }
+            else throw new Exception("Zadaný textový řetězec nelze převést na žádný z výčtových typů RoleEnum!");
+        }
+
 
     }
 }
