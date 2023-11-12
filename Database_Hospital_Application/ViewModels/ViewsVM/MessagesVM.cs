@@ -3,9 +3,11 @@ using Database_Hospital_Application.Models.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM
@@ -20,12 +22,25 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         public ICommand EditMessageCommand { get; private set; }
         public ICommand DeleteMessageCommand { get; private set; }
 
+
+        ///KONSTRUKTOR ////////////////////////////////////////////////////////////////////////////////////////
         public MessagesVM()
         {
             LoadMessagesAsync();
             //_messagesList = new ObservableCollection<Message>();
+            MessagesView = CollectionViewSource.GetDefaultView(MessagesList);
+            MessagesView.Filter = MessagesFilter;
 
         }
+
+
+        private async Task LoadMessagesAsync()
+        {
+            MessageRepo repo = new MessageRepo();
+            MessagesList = await repo.GetAllMessagesAsync();
+        }
+
+        ///KONSTRUKTOR ////////////////////////////////////////////////////////////////////////////////////////
 
         public ObservableCollection<Message> MessagesList
         {
@@ -81,10 +96,39 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             }
         }
 
-        private async Task LoadMessagesAsync()
+
+        //FILTER/////////////////////////////////////////////////////////////////////
+
+        private string _searchText;
+        public ICollectionView MessagesView { get; private set; }
+
+        public string SearchText
         {
-            MessageRepo repo = new MessageRepo();
-            MessagesList = await repo.GetAllMessagesAsync();
+            get { return _searchText; }
+            set
+            {
+                _searchText = value;
+                OnPropertyChange(nameof(SearchText));
+                MessagesView.Refresh();
+            }
         }
+
+        private bool MessagesFilter(object item)
+        {
+
+            if (string.IsNullOrWhiteSpace(_searchText)) return true;
+
+            var message = item as Message;
+            if (message == null) return false;
+
+            return message.ID.ToString().Contains(_searchText)
+                || message.Sender.ToString().Contains(_searchText)
+                || message.Recipient.ToString().Contains(_searchText)
+                || message.Content.Contains(_searchText, StringComparison.OrdinalIgnoreCase)
+                || message.DateSent.ToString().Contains(_searchText, StringComparison.OrdinalIgnoreCase);
+        }
+        //FILTER/////////////////////////////////////////////////////////////////////
+
+
     }
 }
