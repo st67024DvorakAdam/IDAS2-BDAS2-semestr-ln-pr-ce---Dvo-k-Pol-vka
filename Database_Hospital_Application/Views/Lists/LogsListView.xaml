@@ -61,11 +61,11 @@
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*"/>
-                <DataGridTextColumn Header="Tabulka" Binding="{Binding ChangeDetails}" Width="*"/>
+                <DataGridTextColumn Header="Tabulka" Binding="{Binding Table}" Width="*"/>
                 <DataGridTextColumn Header="Typ operace" Binding="{Binding OperationType}" Width="*"/>
-                <DataGridTextColumn Header="Starý stav" Binding="{Binding EntityType}" Width="*"/>
-                <DataGridTextColumn Header="Nový stav" Binding="{Binding EntityId}" Width="*"/>
-                <DataGridTextColumn Header="Čas. razítko" Binding="{Binding OperationDate}" Width="*"/>
+                <DataGridTextColumn Header="Starý stav" Binding="{Binding OldState}" Width="*"/>
+                <DataGridTextColumn Header="Nový stav" Binding="{Binding NewState}" Width="*"/>
+                <DataGridTextColumn Header="Čas. razítko" Binding="{Binding TimeStamp}" Width="*"/>
                 
             </DataGrid.Columns>
 
