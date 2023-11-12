@@ -30,13 +30,11 @@ namespace Database_Hospital_Application.Models.Repositories
                     Log log = new Log
                     {
                         Id = Convert.ToInt32(row["ID"]),
-                        EntityType = row["ENTITY_TYPE"].ToString(),
-                        EntityId = Convert.ToInt32(row["ENTITY_ID"]),
-                        OperationType = row["OPERATION_TYPE"].ToString(),
-                        OperationDate = Convert.ToDateTime(row["OPERATION_DATE"]),
-                        ChangeDetails = row["CHANGE_DETAILS"].ToString(),
-                        PreviousState = row["PREVIOUS_STATE"].ToString(),
-                        NewState = row["NEW_STATE"].ToString()
+                        Table = row["TABULKA"].ToString(),
+                        OldState = row["STARY_STAV"].ToString(),
+                        NewState = row["NOVY_STAV"].ToString(),
+                        OperationType = row["TYP_UDALOSTI"].ToString(),
+                        TimeStamp = new Oracle.ManagedDataAccess.Types.OracleTimeStamp(Convert.ToDateTime(row["CASOVE_RAZITKO"]))
                     };
                     logs.Add(log);
                 }
