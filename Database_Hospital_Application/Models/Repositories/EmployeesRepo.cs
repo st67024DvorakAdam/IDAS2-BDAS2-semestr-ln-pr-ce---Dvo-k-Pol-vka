@@ -40,16 +40,22 @@ namespace Database_Hospital_Application.Models.Repositories
                         LastName = row["PRIJMENI"].ToString(),
                         BirthNumber = Convert.ToInt64(row["RODNE_CISLO"]),
                         IdOfSuperiorEmployee = row.IsNull("ZAMESTNANEC_ID") ? 0 : Convert.ToInt32(row["ZAMESTNANEC_ID"]),
-
+                        RoleID = Convert.ToInt32(row["ROLE_ID"]),
+                        UserName = row["UZIVATELSKE_JMENO"].ToString(),
                         _foto = new Foto
                         {
                             Id = row.IsNull("FOTO_ID") ? 0 : Convert.ToInt32(row["FOTO_ID"])
                             
+                        },
+                        
+                        _department = new Department
+                        {
+                            Id = row.IsNull("ODDELENI_ID") ? 0 : Convert.ToInt32(row["ODDELENI_ID"])
                         }
+                        
                     };
                     
                     employee.Sex = SexEnumParser.GetEnumFromString(row["POHLAVI"].ToString());
-                    employee._employeeType = EmployeeTypeExtensions.GetEnumFromString(row["ZAMESTNANEC_TYPE"].ToString());
                     
                     employees.Add(employee);
                 }
@@ -98,7 +104,7 @@ namespace Database_Hospital_Application.Models.Repositories
                     LastName = row["PRIJMENI"].ToString(),
                     BirthNumber = Convert.ToInt64(row["RODNE_CISLO"]),
                     Sex = SexEnumParser.GetEnumFromString(row["POHLAVI"].ToString()),
-                    
+
                     // _department a _foto by měly být naplněný zvlášť
                 };
 

@@ -59,7 +59,6 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="70"/>
                 <DataGridTextColumn Header="Název" Binding="{Binding Name}" Width="*"/>
-                <DataGridTextColumn Header="Id vedoucího" Binding="{Binding IdOfHeadOfDepartment}" Width="150"/>
             </DataGrid.Columns>
 
 

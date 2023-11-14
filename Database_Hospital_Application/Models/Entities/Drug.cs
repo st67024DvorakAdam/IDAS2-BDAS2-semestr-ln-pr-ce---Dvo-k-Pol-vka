@@ -11,6 +11,6 @@ namespace Database_Hospital_Application.Models.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public int Dosage { get; set; } //dávkování
-        public int Doctor_id { get; set; } //id zaměstnance (s vlastností EmployeeType = Doctor), který lék předepsal
+        public int Employee_id { get; set; } //id zaměstnance (který je doktor), který lék předepsal
     }
 }

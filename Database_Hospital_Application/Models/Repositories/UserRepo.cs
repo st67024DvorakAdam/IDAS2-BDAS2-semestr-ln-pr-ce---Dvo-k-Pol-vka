@@ -38,35 +38,40 @@ namespace Database_Hospital_Application.Models.Repositories
             }
 
 
-            string commandText2 = "get_employee_by_id";
+            //string commandText2 = "get_employee_by_id";
 
-            Dictionary<string, object> parameters2 = new Dictionary<string, object>
-            {
-                { "p_id", Convert.ToInt32(result.Rows[0]["ZAMESTNANEC_ID"]) }
-            };
+            //Dictionary<string, object> parameters2 = new Dictionary<string, object>
+            //{
+            //    { "p_id", Convert.ToInt32(result.Rows[0]["ZAMESTNANEC_ID"]) }
+            //};
 
-            DataTable result2 = await dbTools.ExecuteCommandAsync(commandText2, parameters2);
-            if (result2.Rows.Count == 0)
+            //DataTable result2 = await dbTools.ExecuteCommandAsync(commandText2, parameters2);
+            //if (result2.Rows.Count == 0)
+            //{
+            //    return null;
+            //}
+
+
+            string commandText3 = "get_department_by_employees_department_id";
+
+            
+
+            DataTable result3 = null;
+            if ((username == "admin" || username == "Admin")) { } 
+            else 
             {
-                return null;
+                Dictionary<string, object> parameters3 = new Dictionary<string, object>
+                {
+                    { "p_id", Convert.ToInt32(result.Rows[0]["ODDELENI_ID"]) }
+                };
+                result3 = await dbTools.ExecuteCommandAsync(commandText3, parameters3); 
             }
-
-
-            string commandText3 = "get_department_by_employee_id";
-
-            Dictionary<string, object> parameters3 = new Dictionary<string, object>
-            {
-                { "p_id", Convert.ToInt32(result2.Rows[0]["ID"]) }
-            };
-
-            DataTable result3 = await dbTools.ExecuteCommandAsync(commandText3, parameters3);
-
 
             string commandText4 = "GetEmployeeImage";
 
             Dictionary<string, object> parameters4 = new Dictionary<string, object>
             {
-                { "p_employee_id", Convert.ToInt32(result.Rows[0]["ZAMESTNANEC_ID"]) }
+                { "p_foto_id", Convert.ToInt32(result.Rows[0]["FOTO_ID"]) }
             };
 
             DataTable result4 = await dbTools.ExecuteCommandAsync(commandText4, parameters4);         
@@ -76,22 +81,22 @@ namespace Database_Hospital_Application.Models.Repositories
             if (password == hashedPasswordFromDb)
             {
                 User loggedInUser = new User(username, password)
-                { 
+                {
                     // TODO Getnout ID, SALT, ROLE_ID
                     Id = Convert.ToInt32(result.Rows[0]["ID"]),
                     RoleID = Convert.ToInt32(result.Rows[0]["ROLE_ID"].ToString()),
                     Salt = (string)result.Rows[0]["SALT"],
                     UserRole = RoleExtensions.GetRoleEnumFromId(Convert.ToInt32(result.Rows[0]["ROLE_ID"].ToString())),
-                    Employee = new Employee(Convert.ToInt32(result2.Rows[0]["ID"]))
+                    Employee = new Employee(Convert.ToInt32(result.Rows[0]["ID"]))
                     {
-                        FirstName = (string)result2.Rows[0]["JMENO"],
-                        LastName = (string)result2.Rows[0]["PRIJMENI"],
-                        BirthNumber = Convert.ToInt64(result2.Rows[0]["RODNE_CISLO"]),
-                        Sex = SexEnumParser.GetEnumFromString((string)result2.Rows[0]["POHLAVI"])
+                        FirstName = (string)result.Rows[0]["JMENO"],
+                        LastName = (string)result.Rows[0]["PRIJMENI"],
+                        BirthNumber = Convert.ToInt64(result.Rows[0]["RODNE_CISLO"]),
+                        Sex = SexEnumParser.GetEnumFromString((string)result.Rows[0]["POHLAVI"])     
                     }
                 };
 
-                if (result3.Rows.Count != 0)
+                if (result3 != null)
                 {
                     Department d = new Department
                     {
@@ -104,7 +109,7 @@ namespace Database_Hospital_Application.Models.Repositories
                 {
                     Department d = new Department
                     {
-                        Name = "Žádné oddělení pod mým vedením."
+                        Name = "Nepracuji na žádném oddělení."
                     };
                     loggedInUser.Employee._department = d;
                 }
@@ -126,12 +131,12 @@ namespace Database_Hospital_Application.Models.Repositories
                     }
                     
                 }
-                else
-                {
-                    Foto f = new Foto();
-                    f.Image = new BitmapImage(new Uri("https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/raw/main/Images/no-profile-photo-icon.png"));
-                    loggedInUser.Employee._foto = f; 
-                }
+                //else
+                //{
+                //    Foto f = new Foto();
+                //    f.Image = new BitmapImage(new Uri("https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/raw/main/Images/no-profile-photo-icon.png"));
+                //    loggedInUser.Employee._foto = f; 
+                //}
 
                 return loggedInUser;
             }

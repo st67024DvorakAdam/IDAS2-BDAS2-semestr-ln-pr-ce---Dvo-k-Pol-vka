@@ -41,7 +41,7 @@ namespace Database_Hospital_Application.Models.Repositories
                         Id = Convert.ToInt32(row["ID"]),
                         Name = row["NAZEV"].ToString(),
                         Dosage = Convert.ToInt32(row["DAVKOVANI"]),
-                        Doctor_id = Convert.ToInt32(row["DOKTOR_ID"])
+                        Employee_id = Convert.ToInt32(row["ZAMESTNANEC_ID"]) //kdo lek predepsal
                     };
                     drugs.Add(drug);
                 }

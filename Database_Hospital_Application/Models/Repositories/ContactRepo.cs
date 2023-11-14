@@ -38,34 +38,10 @@ namespace Database_Hospital_Application.Models.Repositories
                     {
                         Id = Convert.ToInt32(row["ID"]),
                         Email = (row["EMAIL"]).ToString(),
-                        PhoneNumber = Convert.ToInt32(row["TELEFON"]),
-                        IdsOfPatients = new ObservableCollection<int>(),
-                        IdsOfEmployees = new ObservableCollection<int>()
+                        PhoneNumber = Convert.ToInt32(row["TELEFON"])
                     };
-
-                    string idsOfPatientsData = row["pacient_ids"].ToString();
-                    if (!string.IsNullOrEmpty(idsOfPatientsData))
-                    {
-                        string[] idsOfPatientsArray = idsOfPatientsData.Split(',');
-                        foreach(string id in idsOfPatientsArray)
-                        {
-                            contact.IdsOfPatients.Add(Convert.ToInt32(id));
-                        }
-                    }
-                    contact.MakeStringVersionOfIdsOfPacients();
-
-
-                    string idsOfEmployeesData = row["zamestnanec_ids"].ToString();
-                    if (!string.IsNullOrEmpty(idsOfEmployeesData))
-                    {
-                        string[] idsOfEmployeesArray = idsOfEmployeesData.Split(',');
-                        foreach (string id in idsOfEmployeesArray)
-                        {
-                            contact.IdsOfEmployees.Add(Convert.ToInt32(id));
-                        }
-                    }
-                    contact.MakeStringVersionOfIdsOfEmployees();
-
+                    if (row["PACIENT_ID"] != DBNull.Value) contact.IdOfPatient = Convert.ToInt32(row["PACIENT_ID"]);
+                    else if (row["ZAMESTNANEC_ID"] != DBNull.Value) contact.IdOfEmployee = Convert.ToInt32(row["ZAMESTNANEC_ID"]);
 
                     contacts.Add(contact);
                 }

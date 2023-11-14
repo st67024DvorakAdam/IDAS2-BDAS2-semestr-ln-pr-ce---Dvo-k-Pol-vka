@@ -66,7 +66,7 @@
                     <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="50"/>
                     <DataGridTextColumn Header="Název" Binding="{Binding Name}" Width="*"/>
                     <DataGridTextColumn Header="Dávkování" Binding="{Binding Dosage}" Width="*"/>
-                    <DataGridTextColumn Header="Id předepisujícího doktora" Binding="{Binding DoctorId}" Width="*"/>
+                    <DataGridTextColumn Header="Id předepisujícího doktora" Binding="{Binding Employee_id}" Width="*"/>
                 </DataGrid.Columns>
 
                 <DataGrid.CellStyle>

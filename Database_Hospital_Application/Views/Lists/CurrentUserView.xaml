@@ -113,7 +113,7 @@
                    Text="{Binding CurrentUser.Employee.BirthNumber}">
             </TextBlock>
 
-            <TextBlock Style="{StaticResource MySecondTextBlockStyle}"><Run Language="cs-cz" Text="Vedu oddělení"/></TextBlock>
+            <TextBlock Style="{StaticResource MySecondTextBlockStyle}"><Run Language="cs-cz" Text="Pracuji na oddělení"/></TextBlock>
             <TextBlock x:Name="txtDepartment" Style="{StaticResource MyTextBlockStyle}"
                    Text="{Binding CurrentUser.Employee._department.Name}">
             </TextBlock>

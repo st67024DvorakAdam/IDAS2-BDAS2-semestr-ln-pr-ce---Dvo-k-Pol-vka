@@ -24,10 +24,9 @@ namespace Database_Hospital_Application.Models.Enums
         Assistant = 4,
 
         [Description("Host bez přihlášení")]
-        Guest = 5,
+        Guest = 5
 
-        [Description("SuperUser")]
-        SuperUser = 6
+       
     }
 
     public static class RoleExtensions
@@ -74,12 +73,7 @@ namespace Database_Hospital_Application.Models.Enums
 
         public static RoleEnum GetRoleEnumFromString(string input)
         {
-            if (input.ToLower() == "superuživatel"
-                || (input.ToLower() == "super uživatel")
-                || (input.ToLower() == "superuser")
-                || (input.ToLower() == "super user")
-                ) { return RoleEnum.SuperUser; }
-            else if (input.ToLower() == "admin" || input.ToLower() == "administrátor") { return RoleEnum.Admin; }
+            if (input.ToLower() == "admin" || input.ToLower() == "administrátor") { return RoleEnum.Admin; }
             else if (input.ToLower() == "doctor" || input.ToLower() == "doktor") { return RoleEnum.Doctor; }
             else if (input.ToLower() == "nurse" || input.ToLower() == "sestra" || input.ToLower() == "sestřička") { return RoleEnum.Nurse; }
             else if (input.ToLower() == "assistant" || input.ToLower() == "asistent") { return RoleEnum.Assistant; }

@@ -67,7 +67,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             return drug.Id.ToString().Contains(_searchText)
                 || drug.Name.Contains(_searchText, StringComparison.OrdinalIgnoreCase)
                 || drug.Dosage.ToString().Contains(_searchText)
-                || drug.Doctor_id.ToString().Contains(_searchText);
+                || drug.Employee_id.ToString().Contains(_searchText);
         }
         //FILTER/////////////////////////////////////////////////////////////////////
     }

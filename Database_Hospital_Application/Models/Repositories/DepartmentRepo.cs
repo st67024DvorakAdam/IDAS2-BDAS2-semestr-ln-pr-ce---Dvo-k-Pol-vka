@@ -34,8 +34,7 @@ namespace Database_Hospital_Application.Models.Repositories
                     Department department = new Department
                     {
                         Id = Convert.ToInt32(row["ID"]),
-                        Name = row["NAZEV"].ToString(),
-                        IdOfHeadOfDepartment = Convert.ToInt32(row["ZAMESTNANEC_ID"])
+                        Name = row["NAZEV"].ToString()
                     };
 
                     departments.Add(department);

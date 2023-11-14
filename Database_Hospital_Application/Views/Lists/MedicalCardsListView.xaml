@@ -25,7 +25,7 @@
             Background="Transparent" Foreground="White" BorderThickness="1" 
             BorderBrush="Gray" VerticalContentAlignment="Center" CaretBrush="White"/>
 
-        <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="ADRESY" VerticalAlignment="Center" FontSize="40" Margin="0,0,0,35" Foreground="White" FontWeight="Bold"/>
+        <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="ZDRAVOTNÍ KARTY" VerticalAlignment="Center" FontSize="40" Margin="0,0,0,35" Foreground="White" FontWeight="Bold"/>
 
 
         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding MedicalCardsList}" Background="Transparent" 
@@ -39,23 +39,37 @@
                 <DataGridTextColumn Header="Nemoci" Binding="{Binding StringVersionOfIllnesses}" Width="450"/>
             </DataGrid.Columns>
 
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.CellStyle>
+
             <DataGrid.Resources>
-                <Style TargetType="{x:Type DataGridColumnHeader}">
+                <Style TargetType="DataGridColumnHeader">
                     <Setter Property="Foreground" Value="White"/>
                     <Setter Property="FontWeight" Value="Bold"/>
                     <Setter Property="Background" Value="Transparent"/>
                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                     <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    <Setter Property="Height" Value="30"/>
+                    <Setter Property="FontSize" Value="20"/>
                 </Style>
-                <Style TargetType="{x:Type DataGridRow}">
-                    <Setter Property="Foreground" Value="White"/>
-                    <Setter Property="FontSize" Value="14"/>
+                <Style TargetType="DataGridRow">
                     <Setter Property="Background" Value="Transparent"/>
-                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="Height" Value="40"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True">
-                            <Setter Property="Background" Value="#55555555"/>
-                        </DataTrigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#272B2F"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="#272B2F"/>
+                        </Trigger>
                     </Style.Triggers>
                 </Style>
             </DataGrid.Resources>

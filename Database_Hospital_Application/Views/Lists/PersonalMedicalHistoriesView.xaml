@@ -58,8 +58,8 @@
             </DataGrid.Resources>
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Záznam" Binding="{Binding Description}" Width="450"/>
-                <DataGridTextColumn Header="Rodné číslo pacienta" Binding="{Binding BirthNumberOfPatient}" Width="150"/>
+                <DataGridTextColumn Header="Záznam" Binding="{Binding Description}" Width="*"/>
+                <DataGridTextColumn Header="Rodné číslo pacienta" Binding="{Binding BirthNumberOfPatient}" Width="*"/>
             </DataGrid.Columns>
 
             <DataGrid.CellStyle>

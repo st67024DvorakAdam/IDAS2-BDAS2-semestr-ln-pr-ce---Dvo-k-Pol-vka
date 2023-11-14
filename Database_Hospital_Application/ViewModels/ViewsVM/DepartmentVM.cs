@@ -60,7 +60,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             if (department == null) return false;
 
             return department.Id.ToString().Contains(_searchText)
-                || department.IdOfHeadOfDepartment.ToString().Contains(_searchText)
                 || department.Name.Contains(_searchText, StringComparison.OrdinalIgnoreCase);
         }
         //FILTER/////////////////////////////////////////////////////////////////////

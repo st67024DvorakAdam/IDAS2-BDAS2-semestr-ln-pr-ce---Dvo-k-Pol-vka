@@ -67,28 +67,8 @@
                     <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="70"/>
                     <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
                     <DataGridTextColumn Header="Telefon" Binding="{Binding PhoneNumber}" Width="150"/>
-                    <DataGridTextColumn Binding="{Binding StringVersionOfIdsOfPatients}" Width="*">
-                        <DataGridTextColumn.Header>
-                            <TextBlock>
-                        <TextBlock Text="Id pacientů"/>
-                        <LineBreak />
-                        <TextBlock Text="vlastnících"/>
-                        <LineBreak />
-                        <TextBlock Text="tento kontakt"/>
-                        </TextBlock>
-                        </DataGridTextColumn.Header>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding StringVersionOfIdsOfEmployees}" Width="*">
-                        <DataGridTextColumn.Header>
-                            <TextBlock>
-                        <TextBlock Text="Id zaměstnanců"/>
-                        <LineBreak />
-                        <TextBlock Text="vlastnících"/>
-                        <LineBreak />
-                        <TextBlock Text="tento kontakt"/>
-                        </TextBlock>
-                        </DataGridTextColumn.Header>
-                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Id pacienta" Binding="{Binding IdOfPatient}" Width="*"/>
+                    <DataGridTextColumn Header="Id zaměstnance" Binding="{Binding IdOfEmployee}" Width="*"/>
                 </DataGrid.Columns>
 
 

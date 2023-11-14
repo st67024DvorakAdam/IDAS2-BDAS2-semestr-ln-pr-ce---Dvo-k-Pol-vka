@@ -69,7 +69,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
                 || employee.Id.ToString().Contains(_searchText)
                 || employee.BirthNumber.ToString().Contains(_searchText)
                 || SexEnumParser.GetStringFromEnumEnglish(employee.Sex).StartsWith(_searchText, StringComparison.OrdinalIgnoreCase)
-                || EmployeeTypeExtensions.GetStringFormEnumEnglish(employee._employeeType).Contains(_searchText, StringComparison.OrdinalIgnoreCase)
+                || employee.RoleID.ToString().Contains(_searchText)
                 || employee.IdOfSuperiorEmployee.ToString().Contains(_searchText)
                 || employee._foto.Id.ToString().Contains(_searchText);
         }
