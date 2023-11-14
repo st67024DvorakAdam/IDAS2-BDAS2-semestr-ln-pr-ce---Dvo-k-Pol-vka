@@ -14,7 +14,7 @@
 12. DA umožňuje vyhledávat a zobrazovat výsledky o všech přístupných datech v jednotlivých tabulkách dle svého oprávnění. V případě tabulky obsahující BLOB pak zobrazí název dokumentu/obrázku/jiného binárního souboru dle zvoleného tématu a návazné informace alespoň ze dvou tabulek.
 13. DA umožňuje vkládání či modifikaci dat skrz uložené procedury! 
 14. V DA nejsou viditelné ID a ani nelze vyhledávat a ani vyplňovat jakékoliv ID, aplikace je uživatelsky přívětivá.
-15. Aplikace využívá triggery k logování, zasílání zpráv mezi uživateli, apod. 
+15. Aplikace využívá triggery k logování, zasílání zpráv mezi uživateli, apod.  •
 16. DA využívá plnohodnotné vlastní funkce, které jsou vhodně nasazeny.
 17. Grafické rozhraní DA bude funkční a bude umožňovat editovat jakýkoliv záznam, který je načtený z databáze.
 18. DA řádně pracuje s transakcemi a má ošetřenou práci tak, aby nedošlo k nepořádku v datech.
