@@ -62,7 +62,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
                 byte[] imageBytes = File.ReadAllBytes(selectedFilePath);
                 CurrentUser.Employee._foto.Image = FotoExtension.ConvertBytesToBitmapImage(imageBytes);
                 UserRepo ur = new UserRepo();
-                //MessageBox.Show(FotoExtension.BitmapImageToBytes(CurrentUser.Employee._foto.Image).ToString());
+                //MessageBox.Show(CurrentUser.Employee.Id + "\n" + FotoExtension.BitmapImageToBytes(CurrentUser.Employee._foto.Image).ToString());
                 ur.UploadPhotoAsync(CurrentUser.Employee.Id, FotoExtension.BitmapImageToBytes(CurrentUser.Employee._foto.Image));
 
                 OnPropertyChange(nameof(CurrentUser));

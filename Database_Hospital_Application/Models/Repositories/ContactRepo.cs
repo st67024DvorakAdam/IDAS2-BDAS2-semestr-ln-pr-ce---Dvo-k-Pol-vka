@@ -55,7 +55,9 @@ namespace Database_Hospital_Application.Models.Repositories
             var parameters = new Dictionary<string, object>
             {
                 { "p_email", contact.Email },
-                { "p_phone", contact.PhoneNumber }
+                { "p_phone", contact.PhoneNumber },
+                { "p_zamestnanec_id", contact.IdOfEmployee},
+                { "p_pacient_id", contact.IdOfPatient}
             };
 
             await dbTools.ExecuteNonQueryAsync(commandText, parameters);
