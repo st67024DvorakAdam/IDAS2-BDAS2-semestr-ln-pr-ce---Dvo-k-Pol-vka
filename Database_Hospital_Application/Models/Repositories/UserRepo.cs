@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Controls;
 using Database_Hospital_Application.Models.Tools;
 using Database_Hospital_Application.ViewModels.ViewsVM;
+using System.Collections;
 
 namespace Database_Hospital_Application.Models.Repositories
 {
@@ -222,7 +223,7 @@ namespace Database_Hospital_Application.Models.Repositories
             return user.RoleID == 1;
         }
 
-        public async Task UploadPhotoAsync(int employeeId, byte[] photoBytes)
+        public async Task UploadPhotoAsync(int employeeId, byte[] photoBytes, string filename, string suffix)
         {
             try
             {
@@ -241,8 +242,20 @@ namespace Database_Hospital_Application.Models.Repositories
                     Direction = ParameterDirection.Input
                 };
 
-               
-                var parameters = new List<OracleParameter> { pEmployeeId, pPhotoBlob };
+                OracleParameter pFileName = new OracleParameter("p_nazev_souboru", OracleDbType.Varchar2)
+                {
+                    Value = filename,
+                    Direction = ParameterDirection.Input
+                };
+
+                OracleParameter pSuffix = new OracleParameter("p_photo_blob", OracleDbType.Varchar2)
+                {
+                    Value = suffix,
+                    Direction = ParameterDirection.Input
+                };
+
+
+                var parameters = new List<OracleParameter> { pEmployeeId, pPhotoBlob, pFileName, pSuffix };
 
                 
                 await dbTools.ExecuteNonQueryAsync(storedProcedure, parameters);

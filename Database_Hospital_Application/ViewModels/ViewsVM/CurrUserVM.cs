@@ -58,12 +58,13 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             try
             {
-                var selectedFilePath = fileDialogService.OpenFileDialog();
+                string filename = string.Empty;
+                string suffix = string.Empty;
+                var selectedFilePath = fileDialogService.OpenFileDialog(out filename, out suffix);
                 byte[] imageBytes = File.ReadAllBytes(selectedFilePath);
                 CurrentUser.Employee._foto.Image = FotoExtension.ConvertBytesToBitmapImage(imageBytes);
                 UserRepo ur = new UserRepo();
-                //MessageBox.Show(CurrentUser.Employee.Id + "\n" + FotoExtension.BitmapImageToBytes(CurrentUser.Employee._foto.Image).ToString());
-                ur.UploadPhotoAsync(CurrentUser.Employee.Id, FotoExtension.BitmapImageToBytes(CurrentUser.Employee._foto.Image));
+                ur.UploadPhotoAsync(CurrentUser.Employee.Id, FotoExtension.BitmapImageToBytes(CurrentUser.Employee._foto.Image),filename,suffix);
 
                 OnPropertyChange(nameof(CurrentUser));
             }
