@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -47,9 +48,19 @@ namespace Database_Hospital_Application.Models.Repositories
             return performedProcedures;
         }
 
-        public void AddPerformedProcedure(PerformedProcedure performedProcedure)
+        public async Task AddPerformedProcedure(PerformedProcedure performedProcedure)
         {
+            string commandText = "add_performed_procedure";
 
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_nazev", performedProcedure.Name },
+                { "p_cena", performedProcedure.Price },
+                { "p_hrazeno_pojistovnou", performedProcedure.IsCoveredByInsurence == true?1:0},
+                { "p_pacient_id", performedProcedure.IdOfPatient }
+            };
+
+            await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
 
         public void DeletePerformedProcedure(int id)

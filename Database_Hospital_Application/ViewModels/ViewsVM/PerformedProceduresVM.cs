@@ -1,4 +1,5 @@
-﻿using Database_Hospital_Application.Models.Entities;
+﻿using Database_Hospital_Application.Commands;
+using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.Models.Enums;
 using Database_Hospital_Application.Models.Repositories;
 using System;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using System.Windows.Input;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM
 {
@@ -28,6 +30,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             LoadPerformedProceduresAsync();
             PerformedProceduresView = CollectionViewSource.GetDefaultView(PerformedProceduresList);
             PerformedProceduresView.Filter = PerformedProceduresFilter;
+            NewPerformedProcedure = new PerformedProcedure();
+            InitializeCommands();
         }
 
         private async Task LoadPerformedProceduresAsync()
@@ -73,5 +77,37 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
                 || performedProcedure.IsCoveredByInsurence.ToString().Contains(_searchText, StringComparison.OrdinalIgnoreCase);
         }
         //FILTER/////////////////////////////////////////////////////////////////////
+
+        // BUTTONS
+        public ICommand AddNewPerfomedProcedureCommand { get; private set; }
+
+        private void InitializeCommands()
+        {
+            //DeleteAddressCommand = new RelayCommand(DeleteAddressAction);
+            AddNewPerfomedProcedureCommand = new RelayCommand(AddNewPerformedProcedrureAction);
+            //EditCommand = new RelayCommand(EditAction);
+        }
+
+        private PerformedProcedure _newPerformedProcedure;
+        public PerformedProcedure NewPerformedProcedure
+        {
+            get { return _newPerformedProcedure; }
+            set
+            {
+                _newPerformedProcedure = value;
+                OnPropertyChange(nameof(NewPerformedProcedure));
+            }
+        }
+        private void AddNewPerformedProcedrureAction(object parameter)
+        {
+            
+            PerformedProceduresRepo performedProcedureRepo = new PerformedProceduresRepo();
+            performedProcedureRepo.AddPerformedProcedure(NewPerformedProcedure);
+            LoadPerformedProceduresAsync();
+            PerformedProceduresView = CollectionViewSource.GetDefaultView(PerformedProceduresList);
+            PerformedProceduresView.Filter = PerformedProceduresFilter;
+            NewPerformedProcedure = new PerformedProcedure();
+        }
+
     }
 }
