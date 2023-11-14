@@ -83,7 +83,9 @@ namespace Database_Hospital_Application.Models.Repositories
             {
                 {"p_id", contact.Id },
                 { "p_email", contact.Email },
-                { "p_phone", contact.PhoneNumber }
+                { "p_phone", contact.PhoneNumber },
+                { "p_employee_id", contact.IdOfEmployee },
+                { "p_patient_id", contact.IdOfPatient }
             };
 
             return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
@@ -112,7 +114,9 @@ namespace Database_Hospital_Application.Models.Repositories
                 {
                     Id = Convert.ToInt32(row["ID"]),
                     Email = row["EMAIL"].ToString(),
-                    PhoneNumber = Convert.ToInt32(row["TELEFON"])
+                    PhoneNumber = Convert.ToInt32(row["TELEFON"]),
+                    IdOfEmployee = Convert.ToInt32(row["ZAMESTNANEC_ID"]),
+                    IdOfPatient = Convert.ToInt32(row["PACIENT_ID"])
                 };
                 contacts.Add(contact);
             }
