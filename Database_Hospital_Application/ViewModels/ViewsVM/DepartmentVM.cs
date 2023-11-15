@@ -1,42 +1,130 @@
 ﻿using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.Models.Repositories;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using System.Windows.Input;
+using Database_Hospital_Application.Commands;
+using Database_Hospital_Application.ViewModels.Dialogs.Edit;
+using Database_Hospital_Application.Views.Lists.Dialogs.Contact;
+using Database_Hospital_Application.Views.Lists.Dialogs.Department;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM
 {
-    public class DepartmentVM :BaseViewModel
+    public class DepartmentVM : BaseViewModel
     {
-        public ObservableCollection<Department> _departmentsList;
-
+        private ObservableCollection<Department> _departmentsList;
         public ObservableCollection<Department> DepartmentsList
         {
             get { return _departmentsList; }
             set { _departmentsList = value; OnPropertyChange(nameof(DepartmentsList)); }
         }
 
-        ///KONSTRUKTOR ////////////////////////////////////////////////////////////////////////////////////////
+        // Nová instance pro přidání nového oddělení
+        private Department _newDepartment = new Department();
+        public Department NewDepartment
+        {
+            get { return _newDepartment; }
+            set
+            {
+                _newDepartment = value;
+                OnPropertyChange(nameof(NewDepartment));
+            }
+        }
+
+        // Příkazy pro tlačítka
+        public ICommand AddCommand { get; private set; }
+        public ICommand DeleteCommand { get; private set; }
+        public ICommand EditCommand { get; private set; }
+
+        // Vybrané oddělení
+        private Department _selectedDepartment;
+        public Department SelectedDepartment
+        {
+            get
+            {
+                return _selectedDepartment;
+                    }
+            set
+            {
+                    if (_selectedDepartment != value)
+                    {
+                        _selectedDepartment = value;
+                        OnPropertyChange(nameof(SelectedDepartment));
+                        (EditCommand as RelayCommand)?.RaiseCanExecuteChanged();
+                        (DeleteCommand as RelayCommand)?.RaiseCanExecuteChanged();
+                    }
+                }
+            }
+
+        // Konstruktor
         public DepartmentVM()
         {
             LoadDepartmentsAsync();
-            DepartmentsView = CollectionViewSource.GetDefaultView(DepartmentsList);
-            DepartmentsView.Filter = DepartmentsFilter;
+            InitializeCommands();
         }
 
         private async Task LoadDepartmentsAsync()
         {
             DepartmentRepo repo = new DepartmentRepo();
             DepartmentsList = await repo.GetAllDepartmentsAsync();
+            DepartmentsView = CollectionViewSource.GetDefaultView(DepartmentsList);
+            DepartmentsView.Filter = DepartmentsFilter;
         }
 
-        //FILTER/////////////////////////////////////////////////////////////////////
+        private void InitializeCommands()
+        {
+            AddCommand = new RelayCommand(AddNewDepartmentAction);
+            DeleteCommand = new RelayCommand(DeleteDepartmentAction, CanExecuteDelete);
+            EditCommand = new RelayCommand(EditAction, CanEdit);
+        }
 
+        private bool CanExecuteDelete(object parameter)
+        {
+            return SelectedDepartment != null;
+        }
+
+        private async void DeleteDepartmentAction(object parameter)
+        {
+            if (SelectedDepartment == null) return;
+
+            DepartmentRepo departmentRepo = new DepartmentRepo();
+            await departmentRepo.DeleteDepartment(SelectedDepartment.Id);
+            await LoadDepartmentsAsync();
+        }
+
+        private async void AddNewDepartmentAction(object parameter)
+        {
+            DepartmentRepo departmentRepo = new DepartmentRepo();
+            await departmentRepo.AddDepartment(NewDepartment);
+            await LoadDepartmentsAsync();
+            NewDepartment = new Department();
+        }
+
+        private bool CanEdit(object parameter)
+        {
+            return SelectedDepartment != null;
+        }
+
+        private void EditAction(object parameter)
+        {
+            if (!CanEdit(parameter)) return;
+
+
+            EditDepartmentVM editVM = new EditDepartmentVM(SelectedDepartment);
+            EditDepartmentDialog editDialog = new EditDepartmentDialog(editVM);
+
+            editDialog.ShowDialog();
+
+            if (editDialog.DialogResult == true)
+            {
+                LoadDepartmentsAsync();
+            }
+        }
+
+        // Filter
         private string _searchText;
         public ICollectionView DepartmentsView { get; private set; }
 
@@ -53,15 +141,12 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         private bool DepartmentsFilter(object item)
         {
-
             if (string.IsNullOrWhiteSpace(_searchText)) return true;
 
             var department = item as Department;
-            if (department == null) return false;
-
-            return department.Id.ToString().Contains(_searchText)
-                || department.Name.Contains(_searchText, StringComparison.OrdinalIgnoreCase);
+            return department != null &&
+                   (department.Name.Contains(_searchText, StringComparison.OrdinalIgnoreCase)
+                    || department.Id.ToString().Contains(_searchText));
         }
-        //FILTER/////////////////////////////////////////////////////////////////////
     }
 }

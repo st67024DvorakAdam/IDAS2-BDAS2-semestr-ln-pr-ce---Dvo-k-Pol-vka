@@ -63,8 +63,8 @@
                 </DataGrid.Resources>
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Název" Binding="{Binding Name}" Width="300"/>
-                    <DataGridTextColumn Header="Zkratka" Binding="{Binding Code}" Width="150"/>
+                    <DataGridTextColumn Header="Název" Binding="{Binding Name}" Width="*"/>
+                    <DataGridTextColumn Header="Zkratka" Binding="{Binding Code}" Width="*"/>
                 </DataGrid.Columns>
                 <DataGrid.CellStyle>
                     <Style TargetType="DataGridCell">

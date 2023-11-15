@@ -25,7 +25,7 @@ namespace Database_Hospital_Application.Models.Repositories
             string commandText = "get_all_departments";
             DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
 
-            departments.Clear(); // Vyčistíme stávající kolekci před načtením nových dat
+            departments.Clear(); 
 
             if (result.Rows.Count > 0)
             {
@@ -43,23 +43,44 @@ namespace Database_Hospital_Application.Models.Repositories
             return departments;
         }
 
-        public void AddDepartment(Department department)
+        public async Task AddDepartment(Department department)
         {
+            string commandText = "add_department";
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_nazev", department.Name }
+            };
+
+            await dbTools.ExecuteNonQueryAsync(commandText, parameters);
 
         }
 
-        public void DeleteDepartment(int id)
+        public async Task<int> DeleteDepartment(int id)
         {
+            string commandText = "delete_department_by_id";
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_id", id }
+            };
 
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
-        public void UpdateDepartment(Department department)
+        public async Task<int> UpdateDepartment(Department department)
         {
+            string commandText = "update_department";
 
+            var parameters = new Dictionary<string, object>
+            {
+                {"p_id", department.Id },
+                { "p_email", department.Name }
+            };
+
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
 
         public void DeleteAllDepartments()
         {
-
+            throw new NotImplementedException();
         }
     }
 }
