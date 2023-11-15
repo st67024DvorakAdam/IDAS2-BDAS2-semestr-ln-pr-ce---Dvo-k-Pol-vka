@@ -49,18 +49,42 @@ namespace Database_Hospital_Application.Models.Repositories
             return drugs;
         }
 
-        public void AddDrugs(Drug drug)
+        public async Task AddDrug(Drug drug)
         {
+            string commandText = "add_drug";
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_nazev", drug.Name },
+                { "p_davkovani", drug.Dosage },
+                { "p_zamestnanec_id", drug.Employee_id}
+            };
 
+            await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
 
-        public void DeleteDrugs(int id)
+        public async Task<int> DeleteDrug(int id)
         {
+            string commandText = "delete_drug_by_id";
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_id", id }
+            };
 
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
-        public void UpdateDrugs(Drug drug)
+        public async Task<int> UpdateDrug(Drug drug)
         {
+            string commandText = "update_drug";
 
+            var parameters = new Dictionary<string, object>
+            {
+                {"p_id", drug.Id },
+                { "p_nazev", drug.Name },
+                { "p_davkovani", drug.Dosage },
+                { "p_zamestnanec_id", drug.Employee_id}
+            };
+
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
 
         public void DeleteAllDrugs()

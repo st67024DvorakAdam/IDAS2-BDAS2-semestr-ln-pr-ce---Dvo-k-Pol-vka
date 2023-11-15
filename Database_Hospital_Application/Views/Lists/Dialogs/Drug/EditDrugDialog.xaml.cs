@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Database_Hospital_Application.ViewModels.Dialogs.Edit;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -11,19 +13,22 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Database_Hospital_Application.Views.Lists
+namespace Database_Hospital_Application.Views.Lists.Dialogs.Drug
 {
     /// <summary>
-    /// Interakční logika pro DrugsListView.xaml
+    /// Interakční logika pro DrugDialog.xaml
     /// </summary>
-    public partial class DrugsListView : UserControl
+    public partial class EditDrugDialog : Window
     {
-        public DrugsListView()
+        public EditDrugDialog(EditDrugVM viewModel)
         {
+
+            DataContext = viewModel;
+            viewModel.ClosingRequest += (sender, e) => this.Close();
             InitializeComponent();
+            
         }
 
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -35,5 +40,7 @@ namespace Database_Hospital_Application.Views.Lists
         {
             return !Regex.IsMatch(text, "[^0-9]");
         }
+
     }
+
 }
