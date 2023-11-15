@@ -29,5 +29,12 @@ namespace Database_Hospital_Application.Models.Enums
             else if (sex == SexEnum.Female) return "Female";
             else return "Neodpovídá žádnému pohaví";
         }
+
+        public static string GetStringFromEnumCzech(SexEnum? sex)
+        {
+            if (sex == SexEnum.Male) return "MUŽ";
+            else if (sex == SexEnum.Female) return "ŽENA";
+            else return "Neodpovídá žádnému pohaví";
+        }
     }
 }

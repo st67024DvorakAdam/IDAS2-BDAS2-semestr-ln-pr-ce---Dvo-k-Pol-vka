@@ -1,6 +1,11 @@
-﻿using Database_Hospital_Application.Models.Entities;
+﻿using Database_Hospital_Application.Commands;
+using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.Models.Enums;
 using Database_Hospital_Application.Models.Repositories;
+using Database_Hospital_Application.Models.Tools;
+using Database_Hospital_Application.ViewModels.Dialogs.Edit;
+using Database_Hospital_Application.Views.Lists.Dialogs.Contact;
+using Database_Hospital_Application.Views.Lists.Dialogs.Employee;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using System.Windows.Input;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM
 {
@@ -26,20 +32,103 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             }
         }
 
+        // BUTTONS
+        public ICommand AddCommand { get; private set; }
+        public ICommand DeleteCommand { get; private set; }
+        public ICommand EditCommand { get; private set; }
+
+        private Employee _selectedEmployee;
+        public Employee SelectedEmployee
+        {
+            get { return _selectedEmployee; }
+            set
+            {
+                if (_selectedEmployee != value)
+                {
+                    _selectedEmployee = value;
+                    OnPropertyChange(nameof(SelectedEmployee));
+                    (EditCommand as RelayCommand)?.RaiseCanExecuteChanged();
+                    (DeleteCommand as RelayCommand)?.RaiseCanExecuteChanged();
+                }
+            }
+        }
+
+        private Employee _newEmployee = new Employee();
+        public Employee NewEmployee
+        {
+            get { return _newEmployee; }
+            set
+            {
+                _newEmployee = value;
+                OnPropertyChange(nameof(NewEmployee));
+            }
+        }
+
         ///KONSTRUKTOR ////////////////////////////////////////////////////////////////////////////////////////
         public EmployeeVM()
         {
             LoadEmployeesAsync();
             EmployeesView = CollectionViewSource.GetDefaultView(EmployeesList);
             EmployeesView.Filter = EmployeesFilter;
+            InitializeCommands();
         }
         private async Task LoadEmployeesAsync()
         {
             EmployeesRepo repo = new EmployeesRepo();
             EmployeesList = await repo.GetAllEmployeesAsync();
         }
-        ///KONSTRUKTOR ////////////////////////////////////////////////////////////////////////////////////////
 
+        private void InitializeCommands()
+        {
+            AddCommand = new RelayCommand(AddNewAction);
+            DeleteCommand = new RelayCommand(DeleteAction, CanExecuteDelete);
+            EditCommand = new RelayCommand(EditAction, CanEdit);
+        }
+
+        private bool CanExecuteDelete(object parameter)
+        {
+            return SelectedEmployee != null;
+        }
+
+        private async void DeleteAction(object parameter)
+        {
+            if (SelectedEmployee == null) return;
+
+            EmployeesRepo employeesRepo = new EmployeesRepo();
+            await employeesRepo.DeleteEmployee(SelectedEmployee.Id);
+            await LoadEmployeesAsync();
+        }
+
+        private async void AddNewAction(object parameter)
+        {
+            EmployeesRepo employeesRepo = new EmployeesRepo();
+            NewEmployee.Salt = PasswordHasher.GenerateSalt();
+            await employeesRepo.AddEmployee(NewEmployee);
+            await LoadEmployeesAsync();
+            NewEmployee = new Employee();
+            
+        }
+
+        private bool CanEdit(object parameter)
+        {
+            return SelectedEmployee!= null;
+        }
+
+        private void EditAction(object parameter)
+        {
+            if (!CanEdit(parameter)) return;
+
+
+            EditEmployeeVM editVM = new EditEmployeeVM(SelectedEmployee);
+            EditEmployeeDialog editDialog = new EditEmployeeDialog(editVM);
+
+            editDialog.ShowDialog();
+
+            if (editDialog.DialogResult == true)
+            {
+                LoadEmployeesAsync();
+            }
+        }
         //FILTER/////////////////////////////////////////////////////////////////////
 
         private string _searchText;

@@ -11,44 +11,45 @@ using System.Windows;
 
 namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
 {
-    public class EditDrugVM : BaseViewModel
+    public class EditEmployeeVM:BaseViewModel
     {
-        private Drug _editableDrug;
-        public Drug EditableDrug
+        private Employee _editableEmployee;
+        public Employee EditableEmployee
         {
-            get { return _editableDrug; }
-            set { _editableDrug = value; OnPropertyChange(nameof(EditableDrug)); }
+            get { return _editableEmployee; }
+            set { _editableEmployee = value; OnPropertyChange(nameof(EditableEmployee)); }
         }
 
 
         public ICommand SaveCommand { get; set; }
         public ICommand CancelCommand { get; set; }
 
-        public EditDrugVM(Drug drug)
+        public EditEmployeeVM(Employee employee)
         {
-            EditableDrug = drug;
+            EditableEmployee = employee;
             SaveCommand = new AsyncRelayCommand(async (o) => await SaveActionAsync());
             CancelCommand = new RelayCommand(CancelAction);
         }
         private bool CanSaveExecute(object parameter)
         {
 
-            return EditableDrug != null;
+            return EditableEmployee != null;
         }
 
         private async Task SaveActionAsync()
         {
             try
             {
-                DrugsRepo drugsRepo = new DrugsRepo();
-                int affectedRows = await drugsRepo.UpdateDrug(EditableDrug);
+                EmployeesRepo employeesRepo = new EmployeesRepo();
+                int affectedRows = await employeesRepo.UpdateEmployee(EditableEmployee);
                 if (affectedRows == 0)
                 {
-                    MessageBox.Show("Lék se nepodařilo změnit", "Not Ok", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Zaměstnance se nepodařilo změnit", "Not Ok", MessageBoxButton.OK, MessageBoxImage.Information);
+
                 }
                 else
                 {
-                    MessageBox.Show("Lék byl úspšně aktualizován", "Ok", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Zaměstnanec byl úspšně aktualizován", "Ok", MessageBoxButton.OK, MessageBoxImage.Information);
                     OnClosingRequest();
                 }
 

@@ -1,4 +1,5 @@
 ﻿using Database_Hospital_Application.Models.Enums;
+using Database_Hospital_Application.ViewModels.Dialogs.Edit;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -13,20 +14,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Database_Hospital_Application.Views.Lists
+namespace Database_Hospital_Application.Views.Lists.Dialogs.Employee
 {
     /// <summary>
-    /// Interakční logika pro EmployeesListView.xaml
+    /// Interakční logika proEmployeeDialog.xaml
     /// </summary>
-    public partial class EmployeesListView : UserControl
+    public partial class EditEmployeeDialog : Window
     {
-        public EmployeesListView()
+        public EditEmployeeDialog(EditEmployeeVM viewModel)
         {
+
+            DataContext = viewModel;
+            viewModel.ClosingRequest += (sender, e) => this.Close();
             InitializeComponent();
+            
         }
+
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !IsTextAllowed(e.Text);
@@ -51,6 +56,4 @@ namespace Database_Hospital_Application.Views.Lists
             return ((int)value == 0) ? SexEnum.Male : SexEnum.Female;
         }
     }
-
 }
-

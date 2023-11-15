@@ -42,6 +42,8 @@ namespace Database_Hospital_Application.Models.Repositories
                         IdOfSuperiorEmployee = row.IsNull("ZAMESTNANEC_ID") ? 0 : Convert.ToInt32(row["ZAMESTNANEC_ID"]),
                         RoleID = Convert.ToInt32(row["ROLE_ID"]),
                         UserName = row["UZIVATELSKE_JMENO"].ToString(),
+                        Password = row["HESLO"].ToString(),
+                        Salt = row["SALT"].ToString(),
                         _foto = new Foto
                         {
                             Id = row.IsNull("FOTO_ID") ? 0 : Convert.ToInt32(row["FOTO_ID"])
@@ -63,18 +65,57 @@ namespace Database_Hospital_Application.Models.Repositories
             return employees;
         }
 
-        public void AddEmployee(Employee employee)
+        public async Task AddEmployee(Employee employee)
         {
+            string commandText = "add_employee";
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_jmeno", employee.FirstName },
+                { "p_prijmeni", employee.LastName },
+                { "p_rodne_cislo", employee.BirthNumber },
+                { "p_pohlavi", SexEnumParser.GetStringFromEnumCzech(employee.Sex) },
+                { "p_zamestnanec_id", employee.IdOfSuperiorEmployee },
+                { "p_foto_id", employee._foto.Id },
+                { "p_oddeleni_id", employee._department.Id },
+                { "p_uzivatelske_jmeno", employee.UserName },
+                { "p_heslo", employee.Password },
+                { "p_salt", employee.Salt },
+                { "p_role_id",employee.RoleID }
+            };
 
+            await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
 
-        public void DeleteEmployee(int id)
+        public async Task<int> DeleteEmployee(int id)
         {
-
+            string commandText = "delete_employee_by_id";
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_id", id }
+            };
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
-        public void UpdateEmployee(Employee employee)
+        public async Task<int> UpdateEmployee(Employee employee)
         {
+            string commandText = "update_employee";
 
+            var parameters = new Dictionary<string, object>
+            {
+                {"p_id", employee.Id },
+                { "p_jmeno", employee.FirstName },
+                { "p_prijmeni", employee.LastName },
+                { "p_rodne_cislo", employee.BirthNumber },
+                { "p_pohlavi", SexEnumParser.GetStringFromEnumCzech(employee.Sex) },
+                { "p_zamestnanec_id", employee.IdOfSuperiorEmployee },
+                { "p_foto_id", employee._foto.Id },
+                { "p_oddeleni_id", employee._department.Id },
+                { "p_uzivatelske_jmeno", employee.UserName },
+                { "p_heslo", employee.Password },
+                { "p_salt", employee.Salt },
+                { "p_role_id",employee.RoleID }
+            };
+
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
 
         public void DeleteAllEmployees()
