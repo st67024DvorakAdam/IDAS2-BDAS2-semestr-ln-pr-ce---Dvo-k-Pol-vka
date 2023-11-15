@@ -2,6 +2,9 @@
 using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.Models.Enums;
 using Database_Hospital_Application.Models.Repositories;
+using Database_Hospital_Application.ViewModels.Dialogs.Edit;
+using Database_Hospital_Application.Views.Lists.Dialogs.Address;
+using Database_Hospital_Application.Views.Lists.Dialogs.PerformedProcedure;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -107,6 +110,48 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             PerformedProceduresView = CollectionViewSource.GetDefaultView(PerformedProceduresList);
             PerformedProceduresView.Filter = PerformedProceduresFilter;
             NewPerformedProcedure = new PerformedProcedure();
+        }
+
+        //EDIT///////////////////////////////////////////////////////////////////////
+
+        private PerformedProcedure _selectedPerformedProcedure;
+        public PerformedProcedure SelectedPerformedProcedure
+        {
+            get { return _selectedPerformedProcedure; }
+            set
+            {
+                _selectedPerformedProcedure = value;
+                OnPropertyChange(nameof(SelectedPerformedProcedure));
+                CommandManager.InvalidateRequerySuggested();
+            }
+        }
+
+
+        public ICommand EditCommand { get; private set; }
+        private bool CanEdit()
+        {
+            return SelectedPerformedProcedure != null;
+        }
+        private void EditAction(object parametr)
+        {
+            if (!CanEdit()) return;
+
+
+            EditPerformedProcedureVM editVM = new EditPerformedProcedureVM(SelectedPerformedProcedure);
+
+            EditPerformedProcedureDialog editDialog = new EditPerformedProcedureDialog(editVM);
+
+
+            editDialog.ShowDialog();
+
+
+            if (editDialog.DialogResult == true)
+            {
+                LoadPerformedProceduresAsync();
+
+
+            }
+
         }
 
     }

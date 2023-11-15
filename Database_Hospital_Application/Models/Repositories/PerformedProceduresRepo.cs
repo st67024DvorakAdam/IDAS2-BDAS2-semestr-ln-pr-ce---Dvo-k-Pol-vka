@@ -67,9 +67,19 @@ namespace Database_Hospital_Application.Models.Repositories
         {
 
         }
-        public void UpdatePerformedProcedure(PerformedProcedure performedProcedure)
+        public async Task<int> UpdatePerformedProcedure(PerformedProcedure performedProcedure)
         {
+            string commandText = "update_performed_procedure";
 
+            var parameters = new Dictionary<string, object>
+            {
+                {"p_id", performedProcedure.Id },
+                { "p_nazev", performedProcedure.Name },
+                { "p_cena", performedProcedure.Price },
+                { "p_hrazeno_pojistovnou", performedProcedure.IsCoveredByInsurence == true?1:0},
+                { "p_pacient_id", performedProcedure.IdOfPatient }
+            };
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
 
         public void DeleteAllPerformedProcedures()
