@@ -4,35 +4,32 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace Database_Hospital_Application.Models.Repositories
 {
     public class PatientRepo
     {
         private DatabaseTools.DatabaseTools dbTools;
+
+        public ObservableCollection<Patient> Patients { get; set; }
+
         public PatientRepo()
         {
             dbTools = new DatabaseTools.DatabaseTools();
-            patients = new ObservableCollection<Patient>();
+            Patients = new ObservableCollection<Patient>();
         }
 
-        public ObservableCollection<Patient> patients { get; set; }
-
-        public async Task<ObservableCollection<Patient>> GetPatientsAsync()
+        public async Task<ObservableCollection<Patient>> GetAllPatientsAsync()
         {
             string commandText = "get_all_patients";
+            DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
 
-            DataTable dataTable = await dbTools.ExecuteCommandAsync(commandText);
+            Patients.Clear(); 
 
-            if (dataTable.Rows.Count > 0)
+            if (result.Rows.Count > 0)
             {
-                patients.Clear();
-
-                foreach (DataRow row in dataTable.Rows)
+                foreach (DataRow row in result.Rows)
                 {
                     Patient patient = new Patient
                     {
@@ -42,10 +39,53 @@ namespace Database_Hospital_Application.Models.Repositories
                         BirthNumber = Convert.ToInt64(row["RODNE_CISLO"])
                     };
                     patient.Sex = SexEnumParser.GetEnumFromString(row["POHLAVI"].ToString());
-                    patients.Add(patient);
+                    Patients.Add(patient);
                 }
             }
-            return patients;
+            return Patients;
         }
+
+        public async Task AddPatient(Patient patient)
+        {
+            string commandText = "add_patient";
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_first_name", patient.FirstName },
+                { "p_last_name", patient.LastName },
+                { "p_birth_number", patient.BirthNumber },
+                { "p_sex", patient.Sex.ToString() }
+            };
+
+            await dbTools.ExecuteNonQueryAsync(commandText, parameters);
+        }
+
+        public async Task<int> DeletePatient(int id)
+        {
+            string commandText = "delete_patient_by_id";
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_id", id }
+            };
+
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
+        }
+
+        public async Task<int> UpdatePatient(Patient patient)
+        {
+            string commandText = "update_patient";
+
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_id", patient.Id },
+                { "p_first_name", patient.FirstName },
+                { "p_last_name", patient.LastName },
+                { "p_birth_number", patient.BirthNumber },
+                { "p_sex", patient.Sex.ToString() }
+            };
+
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
+        }
+
+        
     }
 }

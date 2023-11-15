@@ -22,7 +22,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             set { _departmentsList = value; OnPropertyChange(nameof(DepartmentsList)); }
         }
 
-        // Nová instance pro přidání nového oddělení
+        
         private Department _newDepartment = new Department();
         public Department NewDepartment
         {
@@ -34,12 +34,12 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             }
         }
 
-        // Příkazy pro tlačítka
+        
         public ICommand AddCommand { get; private set; }
         public ICommand DeleteCommand { get; private set; }
         public ICommand EditCommand { get; private set; }
 
-        // Vybrané oddělení
+        
         private Department _selectedDepartment;
         public Department SelectedDepartment
         {
