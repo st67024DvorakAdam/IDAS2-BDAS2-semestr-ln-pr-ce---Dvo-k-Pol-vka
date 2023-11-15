@@ -63,9 +63,15 @@ namespace Database_Hospital_Application.Models.Repositories
             await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
 
-        public void DeletePerformedProcedure(int id)
+        public async Task<int> DeletePerformedProcedure(int id)
         {
+            string commandText = "delete_performed_procedure_by_id";
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_id", id }
+            };
 
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);   
         }
         public async Task<int> UpdatePerformedProcedure(PerformedProcedure performedProcedure)
         {

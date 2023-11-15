@@ -35,12 +35,12 @@
 
             <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="PROVEDENÉ ZÁKROKY" VerticalAlignment="Center" FontSize="40" Margin="0,0,0,35" Foreground="White" FontWeight="Bold"/>
 
-            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding PerformedProceduresList}" Background="Transparent" 
-                  AlternatingRowBackground="Transparent" 
-                  AreRowDetailsFrozen="True" CanUserAddRows="False" CanUserDeleteRows="False" 
+            <DataGrid x:Name="AddressesDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding PerformedProceduresList}" Background="Transparent" 
+                  SelectedItem="{Binding SelectedPerformedProcedure, Mode=TwoWay}"
+                  AreRowDetailsFrozen="True" CanUserAddRows="False" CanUserDeleteRows="False"
                   CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single" 
                   SelectionUnit="FullRow" GridLinesVisibility="None" HeadersVisibility="Column" 
-                  IsReadOnly="True" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1">
+                  IsReadOnly="False" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1">
                 <DataGrid.Resources>
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="Foreground" Value="White"/>

@@ -45,7 +45,6 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
                 if (affectedRows == 0)
                 {
                     MessageBox.Show("Provedenou proceduru(výkon) se nepodařilo změnit", "Not Ok", MessageBoxButton.OK, MessageBoxImage.Information);
-
                 }
                 else
                 {

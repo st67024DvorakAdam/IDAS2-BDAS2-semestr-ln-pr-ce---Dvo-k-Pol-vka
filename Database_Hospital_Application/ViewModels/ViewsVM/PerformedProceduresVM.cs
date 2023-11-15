@@ -3,7 +3,6 @@ using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.Models.Enums;
 using Database_Hospital_Application.Models.Repositories;
 using Database_Hospital_Application.ViewModels.Dialogs.Edit;
-using Database_Hospital_Application.Views.Lists.Dialogs.Address;
 using Database_Hospital_Application.Views.Lists.Dialogs.PerformedProcedure;
 using System;
 using System.Collections.Generic;
@@ -25,6 +24,59 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             get { return _performedProceduresList; }
             set { _performedProceduresList = value; OnPropertyChange(nameof(PerformedProceduresList)); }
+        }
+
+        // BUTTONS
+        public ICommand AddCommand { get; private set; }
+        public ICommand DeleteCommand { get; private set; }
+
+        private void InitializeCommands()
+        {
+            DeleteCommand = new RelayCommand(DeleteAction);
+            AddCommand = new RelayCommand(AddNewPerformedProcedrureAction);
+            EditCommand = new RelayCommand(EditAction);
+        }
+
+        private async void DeleteAction(object parameter)
+        {
+            if (SelectedPerformedProcedure == null) return;
+
+            PerformedProceduresRepo performedProceduresRepo = new PerformedProceduresRepo();
+            await performedProceduresRepo.DeletePerformedProcedure(SelectedPerformedProcedure.Id);
+            await LoadPerformedProceduresAsync();
+        }
+
+        private PerformedProcedure _selectedPerformedProcedure;
+        public PerformedProcedure SelectedPerformedProcedure
+        {
+            get { return _selectedPerformedProcedure; }
+            set
+            {
+                _selectedPerformedProcedure = value;
+                OnPropertyChange(nameof(SelectedPerformedProcedure));
+                CommandManager.InvalidateRequerySuggested();
+            }
+        }
+
+        private PerformedProcedure _newPerformedProcedure;
+        public PerformedProcedure NewPerformedProcedure
+        {
+            get { return _newPerformedProcedure; }
+            set
+            {
+                _newPerformedProcedure = value;
+                OnPropertyChange(nameof(NewPerformedProcedure));
+            }
+        }
+        private void AddNewPerformedProcedrureAction(object parameter)
+        {
+
+            PerformedProceduresRepo performedProcedureRepo = new PerformedProceduresRepo();
+            performedProcedureRepo.AddPerformedProcedure(NewPerformedProcedure);
+            LoadPerformedProceduresAsync();
+            PerformedProceduresView = CollectionViewSource.GetDefaultView(PerformedProceduresList);
+            PerformedProceduresView.Filter = PerformedProceduresFilter;
+            NewPerformedProcedure = new PerformedProcedure();
         }
 
         ///KONSTRUKTOR ////////////////////////////////////////////////////////////////////////////////////////
@@ -73,58 +125,19 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
 
             return performedProcedure.Name.Contains(_searchText, StringComparison.OrdinalIgnoreCase)
-                //|| performedProcedure.Id.ToString().Contains(_searchText)
-                //|| performedProcedure.IdOfPatient.ToString().Contains(_searchText)
-                || performedProcedure.BirthNumberOfPatient.ToString().Contains(_searchText)
+                || performedProcedure.Id.ToString().Contains(_searchText)
+                || performedProcedure.IdOfPatient.ToString().Contains(_searchText)
+                //|| performedProcedure.BirthNumberOfPatient.ToString().Contains(_searchText)
                 || performedProcedure.Price.ToString().Contains(_searchText)
                 || performedProcedure.IsCoveredByInsurence.ToString().Contains(_searchText, StringComparison.OrdinalIgnoreCase);
         }
         //FILTER/////////////////////////////////////////////////////////////////////
 
-        // BUTTONS
-        public ICommand AddCommand { get; private set; }
-
-        private void InitializeCommands()
-        {
-            //DeleteAddressCommand = new RelayCommand(DeleteAddressAction);
-            AddCommand = new RelayCommand(AddNewPerformedProcedrureAction);
-            //EditCommand = new RelayCommand(EditAction);
-        }
-
-        private PerformedProcedure _newPerformedProcedure;
-        public PerformedProcedure NewPerformedProcedure
-        {
-            get { return _newPerformedProcedure; }
-            set
-            {
-                _newPerformedProcedure = value;
-                OnPropertyChange(nameof(NewPerformedProcedure));
-            }
-        }
-        private void AddNewPerformedProcedrureAction(object parameter)
-        {
-            
-            PerformedProceduresRepo performedProcedureRepo = new PerformedProceduresRepo();
-            performedProcedureRepo.AddPerformedProcedure(NewPerformedProcedure);
-            LoadPerformedProceduresAsync();
-            PerformedProceduresView = CollectionViewSource.GetDefaultView(PerformedProceduresList);
-            PerformedProceduresView.Filter = PerformedProceduresFilter;
-            NewPerformedProcedure = new PerformedProcedure();
-        }
+        
 
         //EDIT///////////////////////////////////////////////////////////////////////
 
-        private PerformedProcedure _selectedPerformedProcedure;
-        public PerformedProcedure SelectedPerformedProcedure
-        {
-            get { return _selectedPerformedProcedure; }
-            set
-            {
-                _selectedPerformedProcedure = value;
-                OnPropertyChange(nameof(SelectedPerformedProcedure));
-                CommandManager.InvalidateRequerySuggested();
-            }
-        }
+        
 
 
         public ICommand EditCommand { get; private set; }
