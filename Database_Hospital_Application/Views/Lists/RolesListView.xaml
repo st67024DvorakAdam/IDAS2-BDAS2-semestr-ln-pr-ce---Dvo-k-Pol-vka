@@ -13,32 +13,32 @@
     </UserControl.DataContext>
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-
-        <TextBlock Grid.Row="0" Margin="10" Foreground="Gray" VerticalAlignment="Top">
+            <TextBlock Grid.Row="0" Margin="10" Foreground="Gray" VerticalAlignment="Top">
              Vyhledávání...
-        </TextBlock>
-        <TextBox Grid.Row="0" Margin="10" Height="25" Width="150" HorizontalAlignment="Left"
+            </TextBlock>
+            <TextBox Grid.Row="0" Margin="10" Height="25" Width="150" HorizontalAlignment="Left"
             Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" 
             Background="Transparent" Foreground="White" BorderThickness="1" 
             BorderBrush="Gray" VerticalContentAlignment="Center" CaretBrush="White"/>
 
-
-        <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="ROLE" VerticalAlignment="Center" FontSize="40" Margin="0,0,0,35" Foreground="White" FontWeight="Bold"/>
-
-
-        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding RolesList}" SelectedItem="{Binding SelectedRole}" Background="Transparent" 
-                      AlternatingRowBackground="Transparent" 
-                      AreRowDetailsFrozen="True" CanUserAddRows="False" CanUserDeleteRows="False" 
-                      CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single" 
-                      SelectionUnit="FullRow" GridLinesVisibility="None" HeadersVisibility="Column" 
-                      IsReadOnly="True" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="ROLE" VerticalAlignment="Center" FontSize="40" Margin="0,0,0,35" Foreground="White" FontWeight="Bold"/>
+            <DataGrid x:Name="AddressesDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding RolesList}" Background="Transparent" 
+                  SelectedItem="{Binding SelectedRole, Mode=TwoWay}"
+                  AreRowDetailsFrozen="True" CanUserAddRows="False" CanUserDeleteRows="False"
+                  CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single" 
+                  SelectionUnit="FullRow" GridLinesVisibility="None" HeadersVisibility="Column" 
+                  IsReadOnly="False" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1">
 
                 <DataGrid.Resources>
                     <Style TargetType="DataGridColumnHeader">
@@ -65,8 +65,10 @@
                 </DataGrid.Resources>
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Název Role" Binding="{Binding }" Width="*"/>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*"/>
+                    <DataGridTextColumn Header="Název role" Binding="{Binding }" Width="*"/>
                 </DataGrid.Columns>
+
 
                 <DataGrid.CellStyle>
                     <Style TargetType="DataGridCell">
@@ -79,13 +81,35 @@
                     </Style>
                 </DataGrid.CellStyle>
             </DataGrid>
-        </ScrollViewer>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10" >
+                <Button Content="Upravit" Margin="5" Padding="10,3" Command="{Binding EditCommand}" Height="30" FontSize="15"/>
+                <Button Content="Odebrat" Margin="5" Padding="10,3" Command="{Binding DeleteCommand}" Height="30" FontSize="15"/>
+            </StackPanel>
+
+        </Grid>
+        <Grid Grid.Column="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Text="Nová role" Foreground="White" FontSize="20" FontWeight="Bold"
+               HorizontalAlignment="Center" Margin="10"/>
+
+            <TextBlock Grid.Row="1" Text="Název role" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
+            <TextBox Grid.Row="2" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
+             Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
+             VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding NewRole.Name}"/>
 
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10">
-            <Button IsEnabled="false" Content="Přidat" Margin="5" Padding="10,3" Command="{Binding AddRoleCommand}"/>
-            <Button IsEnabled="false" Content="Upravit" Margin="5" Padding="10,3" Command="{Binding EditRoleCommand}"/>
-            <Button IsEnabled="false" Content="Odebrat" Margin="5" Padding="10,3" Command="{Binding DeleteRoleCommand}"/>
-        </StackPanel>
+
+            <Button Grid.Row="11" Content="Přidat" Margin="10" Padding="10,3" Width="200" HorizontalAlignment="Center"
+            Command="{Binding AddCommand}" VerticalAlignment="Top"/>
+        </Grid>
     </Grid>
 </UserControl>

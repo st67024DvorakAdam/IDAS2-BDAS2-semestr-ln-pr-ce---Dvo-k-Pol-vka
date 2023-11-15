@@ -79,12 +79,12 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         //FILTER/////////////////////////////////////////////////////////////////////
 
         // BUTTONS
-        public ICommand AddNewPerfomedProcedureCommand { get; private set; }
+        public ICommand AddCommand { get; private set; }
 
         private void InitializeCommands()
         {
             //DeleteAddressCommand = new RelayCommand(DeleteAddressAction);
-            AddNewPerfomedProcedureCommand = new RelayCommand(AddNewPerformedProcedrureAction);
+            AddCommand = new RelayCommand(AddNewPerformedProcedrureAction);
             //EditCommand = new RelayCommand(EditAction);
         }
 
