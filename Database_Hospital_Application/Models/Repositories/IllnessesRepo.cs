@@ -45,5 +45,46 @@ namespace Database_Hospital_Application.Models.Repositories
 
             return illnesses;
         }
+
+        public async Task AddIllness(Illness illness)
+        {
+            string commandText = "add_illness";
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_nazev", illness.Name }
+            };
+
+            await dbTools.ExecuteNonQueryAsync(commandText, parameters);
+
+        }
+
+        public async Task<int> DeleteIllness(int id)
+        {
+            string commandText = "delete_illness_by_id";
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_id", id }
+            };
+
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
+        }
+
+        public async Task<int> UpdateIllness(Illness illness)
+        {
+            string commandText = "update_illness";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"p_id", illness.Id },
+                { "p_nazev", illness.Name }
+            };
+
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
+        }
+
+        public void DeleteAllContacts()
+        {
+
+        }
     }
 }
