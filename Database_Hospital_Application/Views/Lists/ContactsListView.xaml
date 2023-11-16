@@ -64,9 +64,9 @@
                 </DataGrid.Resources>
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="70"/>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*"/>
                     <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
-                    <DataGridTextColumn Header="Telefon" Binding="{Binding PhoneNumber}" Width="150"/>
+                    <DataGridTextColumn Header="Telefon" Binding="{Binding PhoneNumber}" Width="*"/>
                     <DataGridTextColumn Header="Id pacienta" Binding="{Binding IdOfPatient}" Width="*"/>
                     <DataGridTextColumn Header="Id zaměstnance" Binding="{Binding IdOfEmployee}" Width="*"/>
                 </DataGrid.Columns>
