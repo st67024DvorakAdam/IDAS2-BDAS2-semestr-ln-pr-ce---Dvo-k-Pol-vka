@@ -11,7 +11,7 @@
 9. Bude využívat minimálně 3 plnohodnotné formuláře (ošetření vstupních polí, apod.) pro vytváření nebo modifikaci dat v tabulkách, ostatní potřebné formuláře jsou samozřejmostí. 
 10. Datová vrstva aplikace bude v rámci vybraných PL/SQL bloků pracovat minimálně s jedním implicitním kurzorem a jedním explicitním kurzorem.
 11. DA mohou plnohodnotně využívat pouze registrovaní uživatelé, neregistrovaný uživatel má velmi omezený výpis obsahu.
-12. DA umožňuje vyhledávat a zobrazovat výsledky o všech přístupných datech v jednotlivých tabulkách dle svého oprávnění. V případě tabulky obsahující BLOB pak zobrazí název dokumentu/obrázku/jiného binárního souboru dle zvoleného tématu a návazné informace alespoň ze dvou tabulek.
+12. DA umožňuje vyhledávat a zobrazovat výsledky o všech přístupných datech v jednotlivých tabulkách dle svého oprávnění. V případě tabulky obsahující BLOB pak zobrazí název dokumentu/obrázku/jiného binárního souboru dle zvoleného tématu a návazné informace alespoň ze dvou tabulek.  •
 13. DA umožňuje vkládání či modifikaci dat skrz uložené procedury! 
 14. V DA nejsou viditelné ID a ani nelze vyhledávat a ani vyplňovat jakékoliv ID, aplikace je uživatelsky přívětivá.
 15. Aplikace využívá triggery k logování, zasílání zpráv mezi uživateli, apod.  •
