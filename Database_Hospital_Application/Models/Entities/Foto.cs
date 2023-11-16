@@ -17,6 +17,8 @@ namespace Database_Hospital_Application.Models.Entities
         public OracleDate DateOfUpload { get; set; }
         public OracleDate DateOfModification { get; set; }
         public BitmapImage Image { get; set; }
+        public string ListOfUserNamesWhichUseMeWithTheirRoles { get; set; } //kvůli tomu že u fotek musím vypisovat data ze dvou přilehlých tabulek
+
     }
 
     public static class FotoExtension

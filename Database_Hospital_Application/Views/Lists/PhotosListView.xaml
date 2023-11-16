@@ -67,6 +67,7 @@
                 <DataGridTextColumn Header="Přípona" Binding="{Binding Suffix}" Width="150"/>
                 <DataGridTextColumn Header="Datum nahrání" Binding="{Binding DateOfUpload}" Width="150"/>
                 <DataGridTextColumn Header="Datum modifikace" Binding="{Binding DateOfModification}" Width="150"/>
+                <DataGridTextColumn Header="(Username,role)" Binding="{Binding ListOfUserNamesWhichUseMeWithTheirRoles}" Width="150"/>
                 <DataGridTemplateColumn Header="Foto" Width="150">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

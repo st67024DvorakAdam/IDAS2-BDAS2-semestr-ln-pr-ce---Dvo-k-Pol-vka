@@ -66,6 +66,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
                 || foto.Suffix.Contains(_searchText, StringComparison.OrdinalIgnoreCase)
                 || foto.DateOfUpload.ToString().Contains(_searchText, StringComparison.OrdinalIgnoreCase)
                 || foto.DateOfModification.ToString().Contains(_searchText, StringComparison.OrdinalIgnoreCase);
+                //|| foto.ListOfUserNamesWhichUseMeWithTheirRoles.ToString().Contains(_searchText, StringComparison.OrdinalIgnoreCase);
         }
         //FILTER/////////////////////////////////////////////////////////////////////
     }
