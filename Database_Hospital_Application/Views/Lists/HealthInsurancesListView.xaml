@@ -63,6 +63,7 @@
                 </DataGrid.Resources>
 
                 <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*"/>
                     <DataGridTextColumn Header="Název" Binding="{Binding Name}" Width="*"/>
                     <DataGridTextColumn Header="Zkratka" Binding="{Binding Code}" Width="*"/>
                 </DataGrid.Columns>

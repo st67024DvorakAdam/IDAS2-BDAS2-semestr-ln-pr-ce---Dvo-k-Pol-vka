@@ -40,5 +40,16 @@ namespace Database_Hospital_Application.Views.Lists.Dialogs.Address
             return !Regex.IsMatch(text, "[^0-9]");
         }
 
+        private void TextBox_PreviewTextInputForCountry(object sender, TextCompositionEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            // Získej text v TextBoxu včetně nově zadávaného znaku
+            string newText = textBox.Text + e.Text;
+
+            // Omez délku textu na 3 znaky a zkontroluj, zda všechny znaky jsou písmena
+            e.Handled = newText.Length > 3 || !Regex.IsMatch(newText, "^[a-zA-Z]*$");
+        }
+
     }
 }

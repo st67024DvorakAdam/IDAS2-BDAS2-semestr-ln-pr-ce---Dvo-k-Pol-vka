@@ -35,7 +35,7 @@
                  PreviewTextInput="TextBox_PreviewTextInput" HorizontalAlignment="Center" Text="{Binding EditableAddress.HouseNumber, UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBlock Text="Stát" FontSize="18" Grid.Row="6" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
-        <TextBox x:Name="CountryTextBox" Height="25" FontSize="16" Grid.Row="7" Margin="5" Width="300" HorizontalAlignment="Center" Text="{Binding EditableAddress.Country, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox x:Name="CountryTextBox" PreviewTextInput="TextBox_PreviewTextInputForCountry" Height="25" FontSize="16" Grid.Row="7" Margin="5" Width="300" HorizontalAlignment="Center" Text="{Binding EditableAddress.Country, UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBlock Text="PSČ" FontSize="18" Grid.Row="8" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
         <TextBox x:Name="ZipCodeTextBox" Height="25" FontSize="16" Grid.Row="9" Margin="5" Width="300"
