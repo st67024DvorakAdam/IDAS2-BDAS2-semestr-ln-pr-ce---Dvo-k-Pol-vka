@@ -65,6 +65,7 @@
             </DataGrid.Resources>
 
             <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*"/>
                 <DataGridTextColumn Header="Ulice" Binding="{Binding Street}" Width="*"/>
                 <DataGridTextColumn Header="Město" Binding="{Binding City}" Width="*"/>
                 <DataGridTextColumn Header="Číslo popisné" Binding="{Binding HouseNumber}" Width="*"/>
@@ -128,7 +129,8 @@
             <TextBlock Grid.Row="7" Text="Země" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
             <TextBox Grid.Row="8" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
              Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
-             VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding NewAddress.Country}"/>
+             VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding NewAddress.Country}"
+             PreviewTextInput="TextBox_PreviewTextInputForCountry"/>
 
             <TextBlock Grid.Row="9" Text="PSČ" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
             <TextBox Grid.Row="10" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"

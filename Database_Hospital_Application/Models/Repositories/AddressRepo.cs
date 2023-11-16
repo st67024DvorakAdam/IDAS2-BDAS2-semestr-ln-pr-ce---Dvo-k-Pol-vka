@@ -64,7 +64,7 @@ namespace Database_Hospital_Application.Models.Repositories
                 { "p_ulice", address.Street },
                 { "p_mesto", address.City },
                 { "p_cislo_popisne", address.HouseNumber },
-                { "p_stat", address.Country },
+                { "p_stat", (address.Country).ToUpper() },
                 { "p_psc", address.ZipCode }
             };
 
@@ -94,7 +94,7 @@ namespace Database_Hospital_Application.Models.Repositories
                 { "p_ulice", address.Street },
                 { "p_mesto", address.City },
                 { "p_cislo_popisne", address.HouseNumber },
-                { "p_stat", address.Country },
+                { "p_stat", (address.Country).ToUpper() },
                 { "p_psc", address.ZipCode }
             };
             return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
