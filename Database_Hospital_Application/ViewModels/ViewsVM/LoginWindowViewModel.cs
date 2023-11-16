@@ -58,18 +58,19 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         public void OpenProfileWindow(User user)
         {
-            Views.MainWindow profileWindow = new Views.MainWindow();
             switch (user.RoleID)
             {
                 case 1:
+                    Views.MainWindow profileWindow = new Views.MainWindow();
                     profileWindow.DataContext = new NavigateVM(user);
                     profileWindow.Show();
                     CloseAction?.Invoke();
                     break;
                 case 2:
-                    
-                    // budoucí window pro doctora
-                    
+                    Views.DoctorWindow doctorWindow = new Views.DoctorWindow();
+                    doctorWindow.DataContext = new NavigateVM(user);
+                    doctorWindow.Show();
+                    CloseAction?.Invoke();
                     break;
                 case 3:
                     
@@ -81,11 +82,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
                     // budoucí window pro asistenta
                     
                     break;
-                case 6:
-                    profileWindow.DataContext = new NavigateVM(user);
-                    profileWindow.Show();
-                    CloseAction?.Invoke();
-                    break;
+                case 5:
+                    //profileWindow.DataContext = new NavigateVM(user);
+                    //profileWindow.Show();
+                    //CloseAction?.Invoke();
+                    //break;
                 default:
                     break;
             }
