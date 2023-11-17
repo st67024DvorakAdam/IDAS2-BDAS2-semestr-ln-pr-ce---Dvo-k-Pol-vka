@@ -18,6 +18,7 @@ namespace Database_Hospital_Application.Models.Entities
         public Department? _department { get; set; }
         public Foto _foto { get; set; }
         public int RoleID { get; set; }
+        public Role Role { get; set; }
         public int? IdOfSuperiorEmployee { get; set; } //nadřízený
         public string Password { get; set; }
         public string Salt { get; set; }

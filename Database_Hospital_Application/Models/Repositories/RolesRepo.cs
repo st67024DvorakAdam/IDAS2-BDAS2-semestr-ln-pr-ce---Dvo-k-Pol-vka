@@ -15,16 +15,16 @@ namespace Database_Hospital_Application.Models.Repositories
     {
         private DatabaseTools.DatabaseTools dbTools = new DatabaseTools.DatabaseTools();
 
-        public ObservableCollection<string> roles { get; set; }
+        public ObservableCollection<Role> roles { get; set; }
 
         public RolesRepo()
         {
-            roles = new ObservableCollection<string>();
+            roles = new ObservableCollection<Role>();
         }
 
-        public async Task<ObservableCollection<string>> GetAllRoleDescriptionsAsync()
+        public async Task<ObservableCollection<Role>> GetAllRoleDescriptionsAsync()
         {
-            ObservableCollection<string> roles = new ObservableCollection<string>();
+            ObservableCollection<Role> roles = new ObservableCollection<Role>();
             string commandText = "get_all_roles";
             DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
 
@@ -33,12 +33,17 @@ namespace Database_Hospital_Application.Models.Repositories
             {
                 if (roles == null)
                 {
-                    roles = new ObservableCollection<string>();
+                    roles = new ObservableCollection<Role>();
                 }
 
                 foreach (DataRow row in result.Rows)
                 {
-                    string role = row["NAZEV"].ToString();
+
+                    Role role = new Role
+                    {
+                        Id = Convert.ToInt32(row["ID"]),
+                        Name = row["NAZEV"].ToString()
+                    };
 
                     roles.Add(role);
                 }
@@ -46,25 +51,55 @@ namespace Database_Hospital_Application.Models.Repositories
             return roles;
         }
 
-        //následující asi není potřeba:
 
-        //public void AddRoleeDescription(string role)
-        //{
+        public async Task AddRole(Role role)
+        {
+            string commandText = "add_role";
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_nazev", role.Name }
+            };
 
-        //}
+            await dbTools.ExecuteNonQueryAsync(commandText, parameters);
 
-        //public void DeleteRoleeDescription(int id)
-        //{
+        }
 
-        //}
-        //public void UpdateRoleeDescription(string role)
-        //{
+        public async Task<int> DeleteRole(int id)
+        {
+            if(id <= 5)
+            {
+                throw new InvalidOperationException();
+            }
+            string commandText = "delete_role_by_id";
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_id", id }
+            };
 
-        //}
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
+        }
 
-        //public void DeleteAllRoleeDescriptions()
-        //{
+        public async Task<int> UpdateRole(Role role)
+        {
+            if (role.Id <= 5)
+            {
+                throw new InvalidOperationException();
+            }
 
-        //}
+            string commandText = "update_role";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"p_id", role.Id },
+                { "p_nazev", role.Name }
+            };
+
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
+        }
+
+        public void DeleteAllRoles()
+        {
+            //nelze mazat 1-5 aby v tom nebyl bordel
+        }
     }
 }
