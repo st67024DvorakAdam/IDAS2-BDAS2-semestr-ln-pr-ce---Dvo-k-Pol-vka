@@ -22,7 +22,11 @@ namespace Database_Hospital_Application.Models.Entities
         public string Password { get; set; }
         public string Salt { get; set; }
 
-        public Employee() { }
+        public Employee() 
+        { 
+            _department = new Department();
+            _foto = new Foto();
+        }
 
         public Employee(int id) 
         {
