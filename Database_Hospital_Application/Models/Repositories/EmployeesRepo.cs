@@ -65,7 +65,7 @@ namespace Database_Hospital_Application.Models.Repositories
             return employees;
         }
 
-        public async Task AddEmployee(Employee employee)
+        public async Task<int> AddEmployee(Employee employee)
         {
             string commandText = "add_employee";
             var parameters = new Dictionary<string, object>
@@ -83,7 +83,7 @@ namespace Database_Hospital_Application.Models.Repositories
                 { "p_role_id",employee.RoleID }
             };
 
-            await dbTools.ExecuteNonQueryAsync(commandText, parameters);
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
 
         public async Task<int> DeleteEmployee(int id)

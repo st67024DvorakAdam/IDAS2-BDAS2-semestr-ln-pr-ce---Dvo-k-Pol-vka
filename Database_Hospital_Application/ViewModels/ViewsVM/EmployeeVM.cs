@@ -13,6 +13,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -103,9 +104,16 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             EmployeesRepo employeesRepo = new EmployeesRepo();
             NewEmployee.Salt = PasswordHasher.GenerateSalt();
-            await employeesRepo.AddEmployee(NewEmployee);
-            await LoadEmployeesAsync();
-            NewEmployee = new Employee();
+            if (await employeesRepo.AddEmployee(NewEmployee) > 0)
+            {
+                await LoadEmployeesAsync();
+                NewEmployee = new Employee();
+            }
+            else
+            {
+                MessageBox.Show("Uživatelské jméno již existuje nebo nastala jiná chyba.");
+            }
+
             
         }
 
