@@ -143,14 +143,23 @@
             </ComboBox>
 
             <TextBlock Text="Vedoucí" FontSize="18" Grid.Row="9" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
-            <ComboBox HorizontalAlignment="Center" Grid.Row="10" VerticalAlignment="Center" Background="Transparent" Width="270" 
+            <!--<TextBox x:Name="IdOfSupperiorTextBox" Background="Transparent" Foreground="White" Height="25" FontSize="16" Grid.Row="10" Margin="5" Width="270"
+                  PreviewTextInput="TextBox_PreviewTextInput" HorizontalAlignment="Center" Text="{Binding NewEmployee.IdOfSuperiorEmployee}"/>-->
+
+            <!--<ComboBox HorizontalAlignment="Center" Grid.Row="10" VerticalAlignment="Center" Background="Transparent" Width="270" 
                       ItemsSource="{Binding EmployeesList}" DisplayMemberPath="UserName" 
                       SelectedIndex="{Binding NewEmployee.IdOfSuperiorEmployee}">
+            </ComboBox>-->
+            <ComboBox HorizontalAlignment="Center" Grid.Row="10" VerticalAlignment="Center" Background="Transparent" Width="270" 
+          ItemsSource="{Binding EmployeesList}" DisplayMemberPath="UserName" 
+          SelectedValuePath="Id" SelectedValue="{Binding NewEmployee.IdOfSuperiorEmployee}">
             </ComboBox>
 
-            <TextBlock Text="Id foto" FontSize="18" Grid.Row="11" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
-            <TextBox x:Name="IdOfFotoTextBox" Background="Transparent" Foreground="White"  Height="25" FontSize="16" Grid.Row="12" Margin="5" Width="270"
-                  PreviewTextInput="TextBox_PreviewTextInput" HorizontalAlignment="Center" Text="{Binding NewEmployee._foto.Id}"/>
+            <TextBlock Text="Fotografie" FontSize="18" Grid.Row="11" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
+            <ComboBox HorizontalAlignment="Center" Grid.Row="12" VerticalAlignment="Center" Background="Transparent" Width="270" 
+          ItemsSource="{Binding PhotosList}" DisplayMemberPath="Name" 
+          SelectedValuePath="Id" SelectedValue="{Binding NewEmployee._foto.Id}">
+            </ComboBox>
 
             <TextBlock Text="Id oddělení" FontSize="18" Grid.Row="13" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
             <TextBox x:Name="IdOfDepartmentTextBox" Background="Transparent" Foreground="White" Height="25" FontSize="16" Grid.Row="14" Margin="5" Width="270"

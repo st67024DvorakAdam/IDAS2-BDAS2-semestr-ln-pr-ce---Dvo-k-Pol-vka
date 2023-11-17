@@ -1,5 +1,7 @@
-﻿using Database_Hospital_Application.Models.Entities;
+﻿using Database_Hospital_Application.Exceptions;
+using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.Models.Enums;
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,6 +9,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Navigation;
 
 namespace Database_Hospital_Application.Models.Repositories
@@ -65,10 +68,15 @@ namespace Database_Hospital_Application.Models.Repositories
             return employees;
         }
 
-        public async Task<int> AddEmployee(Employee employee)
+        public async Task AddEmployee(Employee employee)
         {
-            string commandText = "add_employee";
-            var parameters = new Dictionary<string, object>
+            //if (await CheckIfUserNameExists(employee.UserName)) 
+            //{
+            //    throw new UserNameAlreadyExistsException();  
+            //}else
+            //{
+                string commandText = "add_employee";
+                var parameters = new Dictionary<string, object>
             {
                 { "p_jmeno", employee.FirstName },
                 { "p_prijmeni", employee.LastName },
@@ -83,8 +91,37 @@ namespace Database_Hospital_Application.Models.Repositories
                 { "p_role_id",employee.RoleID }
             };
 
-            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
+                await dbTools.ExecuteNonQueryAsync(commandText, parameters);
+            //}
+            
+            
         }
+
+    //    public async Task<bool> CheckIfUserNameExists(string userName)
+    //    {
+    //        string commandText = "SELECT COUNT(*) FROM zamestnanci WHERE UZIVATELSKE_JMENO = :userName";
+    //        var parameters = new Dictionary<string, object>
+    //{
+    //    { "userName", userName }
+    //};
+
+    //        DataTable result = await dbTools.ExecuteCommandAsync(commandText, parameters);
+
+    //        // Kontrola, zda existuje výsledek a alespoň jeden řádek
+    //        if (result != null && result.Rows.Count > 0)
+    //        {
+    //            // Kontrola, zda je první sloupec prvního řádku větší než nula
+    //            int count;
+    //            if (int.TryParse(result.Rows[0][0]?.ToString(), out count))
+    //            {
+    //                return count > 0; // Pokud je count větší než 0, vrátí true, jinak false
+    //            }
+    //        }
+
+    //        return false; // Pokud nebyl nalezen žádný výsledek nebo nedošlo k úspěšnému zpracování výsledku, vrátí false
+    //    }
+
+
 
         public async Task<int> DeleteEmployee(int id)
         {

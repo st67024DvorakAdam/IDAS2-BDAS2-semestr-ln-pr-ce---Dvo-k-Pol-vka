@@ -1,4 +1,5 @@
 ﻿using Database_Hospital_Application.Commands;
+using Database_Hospital_Application.Exceptions;
 using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.Models.Enums;
 using Database_Hospital_Application.Models.Repositories;
@@ -6,6 +7,7 @@ using Database_Hospital_Application.Models.Tools;
 using Database_Hospital_Application.ViewModels.Dialogs.Edit;
 using Database_Hospital_Application.Views.Lists.Dialogs.Contact;
 using Database_Hospital_Application.Views.Lists.Dialogs.Employee;
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,6 +24,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
     public class EmployeeVM : BaseViewModel
     {
         private ObservableCollection<Employee> _employeesList;
+        
 
         public ObservableCollection<Employee> EmployeesList
         {
@@ -30,6 +33,17 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             {
                 _employeesList = value;
                 OnPropertyChange(nameof(EmployeesList));
+            }
+        }
+
+        private ObservableCollection<Foto> _photosList;
+        public ObservableCollection<Foto> PhotosList
+        {
+            get { return _photosList; }
+            set
+            {
+                _photosList = value;
+                OnPropertyChange(nameof(PhotosList));
             }
         }
 
@@ -72,7 +86,16 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             EmployeesView = CollectionViewSource.GetDefaultView(EmployeesList);
             EmployeesView.Filter = EmployeesFilter;
             InitializeCommands();
+
+            LoadPhotosFromPhotoVM();
         }
+
+        private void LoadPhotosFromPhotoVM()
+        {
+            PhotoVM p = new PhotoVM();
+            _photosList = p.PhotosList;
+        }
+
         private async Task LoadEmployeesAsync()
         {
             EmployeesRepo repo = new EmployeesRepo();
@@ -102,19 +125,17 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         private async void AddNewAction(object parameter)
         {
-            EmployeesRepo employeesRepo = new EmployeesRepo();
-            NewEmployee.Salt = PasswordHasher.GenerateSalt();
-            if (await employeesRepo.AddEmployee(NewEmployee) > 0)
-            {
+            //try
+            //{
+                EmployeesRepo employeesRepo = new EmployeesRepo();
+                NewEmployee.Salt = PasswordHasher.GenerateSalt();
+                await employeesRepo.AddEmployee(NewEmployee);
                 await LoadEmployeesAsync();
                 NewEmployee = new Employee();
-            }
-            else
-            {
-                MessageBox.Show("Uživatelské jméno již existuje nebo nastala jiná chyba.");
-            }
-
-            
+            //}catch(UserNameAlreadyExistsException ex)
+            //{
+            //    MessageBox.Show("uzivatelske jemno jiz existuje");
+            //}
         }
 
         private bool CanEdit(object parameter)
