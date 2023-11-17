@@ -38,7 +38,7 @@
                   AreRowDetailsFrozen="True" CanUserAddRows="False" CanUserDeleteRows="False"
                   CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single" 
                   SelectionUnit="FullRow" GridLinesVisibility="None" HeadersVisibility="Column" 
-                  IsReadOnly="False" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1">
+                  IsReadOnly="True" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1">
 
             <DataGrid.Resources>
                 <Style TargetType="DataGridColumnHeader">
