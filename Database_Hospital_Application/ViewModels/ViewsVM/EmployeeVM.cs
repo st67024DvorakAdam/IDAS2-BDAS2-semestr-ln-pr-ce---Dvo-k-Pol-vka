@@ -58,6 +58,17 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             }
         }
 
+        private ObservableCollection<Role> _roleList;
+        public ObservableCollection<Role> RoleList
+        {
+            get { return _roleList; }
+            set
+            {
+                _roleList = value;
+                OnPropertyChange(nameof(RoleList));
+            }
+        }
+
         // BUTTONS
         public ICommand AddCommand { get; private set; }
         public ICommand DeleteCommand { get; private set; }
@@ -99,7 +110,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             InitializeCommands();
 
             LoadPhotosFromPhotoVM();
-            LoadDepartmentsFromPhotoVM();
+            LoadDepartmentsFromDepartmentVM();
+            LoadRolesFromRoleVM();
         }
 
         private void LoadPhotosFromPhotoVM()
@@ -108,10 +120,16 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             _photosList = p.PhotosList;
         }
 
-        private void LoadDepartmentsFromPhotoVM()
+        private void LoadDepartmentsFromDepartmentVM()
         {
             DepartmentVM d = new DepartmentVM();
             _departmentList = d.DepartmentsList;
+        }
+
+        private void LoadRolesFromRoleVM()
+        {
+            RolesVM r = new RolesVM();
+            _roleList = r.RolesList;
         }
 
         private async Task LoadEmployeesAsync()
