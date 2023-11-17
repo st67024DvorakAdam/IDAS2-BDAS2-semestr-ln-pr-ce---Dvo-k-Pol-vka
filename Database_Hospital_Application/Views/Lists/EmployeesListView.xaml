@@ -161,9 +161,11 @@
           SelectedValuePath="Id" SelectedValue="{Binding NewEmployee._foto.Id}">
             </ComboBox>
 
-            <TextBlock Text="Id oddělení" FontSize="18" Grid.Row="13" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
-            <TextBox x:Name="IdOfDepartmentTextBox" Background="Transparent" Foreground="White" Height="25" FontSize="16" Grid.Row="14" Margin="5" Width="270"
-                  PreviewTextInput="TextBox_PreviewTextInput" HorizontalAlignment="Center" Text="{Binding NewEmployee._department.Id}"/>
+            <TextBlock Text="Oddělení" FontSize="18" Grid.Row="13" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
+            <ComboBox HorizontalAlignment="Center" Grid.Row="14" VerticalAlignment="Center" Background="Transparent" Width="270" 
+            ItemsSource="{Binding DepartmentList}" DisplayMemberPath="Name" 
+            SelectedValuePath="Id" SelectedValue="{Binding NewEmployee._department.Id}">
+            </ComboBox>
 
             <TextBlock Text="Uživatelské jméno" FontSize="18" Grid.Row="15" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
             <TextBox x:Name="UserNameTextBox" Background="Transparent" Foreground="White" Height="25" FontSize="16"  Grid.Row="16" Margin="5" Width="270" HorizontalAlignment="Center" Text="{Binding NewEmployee.UserName}"/>

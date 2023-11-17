@@ -47,6 +47,17 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             }
         }
 
+        private ObservableCollection<Department> _departmentList;
+        public ObservableCollection<Department> DepartmentList
+        {
+            get { return _departmentList; }
+            set
+            {
+                _departmentList = value;
+                OnPropertyChange(nameof(DepartmentList));
+            }
+        }
+
         // BUTTONS
         public ICommand AddCommand { get; private set; }
         public ICommand DeleteCommand { get; private set; }
@@ -88,12 +99,19 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             InitializeCommands();
 
             LoadPhotosFromPhotoVM();
+            LoadDepartmentsFromPhotoVM();
         }
 
         private void LoadPhotosFromPhotoVM()
         {
             PhotoVM p = new PhotoVM();
             _photosList = p.PhotosList;
+        }
+
+        private void LoadDepartmentsFromPhotoVM()
+        {
+            DepartmentVM d = new DepartmentVM();
+            _departmentList = d.DepartmentsList;
         }
 
         private async Task LoadEmployeesAsync()
