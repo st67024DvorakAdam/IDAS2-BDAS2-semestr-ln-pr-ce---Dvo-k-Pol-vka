@@ -248,7 +248,7 @@ namespace Database_Hospital_Application.Models.Repositories
                     Direction = ParameterDirection.Input
                 };
 
-                OracleParameter pSuffix = new OracleParameter("p_photo_blob", OracleDbType.Varchar2)
+                OracleParameter pSuffix = new OracleParameter("p_pripona", OracleDbType.Varchar2)
                 {
                     Value = suffix,
                     Direction = ParameterDirection.Input

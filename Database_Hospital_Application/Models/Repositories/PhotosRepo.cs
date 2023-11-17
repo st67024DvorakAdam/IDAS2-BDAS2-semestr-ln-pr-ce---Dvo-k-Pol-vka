@@ -1,4 +1,6 @@
 ﻿using Database_Hospital_Application.Models.Entities;
+using Database_Hospital_Application.ViewModels.ViewsVM;
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,6 +8,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media.Imaging;
 
 namespace Database_Hospital_Application.Models.Repositories
@@ -71,18 +74,93 @@ namespace Database_Hospital_Application.Models.Repositories
             return photos;
         }
 
-        public void AddPhoto(Foto photo)
+        public async Task AddPhoto(byte[] picture, string filename, string suffix)
         {
+            try
+            {
+                string storedProcedure = "add_photo";
 
+                OracleParameter pPhotoBlob = new OracleParameter("p_photo_blob", OracleDbType.Blob)
+                {
+                    Value = picture,
+                    Direction = ParameterDirection.Input
+                };
+
+                OracleParameter pFileName = new OracleParameter("p_nazev_souboru", OracleDbType.Varchar2)
+                {
+                    Value = filename,
+                    Direction = ParameterDirection.Input
+                };
+
+                OracleParameter pSuffix = new OracleParameter("p_pripona", OracleDbType.Varchar2)
+                {
+                    Value = suffix,
+                    Direction = ParameterDirection.Input
+                };
+
+
+                var parameters = new List<OracleParameter> { pPhotoBlob, pFileName, pSuffix };
+
+
+                await dbTools.ExecuteNonQueryAsync(storedProcedure, parameters);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"Chyba při nahrávání fotografie: {ex.Message}", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-        public void DeletePhoto(int id)
+        public async Task<int> DeletePhoto(int id)
         {
-
+            string commandText = "delete_photo_by_id";
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_id", id }
+            };
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
-        public void UpdatePhoto(Foto photo)
-        {
 
+        public async Task<int> UpdatePhoto(int id, byte[] picture, string filename, string suffix)
+        {
+            try
+            {
+                string storedProcedure = "update_photo";
+
+                OracleParameter pId = new OracleParameter("p_Id", OracleDbType.Int32)
+                {
+                    Value = id,
+                    Direction = ParameterDirection.Input
+                };
+
+                OracleParameter pPhotoBlob = new OracleParameter("p_photo_blob", OracleDbType.Blob)
+                {
+                    Value = picture,
+                    Direction = ParameterDirection.Input
+                };
+
+                OracleParameter pFileName = new OracleParameter("p_nazev_souboru", OracleDbType.Varchar2)
+                {
+                    Value = filename,
+                    Direction = ParameterDirection.Input
+                };
+
+                OracleParameter pSuffix = new OracleParameter("p_pripona", OracleDbType.Varchar2)
+                {
+                    Value = suffix,
+                    Direction = ParameterDirection.Input
+                };
+
+
+                var parameters = new List<OracleParameter> {pId, pPhotoBlob, pFileName, pSuffix };
+
+
+                return await dbTools.ExecuteNonQueryAsync(storedProcedure, parameters);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Chyba při nahrávání fotografie: {ex.Message}", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return -1;
+            }
         }
 
         public void DeleteAllPhotos()
