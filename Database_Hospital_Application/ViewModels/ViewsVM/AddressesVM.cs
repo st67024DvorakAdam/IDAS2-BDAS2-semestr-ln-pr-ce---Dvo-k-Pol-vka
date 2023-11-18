@@ -33,6 +33,26 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             }
         }
 
+        private ObservableCollection<CountryInfo> _countryCodes;
+
+        public ObservableCollection<CountryInfo> CountryCodes
+        {
+            get { return _countryCodes; }
+            set
+            {
+                _countryCodes = value;
+                OnPropertyChange(nameof(CountryCodes));
+
+            }
+        }
+
+        private async Task LoadCountryCodes()
+        {
+            CountryCodesLoader countryCodesLoader = new CountryCodesLoader();
+            await countryCodesLoader.LoadCountryCodesAsync();
+            CountryCodes = countryCodesLoader.CountryCodes;
+        }
+
         // BUTTONS
         public ICommand AddNewAddressCommand { get; private set; }
 
@@ -101,11 +121,14 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         
         public AddressesVM()
         {
+            LoadCountryCodes();
+
             LoadAddressesAsync();
             AddressesView = CollectionViewSource.GetDefaultView(AddressesList);
             AddressesView.Filter = AddressFilter;
             NewAddress = new Address();
             InitializeCommands();
+            
             
         }
 

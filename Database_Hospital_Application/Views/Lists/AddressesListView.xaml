@@ -127,10 +127,14 @@
              PreviewTextInput="TextBox_PreviewTextInput"/>
 
             <TextBlock Grid.Row="7" Text="Země" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
-            <TextBox Grid.Row="8" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
+            <!--<TextBox Grid.Row="8" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
              Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
              VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding NewAddress.Country}"
-             PreviewTextInput="TextBox_PreviewTextInputForCountry"/>
+             PreviewTextInput="TextBox_PreviewTextInputForCountry"/>-->
+            <ComboBox HorizontalAlignment="Center" Grid.Row="8" VerticalAlignment="Center" Background="Transparent" Width="200" 
+          ItemsSource="{Binding CountryCodes}" DisplayMemberPath="OfficialName"
+          SelectedValuePath="Cca3" SelectedValue="{Binding NewAddress.Country}" />
+
 
             <TextBlock Grid.Row="9" Text="PSČ" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
             <TextBox Grid.Row="10" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
