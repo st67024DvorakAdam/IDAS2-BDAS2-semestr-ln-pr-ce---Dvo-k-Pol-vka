@@ -1,8 +1,10 @@
 ﻿using Database_Hospital_Application.Commands;
 using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.Models.Repositories;
+using Database_Hospital_Application.Models.Tools;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,8 +26,31 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
         public ICommand SaveCommand { get; set; }
         public ICommand CancelCommand { get; set; }
 
+
+        private ObservableCollection<CountryInfo> _countryCodes;
+
+        public ObservableCollection<CountryInfo> CountryCodes
+        {
+            get { return _countryCodes; }
+            set
+            {
+                _countryCodes = value;
+                OnPropertyChange(nameof(CountryCodes));
+
+            }
+        }
+
+        private async Task LoadCountryCodes()
+        {
+            CountryCodesLoader countryCodesLoader = new CountryCodesLoader();
+            await countryCodesLoader.LoadCountryCodesAsync();
+            CountryCodes = countryCodesLoader.CountryCodes;
+        }
+
         public EditAddressVM(Address address)
         {
+            LoadCountryCodes();
+
             EditableAddress = address;
             SaveCommand = new AsyncRelayCommand(async (o) => await SaveActionAsync());
             CancelCommand = new RelayCommand(CancelAction);
