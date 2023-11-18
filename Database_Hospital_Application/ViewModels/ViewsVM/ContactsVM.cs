@@ -27,6 +27,45 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             }
         }
 
+        private ObservableCollection<Employee> _employeesList;
+
+        public ObservableCollection<Employee> EmployeesList
+        {
+            get { return _employeesList; }
+            set
+            {
+                _employeesList = value;
+                OnPropertyChange(nameof(EmployeesList));
+            }
+        }
+
+        private void LoadEmployeesFromEmployeeVM()
+        {
+            EmployeeVM employeeVM = new EmployeeVM();
+            _employeesList = employeeVM.EmployeesList;
+        }
+
+
+
+        private ObservableCollection<Patient> _patientsList;
+
+        public ObservableCollection<Patient> PatientsList
+        {
+            get { return _patientsList; }
+            set
+            {
+                _patientsList = value;
+                OnPropertyChange(nameof(PatientsList));
+            }
+        }
+
+        private void LoadPatientsFromPatientVM()
+        {
+            PatientVM patientVM = new PatientVM();
+            _patientsList = patientVM.PatientsList;
+        }
+
+
         // BUTTONS
         public ICommand AddCommand { get; private set; }
         public ICommand DeleteCommand { get; private set; }
@@ -61,8 +100,12 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         public ContactsVM()
         {
+            LoadEmployeesFromEmployeeVM();
+            LoadPatientsFromPatientVM();
+
             LoadContactsAsync();
             InitializeCommands();
+  
         }
 
         private async Task LoadContactsAsync()

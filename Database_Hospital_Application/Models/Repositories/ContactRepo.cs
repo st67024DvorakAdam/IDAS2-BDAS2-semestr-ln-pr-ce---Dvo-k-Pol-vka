@@ -41,7 +41,7 @@ namespace Database_Hospital_Application.Models.Repositories
                         PhoneNumber = Convert.ToInt32(row["TELEFON"])
                     };
                     if (row["PACIENT_ID"] != DBNull.Value) contact.IdOfPatient = Convert.ToInt32(row["PACIENT_ID"]);
-                    else if (row["ZAMESTNANEC_ID"] != DBNull.Value) contact.IdOfEmployee = Convert.ToInt32(row["ZAMESTNANEC_ID"]);
+                    if (row["ZAMESTNANEC_ID"] != DBNull.Value) contact.IdOfEmployee = Convert.ToInt32(row["ZAMESTNANEC_ID"]);
 
                     contacts.Add(contact);
                 }
