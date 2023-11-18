@@ -25,7 +25,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
     {
         private ObservableCollection<Employee> _employeesList;
         
-
         public ObservableCollection<Employee> EmployeesList
         {
             get { return _employeesList; }
@@ -170,7 +169,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
                 NewEmployee = new Employee();
             //}catch(UserNameAlreadyExistsException ex)
             //{
-            //    MessageBox.Show("uzivatelske jemno jiz existuje");
+            //    MessageBox.Show("uzivatelske jmeno jiz existuje");
             //}
         }
 

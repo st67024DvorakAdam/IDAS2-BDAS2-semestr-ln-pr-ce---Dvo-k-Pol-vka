@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
+using System.Collections.ObjectModel;
+using Database_Hospital_Application.ViewModels.ViewsVM;
 
 namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
 {
@@ -29,6 +31,11 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
             EditableEmployee = employee;
             SaveCommand = new AsyncRelayCommand(async (o) => await SaveActionAsync());
             CancelCommand = new RelayCommand(CancelAction);
+
+            LoadPhotosFromPhotoVM();
+            LoadDepartmentsFromDepartmentVM();
+            LoadRolesFromRoleVM();
+            LoadEmployeesFromEmployeeVM();
         }
         private bool CanSaveExecute(object parameter)
         {
@@ -74,6 +81,77 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
             {
                 ClosingRequest?.Invoke(this, EventArgs.Empty);
             });
+        }
+
+
+        //Listy do comboboxů
+        private ObservableCollection<Employee> _employeesList;
+
+        public ObservableCollection<Employee> EmployeesList
+        {
+            get { return _employeesList; }
+            set
+            {
+                _employeesList = value;
+                OnPropertyChange(nameof(EmployeesList));
+            }
+        }
+
+        private ObservableCollection<Foto> _photosList;
+        public ObservableCollection<Foto> PhotosList
+        {
+            get { return _photosList; }
+            set
+            {
+                _photosList = value;
+                OnPropertyChange(nameof(PhotosList));
+            }
+        }
+
+        private ObservableCollection<Department> _departmentList;
+        public ObservableCollection<Department> DepartmentList
+        {
+            get { return _departmentList; }
+            set
+            {
+                _departmentList = value;
+                OnPropertyChange(nameof(DepartmentList));
+            }
+        }
+
+        private ObservableCollection<Role> _roleList;
+        public ObservableCollection<Role> RoleList
+        {
+            get { return _roleList; }
+            set
+            {
+                _roleList = value;
+                OnPropertyChange(nameof(RoleList));
+            }
+        }
+
+        private void LoadPhotosFromPhotoVM()
+        {
+            PhotoVM p = new PhotoVM();
+            _photosList = p.PhotosList;
+        }
+
+        private void LoadDepartmentsFromDepartmentVM()
+        {
+            DepartmentVM d = new DepartmentVM();
+            _departmentList = d.DepartmentsList;
+        }
+
+        private void LoadRolesFromRoleVM()
+        {
+            RolesVM r = new RolesVM();
+            _roleList = r.RolesList;
+        }
+
+        private void LoadEmployeesFromEmployeeVM()
+        {
+            EmployeeVM e = new EmployeeVM();
+            _employeesList = e.EmployeesList;
         }
     }
 }
