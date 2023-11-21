@@ -86,7 +86,17 @@ namespace Database_Hospital_Application.Models.Repositories
         }
         public async Task<int> UpdateMedicalCard(MedicalCard medicalCard)
         {
-            throw new NotImplementedException();
+            string commandText = "update_medical_card";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"p_id", medicalCard.Id },
+                { "p_pacient_id", medicalCard.IdOfPatient },
+                { "p_kurak", medicalCard.Smoking == true?1:0},
+                { "p_alergik", medicalCard.Alergic == true?1:0}
+            };
+
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
 
         public void DeleteAllMedicalCards()

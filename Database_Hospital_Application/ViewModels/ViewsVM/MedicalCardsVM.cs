@@ -35,6 +35,14 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             set { _newIllness = value; OnPropertyChange(nameof(NewIllness)); }
         }
 
+        private Illness _selectedIllness;
+
+        public Illness SelectedIllness
+        {
+            get { return _selectedIllness; }
+            set { _selectedIllness = value; OnPropertyChange(nameof(SelectedIllness)); }
+        }
+
         private ObservableCollection<Patient> _patientsList;
         public ObservableCollection<Patient> PatientsList
         {
@@ -106,6 +114,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         public MedicalCardsVM()
         {
             _newIllness = new Illness();
+            _selectedIllness = new Illness();
             LoadMedicalCardsAsync();
             MedicalCardsView = CollectionViewSource.GetDefaultView(MedicalCardsList);
             MedicalCardsView.Filter = MedicalCardsFilter;

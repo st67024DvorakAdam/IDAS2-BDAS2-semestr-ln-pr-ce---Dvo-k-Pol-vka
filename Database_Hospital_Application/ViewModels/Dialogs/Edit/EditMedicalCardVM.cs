@@ -24,6 +24,7 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
         }
 
 
+
         private ObservableCollection<Patient> _patientsList;
         public ObservableCollection<Patient> PatientsList
         {
@@ -41,23 +42,6 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
             PatientsList = await repo.GetAllPatientsAsync();
         }
 
-        private ObservableCollection<Illness> _illnessesList;
-        public ObservableCollection<Illness> IllnessesList
-        {
-            get { return _illnessesList; }
-            set
-            {
-                _illnessesList = value;
-                OnPropertyChange(nameof(IllnessesList));
-            }
-        }
-
-        private async Task LoadIllnessesAsync()
-        {
-            IllnessesRepo repo = new IllnessesRepo();
-            IllnessesList = await repo.GetIllnessesAsync();
-        }
-
 
         public ICommand SaveCommand { get; set; }
         public ICommand CancelCommand { get; set; }
@@ -69,7 +53,6 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
             CancelCommand = new RelayCommand(CancelAction);
 
             LoadPatientsAsync();
-            LoadIllnessesAsync();
         }
         private bool CanSaveExecute(object parameter)
         {

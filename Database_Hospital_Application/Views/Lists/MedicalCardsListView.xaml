@@ -89,6 +89,7 @@
                 <Button Content="Upravit" Margin="5" Padding="10,3" Command="{Binding EditCommand}" Height="30" FontSize="15"/>
                 <Button Content="Odebrat" Margin="5" Padding="10,3" Command="{Binding DeleteCommand}" Height="30" FontSize="15"/>
                 <Button Content="Přidat nemoc" Margin="5" Padding="10,3" Command="{Binding AddIllnessCommand}" Height="30" FontSize="15"/>
+                <Button Content="Smazat nemoc" Margin="5" Padding="10,3" Command="{Binding DeleteIllnessCommand}" Height="30" FontSize="15"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Column="1" Margin="10">
