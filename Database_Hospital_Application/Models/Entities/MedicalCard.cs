@@ -15,6 +15,8 @@ namespace Database_Hospital_Application.Models.Entities
         public ObservableCollection<Illness> Illnesses { get; set; }
         public string StringVersionOfIllnesses { get; private set; }
         public int IdOfPatient {  get; set; }
+        public bool Smoking { get; set; }
+        public bool Alergic { get; set; }
 
         public void MakeStringVersionOfIllnesses()
         {

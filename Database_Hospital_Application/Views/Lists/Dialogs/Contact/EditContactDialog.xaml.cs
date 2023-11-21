@@ -37,5 +37,15 @@ namespace Database_Hospital_Application.Views.Lists.Dialogs.Contact
         {
             return !Regex.IsMatch(text, "[^0-9]");
         }
+
+        private void ResetComboBox2_Click(object sender, RoutedEventArgs e)
+        {
+            EmployeeCB.SelectedIndex = -1;
+        }
+
+        private void ResetComboBox_Click(object sender, RoutedEventArgs e)
+        {
+            PatientCB.SelectedIndex = -1;
+        }
     }
 }

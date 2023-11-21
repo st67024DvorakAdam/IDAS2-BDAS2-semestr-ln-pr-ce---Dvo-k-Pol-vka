@@ -50,13 +50,19 @@ namespace Database_Hospital_Application.Models.Repositories
                         _foto = new Foto
                         {
                             Id = row.IsNull("FOTO_ID") ? 0 : Convert.ToInt32(row["FOTO_ID"])
-                            
+
                         },
-                        
+
                         _department = new Department
                         {
                             Id = row.IsNull("ODDELENI_ID") ? 0 : Convert.ToInt32(row["ODDELENI_ID"])
+                        },
+                        _role = new Role
+                        {
+                            Id = Convert.ToInt32(row["ROLE_ID"]),
+                            Name = RoleExtensions.GetRoleDescription(Convert.ToInt32(row["ROLE_ID"]))
                         }
+                        
                         
                     };
                     

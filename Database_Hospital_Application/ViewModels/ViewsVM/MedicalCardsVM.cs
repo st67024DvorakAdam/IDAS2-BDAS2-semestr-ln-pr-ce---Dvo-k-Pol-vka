@@ -1,5 +1,10 @@
-﻿using Database_Hospital_Application.Models.Entities;
+﻿using Database_Hospital_Application.Commands;
+using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.Models.Repositories;
+using Database_Hospital_Application.ViewModels.Dialogs.Edit;
+using Database_Hospital_Application.Views.Lists.Dialogs.Drug;
+using Database_Hospital_Application.Views.Lists.Dialogs.Illness;
+using Database_Hospital_Application.Views.Lists.Dialogs.MedicalCard;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using System.Windows.Input;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM
 {
@@ -21,13 +27,92 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             set { _medicalCardsList = value; OnPropertyChange(nameof(MedicalCardsList)); }
         }
 
+        private Illness _newIllness;
+
+        public Illness NewIllness
+        {
+            get { return _newIllness; }
+            set { _newIllness = value; OnPropertyChange(nameof(NewIllness)); }
+        }
+
+        private ObservableCollection<Patient> _patientsList;
+        public ObservableCollection<Patient> PatientsList
+        {
+            get { return _patientsList; }
+            set
+            {
+                _patientsList = value;
+                OnPropertyChange(nameof(PatientsList));
+            }
+        }
+
+        private async Task LoadPatientsAsync()
+        {
+            PatientRepo repo = new PatientRepo();
+            PatientsList = await repo.GetAllPatientsAsync();
+        }
+
+        private ObservableCollection<Illness> _illnessesList;
+        public ObservableCollection<Illness> IllnessesList
+        {
+            get { return _illnessesList; }
+            set
+            {
+                _illnessesList = value;
+                OnPropertyChange(nameof(IllnessesList));
+            }
+        }
+
+        private async Task LoadIllnessesAsync()
+        {
+            IllnessesRepo repo = new IllnessesRepo();
+            IllnessesList = await repo.GetIllnessesAsync();
+        }
+
+        // BUTTONS
+        public ICommand AddCommand { get; private set; }
+        public ICommand DeleteCommand { get; private set; }
+        public ICommand EditCommand { get; private set; }
+
+        private MedicalCard _selectedMedicalCard;
+        public MedicalCard SelectedMedicalCard
+        {
+            get { return _selectedMedicalCard; }
+            set
+            {
+                if (_selectedMedicalCard != value)
+                {
+                    _selectedMedicalCard = value;
+                    OnPropertyChange(nameof(SelectedMedicalCard));
+                    (EditCommand as RelayCommand)?.RaiseCanExecuteChanged();
+                    (DeleteCommand as RelayCommand)?.RaiseCanExecuteChanged();
+                }
+            }
+        }
+
+        private MedicalCard _newMedicalCard = new MedicalCard();
+        public MedicalCard NewMedicalCard
+        {
+            get { return _newMedicalCard; }
+            set
+            {
+                _newMedicalCard = value;
+                OnPropertyChange(nameof(NewMedicalCard));
+            }
+        }
+
         ///KONSTRUKTOR ////////////////////////////////////////////////////////////////////////////////////////
 
         public MedicalCardsVM()
         {
+            _newIllness = new Illness();
             LoadMedicalCardsAsync();
             MedicalCardsView = CollectionViewSource.GetDefaultView(MedicalCardsList);
-            MedicalCardsView.Filter = MedicalCardsFilter;    
+            MedicalCardsView.Filter = MedicalCardsFilter;
+            InitializeCommands();
+
+            LoadPatientsAsync();
+            LoadIllnessesAsync();
         }
 
         private async Task LoadMedicalCardsAsync()
@@ -37,6 +122,56 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         }
         ///KONSTRUKTOR ////////////////////////////////////////////////////////////////////////////////////////
         ///
+
+        private void InitializeCommands()
+        {
+            AddCommand = new RelayCommand(AddNewAction);
+            DeleteCommand = new RelayCommand(DeleteAction, CanExecuteDelete);
+            EditCommand = new RelayCommand(EditAction, CanEdit);
+        }
+
+        private bool CanExecuteDelete(object parameter)
+        {
+            return SelectedMedicalCard != null;
+        }
+
+        private async void DeleteAction(object parameter)
+        {
+            if (SelectedMedicalCard == null) return;
+
+            MedicalCardsRepo medicalCardsRepo = new MedicalCardsRepo();
+            await medicalCardsRepo.DeleteMedicalCard(SelectedMedicalCard.Id);
+            await LoadMedicalCardsAsync();
+        }
+
+        private async void AddNewAction(object parameter)
+        {
+            MedicalCardsRepo medicalCardsRepo = new MedicalCardsRepo();
+            await medicalCardsRepo.AddMedicalCard(NewMedicalCard, NewIllness);
+            await LoadMedicalCardsAsync();
+            NewMedicalCard = new MedicalCard();
+        }
+
+        private bool CanEdit(object parameter)
+        {
+            return SelectedMedicalCard != null;
+        }
+
+        private void EditAction(object parameter)
+        {
+            if (!CanEdit(parameter)) return;
+
+
+            EditMedicalCardVM editVM = new EditMedicalCardVM(SelectedMedicalCard);
+            EditMedicalCardDialog editDialog = new EditMedicalCardDialog(editVM);
+
+            editDialog.ShowDialog();
+
+            if (editDialog.DialogResult == true)
+            {
+                LoadMedicalCardsAsync();
+            }
+        }
 
         //FILTER/////////////////////////////////////////////////////////////////////
 

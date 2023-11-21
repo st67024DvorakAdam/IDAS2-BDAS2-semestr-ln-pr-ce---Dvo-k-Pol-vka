@@ -30,16 +30,26 @@
 
         <TextBlock Text="Zaměstnanec (Username)" FontSize="18" Grid.Row="4" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
         <!--<TextBox x:Name="EmployeeIdTextBox" Height="25" FontSize="16" Grid.Row="5" Margin="5" Width="300" HorizontalAlignment="Center" Text="{Binding EditableContact.IdOfEmployee, UpdateSourceTrigger=PropertyChanged}"/>-->
-        <ComboBox HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" Background="Transparent" Width="300" 
+        <ComboBox x:Name="EmployeeCB" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" Background="Transparent" Width="300" 
         ItemsSource="{Binding EmployeesList}" DisplayMemberPath="UserName" 
         SelectedValuePath="Id" SelectedValue="{Binding EditableContact.IdOfEmployee, UpdateSourceTrigger=PropertyChanged}">
+            <ComboBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Reset" Click="ResetComboBox2_Click" />
+                </ContextMenu>
+            </ComboBox.ContextMenu>
         </ComboBox>
 
         <TextBlock Text="Pacient (rodné číslo)" FontSize="18" Grid.Row="6" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
         <!--<TextBox x:Name="PatientIDTextBox" Height="25" FontSize="16" Grid.Row="7" Margin="5" Width="300" HorizontalAlignment="Center" Text="{Binding EditableContact.IdOfPatient, UpdateSourceTrigger=PropertyChanged}"/>-->
-        <ComboBox HorizontalAlignment="Center" Grid.Row="7" VerticalAlignment="Center" Background="Transparent" Width="300" 
+        <ComboBox x:Name="PatientCB" HorizontalAlignment="Center" Grid.Row="7" VerticalAlignment="Center" Background="Transparent" Width="300" 
         ItemsSource="{Binding PatientsList}" DisplayMemberPath="BirthNumber" 
         SelectedValuePath="Id" SelectedValue="{Binding EditableContact.IdOfPatient, UpdateSourceTrigger=PropertyChanged}">
+            <ComboBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Reset" Click="ResetComboBox_Click" />
+                </ContextMenu>
+            </ComboBox.ContextMenu>
         </ComboBox>
 
         <StackPanel Grid.Row="10" Orientation="Horizontal" HorizontalAlignment="Center" Margin="25">

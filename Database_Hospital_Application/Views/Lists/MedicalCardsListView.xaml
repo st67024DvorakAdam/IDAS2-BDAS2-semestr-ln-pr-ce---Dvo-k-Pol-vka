@@ -10,6 +10,9 @@
     <UserControl.DataContext>
         <vm:MedicalCardsVM/>
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <local:BoolToIndexConverter x:Key="boolToIndexConverter" />
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -32,7 +35,7 @@
 
             <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="ZDRAVOTNÍ KARTY" VerticalAlignment="Center" FontSize="40" Margin="0,0,0,35" Foreground="White" FontWeight="Bold"/>
             <DataGrid x:Name="MedicalCardsDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding MedicalCardsList}" Background="Transparent" 
-                  SelectedItem="{Binding SelectedCard, Mode=TwoWay}"
+                  SelectedItem="{Binding SelectedMedicalCard, Mode=TwoWay}"
                   AreRowDetailsFrozen="True" CanUserAddRows="False" CanUserDeleteRows="False"
                   CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single" 
                   SelectionUnit="FullRow" GridLinesVisibility="None" HeadersVisibility="Column" 
@@ -66,6 +69,8 @@
                     <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*"/>
                     <DataGridTextColumn Header="Rodné číslo" Binding="{Binding BirthNumberOfPatient}" Width="*"/>
                     <DataGridTextColumn Header="Nemoci" Binding="{Binding StringVersionOfIllnesses}" Width="*"/>
+                    <DataGridTextColumn Header="Kuřák" Binding="{Binding Smoking}" Width="*"/>
+                    <DataGridTextColumn Header="Alergik" Binding="{Binding Alergic}" Width="*"/>
                 </DataGrid.Columns>
 
 
@@ -83,6 +88,7 @@
             <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10" >
                 <Button Content="Upravit" Margin="5" Padding="10,3" Command="{Binding EditCommand}" Height="30" FontSize="15"/>
                 <Button Content="Odebrat" Margin="5" Padding="10,3" Command="{Binding DeleteCommand}" Height="30" FontSize="15"/>
+                <Button Content="Přidat nemoc" Margin="5" Padding="10,3" Command="{Binding AddIllnessCommand}" Height="30" FontSize="15"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Column="1" Margin="10">
@@ -100,20 +106,38 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Text="Nová osobní karta TODO" Foreground="White" FontSize="20" FontWeight="Bold"
+            <TextBlock Grid.Row="0" Text="Nová zdravotní karta" Foreground="White" FontSize="20" FontWeight="Bold"
                HorizontalAlignment="Center" Margin="10"/>
 
-            <TextBlock Grid.Row="1" Text="Rodné číslo ?" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
-            <TextBox Grid.Row="2" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
+            <TextBlock Grid.Row="1" Text="Rodné číslo" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
+            <!--<TextBox Grid.Row="2" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
              Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
-             VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding NewContact.Email}"/>
+             VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding NewContact.Email}"/>-->
+            <ComboBox HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Background="Transparent" Width="200" 
+            ItemsSource="{Binding PatientsList}" DisplayMemberPath="BirthNumber"
+            SelectedValuePath="Id" SelectedValue="{Binding NewMedicalCard.IdOfPatient}">
+            </ComboBox>
 
-            <TextBlock Grid.Row="3" Text="Nemoc ? (asi combobox s multiselecetem)" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
-            <TextBox Grid.Row="4" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
-             Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
-             VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding NewContact.PhoneNumber}"/>
+            <TextBlock Grid.Row="3" Text="Nemoc" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
+            <ComboBox HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center" Background="Transparent" Width="200" 
+            ItemsSource="{Binding IllnessesList}" DisplayMemberPath="Name"
+            SelectedValuePath="Id" SelectedValue="{Binding NewIllness.Id}">
+            </ComboBox>
 
-            
+            <TextBlock Grid.Row="5" Text="Kouří" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
+            <ComboBox HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Center" Background="Transparent" Width="200" 
+                      SelectedIndex="{Binding NewMedicalCard.Smoking, Converter={StaticResource boolToIndexConverter}}">
+                <ComboBoxItem>True</ComboBoxItem>
+                <ComboBoxItem>False</ComboBoxItem>
+            </ComboBox>
+
+            <TextBlock Grid.Row="7" Text="Alergik" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
+            <ComboBox HorizontalAlignment="Center" Grid.Row="8" VerticalAlignment="Center" Background="Transparent" Width="200" 
+                      SelectedIndex="{Binding NewMedicalCard.Alergic, Converter={StaticResource boolToIndexConverter}}">
+                <ComboBoxItem>True</ComboBoxItem>
+                <ComboBoxItem>False</ComboBoxItem>
+            </ComboBox>
+
 
 
             <Button Grid.Row="9" Content="Přidat" Margin="0,10,0,0" Padding="10,3" Width="200" HorizontalAlignment="Center"

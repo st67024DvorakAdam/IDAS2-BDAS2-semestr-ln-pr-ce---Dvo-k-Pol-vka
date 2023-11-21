@@ -119,10 +119,27 @@
              Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
              VerticalContentAlignment="Center" PreviewTextInput="TextBox_PreviewTextInput" CaretBrush="White" Text="{Binding NewDrug.Dosage}"/>
 
-            <TextBlock Grid.Row="5" Text="Id lékaře" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
-            <TextBox Grid.Row="6" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
+            <TextBlock Grid.Row="5" Text="Lékař" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
+            <!--<TextBox Grid.Row="6" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
              Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
-             VerticalContentAlignment="Center" PreviewTextInput="TextBox_PreviewTextInput" CaretBrush="White" Text="{Binding NewDrug.Employee_id}"/>
+             VerticalContentAlignment="Center" PreviewTextInput="TextBox_PreviewTextInput" CaretBrush="White" Text="{Binding NewDrug.Employee_id}"/>-->
+            <ComboBox HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Center" Background="Transparent" Width="200" 
+            ItemsSource="{Binding DoctorsList}" 
+            SelectedValuePath="Id" SelectedValue="{Binding NewDrug.Employee_id}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} - {1} {2}">
+                                    <Binding Path="UserName" />
+                                    <Binding Path="FirstName" />
+                                    <Binding Path="LastName" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
 
             <Button Grid.Row="7" Content="Přidat" Margin="0,10,0,0" Padding="10,3" Width="200" HorizontalAlignment="Center"
             Command="{Binding AddCommand}" VerticalAlignment="Top"/>

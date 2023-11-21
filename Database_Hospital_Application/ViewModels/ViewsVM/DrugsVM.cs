@@ -1,5 +1,6 @@
 ﻿using Database_Hospital_Application.Commands;
 using Database_Hospital_Application.Models.Entities;
+using Database_Hospital_Application.Models.Enums;
 using Database_Hospital_Application.Models.Repositories;
 using Database_Hospital_Application.ViewModels.Dialogs.Edit;
 using Database_Hospital_Application.Views.Lists.Dialogs.Contact;
@@ -7,6 +8,7 @@ using Database_Hospital_Application.Views.Lists.Dialogs.Drug;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -27,6 +29,25 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             }
         }
 
+
+        private ObservableCollection<Employee> _doctorsList;
+        public ObservableCollection<Employee> DoctorsList
+        {
+            get { return _doctorsList; }
+            set
+            {
+                _doctorsList = value;
+                OnPropertyChange(nameof(DoctorsList));
+            }
+        }
+
+        private async Task LoadDoctorsAsync()
+        {
+            EmployeesRepo repo = new EmployeesRepo();
+            DoctorsList = await repo.GetAllEmployeesAsync();
+            DoctorsList = new ObservableCollection<Employee>(
+            DoctorsList.Where(emp => emp.RoleID == 2 || emp._role.Id == 2));
+        }
 
         // BUTTONS
         public ICommand AddCommand { get; private set; }
@@ -67,6 +88,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             DrugsView = CollectionViewSource.GetDefaultView(DrugsList);
             DrugsView.Filter = DrugsFilter;
             InitializeCommands();
+
+            LoadDoctorsAsync();
         }
         private async Task LoadDrugsAsync()
         {

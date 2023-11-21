@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
+using System.Collections.ObjectModel;
 
 namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
 {
@@ -21,6 +22,26 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
         }
 
 
+        private ObservableCollection<Employee> _doctorsList;
+        public ObservableCollection<Employee> DoctorsList
+        {
+            get { return _doctorsList; }
+            set
+            {
+                _doctorsList = value;
+                OnPropertyChange(nameof(DoctorsList));
+            }
+        }
+
+        private async Task LoadDoctorsAsync()
+        {
+            EmployeesRepo repo = new EmployeesRepo();
+            DoctorsList = await repo.GetAllEmployeesAsync();
+            DoctorsList = new ObservableCollection<Employee>(
+            DoctorsList.Where(emp => emp.RoleID == 2 || emp._role.Id == 2));
+        }
+
+
         public ICommand SaveCommand { get; set; }
         public ICommand CancelCommand { get; set; }
 
@@ -29,6 +50,8 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
             EditableDrug = drug;
             SaveCommand = new AsyncRelayCommand(async (o) => await SaveActionAsync());
             CancelCommand = new RelayCommand(CancelAction);
+
+            LoadDoctorsAsync();
         }
         private bool CanSaveExecute(object parameter)
         {

@@ -37,7 +37,9 @@ namespace Database_Hospital_Application.Models.Repositories
                         Id = Convert.ToInt32(row["ID"]),
                         BirthNumberOfPatient = Convert.ToInt64(row["RODNE_CISLO"]),
                         IdOfPatient = Convert.ToInt32(row["PACIENT_ID"]),
-                        Illnesses = new ObservableCollection<Illness>()
+                        Illnesses = new ObservableCollection<Illness>(),
+                        Smoking = Convert.ToInt32(row["KURAK"]) == 1? true:false,
+                        Alergic = Convert.ToInt32(row["ALERGIK"]) == 1 ? true : false
                     };
 
                     string illnessesData = row["prubezna_nemoc_nazev"].ToString();
@@ -58,18 +60,27 @@ namespace Database_Hospital_Application.Models.Repositories
             return medicalCards;
         }
 
-        public void AddMedicalCard(MedicalCard medicalCard)
+        public async Task AddMedicalCard(MedicalCard medicalCard, Illness newIllness)
         {
+            string commandText = "add_medical_card";
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_pacient_id", medicalCard.IdOfPatient },
+                { "p_kurak", medicalCard.Smoking == true?1:0},
+                { "p_alergik", medicalCard.Alergic == true?1:0},
+                { "p_nemoc_id", newIllness.Id },
+            };
 
+            await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
 
-        public void DeleteMedicalCard(int id)
+        public async Task<int> DeleteMedicalCard(int id)
         {
-
+            throw new NotImplementedException();
         }
-        public void UpdateMedicalCard(MedicalCard medicalCard)
+        public async Task<int> UpdateMedicalCard(MedicalCard medicalCard)
         {
-
+            throw new NotImplementedException();
         }
 
         public void DeleteAllMedicalCards()

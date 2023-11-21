@@ -150,9 +150,14 @@
                       ItemsSource="{Binding EmployeesList}" DisplayMemberPath="UserName" 
                       SelectedIndex="{Binding NewEmployee.IdOfSuperiorEmployee}">
             </ComboBox>-->
-            <ComboBox HorizontalAlignment="Center" Grid.Row="10" VerticalAlignment="Center" Background="Transparent" Width="270" 
+            <ComboBox x:Name="EmployeeCB" HorizontalAlignment="Center" Grid.Row="10" VerticalAlignment="Center" Background="Transparent" Width="270" 
           ItemsSource="{Binding EmployeesList}" DisplayMemberPath="UserName" 
           SelectedValuePath="Id" SelectedValue="{Binding NewEmployee.IdOfSuperiorEmployee}">
+                <ComboBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Reset" Click="ResetComboBox2_Click" />
+                    </ContextMenu>
+                </ComboBox.ContextMenu>
             </ComboBox>
 
             <TextBlock Text="Fotografie" FontSize="18" Grid.Row="11" Margin="5" HorizontalAlignment="Center" Foreground="White"/>

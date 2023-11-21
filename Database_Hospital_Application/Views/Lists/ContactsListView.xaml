@@ -19,7 +19,7 @@
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="150"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
@@ -120,18 +120,28 @@
             <!--<TextBox Grid.Row="6" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
              Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
              VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding NewContact.IdOfPatient}"/>-->
-            <ComboBox HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Center" Background="Transparent" Width="200" 
+            <ComboBox x:Name="PatientCB" HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Center" Background="Transparent" Width="200" 
             ItemsSource="{Binding PatientsList}" DisplayMemberPath="BirthNumber" 
             SelectedValuePath="Id" SelectedValue="{Binding NewContact.IdOfPatient}">
+                <ComboBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Reset" Click="ResetComboBox_Click" />
+                    </ContextMenu>
+                </ComboBox.ContextMenu>
             </ComboBox>
 
             <TextBlock Grid.Row="7" Text="Zaměstnanec (Username)" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
             <!--<TextBox Grid.Row="8" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
              Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
              VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding NewContact.IdOfEmployee}"/>-->
-            <ComboBox HorizontalAlignment="Center" Grid.Row="8" VerticalAlignment="Center" Background="Transparent" Width="200" 
+            <ComboBox x:Name="EmployeeCB" HorizontalAlignment="Center" Grid.Row="8" VerticalAlignment="Center" Background="Transparent" Width="200" 
             ItemsSource="{Binding EmployeesList}" DisplayMemberPath="UserName" 
             SelectedValuePath="Id" SelectedValue="{Binding NewContact.IdOfEmployee}">
+                <ComboBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Reset" Click="ResetComboBox2_Click" />
+                    </ContextMenu>
+                </ComboBox.ContextMenu>
             </ComboBox>
 
 
