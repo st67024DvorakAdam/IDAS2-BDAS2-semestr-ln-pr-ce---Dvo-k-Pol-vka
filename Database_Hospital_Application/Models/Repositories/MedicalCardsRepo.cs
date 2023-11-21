@@ -76,7 +76,13 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<int> DeleteMedicalCard(int id)
         {
-            throw new NotImplementedException();
+            string commandText = "delete_contact_by_id";
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_id", id }
+            };
+
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
         public async Task<int> UpdateMedicalCard(MedicalCard medicalCard)
         {
