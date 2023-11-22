@@ -25,7 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModels\ViewsVM\DoctorVM\" />
     <Folder Include="ViewModels\ViewsVM\AssistantVM\" />
     <Folder Include="ViewModels\ViewsVM\AdminVm\" />
     <Folder Include="ViewModels\ViewsVM\NurseVM\" />

@@ -101,6 +101,72 @@
                         </Grid>
 
                     </Menu:Button>
+                    <Menu:Button Style="{StaticResource Button}"
+                        Command="{Binding PatientCommand}"
+                        IsChecked="True">
+
+                        <Grid>
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-patient-30.png?raw=true"
+               Height="30"
+               Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
+                            <TextBlock Text="Pacient"
+                   Style="{StaticResource TextStyle}" />
+
+                        </Grid>
+
+                    </Menu:Button>
+                    <Menu:Button Style="{StaticResource Button}"
+                    Command="{Binding DepartmentCommand}"
+                    IsChecked="True">
+
+                        <Grid>
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-department-30.png?raw=true"
+                        Height="30"
+                        Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
+                            <TextBlock Text="Moje oddělení"
+                        Style="{StaticResource TextStyle}" />
+
+                        </Grid>
+
+                    </Menu:Button>
+                    <Menu:Button Style="{StaticResource Button}"
+                        Command="{Binding PrescriptedPillsCommand}"
+                        IsChecked="True">
+
+                        <Grid>
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-drugs-30.png?raw=true"
+                        Height="30"
+                        Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
+                            <TextBlock Text="Předepsané léky"
+                        Style="{StaticResource TextStyle}" />
+
+                        </Grid>
+
+                    </Menu:Button>
+                    <Menu:Button Style="{StaticResource Button}"
+                    Command="{Binding HospitalizaceCommand}"
+                    IsChecked="True">
+
+                        <Grid>
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-person-30.png?raw=true"
+                             Height="30"
+                             Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
+                            <TextBlock Text="Hospitalizace"
+                            Style="{StaticResource TextStyle}" />
+
+                        </Grid>
+
+                    </Menu:Button>
+                    <Menu:Button Style="{StaticResource Button}" Command="{Binding NewPatientCommand}" IsChecked="True">
+
+                        <Grid>
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-person-30.png?raw=true" Height="30"
+                             Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
+                            <TextBlock Text="Přijmout pacienta" Style="{StaticResource TextStyle}" />
+
+                        </Grid>
+
+                    </Menu:Button>
 
                     <!--<Menu:Button Style="{StaticResource Button}"
                               Command="{Binding UsersListCommand}">
