@@ -90,8 +90,8 @@ namespace Database_Hospital_Application.Models.Repositories
 
             var parameters = new Dictionary<string, object>
             {
-                {"p_id", medicalCard.Id },
-                { "p_pacient_id", medicalCard.IdOfPatient },
+                { "p_id", medicalCard.Id },
+                { "p_rodne_cislo_pacienta", medicalCard.BirthNumberOfPatient },
                 { "p_kurak", medicalCard.Smoking == true?1:0},
                 { "p_alergik", medicalCard.Alergic == true?1:0}
             };
@@ -102,6 +102,32 @@ namespace Database_Hospital_Application.Models.Repositories
         public void DeleteAllMedicalCards()
         {
 
+        }
+
+        public async Task<int> AddIllnessIntoMedicalCard(MedicalCard medicalCard, Illness illness)
+        {
+            string commandText = "add_illness_into_medical_card";
+
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_medical_card_id", medicalCard.Id },
+                { "p_illness_id", illness.Id }
+            };
+
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
+        }
+
+        public async Task<int> DeleteIllnessFromMedicalCard(MedicalCard medicalCard, Illness illness)
+        {
+            string commandText = "delete_illness_from_medical_card";
+
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_medical_card_id", medicalCard.Id },
+                { "p_illness_id", illness.Id }
+            };
+
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
     }
 }

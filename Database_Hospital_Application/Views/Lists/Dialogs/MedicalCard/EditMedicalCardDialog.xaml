@@ -20,37 +20,30 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
 
-        <TextBlock Grid.Row="1" Text="Rodné číslo" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
-        <!--<TextBox Grid.Row="2" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
-             Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
-             VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding NewContact.Email}"/>-->
-        <ComboBox HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Background="Transparent" Width="200" 
+        <TextBlock Grid.Row="0" Text="Rodné číslo" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
+        <ComboBox HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Background="Transparent" Width="200" 
             ItemsSource="{Binding PatientsList}" DisplayMemberPath="BirthNumber"
-            SelectedValuePath="Id" SelectedValue="{Binding EditableMedicalCard.BirthNumberOfPatient, UpdateSourceTrigger=PropertyChanged}">
+            SelectedValuePath="BirthNumber" SelectedValue="{Binding EditableMedicalCard.BirthNumberOfPatient, UpdateSourceTrigger=PropertyChanged}">
         </ComboBox>
 
-        <TextBlock Grid.Row="5" Text="Kouří" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
-        <ComboBox HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Center" Background="Transparent" Width="200" 
+        <TextBlock Grid.Row="2" Text="Kouří" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
+        <ComboBox HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" Background="Transparent" Width="200" 
                       SelectedIndex="{Binding EditableMedicalCard.Smoking, Converter={StaticResource boolToIndexConverter}, UpdateSourceTrigger=PropertyChanged}">
             <ComboBoxItem>True</ComboBoxItem>
             <ComboBoxItem>False</ComboBoxItem>
         </ComboBox>
 
-        <TextBlock Grid.Row="7" Text="Alergik" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
-        <ComboBox HorizontalAlignment="Center" Grid.Row="8" VerticalAlignment="Center" Background="Transparent" Width="200" 
+        <TextBlock Grid.Row="4" Text="Alergik" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
+        <ComboBox HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" Background="Transparent" Width="200" 
                       SelectedIndex="{Binding EditableMedicalCard.Alergic, Converter={StaticResource boolToIndexConverter}, UpdateSourceTrigger=PropertyChanged}">
             <ComboBoxItem>True</ComboBoxItem>
             <ComboBoxItem>False</ComboBoxItem>
         </ComboBox>
 
-        <StackPanel Grid.Row="10" Orientation="Horizontal" HorizontalAlignment="Center" Margin="25">
+        <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Center" Margin="25">
             <Button Command="{Binding CancelCommand}" Content="Zrušit" Margin="5" Width="100" Height="35" FontSize="18"/>
             <Button Command="{Binding SaveCommand}" Content="Potvrdit" Margin="5" Width="100" FontSize="18"/>
         </StackPanel>

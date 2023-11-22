@@ -81,6 +81,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         public ICommand AddCommand { get; private set; }
         public ICommand DeleteCommand { get; private set; }
         public ICommand EditCommand { get; private set; }
+        public ICommand AddIllnessCommand { get; private set; }
+        public ICommand DeleteIllnessCommand { get; private set; }
 
         private MedicalCard _selectedMedicalCard;
         public MedicalCard SelectedMedicalCard
@@ -94,6 +96,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
                     OnPropertyChange(nameof(SelectedMedicalCard));
                     (EditCommand as RelayCommand)?.RaiseCanExecuteChanged();
                     (DeleteCommand as RelayCommand)?.RaiseCanExecuteChanged();
+                    (AddIllnessCommand as RelayCommand)?.RaiseCanExecuteChanged();
+                    (DeleteIllnessCommand as RelayCommand)?.RaiseCanExecuteChanged();
                 }
             }
         }
@@ -113,8 +117,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         public MedicalCardsVM()
         {
-            _newIllness = new Illness();
-            _selectedIllness = new Illness();
             LoadMedicalCardsAsync();
             MedicalCardsView = CollectionViewSource.GetDefaultView(MedicalCardsList);
             MedicalCardsView.Filter = MedicalCardsFilter;
@@ -137,6 +139,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             AddCommand = new RelayCommand(AddNewAction);
             DeleteCommand = new RelayCommand(DeleteAction, CanExecuteDelete);
             EditCommand = new RelayCommand(EditAction, CanEdit);
+            AddIllnessCommand = new RelayCommand(AddIllnessAction, CanEdit);
+            DeleteIllnessCommand = new RelayCommand(DeleteIllnessAction, CanEdit);
         }
 
         private bool CanExecuteDelete(object parameter)
@@ -159,6 +163,38 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             await medicalCardsRepo.AddMedicalCard(NewMedicalCard, NewIllness);
             await LoadMedicalCardsAsync();
             NewMedicalCard = new MedicalCard();
+        }
+
+        private async void AddIllnessAction(object parameter)
+        {
+            if (!CanEdit(parameter)) return;
+
+            EditMedicalCardVM editVM = new EditMedicalCardVM(SelectedMedicalCard);
+            AddIllnessIntoMedicalCard editDialog = new AddIllnessIntoMedicalCard(editVM);
+
+
+            editDialog.ShowDialog();
+
+            if (editDialog.DialogResult == true)
+            {
+                await LoadMedicalCardsAsync();
+            }
+        }
+
+        private async void DeleteIllnessAction(object parameter)
+        {
+            if (!CanEdit(parameter)) return;
+
+            EditMedicalCardVM editVM = new EditMedicalCardVM(SelectedMedicalCard);
+            DeleteIllnessFromMedicalCard editDialog = new DeleteIllnessFromMedicalCard(editVM);
+
+
+            editDialog.ShowDialog();
+
+            if (editDialog.DialogResult == true)
+            {
+                await LoadMedicalCardsAsync();
+            }
         }
 
         private bool CanEdit(object parameter)

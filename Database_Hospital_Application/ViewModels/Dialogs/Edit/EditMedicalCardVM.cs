@@ -43,16 +43,44 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
         }
 
 
+        private ObservableCollection<Illness> _illnessesList;
+        public ObservableCollection<Illness> IllnessesList
+        {
+            get { return _illnessesList; }
+            set
+            {
+                _illnessesList = value;
+                OnPropertyChange(nameof(IllnessesList));
+            }
+        }
+
+        private async Task LoadIllnessesAsync()
+        {
+            IllnessesRepo repo = new IllnessesRepo();
+            IllnessesList = await repo.GetIllnessesAsync();
+        }
+
+
         public ICommand SaveCommand { get; set; }
         public ICommand CancelCommand { get; set; }
+        public ICommand SaveNewIllnessCommand { get; set; }
+        public ICommand CancelNewIllnessCommand { get; set; }
+        public ICommand SaveDeletingIllnessCommand { get; set; }
 
         public EditMedicalCardVM(MedicalCard medicalCard)
         {
             EditableMedicalCard = medicalCard;
+            NewIllness = new Illness();
+
             SaveCommand = new AsyncRelayCommand(async (o) => await SaveActionAsync());
             CancelCommand = new RelayCommand(CancelAction);
 
+            SaveNewIllnessCommand = new AsyncRelayCommand(async (o) => await SaveNewIllnessActionAsync());
+            SaveDeletingIllnessCommand = new AsyncRelayCommand(async (o) => await SaveDeletingIllnessActionAsync());
+            CancelNewIllnessCommand = new RelayCommand(CancelNewIllnessAction);
+
             LoadPatientsAsync();
+            LoadIllnessesAsync();
         }
         private bool CanSaveExecute(object parameter)
         {
@@ -99,5 +127,73 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
                 ClosingRequest?.Invoke(this, EventArgs.Empty);
             });
         }
+
+
+        //Pro úpravu listu nemocí v kartě
+        private Illness _newIllness;
+
+        public Illness NewIllness
+        {
+            get { return _newIllness; }
+            set { _newIllness = value; OnPropertyChange(nameof(NewIllness)); }
+        }
+
+        private async Task SaveNewIllnessActionAsync()
+        {
+            try
+            {
+                MedicalCardsRepo medicalCardsRepo = new MedicalCardsRepo();
+                int affectedRows = await medicalCardsRepo.AddIllnessIntoMedicalCard(EditableMedicalCard,NewIllness);
+
+                if (affectedRows == 0)
+                {
+                    MessageBox.Show("Zdravotní kartu se nepodařilo změnit", "Not Ok", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                }
+                else
+                {
+                    MessageBox.Show("Zdravotní karta byl úspšně aktualizován", "Ok", MessageBoxButton.OK, MessageBoxImage.Information);
+                    OnClosingRequest();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                OnClosingRequest();
+            }
+        }
+
+        private async Task SaveDeletingIllnessActionAsync()
+        {
+            try
+            {
+                MedicalCardsRepo medicalCardsRepo = new MedicalCardsRepo();
+                int affectedRows = await medicalCardsRepo.DeleteIllnessFromMedicalCard(EditableMedicalCard, NewIllness);
+
+                if (affectedRows == 0)
+                {
+                    MessageBox.Show("Zdravotní kartu se nepodařilo změnit", "Not Ok", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                }
+                else
+                {
+                    MessageBox.Show("Zdravotní karta byl úspšně aktualizován", "Ok", MessageBoxButton.OK, MessageBoxImage.Information);
+                    OnClosingRequest();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                OnClosingRequest();
+            }
+        }
+
+        public void CancelNewIllnessAction(object parameter)
+        {
+            OnClosingRequest();
+        }
+
     }
 }
