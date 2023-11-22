@@ -117,6 +117,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         public MedicalCardsVM()
         {
+            NewIllness = new Illness();
             LoadMedicalCardsAsync();
             MedicalCardsView = CollectionViewSource.GetDefaultView(MedicalCardsList);
             MedicalCardsView.Filter = MedicalCardsFilter;
@@ -153,7 +154,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             if (SelectedMedicalCard == null) return;
 
             MedicalCardsRepo medicalCardsRepo = new MedicalCardsRepo();
-            await medicalCardsRepo.DeleteMedicalCard(SelectedMedicalCard.Id);
+            await medicalCardsRepo.DeleteMedicalCard(SelectedMedicalCard);
             await LoadMedicalCardsAsync();
         }
 

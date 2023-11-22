@@ -91,7 +91,7 @@ namespace Database_Hospital_Application.Models.Repositories
                     {
                         FirstName = (string)result.Rows[0]["JMENO"],
                         LastName = (string)result.Rows[0]["PRIJMENI"],
-                        BirthNumber = Convert.ToInt64(result.Rows[0]["RODNE_CISLO"]),
+                        BirthNumber = (result.Rows[0]["RODNE_CISLO"]).ToString(),
                         Sex = SexEnumParser.GetEnumFromString((string)result.Rows[0]["POHLAVI"])     
                     }
                 };

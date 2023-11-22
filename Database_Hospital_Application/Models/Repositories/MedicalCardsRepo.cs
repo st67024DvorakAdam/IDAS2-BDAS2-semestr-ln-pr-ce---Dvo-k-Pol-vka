@@ -48,7 +48,12 @@ namespace Database_Hospital_Application.Models.Repositories
                         string[] illnessesArray = illnessesData.Split(',');
                         foreach (string illnessName in illnessesArray)
                         {
-                            Illness illness = new Illness { Name = illnessName.Trim() };
+                            string[] illnessIdAndName = illnessName.Split("|");
+                            Illness illness = new Illness 
+                            { 
+                                Id = Convert.ToInt32(illnessIdAndName[0]),
+                                Name = illnessIdAndName[1].Trim() 
+                            };
                             medicalCard.Illnesses.Add(illness);
                         }
                     }
@@ -74,12 +79,19 @@ namespace Database_Hospital_Application.Models.Repositories
             await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
 
-        public async Task<int> DeleteMedicalCard(int id)
+        public async Task<int> DeleteMedicalCard(MedicalCard medicalCard)
         {
-            string commandText = "delete_contact_by_id";
+            ObservableCollection<Illness> illnessesInCard = medicalCard.Illnesses;
+            foreach(var i in illnessesInCard)
+            {
+                DeleteIllnessFromMedicalCard(medicalCard, i);
+            }
+
+
+            string commandText = "delete_medical_card_by_id";
             var parameters = new Dictionary<string, object>
             {
-                { "p_id", id }
+                { "p_id", medicalCard.Id }
             };
 
             return await dbTools.ExecuteNonQueryAsync(commandText, parameters);

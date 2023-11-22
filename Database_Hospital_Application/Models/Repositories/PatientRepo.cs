@@ -37,7 +37,7 @@ namespace Database_Hospital_Application.Models.Repositories
                         Id = Convert.ToInt32(row["ID"]),
                         FirstName = row["JMENO"].ToString(),
                         LastName = row["PRIJMENI"].ToString(),
-                        BirthNumber = Convert.ToInt64(row["RODNE_CISLO"]),
+                        BirthNumber = row["RODNE_CISLO"].ToString(),
                         _address = new Address
                         {
                             Id = Convert.ToInt32(row["ADRESA_ID"])
@@ -48,6 +48,12 @@ namespace Database_Hospital_Application.Models.Repositories
                         }
                         
                     };
+
+                    //přidání nul pro RČ když začíná nulama
+                    if (patient.BirthNumber.Length < 8) patient.BirthNumber = "0" + patient.BirthNumber;
+                    if (patient.BirthNumber.Length < 9) patient.BirthNumber = "0" + patient.BirthNumber;
+                    if (patient.BirthNumber.Length < 10) patient.BirthNumber = "0" + patient.BirthNumber;
+
                     patient.Sex = SexEnumParser.GetEnumFromString(row["POHLAVI"].ToString());
                     Patients.Add(patient);
                 }

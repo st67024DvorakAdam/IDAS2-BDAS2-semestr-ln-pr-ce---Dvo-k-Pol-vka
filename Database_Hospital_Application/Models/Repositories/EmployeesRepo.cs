@@ -41,7 +41,7 @@ namespace Database_Hospital_Application.Models.Repositories
                         Id = Convert.ToInt32(row["ID"]),
                         FirstName = row["JMENO"].ToString(),
                         LastName = row["PRIJMENI"].ToString(),
-                        BirthNumber = Convert.ToInt64(row["RODNE_CISLO"]),
+                        BirthNumber = (row["RODNE_CISLO"]).ToString(),
                         IdOfSuperiorEmployee = row.IsNull("ZAMESTNANEC_ID") ? 0 : Convert.ToInt32(row["ZAMESTNANEC_ID"]),
                         RoleID = Convert.ToInt32(row["ROLE_ID"]),
                         UserName = row["UZIVATELSKE_JMENO"].ToString(),
@@ -68,6 +68,11 @@ namespace Database_Hospital_Application.Models.Repositories
                     
                     employee.Sex = SexEnumParser.GetEnumFromString(row["POHLAVI"].ToString());
                     
+                    //přidání nul pro RČ když začíná nulama
+                    if (employee.BirthNumber.Length < 8) employee.BirthNumber = "0" + employee.BirthNumber;
+                    if (employee.BirthNumber.Length < 9) employee.BirthNumber = "0" + employee.BirthNumber;
+                    if (employee.BirthNumber.Length < 10) employee.BirthNumber = "0" + employee.BirthNumber;
+
                     employees.Add(employee);
                 }
             }
@@ -157,11 +162,16 @@ namespace Database_Hospital_Application.Models.Repositories
                     Id = employeeId,
                     FirstName = row["JMENO"].ToString(),
                     LastName = row["PRIJMENI"].ToString(),
-                    BirthNumber = Convert.ToInt64(row["RODNE_CISLO"]),
+                    BirthNumber = row["RODNE_CISLO"].ToString(),
                     Sex = SexEnumParser.GetEnumFromString(row["POHLAVI"].ToString()),
 
                     // _department a _foto by měly být naplněný zvlášť
                 };
+
+                //přidání nul pro RČ když začíná nulama
+                if (employee.BirthNumber.Length < 8) employee.BirthNumber = "0" + employee.BirthNumber;
+                if (employee.BirthNumber.Length < 9) employee.BirthNumber = "0" + employee.BirthNumber;
+                if (employee.BirthNumber.Length < 10) employee.BirthNumber = "0" + employee.BirthNumber;
 
                 return employee;
             }

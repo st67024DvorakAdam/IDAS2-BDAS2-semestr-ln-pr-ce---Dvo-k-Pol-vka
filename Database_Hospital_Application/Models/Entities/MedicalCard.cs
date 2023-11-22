@@ -39,5 +39,9 @@ namespace Database_Hospital_Application.Models.Entities
             }
         }
 
+        public MedicalCard()
+        {
+
+        }
     }
 }

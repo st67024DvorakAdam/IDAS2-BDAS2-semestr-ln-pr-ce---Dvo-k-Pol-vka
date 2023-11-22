@@ -114,12 +114,9 @@
             <TextBlock Grid.Row="3" Text="Telefon" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
             <TextBox Grid.Row="4" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
              Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
-             VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding NewContact.PhoneNumber}"/>
+             VerticalContentAlignment="Center"  PreviewTextInput="TextBox_PreviewTextInput" CaretBrush="White" Text="{Binding NewContact.PhoneNumber}"/>
 
             <TextBlock Grid.Row="5" Text="Pacient (rodné číslo)" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
-            <!--<TextBox Grid.Row="6" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
-             Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
-             VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding NewContact.IdOfPatient}"/>-->
             <ComboBox x:Name="PatientCB" HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Center" Background="Transparent" Width="200" 
             ItemsSource="{Binding PatientsList}" DisplayMemberPath="BirthNumber" 
             SelectedValuePath="Id" SelectedValue="{Binding NewContact.IdOfPatient}">

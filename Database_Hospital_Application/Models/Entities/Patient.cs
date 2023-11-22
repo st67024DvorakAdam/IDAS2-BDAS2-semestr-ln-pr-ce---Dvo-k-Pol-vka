@@ -12,7 +12,7 @@ namespace Database_Hospital_Application.Models.Entities
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public long BirthNumber { get; set; }
+        public string BirthNumber { get; set; }
         public SexEnum Sex { get; set; }
         public HealthInsurance _healthInsurer { get; set; }
         public Address _address { get; set; }
