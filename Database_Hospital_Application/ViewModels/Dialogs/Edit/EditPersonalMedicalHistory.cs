@@ -13,13 +13,13 @@ using System.Collections.ObjectModel;
 
 namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
 {
-    public class EditPerformedProcedureVM : BaseViewModel
+    public class EditPersonalMedicalHistoryVM : BaseViewModel
     {
-        private PerformedProcedure _editablePerformedProcedure;
-        public PerformedProcedure EditablePerformedProcedure
+        private PersonalMedicalHistory _editablePersonalMedicalHistory;
+        public PersonalMedicalHistory EditablePersonalMedicalHistory
         {
-            get { return _editablePerformedProcedure; }
-            set { _editablePerformedProcedure = value; OnPropertyChange(nameof(EditablePerformedProcedure)); }
+            get { return _editablePersonalMedicalHistory; }
+            set { _editablePersonalMedicalHistory = value; OnPropertyChange(nameof(EditablePersonalMedicalHistory)); }
         }
 
         private ObservableCollection<Patient> _patientsList;
@@ -43,9 +43,9 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
         public ICommand SaveCommand { get; set; }
         public ICommand CancelCommand { get; set; }
 
-        public EditPerformedProcedureVM(PerformedProcedure performedProcedure)
+        public EditPersonalMedicalHistoryVM(PersonalMedicalHistory personalMedicalHistory)
         {
-            EditablePerformedProcedure = performedProcedure;
+            EditablePersonalMedicalHistory = personalMedicalHistory;
             SaveCommand = new AsyncRelayCommand(async (o) => await SaveActionAsync());
             CancelCommand = new RelayCommand(CancelAction);
 
@@ -54,22 +54,23 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
         private bool CanSaveExecute(object parameter)
         {
 
-            return EditablePerformedProcedure != null;
+            return EditablePersonalMedicalHistory != null;
         }
 
         private async Task SaveActionAsync()
         {
             try
             {
-                PerformedProceduresRepo performedProceduresRepo = new PerformedProceduresRepo();
-                int affectedRows = await performedProceduresRepo.UpdatePerformedProcedure(EditablePerformedProcedure);
+                PersonalMedicalHistoriesRepo personalMedicalHistoriesRepo = new PersonalMedicalHistoriesRepo();
+                int affectedRows = await personalMedicalHistoriesRepo.UpdatePersonalMedicalHistory(EditablePersonalMedicalHistory);
                 if (affectedRows == 0)
                 {
-                    MessageBox.Show("Provedenou proceduru(výkon) se nepodařilo změnit", "Not Ok", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("osobní anamnézu se nepodařilo změnit", "Not Ok", MessageBoxButton.OK, MessageBoxImage.Information);
+
                 }
                 else
                 {
-                    MessageBox.Show("Provedenou proceduru(výkon) byla úspšně aktualizována", "Ok", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("osobní anamnéza byla úspšně aktualizována", "Ok", MessageBoxButton.OK, MessageBoxImage.Information);
                     OnClosingRequest();
                 }
 

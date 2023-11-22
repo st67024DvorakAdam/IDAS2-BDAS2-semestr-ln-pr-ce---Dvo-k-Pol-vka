@@ -46,18 +46,40 @@ namespace Database_Hospital_Application.Models.Repositories
         }
 
 
-        public void AddPersonalMedicalHistory(PersonalMedicalHistory personalMedicalHistory)
+        public async Task AddPersonalMedicalHistory(PersonalMedicalHistory personalMedicalHistory)
         {
+            string commandText = "add_personal_medical_history";
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_zaznam", personalMedicalHistory.Description },
+                { "p_pacient_id", personalMedicalHistory.IdOfPatient}
+            };
 
+            await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
 
-        public void DeletePersonalMedicalHistory(int id)
+        public async Task<int> DeletePersonalMedicalHistory(int id)
         {
+            string commandText = "delete_personal_medical_history_by_id";
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_id", id }
+            };
 
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
-        public void UpdatePersonalMedicalHistory(PersonalMedicalHistory personalMedicalHistory)
+        public async Task<int> UpdatePersonalMedicalHistory(PersonalMedicalHistory personalMedicalHistory)
         {
+            string commandText = "update_personal_medical_history";
 
+            var parameters = new Dictionary<string, object>
+            {
+                {"p_id", personalMedicalHistory.Id },
+                { "p_zaznam", personalMedicalHistory.Description },
+                { "p_pacient_id", personalMedicalHistory.IdOfPatient}
+            };
+
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
 
         public void DeleteAllPersonalMedicalHistory()

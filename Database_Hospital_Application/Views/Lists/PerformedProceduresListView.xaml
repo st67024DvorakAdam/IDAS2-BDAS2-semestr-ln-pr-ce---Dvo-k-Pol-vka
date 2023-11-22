@@ -127,10 +127,14 @@
                 <ComboBoxItem>False</ComboBoxItem>
             </ComboBox>
             <TextBlock Grid.Row="7" Text="Id pacienta" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
-            <TextBox Grid.Row="8" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
+            <!--<TextBox Grid.Row="8" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
              Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
              VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding NewPerformedProcedure.IdOfPatient}"
-             PreviewTextInput="TextBox_PreviewTextInput"/>
+             PreviewTextInput="TextBox_PreviewTextInput"/>-->
+            <ComboBox x:Name="PatientCB" HorizontalAlignment="Center" Grid.Row="8" VerticalAlignment="Center" Background="Transparent" Width="200" 
+            ItemsSource="{Binding PatientsList}" DisplayMemberPath="BirthNumber" 
+            SelectedValuePath="Id" SelectedValue="{Binding NewPerformedProcedure.IdOfPatient}">
+            </ComboBox>
 
             <Button Grid.Row="11" Content="Přidat" Margin="10" Padding="10,3" Width="200" HorizontalAlignment="Center"
             Command="{Binding AddCommand}" VerticalAlignment="Top"/>

@@ -41,9 +41,13 @@
             <ComboBoxItem>False</ComboBoxItem>
         </ComboBox>
 
-        <TextBlock Text="Id pacienta" FontSize="18" Grid.Row="6" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
-        <TextBox x:Name="CountryTextBox" Height="25" FontSize="16" Grid.Row="7" Margin="5" Width="300"
-                  PreviewTextInput="TextBox_PreviewTextInput" HorizontalAlignment="Center" Text="{Binding EditablePerformedProcedure.IdOfPatient, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Text="Pacient - rodné číslo" FontSize="18" Grid.Row="6" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
+        <!--<TextBox x:Name="CountryTextBox" Height="25" FontSize="16" Grid.Row="7" Margin="5" Width="300"
+                  PreviewTextInput="TextBox_PreviewTextInput" HorizontalAlignment="Center" Text="{Binding EditablePerformedProcedure.IdOfPatient, UpdateSourceTrigger=PropertyChanged}"/>-->
+        <ComboBox x:Name="PatientCB" HorizontalAlignment="Center" Grid.Row="7" VerticalAlignment="Center" Background="Transparent" Width="300" 
+            ItemsSource="{Binding PatientsList}" DisplayMemberPath="BirthNumber" 
+            SelectedValuePath="Id" SelectedValue="{Binding EditablePerformedProcedure.IdOfPatient, UpdateSourceTrigger=PropertyChanged}">
+        </ComboBox>
 
 
         <StackPanel Grid.Row="10" Orientation="Horizontal" HorizontalAlignment="Center" Margin="25">

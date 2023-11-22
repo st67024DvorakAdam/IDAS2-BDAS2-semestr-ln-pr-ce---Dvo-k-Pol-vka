@@ -32,7 +32,7 @@
 
             <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="OS. ANAMNÉZY" VerticalAlignment="Center" FontSize="40" Margin="0,0,0,35" Foreground="White" FontWeight="Bold"/>
             <DataGrid x:Name="AddressesDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding PersonalMedicalHistoriesList}" Background="Transparent" 
-                  SelectedItem="{Binding SelectedHistory, Mode=TwoWay}"
+                  SelectedItem="{Binding SelectedPersonalMedicalHistory, Mode=TwoWay}"
                   AreRowDetailsFrozen="True" CanUserAddRows="False" CanUserDeleteRows="False"
                   CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single" 
                   SelectionUnit="FullRow" GridLinesVisibility="None" HeadersVisibility="Column" 
@@ -65,7 +65,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*"/>
                     <DataGridTextColumn Header="Popis" Binding="{Binding Description}" Width="*"/>
-                    <DataGridTextColumn Header="Rodné číslo (id pacienta)" Binding="{Binding BirthNumberOfPatient}" Width="*"/>
+                    <DataGridTextColumn Header="Rodné číslo" Binding="{Binding BirthNumberOfPatient}" Width="*"/>
                     
                 </DataGrid.Columns>
 
@@ -107,12 +107,13 @@
             <TextBlock Grid.Row="1" Text="Popis" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
             <TextBox Grid.Row="2" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
              Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
-             VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding NewContact.Email}"/>
+             VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding NewPersonalMedicalHistory.Description}"/>
 
             <TextBlock Grid.Row="3" Text="Rodné číslo pacienta" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
-            <TextBox Grid.Row="4" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
-             Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
-             VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding NewContact.PhoneNumber}"/>
+            <ComboBox x:Name="PatientCB" HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Center" Background="Transparent" Width="200" 
+            ItemsSource="{Binding PatientsList}" DisplayMemberPath="BirthNumber" 
+            SelectedValuePath="Id" SelectedValue="{Binding NewPersonalMedicalHistory.IdOfPatient}">
+            </ComboBox>
 
             
 

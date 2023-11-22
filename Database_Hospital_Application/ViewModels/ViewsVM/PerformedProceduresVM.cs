@@ -26,6 +26,24 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             set { _performedProceduresList = value; OnPropertyChange(nameof(PerformedProceduresList)); }
         }
 
+        private ObservableCollection<Patient> _patientsList;
+
+        public ObservableCollection<Patient> PatientsList
+        {
+            get { return _patientsList; }
+            set
+            {
+                _patientsList = value;
+                OnPropertyChange(nameof(PatientsList));
+            }
+        }
+
+        private void LoadPatientsFromPatientVM()
+        {
+            PatientVM patientVM = new PatientVM();
+            _patientsList = patientVM.PatientsList;
+        }
+
         // BUTTONS
         public ICommand AddCommand { get; private set; }
         public ICommand DeleteCommand { get; private set; }
@@ -87,6 +105,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             PerformedProceduresView.Filter = PerformedProceduresFilter;
             NewPerformedProcedure = new PerformedProcedure();
             InitializeCommands();
+
+            LoadPatientsFromPatientVM();
         }
 
         private async Task LoadPerformedProceduresAsync()
