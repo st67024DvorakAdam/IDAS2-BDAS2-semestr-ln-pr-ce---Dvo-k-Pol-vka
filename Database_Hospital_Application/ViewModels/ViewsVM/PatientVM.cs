@@ -1,5 +1,6 @@
 ﻿using Database_Hospital_Application.Commands;
 using Database_Hospital_Application.Models.Entities;
+using Database_Hospital_Application.Models.Enums;
 using Database_Hospital_Application.Models.Repositories;
 using Database_Hospital_Application.ViewModels.Dialogs.Edit;
 using Database_Hospital_Application.Views.Lists.Dialogs.Patient;
@@ -23,6 +24,43 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
                 _patientsList = value;
                 OnPropertyChange(nameof(PatientsList));
             }
+        }
+
+        private ObservableCollection<Address> _addressesList;
+
+        public ObservableCollection<Address> AddressesList
+        {
+            get { return _addressesList; }
+            set
+            {
+                _addressesList = value;
+                OnPropertyChange(nameof(AddressesList));
+            }
+        }
+
+        private void LoadAddressesFromAddressesVM()
+        {
+            AddressesVM addressesVM = new AddressesVM();
+            AddressesList = addressesVM.AddressesList;
+        }
+
+
+        private ObservableCollection<HealthInsurance> _healthInsurancesList;
+
+        public ObservableCollection<HealthInsurance> HealthInsurancesList
+        {
+            get { return _healthInsurancesList; }
+            set
+            {
+                _healthInsurancesList = value;
+                OnPropertyChange(nameof(HealthInsurancesList));
+            }
+        }
+
+        private void LoadHealthInsurancesFromHealthInsurancesVM()
+        {
+            HealthInsurancesVM healthInsurancesVM = new HealthInsurancesVM();
+            HealthInsurancesList = healthInsurancesVM.HealthInsurancesList;
         }
 
         public ICommand AddCommand { get; private set; }
@@ -58,6 +96,9 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         public PatientVM()
         {
+            LoadAddressesFromAddressesVM();
+            LoadHealthInsurancesFromHealthInsurancesVM();
+
             LoadPatientsAsync();
             InitializeCommands();
         }
@@ -133,7 +174,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             }
         }
 
-        // TODO Pohlaví ENUM
         private bool PatientsFilter(object item)
         {
             if (string.IsNullOrWhiteSpace(_searchText)) return true;
@@ -143,7 +183,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
             return patient.FirstName.Contains(_searchText, StringComparison.OrdinalIgnoreCase)
                    || patient.LastName.Contains(_searchText, StringComparison.OrdinalIgnoreCase)
-                   || patient.BirthNumber.ToString().Contains(_searchText);
+                   || patient.BirthNumber.ToString().Contains(_searchText)
+                   || SexEnumParser.GetStringFromEnumEnglish(patient.Sex).StartsWith(_searchText, StringComparison.OrdinalIgnoreCase);
         }
     }
 }

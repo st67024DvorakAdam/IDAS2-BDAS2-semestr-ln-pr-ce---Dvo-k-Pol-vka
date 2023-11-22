@@ -10,6 +10,9 @@
     <UserControl.DataContext>
         <vm:PatientVM/>
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <local:SexToIndexConverter2 x:Key="sexToIndexConverter2" />
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -68,6 +71,8 @@
                     <DataGridTextColumn Header="Příjmení" Binding="{Binding LastName}" Width="*"/>
                     <DataGridTextColumn Header="Rodné číslo" Binding="{Binding BirthNumber}" Width="*"/>
                     <DataGridTextColumn Header="Pohlaví" Binding="{Binding Sex}" Width="*"/>
+                    <DataGridTextColumn Header="Id pojišťovny" Binding="{Binding _healthInsurer.Id}" Width="*"/>
+                    <DataGridTextColumn Header="Id adresy" Binding="{Binding _address.Id}" Width="*"/>
                 </DataGrid.Columns>
 
 
@@ -102,7 +107,8 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="0" Text="Nový pacient" Foreground="White" FontSize="20" FontWeight="Bold"
@@ -125,14 +131,51 @@
 
             <TextBlock Grid.Row="7" Text="Pohlaví" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
             <ComboBox HorizontalAlignment="Center" Grid.Row="8" VerticalAlignment="Center" Background="Transparent" Width="200" 
-                      SelectedIndex="{Binding NewPacient.Sex}">
-                <ComboBoxItem>Muž</ComboBoxItem>
-                <ComboBoxItem>Žena</ComboBoxItem>
+                      SelectedIndex="{Binding NewPatient.Sex, Converter={StaticResource sexToIndexConverter2}}">
+                <ComboBoxItem Background="Transparent">Male</ComboBoxItem>
+                <ComboBoxItem Background="Transparent">Female</ComboBoxItem>
             </ComboBox>
-            <TextBlock Grid.Row="9" Text="Adresa (výběr TODO)" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
-            <TextBlock Grid.Row="10" Text="Pojišťovna (výběr TODO)" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
-            <TextBlock Grid.Row="11" Text="Kontaktní údaje (výběr TODO)" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
-            <Button Grid.Row="12" Content="Přidat" Margin="0,10,0,0" Padding="10,3" Width="200" HorizontalAlignment="Center"
+            
+            <TextBlock Grid.Row="9" Text="Adresa" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
+            <ComboBox HorizontalAlignment="Center" Grid.Row="10" VerticalAlignment="Center" Background="Transparent" Width="200" 
+            ItemsSource="{Binding AddressesList}"
+            SelectedValuePath="Id" SelectedValue="{Binding NewPatient._address.Id}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} {1} {2} {3} {4}">
+                                    <Binding Path="Street" />
+                                    <Binding Path="HouseNumber" />
+                                    <Binding Path="City" />
+                                    <Binding Path="Country" />
+                                    <Binding Path="ZipCode" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            
+            <TextBlock Grid.Row="11" Text="Pojišťovna" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
+            <ComboBox HorizontalAlignment="Center" Grid.Row="12" VerticalAlignment="Center" Background="Transparent" Width="200" 
+            ItemsSource="{Binding HealthInsurancesList}"
+            SelectedValuePath="Id" SelectedValue="{Binding NewPatient._healthInsurer.Id}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} - {1}">
+                                    <Binding Path="Name" />
+                                    <Binding Path="Code" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            
+            <Button Grid.Row="13" Content="Přidat" Margin="0,10,0,0" Padding="10,3" Width="200" HorizontalAlignment="Center"
             Command="{Binding AddCommand}" VerticalAlignment="Top"/>
         </Grid>
     </Grid>

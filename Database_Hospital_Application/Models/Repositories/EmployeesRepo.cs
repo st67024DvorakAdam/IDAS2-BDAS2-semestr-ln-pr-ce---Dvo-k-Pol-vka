@@ -76,11 +76,6 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task AddEmployee(Employee employee)
         {
-            //if (await CheckIfUserNameExists(employee.UserName)) 
-            //{
-            //    throw new UserNameAlreadyExistsException();  
-            //}else
-            //{
                 string commandText = "add_employee";
                 var parameters = new Dictionary<string, object>
             {
@@ -98,34 +93,10 @@ namespace Database_Hospital_Application.Models.Repositories
             };
 
                 await dbTools.ExecuteNonQueryAsync(commandText, parameters);
-            //}
+           
             
             
         }
-
-    //    public async Task<bool> CheckIfUserNameExists(string userName)
-    //    {
-    //        string commandText = "SELECT COUNT(*) FROM zamestnanci WHERE UZIVATELSKE_JMENO = :userName";
-    //        var parameters = new Dictionary<string, object>
-    //{
-    //    { "userName", userName }
-    //};
-
-    //        DataTable result = await dbTools.ExecuteCommandAsync(commandText, parameters);
-
-    //        // Kontrola, zda existuje výsledek a alespoň jeden řádek
-    //        if (result != null && result.Rows.Count > 0)
-    //        {
-    //            // Kontrola, zda je první sloupec prvního řádku větší než nula
-    //            int count;
-    //            if (int.TryParse(result.Rows[0][0]?.ToString(), out count))
-    //            {
-    //                return count > 0; // Pokud je count větší než 0, vrátí true, jinak false
-    //            }
-    //        }
-
-    //        return false; // Pokud nebyl nalezen žádný výsledek nebo nedošlo k úspěšnému zpracování výsledku, vrátí false
-    //    }
 
 
 

@@ -1,5 +1,6 @@
 ﻿using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.Models.Enums;
+using Database_Hospital_Application.ViewModels.ViewsVM;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -36,7 +37,16 @@ namespace Database_Hospital_Application.Models.Repositories
                         Id = Convert.ToInt32(row["ID"]),
                         FirstName = row["JMENO"].ToString(),
                         LastName = row["PRIJMENI"].ToString(),
-                        BirthNumber = Convert.ToInt64(row["RODNE_CISLO"])
+                        BirthNumber = Convert.ToInt64(row["RODNE_CISLO"]),
+                        _address = new Address
+                        {
+                            Id = Convert.ToInt32(row["ADRESA_ID"])
+                        },
+                        _healthInsurer = new HealthInsurance
+                        {
+                            Id = Convert.ToInt32(row["ZDRAVOTNI_POJISTOVNA_ID"])
+                        }
+                        
                     };
                     patient.Sex = SexEnumParser.GetEnumFromString(row["POHLAVI"].ToString());
                     Patients.Add(patient);
@@ -50,10 +60,12 @@ namespace Database_Hospital_Application.Models.Repositories
             string commandText = "add_patient";
             var parameters = new Dictionary<string, object>
             {
-                { "p_first_name", patient.FirstName },
-                { "p_last_name", patient.LastName },
-                { "p_birth_number", patient.BirthNumber },
-                { "p_sex", patient.Sex.ToString() }
+                { "p_jmeno", patient.FirstName },
+                { "p_prijmeni", patient.LastName },
+                { "p_rodne_cislo", patient.BirthNumber },
+                { "p_pohlavi", SexEnumParser.GetStringFromEnumCzech(patient.Sex) },
+                { "p_zdravotni_pojistovna_id", patient._healthInsurer.Id },
+                { "p_adresa_id", patient._address.Id }
             };
 
             await dbTools.ExecuteNonQueryAsync(commandText, parameters);
@@ -77,10 +89,12 @@ namespace Database_Hospital_Application.Models.Repositories
             var parameters = new Dictionary<string, object>
             {
                 { "p_id", patient.Id },
-                { "p_first_name", patient.FirstName },
-                { "p_last_name", patient.LastName },
-                { "p_birth_number", patient.BirthNumber },
-                { "p_sex", patient.Sex.ToString() }
+                { "p_jmeno", patient.FirstName },
+                { "p_prijmeni", patient.LastName },
+                { "p_rodne_cislo", patient.BirthNumber },
+                { "p_pohlavi", SexEnumParser.GetStringFromEnumCzech(patient.Sex) },
+                { "p_zdravotni_pojistovna_id", patient._healthInsurer.Id },
+                { "p_adresa_id", patient._address.Id }
             };
 
             return await dbTools.ExecuteNonQueryAsync(commandText, parameters);

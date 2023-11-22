@@ -1,6 +1,8 @@
-﻿using Database_Hospital_Application.ViewModels.Dialogs.Edit;
+﻿using Database_Hospital_Application.Models.Enums;
+using Database_Hospital_Application.ViewModels.Dialogs.Edit;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -36,6 +38,19 @@ namespace Database_Hospital_Application.Views.Lists.Dialogs.Patient
         private static bool IsTextAllowed(string text)
         {
             return !Regex.IsMatch(text, "[^0-9]");
+        }
+    }
+
+    public class SexToIndexConverter2 : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return ((SexEnum)value == SexEnum.Male) ? 0 : 1;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return ((int)value == 0) ? SexEnum.Male : SexEnum.Female;
         }
     }
 }

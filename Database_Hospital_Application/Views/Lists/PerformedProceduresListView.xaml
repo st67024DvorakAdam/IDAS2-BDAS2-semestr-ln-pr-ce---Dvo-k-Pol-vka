@@ -126,7 +126,7 @@
                 <ComboBoxItem>True</ComboBoxItem>
                 <ComboBoxItem>False</ComboBoxItem>
             </ComboBox>
-            <TextBlock Grid.Row="7" Text="Id pacienta" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
+            <TextBlock Grid.Row="7" Text="Rodné číslo pacienta" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
             <!--<TextBox Grid.Row="8" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
              Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
              VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding NewPerformedProcedure.IdOfPatient}"

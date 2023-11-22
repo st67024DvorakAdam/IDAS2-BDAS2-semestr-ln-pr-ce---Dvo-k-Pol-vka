@@ -160,8 +160,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         private async void AddNewAction(object parameter)
         {
-            //try
-            //{
                 EmployeesRepo employeesRepo = new EmployeesRepo();
                 NewEmployee.Salt = PasswordHasher.GenerateSalt();
                 
@@ -171,10 +169,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
                 await employeesRepo.AddEmployee(NewEmployee);
                 await LoadEmployeesAsync();
                 NewEmployee = new Employee();
-            //}catch(UserNameAlreadyExistsException ex)
-            //{
-            //    MessageBox.Show("uzivatelske jmeno jiz existuje");
-            //}
         }
 
         private bool CanEdit(object parameter)

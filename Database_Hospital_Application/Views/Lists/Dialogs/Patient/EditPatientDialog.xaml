@@ -5,8 +5,99 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Database_Hospital_Application.Views.Lists.Dialogs.Patient"
         mc:Ignorable="d"
-        Title="EditPatientDialog" Height="450" Width="800">
+        Title="Editace pacienta" Height="600" Width="600" MinHeight="600" MinWidth="600" MaxWidth="800" MaxHeight="600"
+        Background="#1a1f1f"
+        Icon="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-hospital-64.png?raw=true">
+    <Window.Resources>
+        <local:SexToIndexConverter2 x:Key="sexToIndexConverter2" />
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!--<TextBlock Text="Název nemoce" FontSize="18" Grid.Row="0" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
+        <TextBox x:Name="CityTextBox" Height="25" FontSize="16"  Grid.Row="1" Margin="5" Width="300" HorizontalAlignment="Center" Text="{Binding EditableIllness.Name, UpdateSourceTrigger=PropertyChanged}"/>-->
+
+        <TextBlock Grid.Row="1" Text="Jméno" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
+        <TextBox Grid.Row="2" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
+             Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
+             VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding EditablePatient.FirstName, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <TextBlock Grid.Row="3" Text="Příjmení" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
+        <TextBox Grid.Row="4" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
+             Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
+             VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding EditablePatient.LastName, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <TextBlock Grid.Row="5" Text="Rodné číslo" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
+        <TextBox Grid.Row="6" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
+             Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
+             VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding EditablePatient.BirthNumber, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <TextBlock Grid.Row="7" Text="Pohlaví" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
+        <ComboBox HorizontalAlignment="Center" Grid.Row="8" VerticalAlignment="Center" Background="Transparent" Width="200" 
+                      SelectedIndex="{Binding EditablePatient.Sex, Converter={StaticResource sexToIndexConverter2}, UpdateSourceTrigger=PropertyChanged}">
+            <ComboBoxItem Background="Transparent">Male</ComboBoxItem>
+            <ComboBoxItem Background="Transparent">Female</ComboBoxItem>
+        </ComboBox>
+
+        <TextBlock Grid.Row="9" Text="Adresa" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
+        <ComboBox HorizontalAlignment="Center" Grid.Row="10" VerticalAlignment="Center" Background="Transparent" Width="200" 
+            ItemsSource="{Binding AddressesList}"
+            SelectedValuePath="Id" SelectedValue="{Binding EditablePatient._address.Id, UpdateSourceTrigger=PropertyChanged}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} {1} {2} {3} {4}">
+                                <Binding Path="Street" />
+                                <Binding Path="HouseNumber" />
+                                <Binding Path="City" />
+                                <Binding Path="Country" />
+                                <Binding Path="ZipCode" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <TextBlock Grid.Row="11" Text="Pojišťovna" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
+        <ComboBox HorizontalAlignment="Center" Grid.Row="12" VerticalAlignment="Center" Background="Transparent" Width="200" 
+            ItemsSource="{Binding HealthInsurancesList}"
+            SelectedValuePath="Id" SelectedValue="{Binding EditablePatient._healthInsurer.Id, UpdateSourceTrigger=PropertyChanged}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} - {1}">
+                                <Binding Path="Name" />
+                                <Binding Path="Code" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <StackPanel Grid.Row="13" Orientation="Horizontal" HorizontalAlignment="Center" Margin="25">
+            <Button Command="{Binding CancelCommand}" Content="Zrušit" Margin="5" Width="100" Height="35" FontSize="18"/>
+            <Button Command="{Binding SaveCommand}" Content="Potvrdit" Margin="5" Width="100" FontSize="18"/>
+        </StackPanel>
     </Grid>
+
 </Window>
