@@ -7,6 +7,7 @@ using System.Windows.Input;
 using System.Threading.Tasks;
 using Database_Hospital_Application.Models.Repositories;
 using Database_Hospital_Application.Models.Tools;
+using Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM
 {
@@ -79,27 +80,34 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             switch (user.RoleID)
             {
-                case 1:
+                case 2:
                     Views.MainWindow profileWindow = new Views.MainWindow();
                     profileWindow.DataContext = new NavigateVM(user);
                     profileWindow.Show();
                     CloseAction?.Invoke();
                     break;
-                case 2:
+                case 1:
                     Views.DoctorWindow doctorWindow = new Views.DoctorWindow();
-                    doctorWindow.DataContext = new NavigateVM(user);
+                    doctorWindow.DataContext = new DoctorNavigateVM(user);
                     doctorWindow.Show();
                     CloseAction?.Invoke();
                     break;
                 case 3:
 
                     // budoucí window pro sestru
-
+                    //Views.NurseWindow nurseWindow = new Views.NurseWindow();
+                    //nurseWindow.DataContext = new NurseNavigateVM(user);
+                    //nurseWindow.Show();
+                    //CloseAction?.Invoke();
                     break;
+                    
                 case 4:
 
                     // budoucí window pro asistenta
-
+                    //Views.AssistantWindow assistantWindow = new Views.AssistantWindow();
+                    //assistantWindow.DataContext = new AssistantNavigateVM(user);
+                    //assistantWindow.Show();
+                    //CloseAction?.Invoke();
                     break;
                 case 5:
                 //profileWindow.DataContext = new NavigateVM(user);
