@@ -164,6 +164,10 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             //{
                 EmployeesRepo employeesRepo = new EmployeesRepo();
                 NewEmployee.Salt = PasswordHasher.GenerateSalt();
+                
+                string hashedPassword = PasswordHasher.HashPassword(NewEmployee.Password, NewEmployee.Salt);
+                NewEmployee.Password = hashedPassword;
+                
                 await employeesRepo.AddEmployee(NewEmployee);
                 await LoadEmployeesAsync();
                 NewEmployee = new Employee();

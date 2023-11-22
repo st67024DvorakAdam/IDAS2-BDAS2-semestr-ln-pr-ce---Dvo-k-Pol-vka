@@ -78,12 +78,11 @@ namespace Database_Hospital_Application.Models.Repositories
             DataTable result4 = await dbTools.ExecuteCommandAsync(commandText4, parameters4);         
 
             string hashedPasswordFromDb = result.Rows[0]["HESLO"].ToString();
-
-            if (password == hashedPasswordFromDb)
+            string saltFromDb = result.Rows[0]["SALT"].ToString();
+            if (PasswordHasher.VerifyPassword(password, hashedPasswordFromDb, saltFromDb)) 
             {
                 User loggedInUser = new User(username, password)
                 {
-                    // TODO Getnout ID, SALT, ROLE_ID
                     Id = Convert.ToInt32(result.Rows[0]["ID"]),
                     RoleID = Convert.ToInt32(result.Rows[0]["ROLE_ID"].ToString()),
                     Salt = (string)result.Rows[0]["SALT"],
@@ -264,6 +263,23 @@ namespace Database_Hospital_Application.Models.Repositories
             {
                 MessageBox.Show($"Chyba při nahrávání fotografie: {ex.Message}", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        public async Task<string> GetUserSaltByUsername(string username)
+        {
+            string commandText = "get_user";
+            Dictionary<string, object> parameters = new Dictionary<string, object> { { "p_jmeno", username } };
+            DataTable result = await dbTools.ExecuteCommandAsync(commandText, parameters);
+
+
+            if (result.Rows.Count == 0)
+            {
+                return null;
+            }
+
+            string saltFromDb = result.Rows[0]["SALT"].ToString();
+
+            return saltFromDb;
         }
 
     }

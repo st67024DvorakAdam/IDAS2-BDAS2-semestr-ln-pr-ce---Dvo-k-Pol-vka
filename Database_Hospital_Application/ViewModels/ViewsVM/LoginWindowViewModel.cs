@@ -2,58 +2,77 @@
 using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.Views;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Threading.Tasks;
+using Database_Hospital_Application.Models.Repositories;
+using Database_Hospital_Application.Models.Tools;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM
 {
     public class LoginWindowViewModel : BaseViewModel
     {
-        //public BaseViewModel CurrentVM { get; }
+        public ICommand LoginCommand { get; private set; }
+        public ICommand ContinueWithoutLoginCommand { get; private set; }
 
-        public ICommand LoginCommand { get; }
-        public ICommand ContinueWithoutLoginCommand { get; }
-
-        public LoginWindowViewModel()
-        {
-            LoginCommand = new LoginCommand(this);
-        }
-
-        
         private string _username;
-
         public string Username
         {
-            get
-            {
-                return _username;
-            }
+            get { return _username; }
             set
             {
                 _username = value;
-                OnPropertyChange(nameof(Username)); 
+                OnPropertyChange(nameof(Username));
             }
-
         }
 
         private string _password;
-
         public string Password
         {
-            get
-            {
-                return _password;
-            }
+            get { return _password; }
             set
             {
                 _password = value;
                 OnPropertyChange(nameof(Password));
             }
+        }
 
+        public LoginWindowViewModel()
+        {
+            LoginCommand = new RelayCommand(async (o) => await ExecuteLogin(), (o) => CanExecuteLogin());
+        }
+
+        private bool CanExecuteLogin()
+        {
+            return !string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(Password);
+        }
+
+        private async Task ExecuteLogin()
+        {
+            UserRepo userRepo = new UserRepo();
+            if (Username == null || Password == null)
+            {
+                MessageBox.Show("Vyplňte prosím všechna pole!", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            // Pro hashování přímo z passwordBoxu -> to samé musí být hashované při přidávání Employee (hashovat hned z inputu)
+            //string salt = await userRepo.GetUserSaltByUsername(Username);
+            //string hashedPassword = PasswordHasher.HashPassword(Password, salt);
+            //User user = await userRepo.LoginUserAsync(Username, hashedPassword);
+
+            User user = await userRepo.LoginUserAsync(Username, Password);
+            if (user == null)
+            {
+                MessageBox.Show("Zadané přihlašovací údaje se neschodují!", "Info", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (user.Name == Username && user.Password == Password)
+            {
+                MessageBox.Show($"Úspěšné přihlášení, username: {Username}", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                OpenProfileWindow(user);
+            }
         }
 
         public void OpenProfileWindow(User user)
@@ -73,30 +92,27 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
                     CloseAction?.Invoke();
                     break;
                 case 3:
-                    
+
                     // budoucí window pro sestru
-                    
+
                     break;
                 case 4:
-                    
+
                     // budoucí window pro asistenta
-                    
+
                     break;
                 case 5:
-                    //profileWindow.DataContext = new NavigateVM(user);
-                    //profileWindow.Show();
-                    //CloseAction?.Invoke();
-                    //break;
+                //profileWindow.DataContext = new NavigateVM(user);
+                //profileWindow.Show();
+                //CloseAction?.Invoke();
+                //break;
                 default:
                     break;
             }
-            
         }
 
         public Action CloseAction { get; set; }
 
-
-
-
+        
     }
 }
