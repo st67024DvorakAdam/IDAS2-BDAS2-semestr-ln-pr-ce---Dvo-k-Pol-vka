@@ -7,10 +7,17 @@
              xmlns:vm="clr-namespace:Database_Hospital_Application.ViewModels.ViewsVM"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.DataContext>
-        <vm:IllnessesVM/>
-    </UserControl.DataContext>
+
+
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.DataContext>
+                <vm:IllnessesVM/>
+            </Grid.DataContext>
         <Grid.ColumnDefinitions>
         <ColumnDefinition Width="*"/>
         <ColumnDefinition Width="300"/>
@@ -105,6 +112,138 @@
 
             <Button Grid.Row="3" Content="Přidat" Margin="0,10,0,0" Padding="10,3" Width="200" HorizontalAlignment="Center"
             Command="{Binding AddCommand}" VerticalAlignment="Top"/>
+        </Grid>
+        </Grid>
+        
+        
+        <!--xxxxxxxxxxxxxxx-->
+        
+        
+        <Line Grid.Row="1" X1="0" Y1="0" X2="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=UserControl}}" Y2="0" Stroke="Black" StrokeThickness="2"/>
+        <Grid Grid.Row="1">
+            <Grid.DataContext>
+                <vm:IllnessDrugConnectionVM/>
+            </Grid.DataContext>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Margin="10" Foreground="Gray" VerticalAlignment="Top">
+             Vyhledávání...
+                </TextBlock>
+                <TextBox Grid.Row="0" Margin="10" Height="25" Width="150" HorizontalAlignment="Left"
+            Text="{Binding SearchTextConnection, UpdateSourceTrigger=PropertyChanged}" 
+            Background="Transparent" Foreground="White" BorderThickness="1" 
+            BorderBrush="Gray" VerticalContentAlignment="Center" CaretBrush="White"/>
+
+                <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="LÉKY NA NEMOCE" VerticalAlignment="Center" FontSize="40" Margin="0,0,0,35" Foreground="White" FontWeight="Bold"/>
+
+
+                <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding IllnessDrugConnectionsList}" Background="Transparent" 
+                  SelectedItem="{Binding SelectedIllnessDrugConnection, Mode=TwoWay}"
+                  AreRowDetailsFrozen="True" CanUserAddRows="False" CanUserDeleteRows="False"
+                  CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single" 
+                  SelectionUnit="FullRow" GridLinesVisibility="None" HeadersVisibility="Column" 
+                  IsReadOnly="True" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1">
+
+                    <DataGrid.Resources>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            <Setter Property="Height" Value="30"/>
+                            <Setter Property="FontSize" Value="20"/>
+                        </Style>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Height" Value="40"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#272B2F"/>
+                                </Trigger>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="#272B2F"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.Resources>
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Id nemoce" Binding="{Binding _illness.Id}" Width="*"/>
+                        <DataGridTextColumn Header="Název nemoce" Binding="{Binding _illness.Name}" Width="*"/>
+                        <DataGridTextColumn Header="Id léku" Binding="{Binding _drug.Id}" Width="*"/>
+                        <DataGridTextColumn Header="Název léku" Binding="{Binding _drug.Name}" Width="*"/>
+                        <DataGridTextColumn Header="Dávkování" Binding="{Binding _drug.Dosage}" Width="*"/>
+                        <DataGridTextColumn Header="Předepsal" Binding="{Binding _drug.Employee_id}" Width="*"/>
+                    </DataGrid.Columns>
+
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontSize" Value="14"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGrid.CellStyle>
+
+                </DataGrid>
+                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10" >
+                    <!--<Button Content="Upravit" Margin="5" Padding="10,3" Command="{Binding EditCommand}" Height="30" FontSize="15"/>-->
+                    <Button Content="Odebrat" Margin="5" Padding="10,3" Command="{Binding DeleteCommand}" Height="30" FontSize="15"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="1" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="Nová vazba lék-nemoc" Foreground="White" FontSize="20" FontWeight="Bold"
+               HorizontalAlignment="Center" Margin="10"/>
+
+                <TextBlock Grid.Row="1" Text="Nemoc" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
+                <ComboBox HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Background="Transparent" Width="200" 
+                ItemsSource="{Binding IllnessesList}" DisplayMemberPath="Name" 
+                SelectedValuePath="Id" SelectedValue="{Binding NewIllnessDrugConnection._illness.Id}">
+                </ComboBox>
+
+                <TextBlock Grid.Row="3" Text="Lék" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
+                <ComboBox HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center" Background="Transparent" Width="200" 
+                ItemsSource="{Binding DrugsList}"
+                SelectedValuePath="Id" SelectedValue="{Binding NewIllnessDrugConnection._drug.Id}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0}, Dávkování:{1}, Předepsal:{2}">
+                                        <Binding Path="Name" />
+                                        <Binding Path="Dosage" />
+                                        <Binding Path="Employee_id" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <Button Grid.Row="5" Content="Přidat" Margin="0,10,0,0" Padding="10,3" Width="200" HorizontalAlignment="Center"
+            Command="{Binding AddCommand}" VerticalAlignment="Top"/>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>
