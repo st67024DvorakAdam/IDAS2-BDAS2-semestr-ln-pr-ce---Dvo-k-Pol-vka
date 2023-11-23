@@ -293,5 +293,18 @@ namespace Database_Hospital_Application.Models.Repositories
             else return -123456789;
         }
 
+        public async Task<int> DeleteUserPhoto(User user)
+        {
+                string commandText = "delete_user_photo";
+
+                var parameters = new Dictionary<string, object>
+            {
+                { "p_id", user.Id }
+            };
+
+                return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
+            
+        }
+
     }
 }

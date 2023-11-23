@@ -100,6 +100,25 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         }
 
+        private ICommand _deletePhotoCommand;
+        public ICommand DeletePhotoCommand
+        {
+            get
+            {
+                if (_deletePhotoCommand == null)
+                {
+                    _deletePhotoCommand = new RelayCommand(DeletePhoto);
+                }
+                return _deletePhotoCommand;
+            }
+        }
+
+        private void DeletePhoto(object? obj)
+        {
+            UserRepo ur = new UserRepo();
+            ur.DeleteUserPhoto(CurrentUser);
+            MessageBox.Show("Profilová fotka byla odstraněna.");
+        }
     }
 }
 
