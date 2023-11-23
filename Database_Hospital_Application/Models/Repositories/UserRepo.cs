@@ -22,6 +22,7 @@ namespace Database_Hospital_Application.Models.Repositories
 {
     public class UserRepo
     {
+
         private DatabaseTools.DatabaseTools dbTools = new DatabaseTools.DatabaseTools();
 
         public ObservableCollection<User> users { get; set; }
@@ -37,21 +38,6 @@ namespace Database_Hospital_Application.Models.Repositories
             {
                 return null;
             }
-
-
-            //string commandText2 = "get_employee_by_id";
-
-            //Dictionary<string, object> parameters2 = new Dictionary<string, object>
-            //{
-            //    { "p_id", Convert.ToInt32(result.Rows[0]["ZAMESTNANEC_ID"]) }
-            //};
-
-            //DataTable result2 = await dbTools.ExecuteCommandAsync(commandText2, parameters2);
-            //if (result2.Rows.Count == 0)
-            //{
-            //    return null;
-            //}
-
 
             string commandText3 = "get_department_by_employees_department_id";
 
@@ -81,20 +67,32 @@ namespace Database_Hospital_Application.Models.Repositories
             string saltFromDb = result.Rows[0]["SALT"].ToString();
             if (PasswordHasher.VerifyPassword(password, hashedPasswordFromDb, saltFromDb)) 
             {
+                
                 User loggedInUser = new User(username, password)
                 {
                     Id = Convert.ToInt32(result.Rows[0]["ID"]),
                     RoleID = Convert.ToInt32(result.Rows[0]["ROLE_ID"].ToString()),
                     Salt = (string)result.Rows[0]["SALT"],
+                    Password = password,
                     UserRole = RoleExtensions.GetRoleEnumFromId(Convert.ToInt32(result.Rows[0]["ROLE_ID"].ToString())),
+                    Name = result.Rows[0]["UZIVATELSKE_JMENO"].ToString(),
                     Employee = new Employee(Convert.ToInt32(result.Rows[0]["ID"]))
                     {
                         FirstName = (string)result.Rows[0]["JMENO"],
                         LastName = (string)result.Rows[0]["PRIJMENI"],
                         BirthNumber = (result.Rows[0]["RODNE_CISLO"]).ToString(),
-                        Sex = SexEnumParser.GetEnumFromString((string)result.Rows[0]["POHLAVI"])     
+                        UserName = result.Rows[0]["UZIVATELSKE_JMENO"].ToString(),
+                        Sex = SexEnumParser.GetEnumFromString((string)result.Rows[0]["POHLAVI"]),
+                        RoleID = Convert.ToInt32(result.Rows[0]["ROLE_ID"]),
+                        _role = new Role
+                        {
+                            Id = Convert.ToInt32(result.Rows[0]["ROLE_ID"]),
+                            Name = RoleExtensions.GetRoleDescription(Convert.ToInt32(result.Rows[0]["ROLE_ID"]))
+                        },
+                        OldPassword = password
                     }
                 };
+                
 
                 if (result3 != null)
                 {
@@ -131,12 +129,6 @@ namespace Database_Hospital_Application.Models.Repositories
                     }
                     
                 }
-                //else
-                //{
-                //    Foto f = new Foto();
-                //    f.Image = new BitmapImage(new Uri("https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/raw/main/Images/no-profile-photo-icon.png"));
-                //    loggedInUser.Employee._foto = f; 
-                //}
 
                 return loggedInUser;
             }
@@ -212,10 +204,6 @@ namespace Database_Hospital_Application.Models.Repositories
             }
             return users;
         }
-        public void UpdateUser(User user)
-        {
-            
-        }
 
         public bool IsAdmin(User user)
         {
@@ -280,6 +268,29 @@ namespace Database_Hospital_Application.Models.Repositories
             string saltFromDb = result.Rows[0]["SALT"].ToString();
 
             return saltFromDb;
+        }
+
+        public async Task<int> UpdateUser(User user, string OldPassword)
+        {
+            if (String.Compare(OldPassword, user.Employee.OldPassword) == 0)
+            {
+                string passwordHash = PasswordHasher.HashPassword(user.Password, user.Salt);
+
+                user.Password = passwordHash;
+
+                string commandText = "update_user";
+
+                var parameters = new Dictionary<string, object>
+            {
+                { "p_id", user.Id },
+                { "p_jmeno", user.Employee.FirstName },
+                { "p_prijmeni", user.Employee.LastName },
+                { "p_heslo", user.Password },
+            };
+
+                return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
+            }
+            else return -123456789;
         }
 
     }

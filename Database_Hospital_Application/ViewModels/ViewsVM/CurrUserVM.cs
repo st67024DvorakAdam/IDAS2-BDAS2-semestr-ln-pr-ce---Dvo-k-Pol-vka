@@ -14,6 +14,9 @@ using System.Windows;
 using Database_Hospital_Application.Models.Tools;
 using System.CodeDom;
 using System.IO;
+using Database_Hospital_Application.ViewModels.Dialogs.Edit;
+using Database_Hospital_Application.Views.Lists.Dialogs.Drug;
+using Database_Hospital_Application.Views.Lists.Dialogs.CurrentUser;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM
 {
@@ -54,6 +57,19 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             }
         }
 
+        private ICommand _editCommand;
+        public ICommand EditCommand
+        {
+            get
+            {
+                if (_editCommand == null)
+                {
+                    _editCommand = new RelayCommand(Edit);
+                }
+                return _editCommand; 
+            }
+        }
+
         private void EditPhoto(object parameter)
         {
             try
@@ -72,6 +88,16 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             {
 
             }
+        }
+
+        private void Edit(object parameter)
+        {
+
+            EditCurrentUserVM editVM = new EditCurrentUserVM(CurrentUser);
+            EditCurrentUserDialog editDialog = new EditCurrentUserDialog(editVM);
+
+            editDialog.ShowDialog();
+
         }
 
     }

@@ -21,6 +21,7 @@ namespace Database_Hospital_Application.Models.Entities
         public Role _role { get; set; }
         public int? IdOfSuperiorEmployee { get; set; } //nadřízený
         public string Password { get; set; }
+        public string OldPassword { get; set; }
         public string Salt { get; set; }
 
         public Employee() 
