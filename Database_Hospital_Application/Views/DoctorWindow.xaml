@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:Database_Hospital_Application.Views.Lists"
         xmlns:Menu="clr-namespace:Database_Hospital_Application.Utils" 
         xmlns:vm="clr-namespace:Database_Hospital_Application.ViewModels.ViewsVM"
+        xmlns:vm1="clr-namespace:Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM" 
+        xmlns:local1="clr-namespace:Database_Hospital_Application.Views.Doctor"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
         Title="Hospital UPCE" Height="1000" Width="1500" MinHeight="980" MinWidth="1050"
@@ -16,10 +18,10 @@
             <local:CurrentUserView/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type vm:DoctorPatientVM}">
-            <local:UsersListView/>
+        <DataTemplate DataType="{x:Type vm1:DoctorPatientVM}">
+            <local1:PatientView/>
         </DataTemplate>
-        
+
         <!--
         <DataTemplate DataType="{x:Type vm:PatientVM}">
             <local:PatientListView/>
