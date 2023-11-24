@@ -16,9 +16,11 @@
             <local:CurrentUserView/>
         </DataTemplate>
 
-        <!--<DataTemplate DataType="{x:Type vm:UserVM}">
+        <DataTemplate DataType="{x:Type vm:DoctorPatientVM}">
             <local:UsersListView/>
         </DataTemplate>
+        
+        <!--
         <DataTemplate DataType="{x:Type vm:PatientVM}">
             <local:PatientListView/>
         </DataTemplate>

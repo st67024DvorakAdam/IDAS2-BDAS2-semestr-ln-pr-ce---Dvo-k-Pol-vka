@@ -4,9 +4,53 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Database_Hospital_Application.Views.Doctor"
+             xmlns:vm="clr-namespace:Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <UserControl.DataContext>
+        <vm:DoctorPatientVM/>
+    </UserControl.DataContext>
+    <Grid Background="#272B2F">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+
+            </Grid.ColumnDefinitions>
+
+
+            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,0,0">
+                <StackPanel Width="135" Orientation="Vertical">
+                    <TextBlock Margin="10" Foreground="Gray" VerticalAlignment="Top" Text="Vyhledávání..."/>
+                    <TextBox Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
+                 VerticalContentAlignment="Center" CaretBrush="White" Width="115"
+                 Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" RenderTransformOrigin="0.502,0.524"/>
+                </StackPanel>
+
+                
+                <Button Content="Hledat" Height="20" Width="50" Margin="5,35,0,0" VerticalAlignment="Top"/>
+            </StackPanel>
+
+
+            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="211,0,0,0" Width="500">
+                <Button Content="Osobní údaje" Command="{Binding ShowPersonalDetailsCommand}" Margin="5" Width="90" Height="30"/>
+                <Button Content="Anamnéza" Command="{Binding ShowAnamnesisCommand}" Margin="5" Width="90" Height="30"/>
+                <Button Content="Zákroky" Margin="5" Width="90" Height="30"/>
+                <Button Content="Aktuální nemoci" Margin="5" Width="90" Height="30"/>
+                <Button Content="Hospitalizace" Margin="5" Width="90" Height="30"/>
+            </StackPanel>
+        </Grid>
+
+
+        <ContentControl Content="{Binding CurrentView}" Grid.Row="1">
             
+        </ContentControl>
+
+
+        
     </Grid>
 </UserControl>

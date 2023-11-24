@@ -80,13 +80,13 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             switch (user.RoleID)
             {
-                case 1:
+                case 2:
                     Views.MainWindow profileWindow = new Views.MainWindow();
                     profileWindow.DataContext = new NavigateVM(user);
                     profileWindow.Show();
                     CloseAction?.Invoke();
                     break;
-                case 2:
+                case 1:
                     Views.DoctorWindow doctorWindow = new Views.DoctorWindow();
                     doctorWindow.DataContext = new DoctorNavigateVM(user);
                     doctorWindow.Show();

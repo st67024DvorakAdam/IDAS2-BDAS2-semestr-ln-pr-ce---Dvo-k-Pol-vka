@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace Database_Hospital_Application.Views
         public DoctorWindow()
         {
             InitializeComponent();
+            
         }
     }
 }
