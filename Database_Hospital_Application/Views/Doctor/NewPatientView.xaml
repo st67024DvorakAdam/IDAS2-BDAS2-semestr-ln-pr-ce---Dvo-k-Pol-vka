@@ -33,50 +33,50 @@
             <StackPanel Grid.Column="0" HorizontalAlignment="Left" Width="200" Margin="2">
                 <TextBlock Text="Pacient" FontWeight="Bold" Foreground="White" Margin="5" HorizontalAlignment="Center"/>
                 <TextBlock Text="Jméno" Foreground="White" Margin="5"/>
-                <TextBox Background="Transparent" Foreground="White" Margin="5"/>
+                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding FirstName}"/>
                 <TextBlock Text="Příjmení" Foreground="White" Margin="5"/>
-                <TextBox Background="Transparent" Foreground="White" Margin="5"/>
+                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding LastName}"/>
                 <TextBlock Text="Rodné číslo" Foreground="White" Margin="5"/>
-                <TextBox Background="Transparent" Foreground="White" Margin="5"/>
+                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding IdentificationNumber}"/>
                 <TextBlock Text="Pohlaví" Foreground="White" Margin="5"/>
-                <TextBox Background="Transparent" Foreground="White" Margin="5"/>
+                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding Gender}"/>
             </StackPanel>
 
             <!-- Adresa -->
             <StackPanel Grid.Column="1" HorizontalAlignment="Left" Width="200" Margin="2">
                 <TextBlock Text="Adresa" FontWeight="Bold" Foreground="White" Margin="5" HorizontalAlignment="Center"/>
                 <TextBlock Text="Město" Foreground="White" Margin="5"/>
-                <TextBox Background="Transparent" Foreground="White" Margin="5"/>
+                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding City}"/>
                 <TextBlock Text="Ulice" Foreground="White" Margin="5"/>
-                <TextBox Background="Transparent" Foreground="White" Margin="5"/>
+                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding Street}"/>
                 <TextBlock Text="Číslo popisné" Foreground="White" Margin="5"/>
-                <TextBox Background="Transparent" Foreground="White" Margin="5"/>
+                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding HouseNumber}"/>
                 <TextBlock Text="PSČ" Foreground="White" Margin="5"/>
-                <TextBox Background="Transparent" Foreground="White" Margin="5"/>
+                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding PostalCode}"/>
                 <TextBlock Text="Stát" Foreground="White" Margin="5"/>
-                <TextBox Background="Transparent" Foreground="White" Margin="5"/>
+                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding Country}"/>
             </StackPanel>
 
             <!-- Kontaktní údaje -->
             <StackPanel Grid.Column="2" HorizontalAlignment="Left" Width="200" Margin="2">
                 <TextBlock Text="Kontaktní údaje" FontWeight="Bold" Foreground="White" Margin="5" HorizontalAlignment="Center"/>
                 <TextBlock Text="Email" Foreground="White" Margin="5"/>
-                <TextBox Background="Transparent" Foreground="White" Margin="5"/>
+                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding Email}"/>
                 <TextBlock Text="Telefon" Foreground="White" Margin="5"/>
-                <TextBox Background="Transparent" Foreground="White" Margin="5"/>
+                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding Phone}"/>
             </StackPanel>
 
             <!-- Zdravotní pojišťovna -->
             <StackPanel Grid.Column="3" HorizontalAlignment="left" Width="200" Margin="2">
                 <TextBlock Text="Zdravotní pojišťovna" FontWeight="Bold" Foreground="White" Margin="5" HorizontalAlignment="Center"/>
                 <TextBlock Text="Název" Foreground="White" Margin="5"/>
-                <TextBox Background="Transparent" Foreground="White" Margin="5"/>
+                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding InsuranceCompanyName}"/>
                 <TextBlock Text="Zkratka" Foreground="White" Margin="5"/>
-                <TextBox Background="Transparent" Foreground="White" Margin="5"/>
+                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding InsuranceCompanyAbbreviation}"/>
                 <TextBlock Text="Kuřák" Foreground="White" Margin="5"/>
-                <CheckBox Margin="5"/>
+                <CheckBox Margin="5" IsChecked="{Binding IsSmoker}"/>
                 <TextBlock Text="Alergik" Foreground="White" Margin="5"/>
-                <CheckBox Margin="5"/>
+                <CheckBox Margin="5" IsChecked="{Binding IsAllergic}"/>
             </StackPanel>
         </Grid>
 
