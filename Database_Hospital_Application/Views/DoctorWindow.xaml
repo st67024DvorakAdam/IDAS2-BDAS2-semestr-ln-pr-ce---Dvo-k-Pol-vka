@@ -22,10 +22,11 @@
             <local1:PatientView/>
         </DataTemplate>
 
-        <!--
-        <DataTemplate DataType="{x:Type vm:PatientVM}">
-            <local:PatientListView/>
+        
+        <DataTemplate DataType="{x:Type vm1:NewPatientVM}">
+            <local1:NewPatientView/>
         </DataTemplate>
+        <!--
         <DataTemplate DataType="{x:Type vm:AddressesVM}">
             <local:AddressesListView/>
         </DataTemplate>
