@@ -85,3 +85,25 @@ Relační model
 - 30. Uživatel si nemůže sám zvolit při registraci svoji roli, vždy obdrží roli s nejnižšími právy a poté jej může změnit administrátor.
 - 31. Databázová aplikace bude umožňovat výpis všech použitých databázových objektů  v semestrální práci (využijte systémový katalog).
 - 32. Všechny číselníky se v DA chovají jako číselníky, tzn. že bude využit např. combobox, apod. Data z tabulky označená jako číselník nebude uživatel ručně zapisovat.
+
+
+View doktora:
+Pacient
+- OSOBNÍ ÚDAJE po vyhledání RČ zobrazit osobní údaje (vše z entity pacient, 
+	kontaktní údaje, adresa, zdravotní pojišťovna, zdravotní karta(kurak, alergik) (RU)
+- ANAMNÉZA (R)
+- ZÁKROK - provedené výkony (CRU)
+- AKTUÁLNÍ NEMOCI - budou zde vypsané nemoci, co na to používá za léky(dávkování) a kdo mu to
+		    předepsal, lze na nemoc napsat lék (CRUD)
+- HOSPITALIZACE - prubeh hospitalizace a na jakem oddeleni
+
+Moje oddělení
+- hierarchický dotaz na podřízené plus jejich osobní údaje
+
+Předepsané léky
+- jen výpis jaké léky komu předepsal (úprava dávky)
+
+Přijmout pacienta
+- zadám RČ, když neexistuje -> vytvoření pacienta
+	  - když existuje, tak mu vytvořím průběh hospitalizace a přiřadím ho na oddělení
+
