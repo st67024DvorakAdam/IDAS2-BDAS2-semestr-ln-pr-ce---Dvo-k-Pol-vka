@@ -135,10 +135,15 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
 
         private void ExecuteAcceptPatient(object parameter)
         {
-            // call procedury pro vložení 
+            // TODO
         }
 
         private bool CanExecuteAcceptPatient(object parameter)
+        {
+            return IsFormValid();
+        }
+
+        private bool IsFormValid()
         {
             return !string.IsNullOrWhiteSpace(FirstName) &&
                    !string.IsNullOrWhiteSpace(LastName) &&
@@ -153,6 +158,15 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
                    !string.IsNullOrWhiteSpace(Phone) &&
                    !string.IsNullOrWhiteSpace(InsuranceCompanyName) &&
                    !string.IsNullOrWhiteSpace(InsuranceCompanyAbbreviation);
+        }
+
+        protected override void OnPropertyChange(string propertyName)
+        {
+            base.OnPropertyChange(propertyName);
+            if (propertyName != nameof(AcceptPatientCommand))
+            {
+                (AcceptPatientCommand as RelayCommand)?.RaiseCanExecuteChanged();
+            }
         }
     }
 }
