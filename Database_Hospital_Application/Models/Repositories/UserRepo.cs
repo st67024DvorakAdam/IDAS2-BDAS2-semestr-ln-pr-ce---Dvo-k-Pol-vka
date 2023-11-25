@@ -210,7 +210,7 @@ namespace Database_Hospital_Application.Models.Repositories
             return user.RoleID == 1;
         }
 
-        public async Task UploadPhotoAsync(int employeeId, byte[] photoBytes, string filename, string suffix)
+        public async Task<int> UploadPhotoAsync(int employeeId, byte[] photoBytes, string filename, string suffix)
         {
             try
             {
@@ -246,10 +246,28 @@ namespace Database_Hospital_Application.Models.Repositories
 
                 
                 await dbTools.ExecuteNonQueryAsync(storedProcedure, parameters);
+
+
+
+
+                string commandText2 = "get_employee_by_id";
+                Dictionary<string, object> parameters2 = new Dictionary<string, object> { { "p_id", employeeId } };
+                DataTable result = await dbTools.ExecuteCommandAsync(commandText2, parameters2);
+
+
+                if (result.Rows.Count == 0)
+                {
+                    return 1;
+                }
+
+                int idOfNewPhoto = Convert.ToInt32(result.Rows[0]["FOTO_ID"]);
+
+                return idOfNewPhoto;
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Chyba při nahrávání fotografie: {ex.Message}", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return 1;
             }
         }
 
@@ -304,6 +322,32 @@ namespace Database_Hospital_Application.Models.Repositories
 
                 return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
             
+        }
+
+        public async Task<Foto> GetUpdatedEmployeePhoto(int userId)
+        {
+            Foto foto = new Foto();
+            string commandText = "get_employee_image_by_employeeId";
+            var parameters = new Dictionary<string, object>
+            {
+                {"p_id", userId} 
+            };
+            DataTable result = await dbTools.ExecuteCommandAsync(commandText, parameters);
+
+            if (result.Rows.Count == 0)
+            {
+                return null;
+            }
+
+            foto.Id = Convert.ToInt32(result.Rows[0]["ID"]);
+            byte[] imageBytes = (byte[])result.Rows[0]["obrazek"];
+            BitmapImage bmimg = FotoExtension.ConvertBytesToBitmapImage(imageBytes);
+            if (bmimg != null)
+            {
+                foto.Image = bmimg;        
+            }
+
+            return foto;
         }
 
     }

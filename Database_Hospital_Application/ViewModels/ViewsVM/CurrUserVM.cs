@@ -70,7 +70,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             }
         }
 
-        private void EditPhoto(object parameter)
+        private void EditPhoto(object parametr)
         {
             try
             {
@@ -81,13 +81,20 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
                 CurrentUser.Employee._foto.Image = FotoExtension.ConvertBytesToBitmapImage(imageBytes);
                 UserRepo ur = new UserRepo();
                 ur.UploadPhotoAsync(CurrentUser.Employee.Id, FotoExtension.BitmapImageToBytes(CurrentUser.Employee._foto.Image),filename,suffix);
-
+                
+                EditParametersOfPhoto();
                 OnPropertyChange(nameof(CurrentUser));
             }
             catch(Exception ex)
             {
 
             }
+        }
+
+        private async Task EditParametersOfPhoto()
+        {
+            UserRepo ur = new UserRepo();
+            CurrentUser.Employee._foto = await ur.GetUpdatedEmployeePhoto(CurrentUser.Id);
         }
 
         private void Edit(object parameter)
@@ -115,9 +122,18 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         private void DeletePhoto(object? obj)
         {
-            UserRepo ur = new UserRepo();
-            ur.DeleteUserPhoto(CurrentUser);
-            MessageBox.Show("Profilová fotka byla odstraněna.");
+            if (CurrentUser.Employee._foto.Id == 1)
+            {
+                MessageBox.Show("Profilová fotka nemůže být odstraněna. Nemáte vlastní fotku!");
+            }
+            else
+            {
+                UserRepo ur = new UserRepo();
+                ur.DeleteUserPhoto(CurrentUser);
+                MessageBox.Show("Profilová fotka byla odstraněna.");
+                EditParametersOfPhoto();
+                OnPropertyChange(nameof(CurrentUser));
+            }
         }
     }
 }

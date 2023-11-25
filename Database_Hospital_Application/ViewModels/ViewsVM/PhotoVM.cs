@@ -93,6 +93,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         private async void DeleteAction(object parameter)
         {
             if (SelectedPhoto == null) return;
+            if (SelectedPhoto.Id == 1) return; //foto pro účty bez vlastního fota nelze => nemůžeme ho smazat
 
             PhotosRepo photosRepo = new PhotosRepo();
             await photosRepo.DeletePhoto(SelectedPhoto.Id);
