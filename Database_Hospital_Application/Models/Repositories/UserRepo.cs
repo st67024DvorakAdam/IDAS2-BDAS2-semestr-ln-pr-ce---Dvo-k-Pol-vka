@@ -135,6 +135,68 @@ namespace Database_Hospital_Application.Models.Repositories
             return null;
         }
 
+        public async Task<Department> GetUsersDepartment(User user)
+        {
+            string commandText3 = "get_department_by_employees_department_id";
+            DataTable result3 = null;
+            if ((user.Name == "admin" || user.Name == "Admin")) { }
+            else
+            {
+                Dictionary<string, object> parameters3 = new Dictionary<string, object>
+            {
+                { "p_id", user.Employee._department.Id }
+            };
+                result3 = await dbTools.ExecuteCommandAsync(commandText3, parameters3);
+            }
+
+            Department d;
+
+            if (result3 != null)
+            {
+                 d = new Department
+                {
+                    Id = Convert.ToInt32(result3.Rows[0]["ID"]),
+                    Name = (string)result3.Rows[0]["NAZEV"]
+                };  
+            }
+            else
+            {
+                d = new Department
+                {
+                    Name = "Nepracuji na žádném oddělení."
+                };
+            }
+            return d;
+        }
+
+        public async Task<Foto> GetUsersPhoto(User user)
+        {
+            string commandText4 = "GetEmployeeImage";
+
+            Dictionary<string, object> parameters4 = new Dictionary<string, object>
+            {
+                { "p_foto_id", Convert.ToInt32(user.Employee._foto.Id) }
+            };
+
+            DataTable result4 = await dbTools.ExecuteCommandAsync(commandText4, parameters4);
+            Foto f = null;
+            if (result4.Rows.Count != 0)
+            {
+                f = new Foto
+                {
+                    Id = Convert.ToInt32(result4.Rows[0]["ID"]),
+                };
+
+                byte[] imageBytes = (byte[])result4.Rows[0]["obrazek"];
+                BitmapImage bmimg = FotoExtension.ConvertBytesToBitmapImage(imageBytes);
+                if (bmimg != null)
+                {
+                    f.Image = bmimg;
+                }
+
+            }
+            return f;
+        }
 
         public async Task RegisterUserAsync(User user) 
         {
@@ -177,7 +239,7 @@ namespace Database_Hospital_Application.Models.Repositories
         public async Task<ObservableCollection<User>> GetAllUsersAsync()
         {
             ObservableCollection<User> users = new ObservableCollection<User>();
-            string commandText = "get_all_users";
+            string commandText = "get_all_employees";
             DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
 
 
@@ -193,12 +255,42 @@ namespace Database_Hospital_Application.Models.Repositories
                     User user = new User
                     {
                         Id = Convert.ToInt32(row["ID"]),
-                        Name = row["JMENO"].ToString(),
+                        Name = row["UZIVATELSKE_JMENO"].ToString(),
                         Password = row["HESLO"].ToString(),
                         RoleID = Convert.ToInt32(row["ROLE_ID"]),
-                        Salt = row["SALT"].ToString()                             
+                        Salt = row["SALT"].ToString(),
+                        Employee = new Employee
+                        {
+                            Id = Convert.ToInt32(row["ID"]),
+                            FirstName = row["JMENO"].ToString(),
+                            LastName = row["PRIJMENI"].ToString(),
+                            BirthNumber = (result.Rows[0]["RODNE_CISLO"]).ToString(),
+                            UserName = result.Rows[0]["UZIVATELSKE_JMENO"].ToString(),
+                            Sex = SexEnumParser.GetEnumFromString((string)result.Rows[0]["POHLAVI"]),
+                            IdOfSuperiorEmployee = row.IsNull("ZAMESTNANEC_ID") ? 0 : Convert.ToInt32(row["ZAMESTNANEC_ID"]),
+                            RoleID = Convert.ToInt32(result.Rows[0]["ROLE_ID"]),
+                            _role = new Role
+                            {
+                                Id = Convert.ToInt32(result.Rows[0]["ROLE_ID"]),
+                                Name = RoleExtensions.GetRoleDescription(Convert.ToInt32(result.Rows[0]["ROLE_ID"]))
+                            },
+                        }
                     };
                     user.UserRole = RoleExtensions.GetRoleEnumFromId(user.RoleID);
+                    user.Employee._department = new Department
+                    {
+                        Id = row.IsNull("ODDELENI_ID") ? 0 : Convert.ToInt32(row["ODDELENI_ID"])
+                    };
+                    user.Employee._foto = new Foto
+                    {
+                        Id = row.IsNull("FOTO_ID") ? 0 : Convert.ToInt32(row["FOTO_ID"])
+                    };
+
+                    //přidání nul pro RČ když začíná nulama
+                    if (user.Employee.BirthNumber.Length < 8) user.Employee.BirthNumber = "0" + user.Employee.BirthNumber;
+                    if (user.Employee.BirthNumber.Length < 9) user.Employee.BirthNumber = "0" + user.Employee.BirthNumber;
+                    if (user.Employee.BirthNumber.Length < 10) user.Employee.BirthNumber = "0" + user.Employee.BirthNumber;
+
                     users.Add(user);
                 }
             }

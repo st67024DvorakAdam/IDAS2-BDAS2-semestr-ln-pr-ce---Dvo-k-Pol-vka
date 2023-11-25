@@ -16,10 +16,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
     public class UserVM : BaseViewModel
     {
         private User _selectedUser;
-        private UserRepo _userRepo;
 
         public ObservableCollection<User> UsersList { get; set; }
-        public ObservableCollection<Patient> PatientList { get; set; } //na co to tu je?
 
         public User SelectedUser
         {
@@ -48,76 +46,39 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
 
         // Příkazy pro tlačítka
-        public ICommand EditUserCommand { get; private set; }
-        public ICommand AddUserCommand { get; private set; }
-        public ICommand DeleteUserCommand { get; private set; }
+        public ICommand EmulateUserCommand { get; private set; }
 
         public UserVM()
         {
-            _userRepo = new UserRepo();
             LoadUsersAsync();
             InitializeCommands();
         }
 
         private async Task LoadUsersAsync()
         {
-            UsersList = await _userRepo.GetAllUsersAsync();
-            var users = await _userRepo.GetAllUsersAsync();
-            UsersList = new ObservableCollection<User>(users);
+            UserRepo repo = new UserRepo();
+            UsersList = await repo.GetAllUsersAsync();
             UsersView = CollectionViewSource.GetDefaultView(UsersList);
             UsersView.Filter = UserFilter;
         }
 
         private void InitializeCommands()
         {
-            EditUserCommand = new RelayCommand(EditUserAction);
-            AddUserCommand = new RelayCommand(AddUserAction);
-            DeleteUserCommand = new RelayCommand(DeleteUserAction);
+            EmulateUserCommand = new RelayCommand(EmulateUserAction);
         }
 
-        private void EditUserAction(object parameter)
+        private void EmulateUserAction(object parametr)
         {
-            
+            AddAnotherInfoToUser();
+            LoginWindowViewModel lwvm = new LoginWindowViewModel();
+            lwvm.OpenProfileWindow(SelectedUser);
         }
 
-        private void AddUserAction(object parameter)
+        private async Task AddAnotherInfoToUser()
         {
-            
-            //var dialog = new AddUserDialog(); 
-
-           
-            //var addUserVM = new AddUserVM();
-            //dialog.DataContext = addUserVM;
-
-            //if (dialog.ShowDialog() == true)
-            //{
-                
-            //    var newUser = addUserVM.NewUser;
-
-                
-            //    _userRepo.RegisterUserAsync(newUser);
-
-                
-            //    LoadUsersAsync();
-            //}
-        }
-
-        private void DeleteUserAction(object parameter)
-        {
-            
-        }
-
-        private bool CanEditUser(object parameter)
-        {
-            return SelectedUser != null;
-        }
-        private bool CanAddUser(object parameter)
-        {
-            return true; 
-        }
-        private bool CanDeleteUser(object parameter)
-        {
-            return SelectedUser != null;
+            UserRepo ur = new UserRepo();
+            SelectedUser.Employee._department = await ur.GetUsersDepartment(SelectedUser);
+            SelectedUser.Employee._foto = await ur.GetUsersPhoto(SelectedUser);
         }
 
         private bool UserFilter(object item)
