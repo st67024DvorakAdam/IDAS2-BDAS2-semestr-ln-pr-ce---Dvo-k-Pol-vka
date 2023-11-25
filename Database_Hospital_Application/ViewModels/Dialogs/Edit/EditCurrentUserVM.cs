@@ -49,7 +49,8 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
             try
             {
                 UserRepo userRepo = new UserRepo();
-                int affectedRows = await userRepo.UpdateUser(User, OldPassword);
+                User.Employee.Password = OldPassword;
+                int affectedRows = await userRepo.UpdateUser(User);
                 if (affectedRows == 0)
                 {
                     MessageBox.Show("Váš účet se nepodařilo změnit", "Not Ok", MessageBoxButton.OK, MessageBoxImage.Information);

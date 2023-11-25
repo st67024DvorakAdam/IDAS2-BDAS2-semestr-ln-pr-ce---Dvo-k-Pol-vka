@@ -72,8 +72,7 @@ namespace Database_Hospital_Application.Models.Repositories
                 {
                     Id = Convert.ToInt32(result.Rows[0]["ID"]),
                     RoleID = Convert.ToInt32(result.Rows[0]["ROLE_ID"].ToString()),
-                    Salt = (string)result.Rows[0]["SALT"],
-                    Password = password,
+                    Salt = saltFromDb,
                     UserRole = RoleExtensions.GetRoleEnumFromId(Convert.ToInt32(result.Rows[0]["ROLE_ID"].ToString())),
                     Name = result.Rows[0]["UZIVATELSKE_JMENO"].ToString(),
                     Employee = new Employee(Convert.ToInt32(result.Rows[0]["ID"]))
@@ -88,8 +87,7 @@ namespace Database_Hospital_Application.Models.Repositories
                         {
                             Id = Convert.ToInt32(result.Rows[0]["ROLE_ID"]),
                             Name = RoleExtensions.GetRoleDescription(Convert.ToInt32(result.Rows[0]["ROLE_ID"]))
-                        },
-                        OldPassword = password
+                        }
                     }
                 };
                 
@@ -256,7 +254,7 @@ namespace Database_Hospital_Application.Models.Repositories
                     {
                         Id = Convert.ToInt32(row["ID"]),
                         Name = row["UZIVATELSKE_JMENO"].ToString(),
-                        Password = row["HESLO"].ToString(),
+                        //Password = row["HESLO"].ToString(),
                         RoleID = Convert.ToInt32(row["ROLE_ID"]),
                         Salt = row["SALT"].ToString(),
                         Employee = new Employee
@@ -380,9 +378,20 @@ namespace Database_Hospital_Application.Models.Repositories
             return saltFromDb;
         }
 
-        public async Task<int> UpdateUser(User user, string OldPassword)
+        public async Task<int> UpdateUser(User user)
         {
-            if (String.Compare(OldPassword, user.Employee.OldPassword) == 0)
+            string commandText2 = "get_employee_by_id";
+            Dictionary<string, object> parameters2 = new Dictionary<string, object> { { "p_id", user.Id } };
+            DataTable result = await dbTools.ExecuteCommandAsync(commandText2, parameters2);
+
+
+            if (result.Rows.Count == 0)
+            {
+                return 0;
+            }
+            string oldPassword = user.Employee.Password;
+            if (PasswordHasher.VerifyPassword(user.Employee.Password, result.Rows[0]["HESLO"].ToString(), result.Rows[0]["SALT"].ToString()))
+
             {
                 string passwordHash = PasswordHasher.HashPassword(user.Password, user.Salt);
 
