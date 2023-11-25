@@ -161,7 +161,7 @@
                         </Grid>
 
                     </Menu:Button>
-                    <Menu:Button Style="{StaticResource Button}" Command="{Binding NewPatientCommand}" IsChecked="True">
+                    <Menu:Button Style="{StaticResource Button}" Command="{Binding NewPatientCommand}">
 
                         <Grid>
                             <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-person-30.png?raw=true" Height="30"
