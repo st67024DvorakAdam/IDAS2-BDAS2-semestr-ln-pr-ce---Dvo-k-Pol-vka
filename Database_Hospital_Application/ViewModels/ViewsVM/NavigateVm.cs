@@ -55,7 +55,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         public ICommand EmployeesListCommand { get; }
         public ICommand PhotosListCommand { get; }
         public ICommand RolesListCommand { get; }
-        public ICommand MessagesListCommand { get; }
+        public ICommand AddNewUserEasyWayCommand { get; }
         public ICommand DepartmentsListCommand { get; }
         public ICommand LogsListCommand { get; }
 
@@ -72,7 +72,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         private void Contacts(object obj) => CurrentView = new ContactsVM();
         private void Employees(object obj) => CurrentView = new EmployeeVM();
         private void Photos(object obj) => CurrentView = new PhotoVM();
-        private void Messages(object obj) => CurrentView = new MessagesVM();
+        private void AddNewUserEasyWay(object obj) => CurrentView = new AddNewUserEasyWayVM();
         private void Roles(object obj) => CurrentView = new RolesVM();
         private void Departments(object obj) => CurrentView = new DepartmentVM();
         private void Logs(object obj) => CurrentView = new LogsVM();
@@ -99,7 +99,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             ContactsListCommand = new RelayCommand(Contacts);
             PhotosListCommand = new RelayCommand(Photos);
             RolesListCommand = new RelayCommand(Roles);
-            MessagesListCommand = new RelayCommand(Messages);
+            AddNewUserEasyWayCommand = new RelayCommand(AddNewUserEasyWay);
             DepartmentsListCommand = new RelayCommand(Departments);
             LogsListCommand = new RelayCommand(Logs);
 

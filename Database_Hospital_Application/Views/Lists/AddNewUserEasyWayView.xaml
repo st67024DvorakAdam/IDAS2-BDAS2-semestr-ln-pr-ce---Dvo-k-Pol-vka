@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="Database_Hospital_Application.Views.Lists.AddNewUserEasyWayView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:Database_Hospital_Application.ViewModels.ViewsVM"
+             xmlns:local="clr-namespace:Database_Hospital_Application.Views.Lists"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:AddNewUserEasyWayVM/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <local:SexToIndexConverter x:Key="sexToIndexConverter" />
+    </UserControl.Resources>
+
+    <Grid>
+        <StackPanel>
+            <TextBlock HorizontalAlignment="Center" Text="ZJEDNODUŠENÉ PŘIDÁNÍ UŽIVATELE" VerticalAlignment="Center" FontSize="40" Margin="0,0,0,35" Foreground="White" FontWeight="Bold"/>
+        </StackPanel>
+        <Grid Margin="0,60,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+        </Grid>
+    </Grid>
+</UserControl>

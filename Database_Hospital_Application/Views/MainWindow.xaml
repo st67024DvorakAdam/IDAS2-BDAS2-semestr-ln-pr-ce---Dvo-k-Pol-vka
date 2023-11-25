@@ -56,8 +56,8 @@
         <DataTemplate DataType="{x:Type vm:RolesVM }">
             <local:RolesListView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type vm:MessagesVM }">
-            <local:MessagesListView/>
+        <DataTemplate DataType="{x:Type vm:AddNewUserEasyWayVM }">
+            <local:AddNewUserEasyWayView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:LogsVM }">
             <local:LogsListView/>
@@ -104,7 +104,7 @@
                     </Menu:Button>
 
                     <Menu:Button Style="{StaticResource Button}"
-                              Command="{Binding MessagesListCommand}">
+                              Command="{Binding AddNewUserEasyWayCommand}">
 
                         <Grid>
 
