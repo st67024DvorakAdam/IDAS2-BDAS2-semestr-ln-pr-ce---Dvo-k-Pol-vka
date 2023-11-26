@@ -41,7 +41,6 @@ namespace Database_Hospital_Application.Views.Lists
         {
             EmployeeCB.SelectedIndex = -1;
         }
-
     }
 
     public class SexToIndexConverter : IValueConverter

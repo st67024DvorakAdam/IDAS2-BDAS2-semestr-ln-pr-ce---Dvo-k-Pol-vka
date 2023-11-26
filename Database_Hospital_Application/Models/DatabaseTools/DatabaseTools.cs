@@ -82,6 +82,53 @@ namespace Database_Hospital_Application.Models.DatabaseTools
             return dataTable;
         }
 
+
+        public async Task<DataTable> ExecuteCommandAsyncOracle(string commandText, List<OracleParameter> parameters = null)
+        {
+            DataTable dataTable = new DataTable();
+            OracleConnection conn = dbConnection.GetConnection();
+            try
+            {
+                await OpenDBAsync();
+
+                using (OracleCommand command = conn.CreateCommand())
+                {
+                    command.CommandText = commandText;
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    OracleParameter outputParameter = new OracleParameter("cursor", OracleDbType.RefCursor)
+                    {
+                        Direction = ParameterDirection.ReturnValue
+                    };
+                    command.Parameters.Add(outputParameter);
+
+                    if (parameters != null)
+                    {
+                        foreach (OracleParameter parameter in parameters)
+                        {
+                            command.Parameters.Add(parameter);
+                        }
+                    }
+
+                    using (OracleDataReader reader = (OracleDataReader)await command.ExecuteReaderAsync())
+                    {
+                        dataTable.Load(reader);
+                    }
+                }
+            }
+            catch (OracleException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                await CloseDBAsync();
+            }
+
+            return dataTable;
+        }
+
+
         public async Task<int> ExecuteNonQueryAsync(string commandText, Dictionary<string, object> parameters = null)
         {
             OracleConnection conn = dbConnection.GetConnection();

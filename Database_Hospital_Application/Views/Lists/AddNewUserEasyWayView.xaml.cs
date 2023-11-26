@@ -1,4 +1,5 @@
 ﻿using Database_Hospital_Application.Models.Enums;
+using Database_Hospital_Application.ViewModels.ViewsVM;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -26,6 +27,7 @@ namespace Database_Hospital_Application.Views.Lists
         public AddNewUserEasyWayView()
         {
             InitializeComponent();
+            UploadOwnPhotoButton.IsEnabled = false;
         }
 
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -38,10 +40,23 @@ namespace Database_Hospital_Application.Views.Lists
             return !Regex.IsMatch(text, "[^0-9]");
         }
 
-        //private void ResetComboBox2_Click(object sender, RoutedEventArgs e)
-        //{
-        //    EmployeeCB.SelectedIndex = -1;
-        //}
+
+        private void ResetComboBox2_Click(object sender, RoutedEventArgs e)
+        {
+            EmployeeCB.SelectedIndex = -1;
+        }
+
+        private void OwnPhtoCheckBox_Clicked(object sender, RoutedEventArgs e)
+        {
+            if (OwnPhtoCheckBox.IsChecked == true)
+            {
+                UploadOwnPhotoButton.IsEnabled = true;
+            }
+            else
+            {
+                UploadOwnPhotoButton.IsEnabled = false;
+            }
+        }
     }
 
 }

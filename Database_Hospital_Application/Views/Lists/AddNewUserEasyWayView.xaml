@@ -14,15 +14,15 @@
         <local:SexToIndexConverter x:Key="sexToIndexConverter" />
     </UserControl.Resources>
 
-    <Grid>
+    <Grid HorizontalAlignment="Center">
         <StackPanel>
             <TextBlock HorizontalAlignment="Center" Text="ZJEDNODUŠENÉ PŘIDÁNÍ UŽIVATELE" VerticalAlignment="Center" FontSize="40" Margin="0,0,0,35" Foreground="White" FontWeight="Bold"/>
         </StackPanel>
-        <Grid Margin="0,60,0,0">
+        <Grid Margin="0,100,0,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="300"/>
-                <ColumnDefinition Width="300"/>
-                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
@@ -36,25 +36,72 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="70"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Jméno" FontSize="18" Grid.Row="0" Grid.Column="0" Margin="5" HorizontalAlignment="Center" Foreground="White" />
-            <TextBox x:Name="FisrtNameTextBox" Background="Transparent" Foreground="White" Height="25" FontSize="16"  Grid.Row="1" Grid.Column="0" Margin="5" Width="270" HorizontalAlignment="Center" Text="{Binding NewEmployee.FirstName}"/>
+            <TextBlock Text="Jméno" FontSize="18" Grid.Row="1" Grid.Column="0" Margin="5" HorizontalAlignment="Center" Foreground="White" />
+            <TextBox x:Name="FisrtNameTextBox" Background="Transparent" Foreground="White" Height="25" FontSize="16"  Grid.Row="2" Grid.Column="0" Margin="5" Width="270" HorizontalAlignment="Center" Text="{Binding NewEmployee.FirstName}"/>
 
-            <TextBlock Text="Příjmení" FontSize="18" Grid.Row="2" Grid.Column="0" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
-            <TextBox x:Name="LastNameTextBox" Background="Transparent" Foreground="White" Height="25" FontSize="16"  Grid.Row="3" Grid.Column="0" Margin="5" Width="270" HorizontalAlignment="Center" Text="{Binding NewEmployee.LastName}"/>
+            <TextBlock Text="Příjmení" FontSize="18" Grid.Row="3" Grid.Column="0" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
+            <TextBox x:Name="LastNameTextBox" Background="Transparent" Foreground="White" Height="25" FontSize="16"  Grid.Row="4" Grid.Column="0" Margin="5" Width="270" HorizontalAlignment="Center" Text="{Binding NewEmployee.LastName}"/>
 
-            <TextBlock Text="Rodné číslo" FontSize="18" Grid.Row="4" Grid.Column="0" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
-            <TextBox x:Name="BirthNumberTextBox" Background="Transparent" Foreground="White" Height="25" FontSize="16" Grid.Row="5" Grid.Column="0" Margin="5" Width="270" 
+            <TextBlock Text="Rodné číslo" FontSize="18" Grid.Row="5" Grid.Column="0" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
+            <TextBox x:Name="BirthNumberTextBox" Background="Transparent" Foreground="White" Height="25" FontSize="16" Grid.Row="6" Grid.Column="0" Margin="5" Width="270" 
       PreviewTextInput="TextBox_PreviewTextInput" HorizontalAlignment="Center" Text="{Binding NewEmployee.BirthNumber}"/>
 
-            <TextBlock Text="Pohlaví" FontSize="18" Grid.Row="6" Grid.Column="0" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
-            <ComboBox HorizontalAlignment="Center" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" Background="Transparent" Width="270" 
+            <TextBlock Text="Pohlaví" FontSize="18" Grid.Row="7" Grid.Column="0" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
+            <ComboBox HorizontalAlignment="Center" Grid.Row="8" Grid.Column="0" VerticalAlignment="Center" Background="Transparent" Width="270" 
            SelectedIndex="{Binding NewEmployee.Sex, Converter={StaticResource sexToIndexConverter}}">
                 <ComboBoxItem Background="Transparent">Muž</ComboBoxItem>
                 <ComboBoxItem Background="Transparent">Žena</ComboBoxItem>
             </ComboBox>
+            
+            <!--grid-column 1-->
+            <Image Source="{Binding NewFoto.Image}" Width="100" Height="100" Grid.Row="0" Grid.Column="1">
+                <Image.Clip>
+                    <EllipseGeometry Center="50,50" RadiusX="50" RadiusY="50" />
+                </Image.Clip>
+            </Image>
+            <TextBlock Text="Vedoucí" FontSize="18" Grid.Row="1" Grid.Column="1" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
+            <ComboBox x:Name="EmployeeCB" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Background="Transparent" Width="270" 
+                ItemsSource="{Binding EmployeesList}" DisplayMemberPath="UserName" 
+                SelectedValuePath="Id" SelectedValue="{Binding NewEmployee.IdOfSuperiorEmployee}">
+                <ComboBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Reset" Click="ResetComboBox2_Click" />
+                    </ContextMenu>
+                </ComboBox.ContextMenu>
+            </ComboBox>
 
+            <TextBlock Text="Oddělení" FontSize="18" Grid.Row="3" Grid.Column="1" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
+            <ComboBox HorizontalAlignment="Center" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Background="Transparent" Width="270" 
+              ItemsSource="{Binding DepartmentList}" DisplayMemberPath="Name" 
+              SelectedValuePath="Id" SelectedValue="{Binding NewEmployee._department.Id}">      
+            </ComboBox>
 
+            <TextBlock Text="Uživatelské jméno" FontSize="18" Grid.Row="5" Grid.Column="1" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
+            <TextBox x:Name="UserNameTextBox" Background="Transparent" Foreground="White" Height="25" FontSize="16"  Grid.Row="6"  Grid.Column="1" Margin="5" Width="270" HorizontalAlignment="Center" Text="{Binding NewEmployee.UserName}"/>
+
+            <TextBlock Text="Heslo" FontSize="18" Grid.Row="7" Grid.Column="1" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
+            <TextBox x:Name="PasswordTextBox" Background="Transparent" Foreground="White" Height="25" FontSize="16"  Grid.Row="8" Grid.Column="1" Margin="5" Width="270" HorizontalAlignment="Center" Text="{Binding NewEmployee.Password}"/>
+
+            <TextBlock Text="Role" FontSize="18" Grid.Row="9" Grid.Column="1" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
+            <ComboBox HorizontalAlignment="Center" Grid.Row="10" Grid.Column="1" VerticalAlignment="Center" Background="Transparent" Width="270" 
+              ItemsSource="{Binding RoleList}" DisplayMemberPath="Name" 
+              SelectedValuePath="Id" SelectedValue="{Binding NewEmployee.RoleID}">      
+            </ComboBox>
+
+            <Button Grid.Row="11" Grid.Column="1" Margin="5" Width="270" Height="20" Content="Přidat zaměstnance" Command="{Binding AddCommand}"/>
+
+            <!--grid-column 2-->
+            <TextBlock Text="Email" FontSize="18" Grid.Row="1" Grid.Column="2" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
+            <TextBox x:Name="EmailTextBox" PreviewTextInput="ValidateTextContainsAtAndDot" Background="Transparent" Foreground="White" Height="25" FontSize="16"  Grid.Row="2" Grid.Column="2" Margin="5" Width="270" HorizontalAlignment="Center" Text="{Binding NewContact.Email}"/>
+
+            <TextBlock Text="Telefonní číslo" FontSize="18" Grid.Row="3" Grid.Column="2" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
+            <TextBox x:Name="PhoneTextBox" Background="Transparent" Foreground="White" Height="25" FontSize="16" Grid.Row="4" Grid.Column="2" Margin="5" Width="270" 
+            PreviewTextInput="TextBox_PreviewTextInput" HorizontalAlignment="Center" Text="{Binding NewContact.PhoneNumber}"/>
+            <CheckBox x:Name="OwnPhtoCheckBox" IsChecked="{Binding IsSelected, Mode=TwoWay}" Grid.Row="5" Grid.Column="2" Content="Vlastní fotografie" Foreground="White" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Click="OwnPhtoCheckBox_Clicked"/>
+            <Button x:Name="UploadOwnPhotoButton" Grid.Row="6" Grid.Column="2" Margin="5" Width="270" Content="Nahrát vlastní fotografii" Command="{Binding UploadPhotoCommand}"/>
         </Grid>
     </Grid>
 </UserControl>

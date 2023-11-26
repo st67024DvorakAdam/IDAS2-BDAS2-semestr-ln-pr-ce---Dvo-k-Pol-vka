@@ -167,5 +167,37 @@ namespace Database_Hospital_Application.Models.Repositories
         {
 
         }
+
+        public async Task<Foto> GetBasicPhotoAsync()
+        {
+            Foto photo = new Foto();
+            string commandText = "GetEmployeeImage";
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_id", 1 }
+            };
+            DataTable result = await dbTools.ExecuteCommandAsync(commandText, parameters);
+
+
+            if (result.Rows.Count > 0)
+            {
+                    photo = new Foto
+                    {
+                        Id = Convert.ToInt32(result.Rows[0]["ID"]),
+                        Name = result.Rows[0]["NAZEV_SOUBORU"].ToString(),
+                        Suffix = result.Rows[0]["PRIPONA"].ToString(),
+                        DateOfUpload = new Oracle.ManagedDataAccess.Types.OracleDate(Convert.ToDateTime(result.Rows[0]["DATUM_NAHRANI"])),
+                        DateOfModification = new Oracle.ManagedDataAccess.Types.OracleDate(Convert.ToDateTime(result.Rows[0]["DATUM_MODIFIKACE"])),
+                        // ListOfUserNamesWhichUseMeWithTheirRoles = row["Zam_Role_List"].ToString()
+                    };
+
+                    byte[] imageBytes = (byte[])result.Rows[0]["obrazek"];
+                    BitmapImage bmimg = FotoExtension.ConvertBytesToBitmapImage(imageBytes);
+                    if (bmimg != null) photo.Image = bmimg;
+                    else photo.Image = new BitmapImage(new Uri("https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/raw/main/Images/no-profile-photo-icon.png"));
+                }
+            
+            return photo;
+        }
     }
 }

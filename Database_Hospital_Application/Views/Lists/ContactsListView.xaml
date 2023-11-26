@@ -109,7 +109,8 @@
             <TextBlock Grid.Row="1" Text="Email" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
             <TextBox Grid.Row="2" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
              Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
-             VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding NewContact.Email}"/>
+             VerticalContentAlignment="Center" PreviewTextInput="ValidateTextContainsAtAndDot"
+             CaretBrush="White" Text="{Binding NewContact.Email}"/>
 
             <TextBlock Grid.Row="3" Text="Telefon" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
             <TextBox Grid.Row="4" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
