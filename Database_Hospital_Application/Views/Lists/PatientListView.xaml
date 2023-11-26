@@ -132,8 +132,8 @@
             <TextBlock Grid.Row="7" Text="Pohlaví" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
             <ComboBox HorizontalAlignment="Center" Grid.Row="8" VerticalAlignment="Center" Background="Transparent" Width="200" 
                       SelectedIndex="{Binding NewPatient.Sex, Converter={StaticResource sexToIndexConverter2}}">
-                <ComboBoxItem Background="Transparent">Male</ComboBoxItem>
-                <ComboBoxItem Background="Transparent">Female</ComboBoxItem>
+                <ComboBoxItem Background="Transparent">Muž</ComboBoxItem>
+                <ComboBoxItem Background="Transparent">Žena</ComboBoxItem>
             </ComboBox>
             
             <TextBlock Grid.Row="9" Text="Adresa" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>

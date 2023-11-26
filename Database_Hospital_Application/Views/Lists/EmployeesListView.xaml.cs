@@ -48,12 +48,12 @@ namespace Database_Hospital_Application.Views.Lists
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return ((SexEnum)value == SexEnum.Male) ? 0 : 1;
+            return ((SexEnum)value == SexEnum.Muž) ? 0 : 1;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return ((int)value == 0) ? SexEnum.Male : SexEnum.Female;
+            return ((int)value == 0) ? SexEnum.Muž : SexEnum.Žena;
         }
     }
 

@@ -10,30 +10,30 @@ namespace Database_Hospital_Application.Models.Enums
     public enum SexEnum
     {
         [Description("muž")]
-        Male,
+        Muž,
         [Description("žena")]
-        Female
+        Žena
     }
 
     public static class SexEnumParser{
         public static SexEnum GetEnumFromString(string input)
         {
-            if (input.ToLower() == "muž") return SexEnum.Male;
-            else if (input.ToLower() == "žena") return SexEnum.Female;
+            if (input.ToLower() == "muž" || input.ToLower() == "male") return SexEnum.Muž;
+            else if (input.ToLower() == "žena" || input.ToLower() == "female") return SexEnum.Žena;
             else throw new Exception("Neplatný výčtový typ SexEnum");
         }
 
         public static string GetStringFromEnumEnglish(SexEnum? sex)
         {
-            if (sex == SexEnum.Male) return "Male";
-            else if (sex == SexEnum.Female) return "Female";
+            if (sex == SexEnum.Muž) return "Male";
+            else if (sex == SexEnum.Žena) return "Female";
             else return "Neodpovídá žádnému pohaví";
         }
 
         public static string GetStringFromEnumCzech(SexEnum? sex)
         {
-            if (sex == SexEnum.Male) return "MUŽ";
-            else if (sex == SexEnum.Female) return "ŽENA";
+            if (sex == SexEnum.Muž) return "MUŽ";
+            else if (sex == SexEnum.Žena) return "ŽENA";
             else return "Neodpovídá žádnému pohaví";
         }
     }

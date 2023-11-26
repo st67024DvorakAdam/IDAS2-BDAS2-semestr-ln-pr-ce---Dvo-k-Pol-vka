@@ -138,8 +138,8 @@
             <TextBlock Text="Pohlaví" FontSize="18" Grid.Row="7" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
             <ComboBox HorizontalAlignment="Center" Grid.Row="8" VerticalAlignment="Center" Background="Transparent" Width="270" 
                       SelectedIndex="{Binding NewEmployee.Sex, Converter={StaticResource sexToIndexConverter}}">
-                <ComboBoxItem Background="Transparent">Male</ComboBoxItem>
-                <ComboBoxItem Background="Transparent">Female</ComboBoxItem>
+                <ComboBoxItem Background="Transparent">Muž</ComboBoxItem>
+                <ComboBoxItem Background="Transparent">Žena</ComboBoxItem>
             </ComboBox>
 
             <TextBlock Text="Vedoucí" FontSize="18" Grid.Row="9" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
