@@ -6,11 +6,12 @@
              xmlns:local="clr-namespace:Database_Hospital_Application.Views.Doctor" 
              xmlns:vm="clr-namespace:Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             >
     <UserControl.DataContext>
         <vm:NewPatientVM/>
     </UserControl.DataContext>
-    <Grid>
+    <Grid MouseDown="MouseDown" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -37,7 +38,7 @@
                 <TextBlock Text="Příjmení" Foreground="White" Margin="5"/>
                 <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding LastName}"/>
                 <TextBlock Text="Rodné číslo" Foreground="White" Margin="5"/>
-                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding IdentificationNumber}"/>
+                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding IdentificationNumber}" PreviewTextInput="TextBox_PreviewTextInputForBirthNumber"/>
                 <TextBlock Text="Pohlaví" Foreground="White" Margin="5"/>
                 <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding Gender}"/>
             </StackPanel>
@@ -50,9 +51,9 @@
                 <TextBlock Text="Ulice" Foreground="White" Margin="5"/>
                 <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding Street}"/>
                 <TextBlock Text="Číslo popisné" Foreground="White" Margin="5"/>
-                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding HouseNumber}"/>
+                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding HouseNumber}" PreviewTextInput="TextBox_PreviewTextInputForHouseNumber"/>
                 <TextBlock Text="PSČ" Foreground="White" Margin="5"/>
-                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding PostalCode}"/>
+                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding PostalCode}" PreviewTextInput="TextBox_PreviewTextInputForPostalCode"/>
                 <TextBlock Text="Stát" Foreground="White" Margin="5"/>
                 <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding Country}"/>
             </StackPanel>
@@ -63,7 +64,7 @@
                 <TextBlock Text="Email" Foreground="White" Margin="5"/>
                 <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding Email}"/>
                 <TextBlock Text="Telefon" Foreground="White" Margin="5"/>
-                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding Phone}"/>
+                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding Phone}" PreviewTextInput="TextBox_PreviewTextInputForPhoneNumber"/>
             </StackPanel>
 
             <!-- Zdravotní pojišťovna -->

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Windows.Input;
 using Database_Hospital_Application.Commands;
 
@@ -147,26 +148,42 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
         {
             return !string.IsNullOrWhiteSpace(FirstName) &&
                    !string.IsNullOrWhiteSpace(LastName) &&
-                   !string.IsNullOrWhiteSpace(IdentificationNumber) &&
+                   IsValidIdentificationNumber(IdentificationNumber) &&
                    !string.IsNullOrWhiteSpace(Gender) &&
                    !string.IsNullOrWhiteSpace(City) &&
                    !string.IsNullOrWhiteSpace(Street) &&
                    !string.IsNullOrWhiteSpace(HouseNumber) &&
-                   !string.IsNullOrWhiteSpace(PostalCode) &&
+                   IsValidPostalCode(PostalCode) &&
                    !string.IsNullOrWhiteSpace(Country) &&
                    !string.IsNullOrWhiteSpace(Email) &&
-                   !string.IsNullOrWhiteSpace(Phone) &&
+                   IsValidPhoneNumber(Phone) &&
                    !string.IsNullOrWhiteSpace(InsuranceCompanyName) &&
                    !string.IsNullOrWhiteSpace(InsuranceCompanyAbbreviation);
         }
 
+
+        private bool IsValidPhoneNumber(string phone)
+        {
+            return !string.IsNullOrEmpty(phone) && Regex.IsMatch(phone, "^[0-9]{9,10}$");
+        }
+
+        private bool IsValidIdentificationNumber(string number)
+        {
+            return !string.IsNullOrEmpty(number) && Regex.IsMatch(number, "^[0-9]{10}$");
+        }
+
+        private bool IsValidPostalCode(string postalCode)
+        {
+            return !string.IsNullOrEmpty(postalCode) && Regex.IsMatch(postalCode, "^[0-9]{5}$");
+        }
+
+        
+
+
         protected override void OnPropertyChange(string propertyName)
         {
             base.OnPropertyChange(propertyName);
-            if (propertyName != nameof(AcceptPatientCommand))
-            {
-                (AcceptPatientCommand as RelayCommand)?.RaiseCanExecuteChanged();
-            }
+            (AcceptPatientCommand as RelayCommand)?.RaiseCanExecuteChanged();
         }
     }
 }
