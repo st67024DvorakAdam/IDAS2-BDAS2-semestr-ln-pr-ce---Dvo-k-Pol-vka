@@ -87,7 +87,7 @@ namespace Database_Hospital_Application.Models.Repositories
             await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
 
-        public async Task<int> DeletePersonalMedicalHistory(int id)
+        public async Task<int> DeletePersonalMedicalHistory(int? id)
         {
             string commandText = "delete_personal_medical_history_by_id";
             var parameters = new Dictionary<string, object>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,6 +63,19 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
             }
         }
 
+        private ObservableCollection<PersonalMedicalHistory> _medicalHistory;
+
+        public ObservableCollection<PersonalMedicalHistory> MedicalHistory
+        {
+            get { return _medicalHistory; }
+            set
+            {
+                _medicalHistory = value;
+                OnPropertyChange(nameof(MedicalHistory));
+
+            }
+        }
+
 
         public ICommand SearchPatientCommand { get; private set; }
         public ICommand PersonalDetailsCommand { get; private set; }
@@ -89,7 +103,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
             }
             PatientRepo patientRepo = new PatientRepo();
             CurrentPatient = await patientRepo.GetPatientByBirthNumber(SearchText);
-
+            
             if (CurrentPatient == null)
             {
                 MessageBox.Show("Pacient s tímto rodným číslem nebyl nalezen.", "Pacient nenalezen", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -101,8 +115,14 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
             {
                 DataContext = personalDetailsVM
             };
-
+            await LoadMedicalHistoryAsync();
             CurrentContent = personalDetailsView;
+        }
+
+        private async Task LoadMedicalHistoryAsync()
+        {
+            PersonalMedicalHistoriesRepo repo = new PersonalMedicalHistoriesRepo();
+            MedicalHistory = await repo.GetPersonalMedicalHistoryByPatientIdAsync(CurrentPatient.Id);
         }
 
 
@@ -128,12 +148,12 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
         private void ExecuteAnamnesis(object parameter)
         {
             
-            var personalDetailsView = new AnamnesisView
+            var anamnesisView = new AnamnesisView
             {
                 DataContext = this
             };
 
-            CurrentContent = AnamnesisView;
+            CurrentContent = anamnesisView;
         }
 
         private void ExecuteProcedures(object parameter)
