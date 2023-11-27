@@ -26,6 +26,10 @@
         <DataTemplate DataType="{x:Type vm1:NewPatientVM}">
             <local1:NewPatientView/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm1:SubordinatesVM}">
+            <local1:DepartmentView/>
+        </DataTemplate>
         <!--
         <DataTemplate DataType="{x:Type vm:AddressesVM}">
             <local:AddressesListView/>

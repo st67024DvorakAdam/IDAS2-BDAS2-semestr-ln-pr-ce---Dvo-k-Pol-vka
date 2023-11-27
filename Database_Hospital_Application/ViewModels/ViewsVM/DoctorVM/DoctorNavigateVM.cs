@@ -53,7 +53,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
         // TODO udělat VMs 
         private void Profile(object obj) => CurrentView = new CurrUserVM(CurrentUser);
         private void Patient(object obj) => CurrentView = new DoctorPatientVM();
-        private void Department(object obj) => CurrentView = new PatientVM();
+        private void Department(object obj) => CurrentView = new SubordinatesVM(CurrentUser);
         private void PrescriptedPills(object obj) => CurrentView = new AddressesVM();
         private void Hospitalizace(object obj) => CurrentView = new HealthInsurancesVM();
         private void NewPatient(object obj) => CurrentView = new NewPatientVM();
@@ -72,7 +72,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
             PrescriptedPillsCommand = new RelayCommand(PrescriptedPills);
             HospitalizaceCommand = new RelayCommand(Hospitalizace);
             NewPatientCommand = new RelayCommand(NewPatient);
-            
+            DepartmentCommand = new RelayCommand(Department);
             
 
         }

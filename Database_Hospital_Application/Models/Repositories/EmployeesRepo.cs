@@ -98,8 +98,6 @@ namespace Database_Hospital_Application.Models.Repositories
             };
 
                 await dbTools.ExecuteNonQueryAsync(commandText, parameters);
-           
-            
             
         }
 
@@ -178,6 +176,34 @@ namespace Database_Hospital_Application.Models.Repositories
 
             return null;
         }
+
+
+
+        //výpis podřízených dle id i kontaktními údaji
+        public async Task<ObservableCollection<string>> GetListOfSubordinates(int IdOfEmployee)
+        {
+            ObservableCollection<string> subordinates = new ObservableCollection<string>();
+            string commandText = "get_subordinates";
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_id", IdOfEmployee }
+            };
+
+            DataTable result = await dbTools.ExecuteCommandAsync(commandText, parameters);
+            foreach(DataRow row in result.Rows)
+            {
+                string s = row["JMENO"].ToString();
+                s += "  ";
+                s += row["PRIJMENI"].ToString();
+                s += "  ";
+                s += row["EMAIL"].ToString();
+                s += "  ";
+                s += row["TELEFON"].ToString();
+                subordinates.Add(s);
+            }
+            return subordinates;
+        }
+
 
     }
 }
