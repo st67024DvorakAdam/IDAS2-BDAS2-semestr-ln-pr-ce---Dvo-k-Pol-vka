@@ -1,4 +1,5 @@
 ﻿using Database_Hospital_Application.Models.Entities;
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -49,20 +50,21 @@ namespace Database_Hospital_Application.Models.Repositories
         {
             string commandText = "add_insurance";
 
-            var parameters = new Dictionary<string, object>
-            {
-                { "p_name", healthInsurance.Name },
-                { "p_code", healthInsurance.Code },
-                { "p_id", ParameterDirection.Output } 
-            };
+            var parameters = new List<OracleParameter>
+        {
+            new OracleParameter("p_name", OracleDbType.Varchar2, healthInsurance.Name, ParameterDirection.Input),
+            new OracleParameter("p_code", OracleDbType.Int32, healthInsurance.Code, ParameterDirection.Input),
+            new OracleParameter("p_id", OracleDbType.Int32, ParameterDirection.Output) 
+        };
 
             await dbTools.ExecuteNonQueryAsync(commandText, parameters);
 
             
-            int newHealthInsuranceId = Convert.ToInt32(parameters["p_id"]);
+            int newHealthInsuranceId = Convert.ToInt32(parameters.Last().Value.ToString());
 
             return newHealthInsuranceId;
         }
+
 
 
         public async Task<int> DeleteHealthInsurance(int id)

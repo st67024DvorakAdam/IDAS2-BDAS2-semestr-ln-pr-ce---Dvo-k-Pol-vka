@@ -149,7 +149,17 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
             
             int patientId = await pr.AddPatient(new Models.Entities.Patient(FirstName, LastName, IdentificationNumber, Gender, addressId.ToString(), healthInsuranceId.ToString()));
 
-            cr.AddContact(new Models.Entities.Contact(Email, Phone, patientId, null)); 
+            cr.AddContact(new Models.Entities.Contact(Email, Phone, patientId, null));
+
+
+            // TODO
+            //PatientRepo currentPaitent = null; 
+
+            //DoctorPatientVM vm = new DoctorPatientVM();
+            //vm.CurrentPatient = currentPaitent.;
+            //// karta pro os udaje pacienta
+            //vm.CurrentView = new PersonalDetailsView(); 
+
         }
 
 

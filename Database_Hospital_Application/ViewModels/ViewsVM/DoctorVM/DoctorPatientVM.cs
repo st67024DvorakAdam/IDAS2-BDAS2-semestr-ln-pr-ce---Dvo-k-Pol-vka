@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Database_Hospital_Application.Commands;
 using Database_Hospital_Application.Models.Entities;
+using Database_Hospital_Application.Models.Repositories;
+using Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewVM;
+using Database_Hospital_Application.Views.Doctor.Patient;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
 {
@@ -65,6 +68,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
 
         private void ExecuteSearchPatient(object parameter)
         {
+            PatientRepo patientRepo = new PatientRepo();
+            
             // Logika pro vyhledávání pacientů
         }
 
@@ -75,7 +80,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
 
         private void ExecutePersonalDetails(object parameter)
         {
-            // CurrentView = new PersonalDetailsView();
+             CurrentView = new PersonalDetailsVM(CurrentPatient);
         }
 
         private void ExecuteAnamnesis(object parameter)

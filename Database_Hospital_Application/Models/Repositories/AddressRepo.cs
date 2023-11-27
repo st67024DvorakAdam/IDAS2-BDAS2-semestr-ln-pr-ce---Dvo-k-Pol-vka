@@ -1,6 +1,7 @@
 ﻿using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.Models.Enums;
 using Database_Hospital_Application.ViewModels.ViewsVM;
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -59,23 +60,24 @@ namespace Database_Hospital_Application.Models.Repositories
         {
             string commandText = "add_address";
 
-            var parameters = new Dictionary<string, object>
-            {
-                { "p_ulice", address.Street },
-                { "p_mesto", address.City },
-                { "p_cislo_popisne", address.HouseNumber },
-                { "p_stat", (address.Country).ToUpper() },
-                { "p_psc", address.ZipCode },
-                { "p_id", ParameterDirection.Output }
-            };
+            var parameters = new List<OracleParameter>
+        {
+            new OracleParameter("p_ulice", OracleDbType.Varchar2, address.Street, ParameterDirection.Input),
+            new OracleParameter("p_mesto", OracleDbType.Varchar2, address.City, ParameterDirection.Input),
+            new OracleParameter("p_cislo_popisne", OracleDbType.Int32, address.HouseNumber, ParameterDirection.Input),
+            new OracleParameter("p_stat", OracleDbType.Varchar2, address.Country.ToUpper(), ParameterDirection.Input),
+            new OracleParameter("p_psc", OracleDbType.Int32, address.ZipCode, ParameterDirection.Input),
+            new OracleParameter("p_id", OracleDbType.Int32, ParameterDirection.Output) 
+        };
 
             await dbTools.ExecuteNonQueryAsync(commandText, parameters);
 
-            // Získání vráceného ID
-            int newAddressId = Convert.ToInt32(parameters["p_id"]);
+            
+            int newAddressId = Convert.ToInt32(parameters.Last().Value.ToString());
 
             return newAddressId;
         }
+
 
 
         public async Task<int> DeleteAddress(int id)
