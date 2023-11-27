@@ -163,7 +163,12 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
 
         private void ExecuteActualIllness(object parameter)
         {
-            // CurrentView = new ActualIllnessView();
+            var actualIllnessView = new ActualIllnessView
+            {
+                DataContext = new AcutalIllnessVM(CurrentPatient);
+            };
+
+            CurrentContent = actualIllnessView;
         }
 
         private void ExecuteHospitalization(object parameter)
