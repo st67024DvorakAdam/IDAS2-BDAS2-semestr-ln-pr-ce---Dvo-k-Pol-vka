@@ -173,7 +173,17 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         private async void AddNewAction(object? obj)
         {
-            
+
+            NewEmployee.Salt = PasswordHasher.GenerateSalt();
+            NewEmployee.Password = PasswordHasher.HashPassword(NewEmployee.Password, NewEmployee.Salt);
+            AddNewUserEasyWayRepo repo = new AddNewUserEasyWayRepo();
+            if (IsSelected) repo.AddEmployee(1,NewEmployee, NewFoto, NewContact);
+            else repo.AddEmployee(0, NewEmployee, NewFoto, NewContact);
+            NewEmployee = new Employee();
+            NewFoto = new Foto();
+            NewContact = new Contact();
+            //IsSelected = false;
+            LoadBasicFoto();
         }
     }
 }
