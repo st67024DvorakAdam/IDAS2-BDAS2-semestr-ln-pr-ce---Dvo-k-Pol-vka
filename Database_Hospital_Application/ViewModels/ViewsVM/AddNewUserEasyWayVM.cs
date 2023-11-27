@@ -179,6 +179,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             AddNewUserEasyWayRepo repo = new AddNewUserEasyWayRepo();
             if (IsSelected) repo.AddEmployee(1,NewEmployee, NewFoto, NewContact);
             else repo.AddEmployee(0, NewEmployee, NewFoto, NewContact);
+            NewEmployee = new Employee();
+            NewFoto = new Foto();
+            NewContact = new Contact();
+            //IsSelected = false;
+            LoadBasicFoto();
         }
     }
 }
