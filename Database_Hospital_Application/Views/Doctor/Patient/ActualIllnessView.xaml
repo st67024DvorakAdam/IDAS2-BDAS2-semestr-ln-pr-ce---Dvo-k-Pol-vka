@@ -32,7 +32,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
-        <DataGrid x:Name="IllnessGrid" AutoGenerateColumns="False" ItemsSource="{Binding AcutalIllnessView}" Background="Transparent" 
+        <DataGrid  x:Name="IllnessGrid" AutoGenerateColumns="False" ItemsSource="{Binding AcutalIllnessView}" Background="Transparent" 
                   AreRowDetailsFrozen="True" CanUserAddRows="False" CanUserDeleteRows="False"
                   CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single" 
                   SelectionUnit="FullRow" GridLinesVisibility="None" HeadersVisibility="Column" 
@@ -40,7 +40,7 @@
 
             <DataGrid.Resources>
                 <Style TargetType="DataGridColumnHeader">
-                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Foreground" Value="#c9b5bc"/>
                     <Setter Property="FontWeight" Value="Bold"/>
                     <Setter Property="Background" Value="Transparent"/>
                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -90,10 +90,10 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Content="Přidat nemoc" Grid.Column="1" Margin="20" Width="150" Height="35" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc"/>
-            <Button Content="Předepsat lék" Grid.Column="2" Margin="20" Width="150" Height="35" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc"/>
-            <Button Content="Upravit dávku" Grid.Column="3" Margin="20" Width="150" Height="35" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc"/>
-            <Button Content="Vyléčená nemoc" Grid.Column="4" Margin="20" Width="150" Height="35" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc"/>
+            <Button Cursor="Hand" Content="Přidat nemoc" Grid.Column="1" Margin="20" Width="150" Height="35" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc"/>
+            <Button Cursor="Hand" Content="Předepsat lék" Grid.Column="2" Margin="20" Width="150" Height="35" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc"/>
+            <Button Cursor="Hand" Content="Upravit dávku" Grid.Column="3" Margin="20" Width="150" Height="35" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc"/>
+            <Button Cursor="Hand" Content="Vyléčená nemoc" Grid.Column="4" Margin="20" Width="150" Height="35" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc"/>
         </Grid>
     </Grid>
 </UserControl>
