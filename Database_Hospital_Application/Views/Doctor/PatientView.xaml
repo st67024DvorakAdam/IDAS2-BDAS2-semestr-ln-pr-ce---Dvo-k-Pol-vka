@@ -7,6 +7,27 @@
              xmlns:vm="clr-namespace:Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="900">
+    <UserControl.Resources>
+        <ControlTemplate x:Key="NoMouseOverButtonTemplate"   
+                 TargetType="Button">
+            <Border Background="{TemplateBinding Background}"  
+          BorderBrush="{TemplateBinding BorderBrush}"  
+          BorderThickness="{TemplateBinding BorderThickness}">
+                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  
+                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </Border>
+
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled"  
+             Value="False">
+                    <Setter Property="Background"  
+              Value="{x:Static SystemColors.ControlLightBrush}" />
+                    <Setter Property="Foreground"  
+              Value="{x:Static SystemColors.GrayTextBrush}" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </UserControl.Resources>
     <UserControl.DataContext>
         <vm:DoctorPatientVM/>
     </UserControl.DataContext>
@@ -32,16 +53,17 @@
                 </StackPanel>
 
 
-                <Button Content="Hledat" Command="{Binding SearchPatientCommand}" Height="20" Width="50" Margin="5,35,0,0" VerticalAlignment="Top"/>
+                <Button Content="Hledat" Command="{Binding SearchPatientCommand}" Height="20" Width="50" Margin="5,35,0,0" VerticalAlignment="Top"
+                        Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" Template="{StaticResource NoMouseOverButtonTemplate}"/>
             </StackPanel>
 
 
             <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="211,0,0,0" Width="550">
-                <Button Content="Osobní údaje" Command="{Binding PersonalDetailsCommand}" Margin="10" Width="90" Height="30"/>
-                <Button Content="Anamnéza" Command="{Binding AnamnesisCommand}" Margin="10" Width="90" Height="30"/>
-                <Button Content="Zákroky" Command="{Binding ProceduresCommand}" Margin="10" Width="90" Height="30"/>
-                <Button Content="Aktuální nemoci" Command="{Binding ActualIllnessCommand}" Margin="10" Width="90" Height="30"/>
-                <Button Content="Hospitalizace" Command="{Binding HospitalizationCommand}" Margin="10" Width="90" Height="30"/>
+                <Button Content="Osobní údaje" Command="{Binding PersonalDetailsCommand}" Margin="10" Width="90" Height="30" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" Template="{StaticResource NoMouseOverButtonTemplate}"/>
+                <Button Content="Anamnéza" Command="{Binding AnamnesisCommand}" Margin="10" Width="90" Height="30" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" Template="{StaticResource NoMouseOverButtonTemplate}"/>
+                <Button Content="Zákroky" Command="{Binding ProceduresCommand}" Margin="10" Width="90" Height="30" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" Template="{StaticResource NoMouseOverButtonTemplate}"/>
+                <Button Content="Aktuální nemoci" Command="{Binding ActualIllnessCommand}" Margin="10" Width="90" Height="30" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" Template="{StaticResource NoMouseOverButtonTemplate}"/>
+                <Button Content="Hospitalizace" Command="{Binding HospitalizationCommand}" Margin="10" Width="90" Height="30" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" Template="{StaticResource NoMouseOverButtonTemplate}"/>
             </StackPanel>
         </Grid>
 
