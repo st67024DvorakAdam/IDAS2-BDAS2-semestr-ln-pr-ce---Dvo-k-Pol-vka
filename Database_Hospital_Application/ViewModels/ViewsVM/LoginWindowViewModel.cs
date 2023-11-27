@@ -38,6 +38,12 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             }
         }
 
+        protected override void OnPropertyChange(string propertyName)
+        {
+            base.OnPropertyChange(propertyName);
+            (LoginCommand as RelayCommand)?.RaiseCanExecuteChanged();
+        }
+
         public LoginWindowViewModel()
         {
             LoginCommand = new RelayCommand(async (o) => await ExecuteLogin(), (o) => CanExecuteLogin());
