@@ -38,14 +38,9 @@ namespace Database_Hospital_Application.Models.Repositories
                         FirstName = row["JMENO"].ToString(),
                         LastName = row["PRIJMENI"].ToString(),
                         BirthNumber = row["RODNE_CISLO"].ToString(),
-                        _address = new Address
-                        {
-                            Id = Convert.ToInt32(row["ADRESA_ID"])
-                        },
-                        _healthInsurer = new HealthInsurance
-                        {
-                            Id = Convert.ToInt32(row["ZDRAVOTNI_POJISTOVNA_ID"])
-                        }
+                        IdAddress = Convert.ToInt32(row["ADRESA_ID"]),
+                        IdHealthInsurance = Convert.ToInt32(row["ZDRAVOTNI_POJISTOVNA_ID"])
+                        
                         
                     };
 
@@ -70,8 +65,8 @@ namespace Database_Hospital_Application.Models.Repositories
                 { "p_prijmeni", patient.LastName },
                 { "p_rodne_cislo", patient.BirthNumber },
                 { "p_pohlavi", SexEnumParser.GetStringFromEnumCzech(patient.Sex) },
-                { "p_zdravotni_pojistovna_id", patient._healthInsurer.Id },
-                { "p_adresa_id", patient._address.Id },
+                { "p_zdravotni_pojistovna_id", patient.IdHealthInsurance },
+                { "p_adresa_id", patient.IdAddress },
                 { "p_id", ParameterDirection.Output }
             };
 
@@ -106,8 +101,8 @@ namespace Database_Hospital_Application.Models.Repositories
                 { "p_prijmeni", patient.LastName },
                 { "p_rodne_cislo", patient.BirthNumber },
                 { "p_pohlavi", SexEnumParser.GetStringFromEnumCzech(patient.Sex) },
-                { "p_zdravotni_pojistovna_id", patient._healthInsurer.Id },
-                { "p_adresa_id", patient._address.Id }
+                { "p_zdravotni_pojistovna_id", patient.IdHealthInsurance },
+                { "p_adresa_id", patient.IdAddress }
             };
 
             return await dbTools.ExecuteNonQueryAsync(commandText, parameters);

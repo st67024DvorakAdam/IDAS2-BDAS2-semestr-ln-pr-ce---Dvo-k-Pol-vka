@@ -147,7 +147,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
             
             int healthInsuranceId = await hir.AddHealthInsurance(new Models.Entities.HealthInsurance(InsuranceCompanyName, InsuranceCompanyAbbreviation));
             
-            int patientId = await pr.AddPatient(new Models.Entities.Patient(FirstName, LastName, IdentificationNumber, Gender, addressId, healthInsuranceId));
+            int patientId = await pr.AddPatient(new Models.Entities.Patient(FirstName, LastName, IdentificationNumber, Gender, addressId.ToString(), healthInsuranceId.ToString()));
 
             cr.AddContact(new Models.Entities.Contact(Email, Phone, patientId, null)); 
         }

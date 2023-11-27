@@ -32,5 +32,7 @@ namespace Database_Hospital_Application.Models.Entities
                 throw new ArgumentException("Hodnota 'phoneNumber' není platné celé číslo.", nameof(phoneNumber));
             }
         }
+
+        public Contact() { }   
     }
 }
