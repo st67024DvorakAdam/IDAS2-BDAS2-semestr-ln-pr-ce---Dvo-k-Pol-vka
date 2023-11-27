@@ -9,52 +9,69 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="10">
 
-            <Label Content="Jméno:" Foreground="White"/>
-            <TextBox Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" />
+            <Label Content="Jméno:" Foreground="White"
+                   Margin="5,25,5,5"/>
+            <TextBox Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" 
+                     Margin="5,5,5,5"/>
 
-            <Label Content="Příjmení:" Foreground="White"/>
-            <TextBox Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" />
+            <Label Content="Příjmení:" Foreground="White"
+                   Margin="5,25,5,5"/>
+            <TextBox Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" 
+                     Margin="5,5,5,5"/>
 
-            <Label Content="Rodné číslo:" Foreground="White"/>
-            <TextBox Text="{Binding IdentificationNumber, UpdateSourceTrigger=PropertyChanged}" />
+            <Label Content="Rodné číslo:" Foreground="White"
+                   Margin="5,25,5,5"/>
+            <TextBox Text="{Binding IdentificationNumber, UpdateSourceTrigger=PropertyChanged}" 
+                     Margin="5,5,5,5"/>
 
-            <Label Content="Pohlaví:" Foreground="White"/>
-            <ComboBox SelectedItem="{Binding Gender, UpdateSourceTrigger=PropertyChanged}">
+            <Label Content="Město:" Foreground="White"
+                   Margin="5,25,5,5"/>
+            <TextBox Text="{Binding City, UpdateSourceTrigger=PropertyChanged}" 
+                     Margin="5,5,5,5"/>
 
-                <ComboBoxItem Content="Muž" Foreground="White"/>
-                <ComboBoxItem Content="Žena" Foreground="White"/>
-                
-            </ComboBox>
+            <Label Content="Ulice:" Foreground="White"
+                   Margin="5,25,5,5"/>
+            <TextBox Text="{Binding Street, UpdateSourceTrigger=PropertyChanged}" 
+                     Margin="5,5,5,5"/>
 
-            <Label Content="Město:" Foreground="White"/>
-            <TextBox Text="{Binding City, UpdateSourceTrigger=PropertyChanged}" />
+            <Label Content="Číslo popisné:" Foreground="White"
+                   Margin="5,25,5,5"/>
+            <TextBox Text="{Binding HouseNumber, UpdateSourceTrigger=PropertyChanged}" 
+                     Margin="5,5,5,5"/>
 
-            <Label Content="Ulice:" Foreground="White"/>
-            <TextBox Text="{Binding Street, UpdateSourceTrigger=PropertyChanged}" />
+            <Label Content="PSČ:" Foreground="White"
+                   Margin="5,25,5,5"/>
+            <TextBox Text="{Binding PostalCode, UpdateSourceTrigger=PropertyChanged}" 
+                     Margin="5,5,5,5"/>
 
-            <Label Content="Číslo popisné:" Foreground="White"/>
-            <TextBox Text="{Binding HouseNumber, UpdateSourceTrigger=PropertyChanged}" />
+            <Label Content="Stát:" Foreground="White"
+                   Margin="5,25,5,5"/>
+            <TextBox Text="{Binding Country, UpdateSourceTrigger=PropertyChanged}" 
+                     Margin="5,5,5,5"/>
 
-            <Label Content="PSČ:" Foreground="White"/>
-            <TextBox Text="{Binding PostalCode, UpdateSourceTrigger=PropertyChanged}" />
+            <Label Content="Email:" Foreground="White"
+                   Margin="5,25,5,5"/>
+            <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" 
+                     Margin="5,5,5,5"/>
 
-            <Label Content="Stát:" Foreground="White"/>
-            <TextBox Text="{Binding Country, UpdateSourceTrigger=PropertyChanged}" />
+            <Label Content="Telefon:" Foreground="White"
+                   Margin="5,25,5,5"/>
+            <TextBox Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}" 
+                     Margin="5,5,5,5"/>
 
-            <Label Content="Email:" Foreground="White"/>
-            <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" />
+            <Label Content="Název zdravotní pojišťovny:" Foreground="White"
+                   Margin="5,25,5,5"/>
+            <TextBox Text="{Binding InsuranceCompanyName, UpdateSourceTrigger=PropertyChanged}" 
+                     Margin="5,5,5,5"/>
 
-            <Label Content="Telefon:" Foreground="White"/>
-            <TextBox Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}" />
+            <Label Content="Zkratka pojišťovny:" Foreground="White"
+                   Margin="5,25,5,5"/>
+            <TextBox Text="{Binding InsuranceCompanyAbbreviation, UpdateSourceTrigger=PropertyChanged}" 
+                     Margin="5,5,5,5"/>
 
-            <Label Content="Název zdravotní pojišťovny:" Foreground="White"/>
-            <TextBox Text="{Binding InsuranceCompanyName, UpdateSourceTrigger=PropertyChanged}" />
-
-            <Label Content="Zkratka pojišťovny:" Foreground="White"/>
-            <TextBox Text="{Binding InsuranceCompanyAbbreviation, UpdateSourceTrigger=PropertyChanged}" />
-
-            <Button Content="Uložit" Command="{Binding SaveCommand}" Margin="5" Height="35" />
-            <Button Content="Zrušit" Command="{Binding CancelCommand}" Margin="5" Height="35" />
+            <Button Content="Uložit" Command="{Binding SaveCommand}" Height="35" 
+                    Margin="5,25,5,5"/>
+            <Button Content="Zrušit" Command="{Binding CancelCommand}" Margin="5,25,5,5" Height="35" />
         </StackPanel>
     </ScrollViewer>
 </Window>
