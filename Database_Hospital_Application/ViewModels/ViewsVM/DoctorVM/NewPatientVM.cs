@@ -144,7 +144,14 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
             MedicalCardsRepo mcr = new MedicalCardsRepo();
             HealthInsurancesRepo hir = new HealthInsurancesRepo();
             ContactRepo cr = new ContactRepo();
-            
+
+            var existingPatient = await pr.GetPatientByBirthNumber(IdentificationNumber);
+            if (existingPatient != null)
+            {
+                MessageBox.Show("Pacient s tímto rodným číslem již existuje.", "Existující pacient", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             int addressId = await ar.AddAddress(new Models.Entities.Address(Street, City, HouseNumber, Country, PostalCode));
             
             int healthInsuranceId = await hir.AddHealthInsurance(new Models.Entities.HealthInsurance(InsuranceCompanyName, InsuranceCompanyAbbreviation));
@@ -157,12 +164,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
 
 
             // TODO
-            var existingPatient = await pr.GetPatientByBirthNumber(IdentificationNumber);
-            if (existingPatient != null)
-            {
-                MessageBox.Show("Pacient s tímto rodným číslem již existuje.", "Existující pacient", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
+            
 
             
 
