@@ -30,12 +30,12 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Osobní údaje pro pacienta" 
+        <TextBlock Text="Osobní údaje pacienta" 
                    Foreground="#c9b5bc" 
                    HorizontalAlignment="Center" 
                    VerticalAlignment="Center" 
