@@ -70,8 +70,10 @@
                      Margin="5,5,5,5"/>
 
             <Button Content="Uložit" Command="{Binding SaveCommand}" Height="35" 
-                    Margin="5,25,5,5"/>
-            <Button Content="Zrušit" Command="{Binding CancelCommand}" Margin="5,25,5,5" Height="35" />
+                    Margin="5,25,5,5"
+                    Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc"/>
+            <Button Content="Zrušit" Command="{Binding CancelCommand}" Margin="5,25,5,5" Height="35" 
+                    Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc"/>
         </StackPanel>
     </ScrollViewer>
 </Window>

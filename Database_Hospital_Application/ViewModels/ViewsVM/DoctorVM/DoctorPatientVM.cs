@@ -127,9 +127,13 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
 
         private void ExecuteAnamnesis(object parameter)
         {
-            MessageBox.Show("Pacient s tímto rodným číslem nebyl nalezen.", "Pacient nenalezen", MessageBoxButton.OK, MessageBoxImage.Warning);
+            
+            var personalDetailsView = new AnamnesisView
+            {
+                DataContext = this
+            };
 
-            // CurrentView = new AnamnesisView();
+            CurrentContent = AnamnesisView;
         }
 
         private void ExecuteProcedures(object parameter)

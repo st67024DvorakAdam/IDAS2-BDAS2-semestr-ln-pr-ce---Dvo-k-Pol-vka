@@ -22,6 +22,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
         private int _phone;
         private string _insuranceCompanyName;
         private int _insuranceCompanyAbbreviation;
+        private bool _isSmoker;
+        private bool _isAllergic;
         public Patient Patient
         {
             get => _patient;
@@ -33,82 +35,113 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
             }
         }
 
+        public bool IsSmoker
+        {
+            get => _isSmoker;
+            set { _isSmoker = value;
+                OnPropertyChange(nameof(IsSmoker));
+            }
+        }
+
+        public bool IsAllergic
+        {
+            get => _isAllergic;
+            set
+            {
+                _isAllergic = value;
+                OnPropertyChange(nameof(IsAllergic));
+            }
+        }
+
         public string FirstName
         {
             get => _firstName;
-            set { _firstName = value; OnPropertyChange(nameof(FirstName)); }
+            set { _firstName = value;
+                OnPropertyChange(nameof(FirstName)); }
         }
 
         public string LastName
         {
             get => _lastName;
-            set { _lastName = value; OnPropertyChange(nameof(LastName)); }
+            set { _lastName = value;
+                OnPropertyChange(nameof(LastName)); }
         }
 
         public string IdentificationNumber
         {
             get => _identificationNumber;
-            set { _identificationNumber = value; OnPropertyChange(nameof(IdentificationNumber)); }
+            set { _identificationNumber = value;
+                OnPropertyChange(nameof(IdentificationNumber)); }
         }
 
         public string Gender
         {
             get => _gender;
-            set { _gender = value; OnPropertyChange(nameof(Gender)); }
+            set { _gender = value;
+                OnPropertyChange(nameof(Gender)); }
         }
 
         public string City
         {
             get => _city;
-            set { _city = value; OnPropertyChange(nameof(City)); }
+            set { _city = value;
+                OnPropertyChange(nameof(City)); }
         }
 
         public string Street
         {
             get => _street;
-            set { _street = value; OnPropertyChange(nameof(Street)); }
+            set { _street = value;
+                OnPropertyChange(nameof(Street)); }
         }
 
         public int HouseNumber
         {
             get => _houseNumber;
-            set { _houseNumber = value; OnPropertyChange(nameof(HouseNumber)); }
+            set { _houseNumber = value;
+                OnPropertyChange(nameof(HouseNumber)); }
         }
 
         public int PostalCode
         {
             get => _postalCode;
-            set { _postalCode = value; OnPropertyChange(nameof(PostalCode)); }
+            set { _postalCode = value;
+                OnPropertyChange(nameof(PostalCode)); }
         }
 
         public string Country
         {
             get => _country;
-            set { _country = value; OnPropertyChange(nameof(Country)); }
+            set { _country = value;
+                OnPropertyChange(nameof(Country)); }
         }
 
         public string Email
         {
             get => _email;
-            set { _email = value; OnPropertyChange(nameof(Email)); }
+            set { _email = value;
+                OnPropertyChange(nameof(Email)); }
         }
 
         public int Phone
         {
             get => _phone;
-            set { _phone = value; OnPropertyChange(nameof(Phone)); }
+            set { _phone = value;
+                OnPropertyChange(nameof(Phone)); }
         }
 
         public string InsuranceCompanyName
         {
             get => _insuranceCompanyName;
-            set { _insuranceCompanyName = value; OnPropertyChange(nameof(InsuranceCompanyName)); }
+            set { _insuranceCompanyName = value;
+                OnPropertyChange(nameof(InsuranceCompanyName)); }
         }
 
         public int InsuranceCompanyAbbreviation
         {
             get => _insuranceCompanyAbbreviation;
-            set { _insuranceCompanyAbbreviation = value; OnPropertyChange(nameof(InsuranceCompanyAbbreviation)); }
+            set { _insuranceCompanyAbbreviation = value;
+                OnPropertyChange(nameof(InsuranceCompanyAbbreviation)); }
         }
         
         //public bool IsSmoker => _patient.IsSmoker ?? false;
@@ -136,6 +169,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
             _phone = _patient.Contact.PhoneNumber;
             _insuranceCompanyName = _patient.HealthInsurance.Name;
             _insuranceCompanyAbbreviation = _patient.HealthInsurance.Code;
+            //TODO IsAllergic a smoker
 
             EditPatientDetailsCommand = new RelayCommand(ShowEditDialog);
             SaveChangesCommand = new RelayCommand(SaveChanges);

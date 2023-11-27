@@ -45,6 +45,35 @@ namespace Database_Hospital_Application.Models.Repositories
             return personalMedicalHistories;
         }
 
+        public async Task<ObservableCollection<PersonalMedicalHistory>> GetPersonalMedicalHistoryByPatientIdAsync(int id)
+        {
+            string commandText = "get_personal_history_by_patient_id";
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "p_patient_id", id }
+            };
+
+            DataTable result = await dbTools.ExecuteCommandAsync(commandText, parameters);
+
+            ObservableCollection<PersonalMedicalHistory> personalHistories = new ObservableCollection<PersonalMedicalHistory>();
+
+            if (result.Rows.Count > 0)
+            {
+                foreach (DataRow row in result.Rows)
+                {
+                    PersonalMedicalHistory personalMedicalHistory = new PersonalMedicalHistory
+                    {
+                        Description = row["ZAZNAM"].ToString()
+                    };
+
+                    personalHistories.Add(personalMedicalHistory);
+                }
+            }
+
+            return personalHistories;
+        }
+
+
 
         public async Task AddPersonalMedicalHistory(PersonalMedicalHistory personalMedicalHistory)
         {

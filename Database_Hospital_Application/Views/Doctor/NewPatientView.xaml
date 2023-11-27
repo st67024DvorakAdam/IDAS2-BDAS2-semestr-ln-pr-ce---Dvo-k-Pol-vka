@@ -82,6 +82,8 @@
         </Grid>
 
         <!-- Button -->
-        <Button Command="{Binding AcceptPatientCommand}"  Content="Přijmout pacienta" Height="30" Grid.Row="2" HorizontalAlignment="Center" Margin="0,10,0,10"/>
+        <Button Command="{Binding AcceptPatientCommand}"
+                Content="Přijmout pacienta" Height="30" Grid.Row="2" HorizontalAlignment="Center" Margin="0,10,0,10"
+                Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc"/>
     </Grid>
 </UserControl>
