@@ -14,5 +14,34 @@ namespace Database_Hospital_Application.Models.Entities
         public int HouseNumber {  get; set; }
         public string Country {  get; set; } 
         public int ZipCode {  get; set; }
+
+        public Address(string street, string city, string houseNumber, string country, string zipCode)
+        {
+            Street = street;
+            City = city;
+            Country = country;
+
+            
+            if (int.TryParse(houseNumber, out int parsedHouseNumber))
+            {
+                HouseNumber = parsedHouseNumber;
+            }
+            else
+            {
+                throw new ArgumentException("Hodnota 'houseNumber' není platné celé číslo.", nameof(houseNumber));
+            }
+
+            if (int.TryParse(zipCode, out int parsedZipCode))
+            {
+                ZipCode = parsedZipCode;
+            }
+            else
+            {
+                throw new ArgumentException("Hodnota 'zipCode' není platné celé číslo.", nameof(zipCode));
+            }
+        }
+
+        public Address() { }
+
     }
 }

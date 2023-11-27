@@ -55,7 +55,7 @@ namespace Database_Hospital_Application.Models.Repositories
             return addresses;
         }
 
-        public async Task AddAddress(Address address)
+        public async Task<int> AddAddress(Address address)
         {
             string commandText = "add_address";
 
@@ -65,12 +65,18 @@ namespace Database_Hospital_Application.Models.Repositories
                 { "p_mesto", address.City },
                 { "p_cislo_popisne", address.HouseNumber },
                 { "p_stat", (address.Country).ToUpper() },
-                { "p_psc", address.ZipCode }
+                { "p_psc", address.ZipCode },
+                { "p_id", ParameterDirection.Output }
             };
 
             await dbTools.ExecuteNonQueryAsync(commandText, parameters);
 
+            // Získání vráceného ID
+            int newAddressId = Convert.ToInt32(parameters["p_id"]);
+
+            return newAddressId;
         }
+
 
         public async Task<int> DeleteAddress(int id)
         {

@@ -45,17 +45,25 @@ namespace Database_Hospital_Application.Models.Repositories
             return healthInsurances;
         }
 
-        public async Task AddHealthInsurance(HealthInsurance healthInsurance)
+        public async Task<int> AddHealthInsurance(HealthInsurance healthInsurance)
         {
             string commandText = "add_insurance";
+
             var parameters = new Dictionary<string, object>
             {
-                { "p_name", healthInsurance.Name},
-                { "p_code", healthInsurance.Code}
+                { "p_name", healthInsurance.Name },
+                { "p_code", healthInsurance.Code },
+                { "p_id", ParameterDirection.Output } 
             };
 
             await dbTools.ExecuteNonQueryAsync(commandText, parameters);
+
+            
+            int newHealthInsuranceId = Convert.ToInt32(parameters["p_id"]);
+
+            return newHealthInsuranceId;
         }
+
 
         public async Task<int> DeleteHealthInsurance(int id)
         {

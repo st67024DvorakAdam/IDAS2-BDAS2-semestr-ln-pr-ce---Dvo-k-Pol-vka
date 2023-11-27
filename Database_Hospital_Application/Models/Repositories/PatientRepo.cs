@@ -61,7 +61,7 @@ namespace Database_Hospital_Application.Models.Repositories
             return Patients;
         }
 
-        public async Task AddPatient(Patient patient)
+        public async Task<int> AddPatient(Patient patient)
         {
             string commandText = "add_patient";
             var parameters = new Dictionary<string, object>
@@ -71,11 +71,18 @@ namespace Database_Hospital_Application.Models.Repositories
                 { "p_rodne_cislo", patient.BirthNumber },
                 { "p_pohlavi", SexEnumParser.GetStringFromEnumCzech(patient.Sex) },
                 { "p_zdravotni_pojistovna_id", patient._healthInsurer.Id },
-                { "p_adresa_id", patient._address.Id }
+                { "p_adresa_id", patient._address.Id },
+                { "p_id", ParameterDirection.Output }
             };
 
             await dbTools.ExecuteNonQueryAsync(commandText, parameters);
+
+            // ID přidaného pacienta
+            int newPatientId = Convert.ToInt32(parameters["p_id"]);
+
+            return newPatientId;
         }
+
 
         public async Task<int> DeletePatient(int id)
         {

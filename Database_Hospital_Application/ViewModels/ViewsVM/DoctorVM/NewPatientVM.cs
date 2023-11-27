@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using System.Windows.Input;
 using Database_Hospital_Application.Commands;
+using Database_Hospital_Application.Models.Repositories;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
 {
@@ -134,10 +135,23 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
             AcceptPatientCommand = new RelayCommand(ExecuteAcceptPatient, CanExecuteAcceptPatient);
         }
 
-        private void ExecuteAcceptPatient(object parameter)
+        private async void ExecuteAcceptPatient(object parameter)
         {
-            // TODO
+            AddressRepo ar = new AddressRepo();
+            PatientRepo pr = new PatientRepo();
+            MedicalCardsRepo mcr = new MedicalCardsRepo();
+            HealthInsurancesRepo hir = new HealthInsurancesRepo();
+            ContactRepo cr = new ContactRepo();
+            
+            int addressId = await ar.AddAddress(new Models.Entities.Address(Street, City, HouseNumber, Country, PostalCode));
+            
+            int healthInsuranceId = await hir.AddHealthInsurance(new Models.Entities.HealthInsurance(InsuranceCompanyName, InsuranceCompanyAbbreviation));
+            
+            int patientId = await pr.AddPatient(new Models.Entities.Patient(FirstName, LastName, IdentificationNumber, Gender, addressId, healthInsuranceId));
+
+            cr.AddContact(new Models.Entities.Contact(Email, Phone, patientId, null)); 
         }
+
 
         private bool CanExecuteAcceptPatient(object parameter)
         {

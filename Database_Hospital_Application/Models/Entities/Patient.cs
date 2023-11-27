@@ -14,15 +14,35 @@ namespace Database_Hospital_Application.Models.Entities
         public string LastName { get; set; }
         public string BirthNumber { get; set; }
         public SexEnum Sex { get; set; }
-        public HealthInsurance _healthInsurer { get; set; }
-        public Address _address { get; set; }
-        public PerformedProcedure? _PerformedProcedure { get; set; }
+        public int IdAddress { get; set; }
+        public int IdHealthInsurance { get; set; }
 
-        public Patient()
+        public Patient(string firstName, string lastName, string birthNumber, string sex, string idAddress, string idHealthInsurance)
         {
-            _healthInsurer = new HealthInsurance();
-            _address = new Address();
-            _PerformedProcedure = new PerformedProcedure();
+            FirstName = firstName;
+            LastName = lastName;
+            BirthNumber = birthNumber;
+            Sex = SexEnumParser.GetEnumFromString(sex);
+
+            if (int.TryParse(idAddress, out int parsedIdAddress))
+            {
+                IdAddress = parsedIdAddress;
+            }
+            else
+            {
+                throw new ArgumentException("Hodnota 'idAddress' není platné celé číslo.", nameof(idAddress));
+            }
+
+            if (int.TryParse(idHealthInsurance, out int parsedIdHealthInsurance))
+            {
+                IdHealthInsurance = parsedIdHealthInsurance;
+            }
+            else
+            {
+                throw new ArgumentException("Hodnota 'idHealthInsurance' není platné celé číslo.", nameof(idHealthInsurance));
+            }
         }
+
+        public Patient() { }
     }
 }

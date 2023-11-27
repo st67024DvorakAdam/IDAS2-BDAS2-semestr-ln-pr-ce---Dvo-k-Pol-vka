@@ -12,5 +12,21 @@ namespace Database_Hospital_Application.Models.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public int Code {  get; set; }  //Zkratka
+
+        public HealthInsurance(string name, string code)
+        {
+            Name = name;
+
+            if (int.TryParse(code, out int parsedCode))
+            {
+                Code = parsedCode;
+            }
+            else
+            {
+                throw new ArgumentException("Hodnota 'code' není platné celé číslo.", nameof(code));
+            }
+        }
+
+        public HealthInsurance() { }
     }
 }
