@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using Database_Hospital_Application.Commands;
 using Database_Hospital_Application.Models.Entities;
@@ -49,6 +51,18 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
             }
         }
 
+        private UserControl _currentContent;
+        public UserControl CurrentContent
+        {
+            get => _currentContent;
+            set
+            {
+                _currentContent = value;
+                OnPropertyChange(nameof(CurrentContent));
+            }
+        }
+
+
         public ICommand SearchPatientCommand { get; private set; }
         public ICommand PersonalDetailsCommand { get; private set; }
         public ICommand AnamnesisCommand { get; private set; }
@@ -66,25 +80,55 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
             HospitalizationCommand = new RelayCommand(ExecuteHospitalization, CanExecutePatientRelatedCommands);
         }
 
-        private void ExecuteSearchPatient(object parameter)
+        private async void ExecuteSearchPatient(object parameter)
         {
+            if(_searchText == "" || _searchText == null)
+            {
+                MessageBox.Show("Vyplňte prosím pole s rodným číslem", "Pacient nenalezen", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
             PatientRepo patientRepo = new PatientRepo();
-            
-            // Logika pro vyhledávání pacientů
+            CurrentPatient = await patientRepo.GetPatientByBirthNumber(SearchText);
+
+            if (CurrentPatient == null)
+            {
+                MessageBox.Show("Pacient s tímto rodným číslem nebyl nalezen.", "Pacient nenalezen", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            PersonalDetailsVM personalDetailsVM = new PersonalDetailsVM(CurrentPatient);
+            var personalDetailsView = new PersonalDetailsView
+            {
+                DataContext = personalDetailsVM
+            };
+
+            CurrentContent = personalDetailsView;
         }
+
+
+
 
         private bool CanExecuteSearchPatient(object parameter)
         {
-            return !string.IsNullOrWhiteSpace(SearchText);
+            return true;
         }
 
         private void ExecutePersonalDetails(object parameter)
         {
-             CurrentView = new PersonalDetailsVM(CurrentPatient);
+            
+            var personalDetailsVM = new PersonalDetailsVM(CurrentPatient);
+            var personalDetailsView = new PersonalDetailsView
+            {
+                DataContext = personalDetailsVM
+            };
+
+            CurrentContent = personalDetailsView;
         }
 
         private void ExecuteAnamnesis(object parameter)
         {
+            MessageBox.Show("Pacient s tímto rodným číslem nebyl nalezen.", "Pacient nenalezen", MessageBoxButton.OK, MessageBoxImage.Warning);
+
             // CurrentView = new AnamnesisView();
         }
 

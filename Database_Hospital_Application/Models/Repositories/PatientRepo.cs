@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Database_Hospital_Application.Models.Repositories
 {
@@ -111,38 +112,59 @@ namespace Database_Hospital_Application.Models.Repositories
             return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
 
-        public async Task<Patient> GetPatientByBirthNumber(int birthNumber)
+        public async Task<Patient> GetPatientByBirthNumber(string birthNumber)
         {
-            string commandText = "get_patient_by_birth_number";
+            
+            string commandText = "get_patient_info_by_birth_number";
+
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
-                { "p_birth_number", birthNumber }
+                { "p_birth_number", Convert.ToInt64(birthNumber) }
             };
-
 
             DataTable result = await dbTools.ExecuteCommandAsync(commandText, parameters);
 
             if (result.Rows.Count == 0)
             {
+                
                 return null;
             }
 
             DataRow row = result.Rows[0];
             Patient patient = new Patient
             {
-                Id = Convert.ToInt32(row["ID"]),
+                Id = Convert.ToInt32(row["PACIENT_ID"]),
                 FirstName = row["JMENO"].ToString(),
                 LastName = row["PRIJMENI"].ToString(),
-                BirthNumber = birthNumber.ToString(),
+                BirthNumber = row["RODNE_CISLO"].ToString(),
                 Sex = SexEnumParser.GetEnumFromString(row["POHLAVI"].ToString()),
-                IdAddress = Convert.ToInt32(row["ADRESA_ID"].ToString()),
-                IdHealthInsurance  = Convert.ToInt32(row["ZDRAVOTNI_POJISTOVNA_ID"].ToString())
-            };
 
-            
+                Contact = new Contact
+                {
+                    Email = row["email"].ToString(),
+                    PhoneNumber = Convert.ToInt32(row["TELEFON"].ToString()),
+                },
+                    
+                Address = new Address
+                {
+                    Street = row["ULICE"].ToString(),
+                    City = row["MESTO"].ToString(),
+                    HouseNumber = Convert.ToInt32(row["CISLO_POPISNE"].ToString()),
+                    Country = row["STAT"].ToString(),
+                    ZipCode = Convert.ToInt32(row["PSC"].ToString()),
+                },
+
+                
+                HealthInsurance = new HealthInsurance
+                {
+                    Name = row["POJISTOVNA_NAZEV"].ToString(),
+                    Code = Convert.ToInt32(row["POJISTOVNA_ZKRATKA"].ToString()),
+                }
+            };
 
             return patient;
         }
+
 
 
 
