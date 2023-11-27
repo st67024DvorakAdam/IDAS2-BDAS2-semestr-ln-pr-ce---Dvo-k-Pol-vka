@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Úprava osobních údajů pacienta" Height="650" Width="450"
         Background="#1a1f1f"
-        
+        WindowStartupLocation="CenterScreen"
         Icon="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-hospital-64.png?raw=true">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">

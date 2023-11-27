@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="Editace zaměstnance" Height="800" Width="600" MinHeight="800" MinWidth="600" MaxWidth="800" MaxHeight="800"
         Background="#1a1f1f"
+        WindowStartupLocation="CenterScreen"
         Icon="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-hospital-64.png?raw=true">
     <Window.Resources>
         <local:SexToIndexConverter x:Key="sexToIndexConverter" />
