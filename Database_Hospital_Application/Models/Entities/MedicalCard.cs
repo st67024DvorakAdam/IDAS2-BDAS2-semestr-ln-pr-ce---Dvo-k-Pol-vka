@@ -43,5 +43,12 @@ namespace Database_Hospital_Application.Models.Entities
         {
 
         }
+
+        public MedicalCard(bool smoking, bool alergic, int idPatient)
+        {
+            IdOfPatient = idPatient;
+            Smoking = smoking;
+            Alergic = alergic;
+        }
     }
 }

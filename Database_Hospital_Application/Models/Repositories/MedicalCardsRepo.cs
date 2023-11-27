@@ -65,18 +65,35 @@ namespace Database_Hospital_Application.Models.Repositories
             return medicalCards;
         }
 
-        public async Task AddMedicalCard(MedicalCard medicalCard, Illness newIllness)
+        public async Task AddMedicalCard(MedicalCard medicalCard, Illness? newIllness)
         {
-            string commandText = "add_medical_card";
-            var parameters = new Dictionary<string, object>
+            
+            if(newIllness != null)
             {
-                { "p_pacient_id", medicalCard.IdOfPatient },
-                { "p_kurak", medicalCard.Smoking == true?1:0},
-                { "p_alergik", medicalCard.Alergic == true?1:0},
-                { "p_nemoc_id", newIllness.Id },
-            };
+                string commandText = "add_medical_card";
+                var parameters = new Dictionary<string, object>
+                {
+                    { "p_pacient_id", medicalCard.IdOfPatient },
+                    { "p_kurak", medicalCard.Smoking == true?1:0},
+                    { "p_alergik", medicalCard.Alergic == true?1:0},
+                    { "p_nemoc_id", newIllness.Id }
+                };
 
-            await dbTools.ExecuteNonQueryAsync(commandText, parameters);
+                await dbTools.ExecuteNonQueryAsync(commandText, parameters);
+            }
+            else
+            {
+                string commandText = "add_medical_card_without_illness";
+                var parameters = new Dictionary<string, object>
+                {
+                    { "p_pacient_id", medicalCard.IdOfPatient },
+                    { "p_kurak", medicalCard.Smoking == true?1:0},
+                    { "p_alergik", medicalCard.Alergic == true?1:0}
+                };
+
+                await dbTools.ExecuteNonQueryAsync(commandText, parameters);
+            }
+            
         }
 
         public async Task<int> DeleteMedicalCard(MedicalCard medicalCard)

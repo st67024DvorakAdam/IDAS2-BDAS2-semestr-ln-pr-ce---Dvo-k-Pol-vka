@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using System.Windows;
 using System.Windows.Input;
 using Database_Hospital_Application.Commands;
 using Database_Hospital_Application.Models.Repositories;
+using Database_Hospital_Application.Views.Doctor.Patient;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
 {
@@ -149,16 +151,20 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
             
             int patientId = await pr.AddPatient(new Models.Entities.Patient(FirstName, LastName, IdentificationNumber, Gender, addressId.ToString(), healthInsuranceId.ToString()));
 
+            mcr.AddMedicalCard(new Models.Entities.MedicalCard(IsSmoker, IsAllergic, patientId), null);
+            
             cr.AddContact(new Models.Entities.Contact(Email, Phone, patientId, null));
 
 
             // TODO
-            //PatientRepo currentPaitent = null; 
+            var existingPatient = await pr.GetPatientByBirthNumber(IdentificationNumber);
+            if (existingPatient != null)
+            {
+                MessageBox.Show("Pacient s tímto rodným číslem již existuje.", "Existující pacient", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
-            //DoctorPatientVM vm = new DoctorPatientVM();
-            //vm.CurrentPatient = currentPaitent.;
-            //// karta pro os udaje pacienta
-            //vm.CurrentView = new PersonalDetailsView(); 
+            
 
         }
 
