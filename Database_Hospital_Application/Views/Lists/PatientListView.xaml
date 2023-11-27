@@ -71,8 +71,8 @@
                     <DataGridTextColumn Header="Příjmení" Binding="{Binding LastName}" Width="*"/>
                     <DataGridTextColumn Header="Rodné číslo" Binding="{Binding BirthNumber}" Width="*"/>
                     <DataGridTextColumn Header="Pohlaví" Binding="{Binding Sex}" Width="*"/>
-                    <DataGridTextColumn Header="Id pojišťovny" Binding="{Binding _healthInsurer.Id}" Width="*"/>
-                    <DataGridTextColumn Header="Id adresy" Binding="{Binding _address.Id}" Width="*"/>
+                    <DataGridTextColumn Header="Id pojišťovny" Binding="{Binding IdHealthInsurance}" Width="*"/>
+                    <DataGridTextColumn Header="Id adresy" Binding="{Binding IdAddress}" Width="*"/>
                 </DataGrid.Columns>
 
 
@@ -139,7 +139,7 @@
             <TextBlock Grid.Row="9" Text="Adresa" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
             <ComboBox HorizontalAlignment="Center" Grid.Row="10" VerticalAlignment="Center" Background="Transparent" Width="200" 
             ItemsSource="{Binding AddressesList}"
-            SelectedValuePath="Id" SelectedValue="{Binding NewPatient._address.Id}">
+            SelectedValuePath="Id" SelectedValue="{Binding NewPatient.IdAddress}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock>
@@ -160,7 +160,7 @@
             <TextBlock Grid.Row="11" Text="Pojišťovna" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
             <ComboBox HorizontalAlignment="Center" Grid.Row="12" VerticalAlignment="Center" Background="Transparent" Width="200" 
             ItemsSource="{Binding HealthInsurancesList}"
-            SelectedValuePath="Id" SelectedValue="{Binding NewPatient._healthInsurer.Id}">
+            SelectedValuePath="Id" SelectedValue="{Binding NewPatient.IdHealthInsurance}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock>

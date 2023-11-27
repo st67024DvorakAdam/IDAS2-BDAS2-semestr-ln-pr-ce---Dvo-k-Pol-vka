@@ -64,9 +64,14 @@ namespace Database_Hospital_Application.Models.Repositories
                     Direction = ParameterDirection.Input
                 };
 
+                OracleParameter pUserName = new OracleParameter("p_uzivatelske_jmeno", OracleDbType.Blob)
+                {
+                    Value = employee.UserName,
+                    Direction = ParameterDirection.Input
+                };
                 //TODO ostatní atributy ze zaměstnance + proceduru v sql
 
-                var parameters = new List<OracleParameter> { pPhotoBlob, pFileName, pSuffix, pPhone, pMail };
+                var parameters = new List<OracleParameter> { pPhotoBlob, pFileName, pSuffix, pPhone, pMail, pUserName };
 
 
                 await dbTools.ExecuteNonQueryAsync(storedProcedure, parameters);
