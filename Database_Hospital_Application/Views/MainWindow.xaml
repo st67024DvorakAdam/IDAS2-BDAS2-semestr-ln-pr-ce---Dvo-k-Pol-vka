@@ -7,7 +7,7 @@
         xmlns:Menu="clr-namespace:Database_Hospital_Application.Utils" xmlns:vm="clr-namespace:Database_Hospital_Application.ViewModels.ViewsVM" 
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
-        Title="Hospital UPCE" Height="1000" Width="1500" MinHeight="980" MinWidth="1050"
+        Title="Hospital UPCE" Height="1000" Width="1500" MinHeight="1000" MinWidth="1050"
         Icon="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-hospital-64.png?raw=true">
     
     <Window.Resources>
@@ -62,8 +62,11 @@
         <DataTemplate DataType="{x:Type vm:LogsVM }">
             <local:LogsListView/>
         </DataTemplate>
-        
-        
+        <DataTemplate DataType="{x:Type vm:SystemCatalogVM }">
+            <local:SystemCatalog/>
+        </DataTemplate>
+
+
     </Window.Resources>
     <Grid>
 
@@ -85,7 +88,7 @@
                         CornerRadius="2,0,0,2" />
                
                 
-                <StackPanel Height="950" MinHeight="950"
+                <StackPanel Height="1000" MinHeight="950"
                             Width="300">
 
                     <Menu:Button Style="{StaticResource Button}"
@@ -342,6 +345,21 @@
 
                             <TextBlock Text="Logy"
                                        Style="{StaticResource TextStyle}" />
+
+                        </Grid>
+
+                    </Menu:Button>
+                    <Menu:Button Style="{StaticResource Button}"
+                        Command="{Binding SystemCatalogCommand}">
+
+                        <Grid>
+
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-log-30.png?raw=true"
+                                Height="30"
+                                Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
+
+                            <TextBlock Text="Systémový katalog"
+                                Style="{StaticResource TextStyle}" />
 
                         </Grid>
 

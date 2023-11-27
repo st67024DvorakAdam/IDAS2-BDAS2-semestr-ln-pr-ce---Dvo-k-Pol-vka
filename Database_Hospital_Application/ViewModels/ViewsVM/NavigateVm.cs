@@ -58,6 +58,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         public ICommand AddNewUserEasyWayCommand { get; }
         public ICommand DepartmentsListCommand { get; }
         public ICommand LogsListCommand { get; }
+        public ICommand SystemCatalogCommand { get; }
 
         private void Profile(object obj) => CurrentView = new CurrUserVM(CurrentUser);
         private void Users(object obj) => CurrentView = new UserVM();
@@ -76,6 +77,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         private void Roles(object obj) => CurrentView = new RolesVM();
         private void Departments(object obj) => CurrentView = new DepartmentVM();
         private void Logs(object obj) => CurrentView = new LogsVM();
+
+        private void SystemCatalog(object obj) => CurrentView = new SystemCatalogVM();
 
         public NavigateVM(User user)
         {
@@ -102,6 +105,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             AddNewUserEasyWayCommand = new RelayCommand(AddNewUserEasyWay);
             DepartmentsListCommand = new RelayCommand(Departments);
             LogsListCommand = new RelayCommand(Logs);
+            SystemCatalogCommand = new RelayCommand(SystemCatalog);
 
         }
     }
