@@ -17,11 +17,17 @@ namespace Database_Hospital_Application.Models.Repositories
     {
         private DatabaseTools.DatabaseTools dbTools = new DatabaseTools.DatabaseTools();
 
-        public async Task AddEmployee(Employee employee, Foto foto, Contact contact)
+        public async Task AddEmployee(int insertingPhoto, Employee employee, Foto foto, Contact contact)
         {
             try
             {
                 string storedProcedure = "add_complete_employee";
+
+                OracleParameter pInsertingNewPhoto = new OracleParameter("p_vkladani_fota", OracleDbType.Int32)
+                {
+                    Value = insertingPhoto,
+                    Direction = ParameterDirection.Input
+                };
 
                 OracleParameter pPhotoBlob = new OracleParameter("p_photo_blob", OracleDbType.Blob)
                 {
@@ -113,14 +119,14 @@ namespace Database_Hospital_Application.Models.Repositories
                     Direction = ParameterDirection.Input
                 };
 
-                var parameters = new List<OracleParameter> { pPhotoBlob, pFileName, pSuffix, pPhone, pMail, pUserName, pBirthnumber, pSex, pIdOfDepartment, pIdOfRole, pPassword, pSalt, pIdOfSupperiorEmployee };
+                var parameters = new List<OracleParameter> { pInsertingNewPhoto, pPhotoBlob, pFileName, pSuffix, pPhone, pMail, pFirstName, pLastName , pBirthnumber, pSex, pIdOfSupperiorEmployee, pIdOfDepartment, pUserName, pPassword, pSalt, pIdOfRole };
 
 
                 await dbTools.ExecuteNonQueryAsync(storedProcedure, parameters);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Chyba při nahrávání fotografie: {ex.Message}", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Chyba při přidání komplet zaměstnance: {ex.Message}", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
       
