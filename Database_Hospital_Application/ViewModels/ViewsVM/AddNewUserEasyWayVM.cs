@@ -182,8 +182,9 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             NewEmployee = new Employee();
             NewFoto = new Foto();
             NewContact = new Contact();
-            //IsSelected = false;
-            LoadBasicFoto();
+            IsSelected = false;
+            OnPropertyChange(nameof(IsSelected));
+            //LoadBasicFoto();
         }
     }
 }

@@ -57,6 +57,7 @@ namespace Database_Hospital_Application.Views.Lists
                 UploadOwnPhotoButton.IsEnabled = false;
             }
         }
+
     }
 
 }
