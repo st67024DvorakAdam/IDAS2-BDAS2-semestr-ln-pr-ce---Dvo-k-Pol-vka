@@ -1,6 +1,7 @@
 ﻿using Database_Hospital_Application.Commands;
 using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.Models.Repositories;
+using Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor;
 using Database_Hospital_Application.Views.Doctor.Patient;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
     {
         private ObservableCollection<DataActualIllness> _illnessList;
         private PatientRepo _patientRepo;
-        private DataActualIllness _selectedIllness;
+        private DataActualIllness? _selectedIllness;
 
         public ObservableCollection<DataActualIllness> IllnessList
         {
@@ -88,9 +89,14 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
             LoadDataAsync(_patient.Id);
         }
 
-        private void UpdateDosage()
+        private async void UpdateDosage()
         {
             // TODO
+            // New window
+            
+            EditDosageView dialog = new EditDosageView(new EditDosageVM(_selectedIllness.PrescriptedPills));
+
+            dialog.ShowDialog();
             LoadDataAsync(_patient.Id);
         }
 

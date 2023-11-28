@@ -87,6 +87,20 @@ namespace Database_Hospital_Application.Models.Repositories
             return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
 
+        public async Task<int> UpdateDosageAsync(Drug drug)
+        {
+            string commandText = "update_pills_dosage";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"p_pill_id", drug.Id },
+                { "p_new_dosage", drug.Dosage }
+            };
+
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
+        }
+
+
         public void DeleteAllDrugs()
         {
 
