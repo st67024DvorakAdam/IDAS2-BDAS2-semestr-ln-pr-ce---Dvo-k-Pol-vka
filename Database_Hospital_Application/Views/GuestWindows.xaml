@@ -3,16 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Database_Hospital_Application.Views.Lists"
+        xmlns:local="clr-namespace:Database_Hospital_Application.Views.Guest"
         xmlns:Menu="clr-namespace:Database_Hospital_Application.Utils" 
-        xmlns:vm="clr-namespace:Database_Hospital_Application.ViewModels.ViewsVM"
+        xmlns:vm="clr-namespace:Database_Hospital_Application.ViewModels.ViewsVM.GuestVM"
         mc:Ignorable="d"
         Title="Host" Height="1000" Width="1500" MinHeight="980" MinWidth="1050"
         Icon="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-hospital-64.png?raw=true">
 
     <Window.Resources>
-        <DataTemplate DataType="{x:Type vm:CurrUserVM}">
-            <local:CurrentUserView/>
+        <DataTemplate DataType="{x:Type vm:EmployeesOnDepartmentsVM}">
+            <local:EmployeesOnDepartmentsView/>
         </DataTemplate>
 
         <!--<DataTemplate DataType="{x:Type vm1:DoctorPatientVM}">
@@ -94,15 +94,15 @@
                             Width="300">
 
                     <Menu:Button Style="{StaticResource Button}"
-                                 Command="{Binding ProfileCommand}"
+                                 Command="{Binding EmployeesOnDepartmentsCommand}"
                               IsChecked="True">
 
                         <Grid>
                             <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-person-30.png?raw=true"
                                    Height="30"
                                    Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
-                            <TextBlock Text="Profil"
-                                       Style="{StaticResource TextStyle}" />
+                            <TextBlock Text="Oddělení"
+                                       Style="{StaticResource TextStyle}" IsEnabled="False" />
 
                         </Grid>
 

@@ -257,13 +257,13 @@
                             </Button.Template>
                         </Button>-->
                         <Button Command="{Binding LoginAsGuestCommand}"
-        Background="Transparent"
-        FontSize="12"
-        FontFamily="Montserrat"
-        FontWeight="Medium"
-        Foreground="DarkGray"
-        BorderThickness="0">
-                            <TextBlock Text="YourButtonText" />
+                            Background="Transparent"
+                            FontSize="12"
+                            FontFamily="Montserrat"
+                            FontWeight="Medium"
+                            Foreground="DarkGray"
+                            BorderThickness="0">
+                            <TextBlock Text="Pokračovat bez přihlášení" />
                         </Button>
 
 

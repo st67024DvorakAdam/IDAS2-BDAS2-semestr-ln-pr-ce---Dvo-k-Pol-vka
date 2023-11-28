@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Database_Hospital_Application.Models.Repositories;
 using Database_Hospital_Application.Models.Tools;
 using Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM;
+using Database_Hospital_Application.ViewModels.ViewsVM.GuestVM;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM
 {
@@ -133,10 +134,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
                     //CloseAction?.Invoke();
                     break;
                 case 5:
-                //profileWindow.DataContext = new NavigateVM(user);
-                //profileWindow.Show();
-                //CloseAction?.Invoke();
-                //break;
+                    Views.GuestWindows guestWindow = new Views.GuestWindows();
+                    guestWindow.DataContext = new GuestNavigateVM();
+                    guestWindow.Show();
+                    CloseAction?.Invoke();
+                    break;
                 default:
                     break;
             }
