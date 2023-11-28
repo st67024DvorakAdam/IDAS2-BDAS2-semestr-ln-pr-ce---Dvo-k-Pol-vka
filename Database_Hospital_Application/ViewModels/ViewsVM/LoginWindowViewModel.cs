@@ -14,7 +14,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
     public class LoginWindowViewModel : BaseViewModel
     {
         public ICommand LoginCommand { get; private set; }
-        public ICommand ContinueWithoutLoginCommand { get; private set; }
+        public ICommand LoginAsGuestCommand { get; private set; }
 
         private string _username;
         public string Username
@@ -47,6 +47,23 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         public LoginWindowViewModel()
         {
             LoginCommand = new RelayCommand(async (o) => await ExecuteLogin(), (o) => CanExecuteLogin());
+            LoginAsGuestCommand = new RelayCommand(OpenGuestWindow);
+        }
+
+        private void OpenGuestWindow(object? obj)
+        {
+            User user = new User
+            {
+                Name = "Host",
+                Employee = new Employee
+                {
+                    FirstName = "Host",
+                    UserName = "Username - host",
+                    LastName = "" 
+                },
+                RoleID = 5 //Guest
+            };
+            OpenProfileWindow(user);
         }
 
         private bool CanExecuteLogin()

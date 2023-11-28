@@ -29,6 +29,7 @@
     <Folder Include="ViewModels\ViewsVM\AdminVm\" />
     <Folder Include="ViewModels\ViewsVM\NurseVM\" />
     <Folder Include="Views\Assistant\" />
+    <Folder Include="Views\Guest\" />
     <Folder Include="Views\Nurse\" />
   </ItemGroup>
 

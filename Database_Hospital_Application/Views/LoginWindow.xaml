@@ -247,11 +247,25 @@
                                 HorizontalAlignment="Center"
                                 Margin="0,15,0,0">
 
-                        <TextBlock Text="Pokračovat bez přihlášení"
-                               Foreground="DarkGray"
-                               FontSize="12"
-                               FontWeight="Medium"
-                               FontFamily="Montserrat"/>
+                        <!--<Button Content="Pokračovat bez přihlášení" 
+                                Background="Transparent" FontSize="12" FontFamily="Montserrat" FontWeight="Medium" Foreground="DarkGray" BorderThickness="0"
+                                Command="{Binding LoginAsGuestCommand}">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <TextBlock Text="{TemplateBinding Content}" />
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>-->
+                        <Button Command="{Binding LoginAsGuestCommand}"
+        Background="Transparent"
+        FontSize="12"
+        FontFamily="Montserrat"
+        FontWeight="Medium"
+        Foreground="DarkGray"
+        BorderThickness="0">
+                            <TextBlock Text="YourButtonText" />
+                        </Button>
+
 
                         <TextBlock Text=""
                                Foreground="White"
