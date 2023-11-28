@@ -58,8 +58,8 @@
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Owner" Binding="{Binding Owner}" Width="*"/>
-                <DataGridTextColumn Header="Object Name" Binding="{Binding Object_Name}" Width="*"/>
-                <DataGridTextColumn Header="Object Type" Binding="{Binding Object_Type}" Width="*"/>
+                <DataGridTextColumn Header="Object Name" Binding="{Binding ObjectName}" Width="*"/>
+                <DataGridTextColumn Header="Object Type" Binding="{Binding ObjectType}" Width="*"/>
                 
 
             </DataGrid.Columns>

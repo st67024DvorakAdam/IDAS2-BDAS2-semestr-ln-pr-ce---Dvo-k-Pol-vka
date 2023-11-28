@@ -24,14 +24,15 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<ObservableCollection<DataClass>> GetSystemCatalogAsync()
         {
-            string owner = "st67024";
-            string commandText = "get_objects";
-            var parameters = new List<OracleParameter>
+            string owner = "ST67024";
+            string commandText = "get_system_catalog_objects";
+
+            Dictionary<string, object> parameters = new Dictionary<string, object>
             {
-                new OracleParameter("owner_in", OracleDbType.Varchar2, owner, ParameterDirection.Input)
+                { "owner_in", owner }
             };
 
-            DataTable result = await dbTools.ExecuteCommandAsyncOracle(commandText, parameters);
+            DataTable result = await dbTools.ExecuteCommandAsync(commandText, parameters);
 
 
             Data.Clear(); 
