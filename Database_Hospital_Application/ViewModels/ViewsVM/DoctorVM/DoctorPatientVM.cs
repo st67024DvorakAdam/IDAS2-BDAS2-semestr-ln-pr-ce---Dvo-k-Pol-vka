@@ -165,7 +165,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
         {
             var actualIllnessView = new ActualIllnessView
             {
-                DataContext = new AcutalIllnessVM(CurrentPatient)
+                DataContext = new ActualIllnessVM(CurrentPatient)
             };
 
             CurrentContent = actualIllnessView;

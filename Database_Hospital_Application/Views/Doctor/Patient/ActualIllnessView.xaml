@@ -32,7 +32,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
-        <DataGrid  x:Name="IllnessGrid" AutoGenerateColumns="False" ItemsSource="{Binding AcutalIllnessView}" Background="Transparent" 
+        <DataGrid  x:Name="IllnessGrid" AutoGenerateColumns="False" ItemsSource="{Binding IllnessList}" Background="Transparent" 
                   AreRowDetailsFrozen="True" CanUserAddRows="False" CanUserDeleteRows="False"
                   CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single" 
                   SelectionUnit="FullRow" GridLinesVisibility="None" HeadersVisibility="Column" 
@@ -63,9 +63,9 @@
             </DataGrid.Resources>
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Aktuální nemoc" Binding="{Binding Illness}" Width="*"/>
-                <DataGridTextColumn Header="Předepsané léky" Binding="{Binding PrescriptedPills}" Width="*"/>
-                <DataGridTextColumn Header="Dávkování/denně" Binding="{Binding Dosage}" Width="*"/>
+                <DataGridTextColumn Header="Aktuální nemoc" Binding="{Binding Illness.Name}" Width="*"/>
+                <DataGridTextColumn Header="Předepsané léky" Binding="{Binding PrescriptedPills.Name}" Width="*"/>
+                <DataGridTextColumn Header="Dávkování/denně" Binding="{Binding PrescriptedPills.Dosage}" Width="*"/>
             </DataGrid.Columns>
 
 

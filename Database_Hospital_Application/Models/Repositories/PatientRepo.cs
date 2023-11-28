@@ -1,6 +1,7 @@
 ﻿using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.Models.Enums;
 using Database_Hospital_Application.ViewModels.ViewsVM;
+using Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewVM;
 using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
@@ -164,6 +165,55 @@ namespace Database_Hospital_Application.Models.Repositories
 
             return patient;
         }
+
+        public async Task<ObservableCollection<DataActualIllness>> GetActualIllnessByPatientIdAsync(int patientId)
+        {
+            string commandText = "get_patient_illnesses_meds";
+            var parameters = new List<OracleParameter>
+    {
+        new OracleParameter("p_patient_id", OracleDbType.Int32, patientId, ParameterDirection.Input)
+    };
+
+            DataTable result = await dbTools.ExecuteCommandAsyncOracle(commandText, parameters);
+
+            var illnesses = new ObservableCollection<DataActualIllness>();
+
+            foreach (DataRow row in result.Rows)
+            {
+                var illness = new Illness
+                {
+                    Id = Convert.ToInt32(row["NEMOC_ID"]),
+                    Name = row["NEMOC"].ToString()
+                };
+
+                Drug? drug = null;
+                if (row["LEK_ID"] != DBNull.Value && row["LEK"] != DBNull.Value && row["DAVKOVANI"] != DBNull.Value)
+                {
+                    drug = new Drug
+                    {
+                        Id = Convert.ToInt32(row["LEK_ID"]),
+                        Name = row["LEK"].ToString(),
+                        Dosage = Convert.ToInt32(row["DAVKOVANI"])
+                    };
+                }
+
+                var dataActualIllness = new DataActualIllness
+                {
+                    Illness = illness,
+                    PrescriptedPills = drug
+                };
+
+                illnesses.Add(dataActualIllness);
+            }
+
+            return illnesses;
+        }
+
+
+
+
+
+
 
 
 

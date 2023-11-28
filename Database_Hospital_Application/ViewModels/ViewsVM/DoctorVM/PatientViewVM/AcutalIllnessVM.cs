@@ -1,4 +1,5 @@
 ﻿using Database_Hospital_Application.Models.Entities;
+using Database_Hospital_Application.Models.Repositories;
 using Database_Hospital_Application.Views.Doctor.Patient;
 using System;
 using System.Collections.Generic;
@@ -9,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewVM
 {
-    public class AcutalIllnessVM : BaseViewModel
+    public class ActualIllnessVM : BaseViewModel
     {
-
         private ObservableCollection<DataActualIllness> _illnessList;
+        private PatientRepo _patientRepo;
 
         public ObservableCollection<DataActualIllness> IllnessList
         {
@@ -21,25 +22,41 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
             {
                 _illnessList = value;
                 OnPropertyChange(nameof(IllnessList));
-
             }
         }
-        public AcutalIllnessVM() { }
-        public AcutalIllnessVM(Patient currentPatient)
+
+        private Patient _patient;
+        public Patient Patient
         {
+            get => _patient;
+            set
+            {
+                _patient = value;
+                OnPropertyChange(nameof(Patient));
+                LoadDataAsync(_patient.Id);
+            }
+        }
+
+        
+
+        public ActualIllnessVM(Patient currentPatient) 
+        {
+            _patientRepo = new PatientRepo();
+            Patient = currentPatient; 
             LoadDataAsync(currentPatient.Id);
         }
 
-        private void LoadDataAsync(int id)
+        private async void LoadDataAsync(int id)
         {
-
+            var illnessData = await _patientRepo.GetActualIllnessByPatientIdAsync(id);
+            IllnessList = new ObservableCollection<DataActualIllness>(illnessData);
         }
     }
 
+
     public class DataActualIllness
     {
-        public string Illness { set; get; }
-        public string PrescriptedPills { set; get; }
-        public string Dosage { set; get; }
+        public Illness? Illness{ set; get; }
+        public Drug? PrescriptedPills { set; get; }
     }
 }
