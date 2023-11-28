@@ -116,7 +116,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
                     CloseAction?.Invoke();
                     break;
                 case 3:
-
+                    //
                     // budoucí window pro sestru
                     //Views.NurseWindow nurseWindow = new Views.NurseWindow();
                     //nurseWindow.DataContext = new NurseNavigateVM(user);
