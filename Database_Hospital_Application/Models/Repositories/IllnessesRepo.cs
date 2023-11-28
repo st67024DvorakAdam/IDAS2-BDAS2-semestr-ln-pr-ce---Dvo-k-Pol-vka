@@ -1,4 +1,5 @@
 ﻿using Database_Hospital_Application.Models.Entities;
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -57,6 +58,19 @@ namespace Database_Hospital_Application.Models.Repositories
             await dbTools.ExecuteNonQueryAsync(commandText, parameters);
 
         }
+
+        public async Task AddIllness(string illness, int patient_id)
+        {
+            string commandText = "add_patient_illness";
+            var parameters = new List<OracleParameter>
+            {
+                new OracleParameter("p_patient_id", OracleDbType.Int32) { Value = patient_id },
+                new OracleParameter("p_illness_name", OracleDbType.Varchar2) { Value = illness }
+            };
+
+            await dbTools.ExecuteNonQueryAsync(commandText, parameters);
+        }
+
 
         public async Task<int> DeleteIllness(int id)
         {

@@ -80,6 +80,9 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
         private void AddIllness()
         {
             // TODO
+            AddNewIllnessView dialog = new AddNewIllnessView(new AddNewIllnessVM(_patient));
+
+            dialog.ShowDialog();
             LoadDataAsync(_patient.Id);
         }
 
@@ -91,8 +94,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
 
         private async void UpdateDosage()
         {
-            // TODO
-            // New window
             
             EditDosageView dialog = new EditDosageView(new EditDosageVM(_selectedIllness.PrescriptedPills));
 
