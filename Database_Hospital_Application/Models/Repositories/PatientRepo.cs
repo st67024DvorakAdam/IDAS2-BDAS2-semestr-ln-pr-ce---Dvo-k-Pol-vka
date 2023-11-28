@@ -170,9 +170,9 @@ namespace Database_Hospital_Application.Models.Repositories
         {
             string commandText = "get_patient_illnesses_meds";
             var parameters = new List<OracleParameter>
-    {
-        new OracleParameter("p_patient_id", OracleDbType.Int32, patientId, ParameterDirection.Input)
-    };
+            {
+                new OracleParameter("p_patient_id", OracleDbType.Int32, patientId, ParameterDirection.Input)
+            };
 
             DataTable result = await dbTools.ExecuteCommandAsyncOracle(commandText, parameters);
 

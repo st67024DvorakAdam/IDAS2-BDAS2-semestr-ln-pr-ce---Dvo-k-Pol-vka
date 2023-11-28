@@ -1,4 +1,5 @@
-﻿using Database_Hospital_Application.Models.Entities;
+﻿using Database_Hospital_Application.Commands;
+using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.Models.Repositories;
 using Database_Hospital_Application.Views.Doctor.Patient;
 using System;
@@ -7,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewVM
 {
@@ -14,6 +16,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
     {
         private ObservableCollection<DataActualIllness> _illnessList;
         private PatientRepo _patientRepo;
+        private DataActualIllness _selectedIllness;
 
         public ObservableCollection<DataActualIllness> IllnessList
         {
@@ -22,6 +25,17 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
             {
                 _illnessList = value;
                 OnPropertyChange(nameof(IllnessList));
+            }
+        }
+
+        public DataActualIllness SelectedIllness
+        {
+            get => _selectedIllness;
+            set
+            {
+                _selectedIllness = value;
+                OnPropertyChange(nameof(SelectedIllness));
+                UpdateCommandStates();
             }
         }
 
@@ -37,18 +51,59 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
             }
         }
 
-        
+        public ICommand AddIllnessCommand { get; }
+        public ICommand PrescriptPillCommand { get; }
+        public ICommand UpdateDosageCommand { get; }
+        public ICommand DeleteIllnessCommand { get; }
 
-        public ActualIllnessVM(Patient currentPatient) 
+
+        private void UpdateCommandStates()
+        {
+            (PrescriptPillCommand as RelayCommand)?.RaiseCanExecuteChanged();
+            (UpdateDosageCommand as RelayCommand)?.RaiseCanExecuteChanged();
+            (DeleteIllnessCommand as RelayCommand)?.RaiseCanExecuteChanged();
+        }
+        public ActualIllnessVM(Patient currentPatient)
         {
             _patientRepo = new PatientRepo();
-            Patient = currentPatient; 
+            _patient = currentPatient;
             LoadDataAsync(currentPatient.Id);
+
+            AddIllnessCommand = new RelayCommand(_ => AddIllness());
+            PrescriptPillCommand = new RelayCommand(_ => PrescriptPill(), _ => SelectedIllness != null);
+            UpdateDosageCommand = new RelayCommand(_ => UpdateDosage(), _ => SelectedIllness != null && SelectedIllness.PrescriptedPills != null);
+            DeleteIllnessCommand = new RelayCommand(_ => DeleteIllness(), _ => SelectedIllness != null);
+        }
+
+
+        private void AddIllness()
+        {
+            // TODO
+            LoadDataAsync(_patient.Id);
+        }
+
+        private void PrescriptPill()
+        {
+            // TODO
+            LoadDataAsync(_patient.Id);
+        }
+
+        private void UpdateDosage()
+        {
+            // TODO
+            LoadDataAsync(_patient.Id);
+        }
+
+        private void DeleteIllness()
+        {
+            // TODO
+            LoadDataAsync(_patient.Id);
         }
 
         private async void LoadDataAsync(int id)
         {
             var illnessData = await _patientRepo.GetActualIllnessByPatientIdAsync(id);
+            IllnessList = null;
             IllnessList = new ObservableCollection<DataActualIllness>(illnessData);
         }
     }
