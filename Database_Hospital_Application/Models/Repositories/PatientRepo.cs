@@ -225,7 +225,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
             using (OracleCommand command = new OracleCommand(commandText, conn))
             {
-                // Zde už není potřeba přidávat žádné parametry, protože funkce nic nečeká
+                
                 object result = await command.ExecuteScalarAsync();
 
                 if (result != null)
