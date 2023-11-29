@@ -1,7 +1,7 @@
 # IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka
 # Požadavky
 1. ✅min. 10 tabulek navrženého datového modelu i s číselníky; •
-2. min. 2 číselníky, v dokumentaci bude uvedeno, proč byly tabulky vybrány jako číselníky; •
+2. ✅min. 2 číselníky, v dokumentaci bude uvedeno, proč byly tabulky vybrány jako číselníky; •
 3. ✅Každý umělý primární klíč bude mít vytvořenou sekvenci; •
 4. min. 3 pohledy – logicky využité, různého typu; pohledy je nutné využít pro výpis hodnot;
 5. min. 3 funkce různého typu s odpovídající složitostí, triviální a podobné funkce nebudou uznány, každá z funkcí musí mít odlišný výstup, tedy pracovat s různými operacemi;
@@ -20,7 +20,7 @@
 18. ✅DA řádně pracuje s transakcemi a má ošetřenou práci tak, aby nedošlo k nepořádku v datech.
 19. ✅DA využívá z datové vrstvy vlastní hierarchický dotaz, který je vhodně využit dle tématu semestrální práce.
 20. ✅DA eviduje a spravuje údaje o všech uživatelích, kteří mají do aplikace přístup. •
-21. DA umožňuje pracovat i s číselníky.
+21. ✅DA umožňuje pracovat i s číselníky.
 22. DA má implementované veškerá pravidla, omezení, apod., která byla popsána v projektu z předmětu BDAS1/IDAS1 a nebyla řešena na datové vrstvě.
 23. ✅DA je navržena tak, aby uchovávala historii o vkládání či úpravách jednotlivých záznamů, toto je zobrazeno pouze uživatelům s rolí Administrátor.  •
 24. V DA existuje funkcionalita, které umožňuje nezobrazovat osobní údaje jiným uživatelům jako například rodné číslo, telefon, číslo účtu, apod. Toto neplatí pro uživatele v roli Administrátor, ty mají plný přístup všude.
