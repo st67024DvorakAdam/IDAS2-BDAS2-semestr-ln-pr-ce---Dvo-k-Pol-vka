@@ -1,4 +1,5 @@
-﻿using Database_Hospital_Application.Models.Entities;
+﻿using Database_Hospital_Application.Models.DatabaseTools;
+using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.Models.Enums;
 using Database_Hospital_Application.ViewModels.ViewsVM;
 using Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewVM;
@@ -210,11 +211,25 @@ namespace Database_Hospital_Application.Models.Repositories
         }
 
 
+        //načte procentuální podíl kuřáků v celé nemocnici
+        public async Task<double> GetPerceteOfSmokersAsync()
+        {
+            string commandText = "ProcentoKuraku";
+            //DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
+
+            //string percente = result.Rows[0].ToString();
+
+            OracleParameter op = new OracleParameter("out_procento", OracleDbType.Double, ParameterDirection.Output);
+
+            var parameters = new List<OracleParameter> { op };
+
+            await dbTools.ExecuteNonQueryAsync(commandText, parameters);
 
 
+            double output = Convert.ToDouble(parameters.Last().Value.ToString());
 
-
-
+            return output;
+        }
 
 
 

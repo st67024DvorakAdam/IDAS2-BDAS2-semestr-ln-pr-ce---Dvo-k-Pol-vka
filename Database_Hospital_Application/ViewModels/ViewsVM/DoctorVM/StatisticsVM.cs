@@ -29,6 +29,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
         }
 
         public ICommand NumberOfEmployeesOnDepartmentsCommand { get; private set; }
+        public ICommand PercenteOfSmokersCommand { get; private set; }
 
         private async void NumberOfEmployeesOnDepartments(object obj) 
         {
@@ -44,6 +45,17 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
         public StatisticsVM()
         {
             NumberOfEmployeesOnDepartmentsCommand = new RelayCommand(NumberOfEmployeesOnDepartments);
+            PercenteOfSmokersCommand = new RelayCommand(PercenteOfSmokersFunc);
+        }
+
+        private async void PercenteOfSmokersFunc(object? obj)
+        {
+            PercenteOfSmokersVM viewModel = new PercenteOfSmokersVM();
+            var percenteOfSmokersView = new PercenteOfSmokers()
+            {
+                DataContext = viewModel
+            };
+            CurrentView = percenteOfSmokersView;
         }
     }
 }

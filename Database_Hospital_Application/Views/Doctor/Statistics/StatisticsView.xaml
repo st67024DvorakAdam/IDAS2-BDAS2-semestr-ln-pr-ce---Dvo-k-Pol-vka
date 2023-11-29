@@ -9,8 +9,9 @@
              d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid>
-        <StackPanel Grid.Row="0" Orientation="Vertical">
+        <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
             <Button Cursor="Hand" Content="Počet zaměstnanců na oddělení" Command="{Binding NumberOfEmployeesOnDepartmentsCommand}" Margin="10" Width="200" Height="30" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" />
+            <Button d:DataContext="{d:DesignInstance Type=vm:PercenteOfSmokersVM}" Cursor="Hand" Content="Kuřáci" Command="{Binding PercenteOfSmokersCommand}" Margin="10" Width="100" Height="30" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" />
         </StackPanel>
         <Border Grid.Row="1" Margin="15,45,15,15" Background="#1a1f1f" CornerRadius="20" Height="420">
 
