@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows.Markup;
 
 namespace Database_Hospital_Application.Models.DatabaseTools
 {
@@ -80,6 +81,36 @@ namespace Database_Hospital_Application.Models.DatabaseTools
             }
 
             return dataTable;
+        }
+
+
+        public async Task<string> ExecuteCommandAsyncReturnString(string commandText)
+        {
+            string output = "";
+            OracleConnection conn = dbConnection.GetConnection();
+            try
+            {
+                await OpenDBAsync();
+
+                using (OracleCommand command = new OracleCommand(commandText, conn))
+                {
+                    object result = await command.ExecuteScalarAsync();
+                    if (result != null)
+                    {
+                        output = result.ToString();
+                    }
+                }
+            }
+            catch (OracleException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                await CloseDBAsync();
+            }
+
+            return output;
         }
 
 

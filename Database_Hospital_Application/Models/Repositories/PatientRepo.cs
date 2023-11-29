@@ -218,24 +218,12 @@ namespace Database_Hospital_Application.Models.Repositories
             string commandText = "SELECT ProcentoKuraku FROM DUAL";
 
             double output = 0;
-            DatabaseConnection dbConnection = new DatabaseConnection();
 
-            OracleConnection conn = dbConnection.GetConnection();
-            await conn.OpenAsync();
-
-            using (OracleCommand command = new OracleCommand(commandText, conn))
+            string result = await dbTools.ExecuteCommandAsyncReturnString(commandText);
+            if(result != null)
             {
-                
-                object result = await command.ExecuteScalarAsync();
-
-                if (result != null)
-                {
-                    output = Convert.ToDouble(result);
-                }
+                output = Convert.ToDouble(result);
             }
-
-
-
 
             return output;
 

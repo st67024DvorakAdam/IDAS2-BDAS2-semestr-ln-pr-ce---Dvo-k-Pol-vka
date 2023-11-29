@@ -11,16 +11,22 @@
         <vm:PercenteOfSmokersVM/>
     </UserControl.DataContext>
     <Grid>
+        <StackPanel>
+            <TextBlock HorizontalAlignment="Center" Text="PROCENTO KUŘÁKŮ" VerticalAlignment="Center" FontSize="40" Margin="0,0,0,35" Foreground="White" FontWeight="Bold"/>
+        </StackPanel>
+        <Grid Margin="50,150,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="PROCENTO KUŘÁKŮ" VerticalAlignment="Center" FontSize="40" Margin="0,0,0,35" Foreground="White" FontWeight="Bold"/>
-
-        <TextBox Text="{Binding PercenteOfSmokers}" Background="Transparent" BorderThickness="0" IsReadOnly="True" VerticalScrollBarVisibility="Auto" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="2">
+        <TextBox Text="{Binding PercenteOfSmokers}" Background="Transparent" BorderThickness="0" IsReadOnly="True" VerticalScrollBarVisibility="Auto" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="0">
             <TextBox.Style>
                 <Style TargetType="TextBox">
                     <Setter Property="Foreground" Value="White"/>
@@ -32,7 +38,7 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
-
-
+        <TextBlock Text="%" Grid.Row="2" Grid.Column="1" Foreground="White" FontSize="30" VerticalAlignment="Center"/>
+        </Grid>
     </Grid>
 </UserControl>
