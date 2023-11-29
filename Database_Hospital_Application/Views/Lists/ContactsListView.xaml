@@ -129,9 +129,6 @@
             </ComboBox>
 
             <TextBlock Grid.Row="7" Text="Zaměstnanec (Username)" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
-            <!--<TextBox Grid.Row="8" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
-             Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
-             VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding NewContact.IdOfEmployee}"/>-->
             <ComboBox x:Name="EmployeeCB" HorizontalAlignment="Center" Grid.Row="8" VerticalAlignment="Center" Background="Transparent" Width="200" 
             ItemsSource="{Binding EmployeesList}" DisplayMemberPath="UserName" 
             SelectedValuePath="Id" SelectedValue="{Binding NewContact.IdOfEmployee}">

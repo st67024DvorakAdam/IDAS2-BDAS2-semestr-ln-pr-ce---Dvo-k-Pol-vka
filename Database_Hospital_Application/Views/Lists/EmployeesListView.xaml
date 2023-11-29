@@ -143,13 +143,6 @@
             </ComboBox>
 
             <TextBlock Text="Vedoucí" FontSize="18" Grid.Row="9" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
-            <!--<TextBox x:Name="IdOfSupperiorTextBox" Background="Transparent" Foreground="White" Height="25" FontSize="16" Grid.Row="10" Margin="5" Width="270"
-                  PreviewTextInput="TextBox_PreviewTextInput" HorizontalAlignment="Center" Text="{Binding NewEmployee.IdOfSuperiorEmployee}"/>-->
-
-            <!--<ComboBox HorizontalAlignment="Center" Grid.Row="10" VerticalAlignment="Center" Background="Transparent" Width="270" 
-                      ItemsSource="{Binding EmployeesList}" DisplayMemberPath="UserName" 
-                      SelectedIndex="{Binding NewEmployee.IdOfSuperiorEmployee}">
-            </ComboBox>-->
             <ComboBox x:Name="EmployeeCB" HorizontalAlignment="Center" Grid.Row="10" VerticalAlignment="Center" Background="Transparent" Width="270" 
           ItemsSource="{Binding EmployeesList}" DisplayMemberPath="UserName" 
           SelectedValuePath="Id" SelectedValue="{Binding NewEmployee.IdOfSuperiorEmployee}">

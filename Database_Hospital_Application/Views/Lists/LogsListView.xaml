@@ -65,7 +65,7 @@
                 <DataGridTextColumn Header="Starý stav" Binding="{Binding OldState}" Width="*"/>
                 <DataGridTextColumn Header="Nový stav" Binding="{Binding NewState}" Width="*"/>
                 <DataGridTextColumn Header="Čas. razítko" Binding="{Binding TimeStamp}" Width="*"/>
-                
+
             </DataGrid.Columns>
 
             <DataGrid.CellStyle>
@@ -79,14 +79,5 @@
                 </Style>
             </DataGrid.CellStyle>
         </DataGrid>
-
-        
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10">
-            <!-- 
-            <Button Content="Přidat" Margin="5" Padding="10,3" Command="{Binding AddLogCommand}"/>
-            <Button Content="Upravit" Margin="5" Padding="10,3" Command="{Binding EditLogCommand}"/>
-            <Button Content="Odebrat" Margin="5" Padding="10,3" Command="{Binding DeleteLogCommand}"/>
-            -->
-        </StackPanel>
     </Grid>
 </UserControl>
