@@ -1,4 +1,5 @@
 ﻿using Database_Hospital_Application.Models.Entities;
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -81,6 +82,24 @@ namespace Database_Hospital_Application.Models.Repositories
         public void DeleteAllDepartments()
         {
             throw new NotImplementedException();
+        }
+
+        //metoda pro načtení výpisu oddělení i s počtem zaměstanců
+        public async Task<string> GetNumberOfEmployeesOnDepartments()
+        {
+            string commandText = "spocitat_zamestnance_na_oddeleni";
+
+            OracleParameter op = new OracleParameter("v_output", OracleDbType.Varchar2, ParameterDirection.Output);
+            op.Size = 4000;
+
+            var parameters = new List<OracleParameter>{op};
+
+            await dbTools.ExecuteNonQueryAsync(commandText, parameters);
+
+
+            string output = parameters.Last().Value.ToString();
+
+            return output;
         }
     }
 }

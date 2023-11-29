@@ -49,6 +49,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
         public ICommand HospitalizaceCommand { get; }
         public ICommand NewPatientCommand { get; }
         public ICommand ProfileCommand { get; }
+        public ICommand StatisticsCommand { get; }
 
         // TODO udělat VMs 
         private void Profile(object obj) => CurrentView = new CurrUserVM(CurrentUser);
@@ -57,7 +58,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
         private void PrescriptedPills(object obj) => CurrentView = new AddressesVM();
         private void Hospitalizace(object obj) => CurrentView = new HealthInsurancesVM();
         private void NewPatient(object obj) => CurrentView = new NewPatientVM();
-        
+        private void Statisctics(object obj) => CurrentView = new StatisticsVM();
 
         public DoctorNavigateVM(User user)
         {
@@ -73,7 +74,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
             HospitalizaceCommand = new RelayCommand(Hospitalizace);
             NewPatientCommand = new RelayCommand(NewPatient);
             DepartmentCommand = new RelayCommand(Department);
-            
+            StatisticsCommand = new RelayCommand(Statisctics);
 
         }
     }

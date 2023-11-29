@@ -34,8 +34,8 @@ namespace Database_Hospital_Application.Models.Repositories.GuestRepo
                     s += row["EMAIL"].ToString();
                     s += "  ";
                     s += row["TELEFON"].ToString();
-                    s += "  ";
-                    s += row["ROLE_NAZEV"].ToString();
+                    //s += "  ";
+                    //s += row["ROLE_NAZEV"].ToString();
                 employeesOnDepartments.Add(s);
                 }
                 return employeesOnDepartments;
