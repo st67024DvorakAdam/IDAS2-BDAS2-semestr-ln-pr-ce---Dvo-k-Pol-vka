@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -214,22 +215,32 @@ namespace Database_Hospital_Application.Models.Repositories
         //načte procentuální podíl kuřáků v celé nemocnici
         public async Task<double> GetPerceteOfSmokersAsync()
         {
-            string commandText = "ProcentoKuraku";
-            //DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
+            string commandText = "SELECT ProcentoKuraku FROM DUAL";
 
-            //string percente = result.Rows[0].ToString();
+            double output = 0;
+            DatabaseConnection dbConnection = new DatabaseConnection();
 
-            OracleParameter op = new OracleParameter("out_procento", OracleDbType.Double, ParameterDirection.Output);
+            OracleConnection conn = dbConnection.GetConnection();
+            await conn.OpenAsync();
 
-            var parameters = new List<OracleParameter> { op };
+            using (OracleCommand command = new OracleCommand(commandText, conn))
+            {
+                // Zde už není potřeba přidávat žádné parametry, protože funkce nic nečeká
+                object result = await command.ExecuteScalarAsync();
 
-            await dbTools.ExecuteNonQueryAsync(commandText, parameters);
+                if (result != null)
+                {
+                    output = Convert.ToDouble(result);
+                }
+            }
 
 
-            double output = Convert.ToDouble(parameters.Last().Value.ToString());
+
 
             return output;
+
         }
+
 
 
 
