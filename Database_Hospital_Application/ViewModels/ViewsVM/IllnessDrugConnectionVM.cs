@@ -68,7 +68,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         // BUTTONS
         public ICommand AddCommand { get; private set; }
-        public ICommand DeleteCommand { get; private set; }
+        public ICommand DeleteConCommand { get; private set; }
         public ICommand EditCommand { get; private set; }
 
         private IllnessDrugConnection _selectedIllnessDrugConnection;
@@ -82,7 +82,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
                     _selectedIllnessDrugConnection = value;
                     OnPropertyChange(nameof(SelectedIllnessDrugConnection));
                     (EditCommand as RelayCommand)?.RaiseCanExecuteChanged();
-                    (DeleteCommand as RelayCommand)?.RaiseCanExecuteChanged();
+                    (DeleteConCommand as RelayCommand)?.RaiseCanExecuteChanged();
                 }
             }
         }
@@ -119,7 +119,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         private void InitializeCommands()
         {
             AddCommand = new RelayCommand(AddNewAction);
-            DeleteCommand = new RelayCommand(DeleteAction, CanExecuteDelete);
+            DeleteConCommand = new RelayCommand(DeleteAction, CanExecuteDelete);
             EditCommand = new RelayCommand(EditAction, CanEdit);
         }
 

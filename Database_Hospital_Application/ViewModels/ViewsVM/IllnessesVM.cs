@@ -30,6 +30,18 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             }
         }
 
+        private ObservableCollection<MedicalCard> _medicalCardsList;
+
+        public ObservableCollection<MedicalCard> MedicalCardsList
+        {
+            get { return _medicalCardsList; }
+            set
+            {
+                _medicalCardsList = value;
+                OnPropertyChange(nameof(MedicalCardsList));
+            }
+        }
+
         // BUTTONS
         public ICommand AddCommand { get; private set; }
         public ICommand DeleteCommand { get; private set; }
@@ -67,6 +79,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         public IllnessesVM()
         {
             LoadIllnessesAsync();
+
+            LoadMedicalCardsAsync();
             IllnessesView = CollectionViewSource.GetDefaultView(IllnessesList);
             IllnessesView.Filter = IllnessesFilter;
             InitializeCommands();
@@ -76,6 +90,12 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             IllnessesRepo repo = new IllnessesRepo();
             IllnessesList = await repo.GetIllnessesAsync();
         }
+        private async Task LoadMedicalCardsAsync()
+        {
+            MedicalCardsRepo repo = new MedicalCardsRepo();
+            MedicalCardsList = await repo.GetAllMedicalCardsAsync();
+        }
+
 
         private void InitializeCommands()
         {

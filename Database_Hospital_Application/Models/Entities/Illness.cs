@@ -11,7 +11,9 @@ namespace Database_Hospital_Application.Models.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        //public ObservableCollection<Drug> drugs { get; set; } //léky, které se užívají na léčení této nemoci
+        
+        public string Details { get; set; }
+        public int MedicalCardId { get; set; }
 
         public Illness()
         {

@@ -38,7 +38,9 @@ namespace Database_Hospital_Application.Models.Repositories
                     Illness illness = new Illness
                     {
                         Id = Convert.ToInt32(row["ID"]),
-                        Name = row["NAZEV"].ToString()
+                        Name = row["NAZEV"].ToString(),
+                        Details = row.IsNull("PODROBNOSTI") ? "" : row["PODROBNOSTI"].ToString(),
+                        MedicalCardId = Convert.ToInt32(row["ZDRAVOTNI_KARTA_ID"]),
                     };
                     illnesses.Add(illness);
                 }
@@ -52,7 +54,9 @@ namespace Database_Hospital_Application.Models.Repositories
             string commandText = "add_illness";
             var parameters = new Dictionary<string, object>
             {
-                { "p_nazev", illness.Name }
+                { "p_nazev", illness.Name },
+                { "p_podrobnosti", illness.Details },
+                { "p_zdravotni_karta_id", illness.MedicalCardId }
             };
 
             await dbTools.ExecuteNonQueryAsync(commandText, parameters);
@@ -90,7 +94,9 @@ namespace Database_Hospital_Application.Models.Repositories
             var parameters = new Dictionary<string, object>
             {
                 {"p_id", illness.Id },
-                { "p_nazev", illness.Name }
+                { "p_nazev", illness.Name },
+                { "p_podrobnosti", illness.Details },
+                { "p_zdravotni_karta_id", illness.MedicalCardId }
             };
 
             return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
