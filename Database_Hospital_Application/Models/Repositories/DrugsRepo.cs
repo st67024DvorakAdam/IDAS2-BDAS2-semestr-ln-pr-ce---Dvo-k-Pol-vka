@@ -159,6 +159,7 @@ namespace Database_Hospital_Application.Models.Repositories
             return drugs;
         }
 
+        //metoda která lékaři vypíše všechny léky které předepsal
         public async Task<ObservableCollection<DrugsPreceptedByDoctor>> GetPreceptedDrugByDoctor(User user)
         {
             ObservableCollection<DrugsPreceptedByDoctor> drugs = new ObservableCollection<DrugsPreceptedByDoctor>();
