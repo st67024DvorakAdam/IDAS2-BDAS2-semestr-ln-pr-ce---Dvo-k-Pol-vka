@@ -115,10 +115,6 @@ namespace Database_Hospital_Application.Models.Repositories
         {
             ObservableCollection<DosageForHospitalizated> drugs = new ObservableCollection<DosageForHospitalizated>();
             string commandText = "get_dosage_for_hospitalizated";
-            //var parameters = new Dictionary<string, object>
-            //{
-            //    {"p_id_oddeleni", user.Employee._department.Id },
-            //};
             Dictionary<string, object> parameters = new Dictionary<string, object>
                 {
                     { "p_id", user.Employee._department.Id }
@@ -143,6 +139,48 @@ namespace Database_Hospital_Application.Models.Repositories
                         {
                             Name = row["NAZEV_LEKU"].ToString(),
                             Dosage = Convert.ToInt32(row["DAVKOVANI"])
+                        },
+                        _illness = new Illness
+                        {
+                            Name = row["NAZEV_NEMOCI"].ToString()
+                        },
+                        _patient = new Patient
+                        {
+                            FirstName = row["JMENO_PACIENTA"].ToString(),
+                            LastName = row["PRIJMENI_PACIENTA"].ToString(),
+                            BirthNumber = row["RODNE_CISLO"].ToString(),
+                            Sex = SexEnumParser.GetEnumFromString(row["POHLAVI"].ToString())
+                        }
+                    };
+                    drug._patient.BirthNumber = drug._patient.completeBirthNumber(drug._patient.BirthNumber);
+                    drugs.Add(drug);
+                }
+            }
+            return drugs;
+        }
+
+        public async Task<ObservableCollection<DrugsPreceptedByDoctor>> GetPreceptedDrugByDoctor(User user)
+        {
+            ObservableCollection<DrugsPreceptedByDoctor> drugs = new ObservableCollection<DrugsPreceptedByDoctor>();
+            string commandText = "get_drugs_issued_by_doctor";
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "p_doktor_id", user.Employee.Id }
+                };
+            DataTable result = await dbTools.ExecuteCommandAsync(commandText, parameters);
+
+
+            if (result.Rows.Count > 0)
+            {
+
+                foreach (DataRow row in result.Rows)
+                {
+                    DrugsPreceptedByDoctor drug = new DrugsPreceptedByDoctor
+                    {
+                        _drug = new Drug
+                        {
+                            Name = row["NAZEV_LEKU"].ToString(),
+                            Dosage = Convert.ToInt32(row["DAVKOVANI_LEKU"])
                         },
                         _illness = new Illness
                         {
