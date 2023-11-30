@@ -3,7 +3,7 @@
 1. ✅min. 10 tabulek navrženého datového modelu i s číselníky; •
 2. ✅min. 2 číselníky, v dokumentaci bude uvedeno, proč byly tabulky vybrány jako číselníky; • (role a oddělení)
 3. ✅Každý umělý primární klíč bude mít vytvořenou sekvenci; •
-4. min. 3 pohledy – logicky využité, různého typu; pohledy je nutné využít pro výpis hodnot;
+4. ✅min. 3 pohledy – logicky využité, různého typu; pohledy je nutné využít pro výpis hodnot;
 5. min. 3 funkce různého typu s odpovídající složitostí, triviální a podobné funkce nebudou uznány, každá z funkcí musí mít odlišný výstup, tedy pracovat s různými operacemi;
 6. min. 4 uložené procedury různého typu s odpovídající složitostí, triviální a podobné procedury nebudou uznány, každá z procedur musí mít odlišný výstup, tedy pracovat s různými operacemi, procedura může data zpracovávat i dávkově; 
 7. ✅min. 2 triggery různého typu opět odpovídající složitostí, triviální a podobné spouště nebudou uznány;
