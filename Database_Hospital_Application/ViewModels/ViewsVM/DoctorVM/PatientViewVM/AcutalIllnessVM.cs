@@ -64,10 +64,12 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
             (UpdateDosageCommand as RelayCommand)?.RaiseCanExecuteChanged();
             (DeleteIllnessCommand as RelayCommand)?.RaiseCanExecuteChanged();
         }
-        public ActualIllnessVM(Patient currentPatient)
+        private User _currentUser;
+        public ActualIllnessVM(Patient currentPatient, User user)
         {
             _patientRepo = new PatientRepo();
             _patient = currentPatient;
+            _currentUser = user;
             LoadDataAsync(currentPatient.Id);
 
             AddIllnessCommand = new RelayCommand(_ => AddIllness());
@@ -89,6 +91,9 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
         private void PrescriptPill()
         {
             // TODO
+            PrescriptPillView dialog = new PrescriptPillView(new PrescriptPillVM(_patient, _currentUser, _selectedIllness.Illness));
+
+            dialog.ShowDialog();
             LoadDataAsync(_patient.Id);
         }
 

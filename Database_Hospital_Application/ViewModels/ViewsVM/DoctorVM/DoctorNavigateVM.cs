@@ -53,7 +53,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
 
         // TODO udělat VMs 
         private void Profile(object obj) => CurrentView = new CurrUserVM(CurrentUser);
-        private void Patient(object obj) => CurrentView = new DoctorPatientVM();
+        private void Patient(object obj) => CurrentView = new DoctorPatientVM(CurrentUser);
         private void Department(object obj) => CurrentView = new SubordinatesVM(CurrentUser);
         private void PrescriptedPills(object obj) => CurrentView = new PreceptedPillsVM(CurrentUser);
         private void Hospitalizace(object obj) => CurrentView = new HealthInsurancesVM();

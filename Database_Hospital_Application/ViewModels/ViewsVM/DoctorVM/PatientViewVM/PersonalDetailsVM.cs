@@ -151,10 +151,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
 
         public ICommand SaveChangesCommand { get; private set; }
 
+     
         public PersonalDetailsVM(Patient patient)
         {
             _patient = patient;
-
+            
             
             _firstName = _patient.FirstName;
             _lastName = _patient.LastName;

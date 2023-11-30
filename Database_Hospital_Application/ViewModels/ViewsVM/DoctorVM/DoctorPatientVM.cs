@@ -63,6 +63,9 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
             }
         }
 
+        private User _currentUser;
+        
+
         private ObservableCollection<PersonalMedicalHistory> _medicalHistory;
 
         public ObservableCollection<PersonalMedicalHistory> MedicalHistory
@@ -84,8 +87,9 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
         public ICommand ActualIllnessCommand { get; private set; }
         public ICommand HospitalizationCommand { get; private set; }
 
-        public DoctorPatientVM()
+        public DoctorPatientVM(User user)
         {
+            _currentUser = user;
             SearchPatientCommand = new RelayCommand(ExecuteSearchPatient, CanExecuteSearchPatient);
             PersonalDetailsCommand = new RelayCommand(ExecutePersonalDetails, CanExecutePatientRelatedCommands);
             AnamnesisCommand = new RelayCommand(ExecuteAnamnesis, CanExecutePatientRelatedCommands);
@@ -165,7 +169,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
         {
             var actualIllnessView = new ActualIllnessView
             {
-                DataContext = new ActualIllnessVM(CurrentPatient)
+                DataContext = new ActualIllnessVM(CurrentPatient, _currentUser)
             };
 
             CurrentContent = actualIllnessView;

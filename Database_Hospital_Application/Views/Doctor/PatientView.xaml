@@ -28,9 +28,7 @@
             </ControlTemplate.Triggers>
         </ControlTemplate>
     </UserControl.Resources>
-    <UserControl.DataContext>
-        <vm:DoctorPatientVM/>
-    </UserControl.DataContext>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="65"/>
