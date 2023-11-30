@@ -65,6 +65,7 @@
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Aktuální nemoc" Binding="{Binding Illness.Name}" Width="*"/>
+                <DataGridTextColumn Header="Podrobnosti" Binding="{Binding Illness.Details}" Width="*"/>
                 <DataGridTextColumn Header="Předepsané léky" Binding="{Binding PrescriptedPills.Name}" Width="*"/>
                 <DataGridTextColumn Header="Dávkování/denně" Binding="{Binding PrescriptedPills.Dosage}" Width="*"/>
             </DataGrid.Columns>

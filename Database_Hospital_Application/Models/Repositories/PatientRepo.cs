@@ -185,7 +185,8 @@ namespace Database_Hospital_Application.Models.Repositories
                 var illness = new Illness
                 {
                     Id = Convert.ToInt32(row["NEMOC_ID"]),
-                    Name = row["NEMOC"].ToString()
+                    Name = row["NEMOC"].ToString(),
+                    Details = row["PODROBNOSTI"].ToString()
                 };
 
                 Drug? drug = null;

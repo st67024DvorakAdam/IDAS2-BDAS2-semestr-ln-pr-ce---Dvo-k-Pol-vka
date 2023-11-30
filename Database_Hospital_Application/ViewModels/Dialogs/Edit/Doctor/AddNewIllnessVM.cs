@@ -23,6 +23,17 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
             }
         }
 
+        private string _newIllnessDescription;
+        public string NewIllnessDescription
+        {
+            get => _newIllnessDescription;
+            set
+            {
+                _newIllnessDescription = value;
+                OnPropertyChange(nameof(NewIllnessDescription));
+            }
+        }
+
         private Patient _patient;
         public Patient Patient
         {
@@ -50,7 +61,7 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
         {
             IllnessesRepo repo = new IllnessesRepo();
             
-            repo.AddIllness(_newIllness, _patient.Id);
+            repo.AddIllness(_newIllness, _patient.Id, _newIllnessDescription);
             CloseRequested?.Invoke();
         }
 

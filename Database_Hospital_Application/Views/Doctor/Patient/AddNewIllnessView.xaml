@@ -37,7 +37,9 @@
             <Label Content="Nově diagnostikovaná nemoc:" Foreground="White" Margin="5,5,5,5"/>
             <TextBox Text="{Binding NewIllness, UpdateSourceTrigger=PropertyChanged}" 
                      Margin="5,5,5,5" Width="250"/>
-
+            <Label Content="Podrobnosti o nemoci:" Foreground="White" Margin="5,5,5,5"/>
+            <TextBox Text="{Binding NewIllnessDescription, UpdateSourceTrigger=PropertyChanged}" 
+                     Margin="5,5,5,5" Width="250"/>
 
             <Button Cursor="Hand" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Přidat" Command="{Binding AddNewIllnessCommand}" Height="35" 
                     Margin="5,25,5,5"

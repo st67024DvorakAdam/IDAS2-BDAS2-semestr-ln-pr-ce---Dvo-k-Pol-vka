@@ -63,13 +63,14 @@ namespace Database_Hospital_Application.Models.Repositories
 
         }
 
-        public async Task AddIllness(string illness, int patient_id)
+        public async Task AddIllness(string illness, int patient_id, string description)
         {
             string commandText = "add_patient_illness";
             var parameters = new List<OracleParameter>
             {
                 new OracleParameter("p_patient_id", OracleDbType.Int32) { Value = patient_id },
-                new OracleParameter("p_illness_name", OracleDbType.Varchar2) { Value = illness }
+                new OracleParameter("p_illness_name", OracleDbType.Varchar2) { Value = illness },
+                new OracleParameter("p_illness_description", OracleDbType.Varchar2) { Value = description }
             };
 
             await dbTools.ExecuteNonQueryAsync(commandText, parameters);
