@@ -65,25 +65,9 @@ namespace Database_Hospital_Application.Models.Repositories
             return medicalCards;
         }
 
-        public async Task AddMedicalCard(MedicalCard medicalCard, Illness? newIllness)
+        public async Task AddMedicalCard(MedicalCard medicalCard)
         {
-            
-            if(newIllness != null)
-            {
-                string commandText = "add_medical_card";
-                var parameters = new Dictionary<string, object>
-                {
-                    { "p_pacient_id", medicalCard.IdOfPatient },
-                    { "p_kurak", medicalCard.Smoking == true?1:0},
-                    { "p_alergik", medicalCard.Alergic == true?1:0},
-                    { "p_nemoc_id", newIllness.Id }
-                };
-
-                await dbTools.ExecuteNonQueryAsync(commandText, parameters);
-            }
-            else
-            {
-                string commandText = "add_medical_card_without_illness";
+             string commandText = "add_medical_card";
                 var parameters = new Dictionary<string, object>
                 {
                     { "p_pacient_id", medicalCard.IdOfPatient },
@@ -92,19 +76,11 @@ namespace Database_Hospital_Application.Models.Repositories
                 };
 
                 await dbTools.ExecuteNonQueryAsync(commandText, parameters);
-            }
-            
+
         }
 
         public async Task<int> DeleteMedicalCard(MedicalCard medicalCard)
         {
-            ObservableCollection<Illness> illnessesInCard = medicalCard.Illnesses;
-            foreach(var i in illnessesInCard)
-            {
-                DeleteIllnessFromMedicalCard(medicalCard, i);
-            }
-
-
             string commandText = "delete_medical_card_by_id";
             var parameters = new Dictionary<string, object>
             {
@@ -131,32 +107,6 @@ namespace Database_Hospital_Application.Models.Repositories
         public void DeleteAllMedicalCards()
         {
 
-        }
-
-        public async Task<int> AddIllnessIntoMedicalCard(MedicalCard medicalCard, Illness illness)
-        {
-            string commandText = "add_illness_into_medical_card";
-
-            var parameters = new Dictionary<string, object>
-            {
-                { "p_medical_card_id", medicalCard.Id },
-                { "p_illness_id", illness.Id }
-            };
-
-            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
-        }
-
-        public async Task<int> DeleteIllnessFromMedicalCard(MedicalCard medicalCard, Illness illness)
-        {
-            string commandText = "delete_illness_from_medical_card";
-
-            var parameters = new Dictionary<string, object>
-            {
-                { "p_medical_card_id", medicalCard.Id },
-                { "p_illness_id", illness.Id }
-            };
-
-            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
     }
 }

@@ -88,8 +88,6 @@
             <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10" >
                 <Button Content="Upravit" Margin="5" Padding="10,3" Command="{Binding EditCommand}" Height="30" FontSize="15"/>
                 <Button Content="Odebrat" Margin="5" Padding="10,3" Command="{Binding DeleteCommand}" Height="30" FontSize="15"/>
-                <Button Content="Přidat nemoc" Margin="5" Padding="10,3" Command="{Binding AddIllnessCommand}" Height="30" FontSize="15"/>
-                <Button Content="Smazat nemoc" Margin="5" Padding="10,3" Command="{Binding DeleteIllnessCommand}" Height="30" FontSize="15"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Column="1" Margin="10">
@@ -114,12 +112,6 @@
             <ComboBox HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Background="Transparent" Width="200" 
             ItemsSource="{Binding PatientsList}" DisplayMemberPath="BirthNumber"
             SelectedValuePath="Id" SelectedValue="{Binding NewMedicalCard.IdOfPatient}">
-            </ComboBox>
-
-            <TextBlock Grid.Row="3" Text="Nemoc" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
-            <ComboBox HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center" Background="Transparent" Width="200" 
-            ItemsSource="{Binding IllnessesList}" DisplayMemberPath="Name"
-            SelectedValuePath="Id" SelectedValue="{Binding NewIllness.Id}">
             </ComboBox>
 
             <TextBlock Grid.Row="5" Text="Kouří" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>

@@ -12,6 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -93,7 +94,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         private async void DeleteAction(object parameter)
         {
             if (SelectedPhoto == null) return;
-            if (SelectedPhoto.Id == 1) return; //foto pro účty bez vlastního fota nelze => nemůžeme ho smazat
+            if (SelectedPhoto.Id == 1) 
+            {
+                MessageBox.Show("Nelze mazat základní foto!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return; 
+            } //foto pro účty bez vlastního fota nelze => nemůžeme ho smazat
 
             PhotosRepo photosRepo = new PhotosRepo();
             await photosRepo.DeletePhoto(SelectedPhoto.Id);

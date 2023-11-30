@@ -158,7 +158,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
             
             int patientId = await pr.AddPatient(new Models.Entities.Patient(FirstName, LastName, IdentificationNumber, Gender, addressId.ToString(), healthInsuranceId.ToString()));
 
-            mcr.AddMedicalCard(new Models.Entities.MedicalCard(IsSmoker, IsAllergic, patientId), null);
+            mcr.AddMedicalCard(new Models.Entities.MedicalCard(IsSmoker, IsAllergic, patientId));
             
             cr.AddContact(new Models.Entities.Contact(Email, Phone, patientId, null));
 
