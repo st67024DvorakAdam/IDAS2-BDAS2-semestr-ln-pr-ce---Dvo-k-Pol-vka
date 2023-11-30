@@ -92,6 +92,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
+                       
             <Button Template="{StaticResource NoMouseOverButtonTemplate}" Command="{Binding AddIllnessCommand}" Cursor="Hand" Content="Přidat nemoc" Grid.Column="1" Margin="20" Width="150" Height="35" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc"/>
             <Button Template="{StaticResource NoMouseOverButtonTemplate}" Command="{Binding PrescriptPillCommand}" Cursor="Hand" Content="Předepsat lék" Grid.Column="2" Margin="20" Width="150" Height="35" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc"/>
             <Button Template="{StaticResource NoMouseOverButtonTemplate}" Command="{Binding UpdateDosageCommand}" Cursor="Hand" Content="Upravit dávku" Grid.Column="3" Margin="20" Width="150" Height="35" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc"/>
