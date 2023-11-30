@@ -67,7 +67,6 @@
                     <DataGridTextColumn Header="Rodné číslo" Binding="{Binding _patient.BirthNumber}" Width="*"/>
                 <DataGridTextColumn Header="Nemoc" Binding="{Binding _illness.Name}" Width="*"/>
                 <DataGridTextColumn Header="Předepsal" Binding="{Binding NameOfDoctor}" Width="*"/>
-                <DataGridTextColumn Header="Oddělení" Binding="{Binding _department.Name}" Width="*"/>
             </DataGrid.Columns>
                 <DataGrid.CellStyle>
                     <Style TargetType="DataGridCell">
