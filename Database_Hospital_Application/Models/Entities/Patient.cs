@@ -48,5 +48,17 @@ namespace Database_Hospital_Application.Models.Entities
         }
 
         public Patient() { }
+
+        public string completeBirthNumber(string birthNumber)
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                if(birthNumber.Length < 10)
+                {
+                    birthNumber = "0" + birthNumber;
+                }
+            }
+            return birthNumber;
+        }
     }
 }

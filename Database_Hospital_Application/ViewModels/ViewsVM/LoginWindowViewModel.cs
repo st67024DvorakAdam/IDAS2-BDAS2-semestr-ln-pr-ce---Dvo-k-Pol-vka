@@ -9,6 +9,7 @@ using Database_Hospital_Application.Models.Repositories;
 using Database_Hospital_Application.Models.Tools;
 using Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM;
 using Database_Hospital_Application.ViewModels.ViewsVM.GuestVM;
+using Database_Hospital_Application.ViewModels.ViewsVM.NurseVM;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM
 {
@@ -117,14 +118,12 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
                     CloseAction?.Invoke();
                     break;
                 case 3:
-                    //
-                    // budoucí window pro sestru
-                    //Views.NurseWindow nurseWindow = new Views.NurseWindow();
-                    //nurseWindow.DataContext = new NurseNavigateVM(user);
-                    //nurseWindow.Show();
-                    //CloseAction?.Invoke();
+                    Views.NurseWindow nurseWindow = new Views.NurseWindow();
+                    nurseWindow.DataContext = new NurseNavigateVM(user);
+                    nurseWindow.Show();
+                    CloseAction?.Invoke();
                     break;
-                    
+
                 case 4:
 
                     // budoucí window pro asistenta

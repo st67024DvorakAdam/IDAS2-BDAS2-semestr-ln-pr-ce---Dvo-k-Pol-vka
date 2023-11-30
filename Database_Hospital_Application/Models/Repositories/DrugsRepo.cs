@@ -1,4 +1,6 @@
 ﻿using Database_Hospital_Application.Models.Entities;
+using Database_Hospital_Application.Models.Entities.HelpEntities;
+using Database_Hospital_Application.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -104,6 +106,61 @@ namespace Database_Hospital_Application.Models.Repositories
         public void DeleteAllDrugs()
         {
 
+        }
+
+
+        //metoda která vrátí ke každému hospitalizovanému pacientovi co užívá za léky
+        //využívá to sestra, aby věděla jaké léky má podávat
+        public async Task<ObservableCollection<DosageForHospitalizated>> GetDosageForHospitalizatedPatients(User user)
+        {
+            ObservableCollection<DosageForHospitalizated> drugs = new ObservableCollection<DosageForHospitalizated>();
+            string commandText = "get_dosage_for_hospitalizated";
+            //var parameters = new Dictionary<string, object>
+            //{
+            //    {"p_id_oddeleni", user.Employee._department.Id },
+            //};
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "p_id", user.Employee._department.Id }
+                };
+            DataTable result = await dbTools.ExecuteCommandAsync(commandText, parameters);
+
+
+            if (result.Rows.Count > 0)
+            {
+
+                foreach (DataRow row in result.Rows)
+                {
+                    DosageForHospitalizated drug = new DosageForHospitalizated
+                    {
+                        NameOfDoctor = row["JMENO_ZAMESTNANCE"].ToString() + " " + row["PRIJMENI_ZAMESTNANCE"].ToString(),
+                        _department = new Department
+                        {
+                            Id = Convert.ToInt32(row["ID_ODDELENI"]),
+                            Name = row["NAZEV_ODDELENI"].ToString()
+                        },
+                        _drug = new Drug
+                        {
+                            Name = row["NAZEV_LEKU"].ToString(),
+                            Dosage = Convert.ToInt32(row["DAVKOVANI"])
+                        },
+                        _illness = new Illness
+                        {
+                            Name = row["NAZEV_NEMOCI"].ToString()
+                        },
+                        _patient = new Patient
+                        {
+                            FirstName = row["JMENO_PACIENTA"].ToString(),
+                            LastName = row["PRIJMENI_PACIENTA"].ToString(),
+                            BirthNumber = row["RODNE_CISLO"].ToString(),
+                            Sex = SexEnumParser.GetEnumFromString(row["POHLAVI"].ToString())
+                        }
+                    };
+                    drug._patient.BirthNumber = drug._patient.completeBirthNumber(drug._patient.BirthNumber);
+                    drugs.Add(drug);
+                }
+            }
+            return drugs;
         }
     }
 }
