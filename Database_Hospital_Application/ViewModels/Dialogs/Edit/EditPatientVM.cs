@@ -39,7 +39,7 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
         private void LoadAddressesFromAddressesVM()
         {
             AddressesVM addressesVM = new AddressesVM();
-            AddressesList = addressesVM.AddressesList;
+            _addressesList = addressesVM.AddressesList;
         }
 
 
@@ -58,7 +58,7 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
         private void LoadHealthInsurancesFromHealthInsurancesVM()
         {
             HealthInsurancesVM healthInsurancesVM = new HealthInsurancesVM();
-            HealthInsurancesList = healthInsurancesVM.HealthInsurancesList;
+            _healthInsurancesList = healthInsurancesVM.HealthInsurancesList;
         }
 
         public ICommand SaveCommand { get; set; }

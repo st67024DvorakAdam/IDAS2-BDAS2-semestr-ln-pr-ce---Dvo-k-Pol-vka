@@ -78,10 +78,17 @@ namespace Database_Hospital_Application.Models.Repositories
 
             await dbTools.ExecuteNonQueryAsync(commandText, parameters);
 
-            
-            int newPatientId = Convert.ToInt32(parameters.Last().Value.ToString());
-
-            return newPatientId;
+            int newPatientId;
+            if (parameters.Last() != null)
+            {
+                Int32.TryParse(parameters.Last().Value.ToString(),out newPatientId);
+                //newPatientId = Convert.ToInt32(parameters.Last().Value.ToString());
+                return newPatientId;
+            }
+            else
+            {
+                throw new Exception("Pacienta nelze přidat");
+            }
         }
 
 

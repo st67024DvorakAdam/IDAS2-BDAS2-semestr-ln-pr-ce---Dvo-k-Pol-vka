@@ -7,7 +7,9 @@ using Database_Hospital_Application.Views.Lists.Dialogs.Patient;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -42,6 +44,12 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             AddressesVM addressesVM = new AddressesVM();
             AddressesList = addressesVM.AddressesList;
+            var addresses = AddressesList.OrderBy(a => a.Street).ToList();
+            AddressesList.Clear();
+            foreach(var address in addresses)
+            {
+                AddressesList.Add(address);
+            }
         }
 
 
@@ -134,6 +142,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         private async void AddNewPatientAction(object parameter)
         {
+            if(NewPatient.BirthNumber.Length < 10)
+            {
+                MessageBox.Show("Rodné číslo kratší než 10!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             PatientRepo patientRepo = new PatientRepo();
             await patientRepo.AddPatient(NewPatient);
             await LoadPatientsAsync();
@@ -154,10 +167,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
             editDialog.ShowDialog();
 
-            if (editDialog.DialogResult == true)
-            {
-                LoadPatientsAsync();
-            }
+            LoadPatientsAsync();
         }
 
         private string _searchText;

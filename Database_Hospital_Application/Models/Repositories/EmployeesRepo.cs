@@ -1,6 +1,7 @@
 ﻿using Database_Hospital_Application.Exceptions;
 using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.Models.Enums;
+using Database_Hospital_Application.Models.Tools;
 using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
@@ -112,8 +113,10 @@ namespace Database_Hospital_Application.Models.Repositories
             };
             return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
-        public async Task<int> UpdateEmployee(Employee employee)
+        public async Task<int> UpdateEmployee(Employee employee, bool hashThePassword)
         {
+            if (hashThePassword) employee.Password = PasswordHasher.HashPassword(employee.Password, employee.Salt);
+
             string commandText = "update_employee";
 
             var parameters = new Dictionary<string, object>

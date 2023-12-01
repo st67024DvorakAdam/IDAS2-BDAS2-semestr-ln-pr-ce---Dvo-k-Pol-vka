@@ -86,6 +86,7 @@
 
         <TextBlock Text="Heslo" FontSize="18" Grid.Row="16" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
         <TextBox x:Name="PasswordTextBox" Height="25" FontSize="16"  Grid.Row="17" Margin="5" Width="300" HorizontalAlignment="Center" Text="{Binding EditableEmployee.Password, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox Content="Hashovat heslo" HorizontalAlignment="Left" Margin="470,5,0,0" Grid.Row="17" VerticalAlignment="Center" Foreground="White" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
         
         <TextBlock Text="Role" FontSize="18" Grid.Row="18" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
         <!--<TextBox x:Name="IdOfRoleTextBox" Height="25" FontSize="16" Grid.Row="19" Margin="5" Width="300"

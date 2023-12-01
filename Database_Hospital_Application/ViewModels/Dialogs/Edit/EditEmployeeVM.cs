@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows;
 using System.Collections.ObjectModel;
 using Database_Hospital_Application.ViewModels.ViewsVM;
+using System.ComponentModel;
 
 namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
 {
@@ -22,6 +23,26 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
             set { _editableEmployee = value; OnPropertyChange(nameof(EditableEmployee)); }
         }
 
+
+        private bool isSelected;
+        public bool IsSelected
+        {
+            get { return isSelected; }
+            set
+            {
+                if (isSelected != value)
+                {
+                    isSelected = value;
+                    OnPropertyChanged(nameof(IsSelected));
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         public ICommand SaveCommand { get; set; }
         public ICommand CancelCommand { get; set; }
@@ -48,7 +69,7 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
             try
             {
                 EmployeesRepo employeesRepo = new EmployeesRepo();
-                int affectedRows = await employeesRepo.UpdateEmployee(EditableEmployee);
+                int affectedRows = await employeesRepo.UpdateEmployee(EditableEmployee, isSelected);
                 if (affectedRows == 0)
                 {
                     MessageBox.Show("Zaměstnance se nepodařilo změnit", "Not Ok", MessageBoxButton.OK, MessageBoxImage.Information);
