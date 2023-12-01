@@ -108,7 +108,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
 
         private void DeleteIllness()
         {
-            // TODO
+            IllnessesRepo repo = new IllnessesRepo();
+            repo.DeleteIllnessMeds(SelectedIllness.Illness.Id);
             LoadDataAsync(_patient.Id);
         }
 

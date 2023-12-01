@@ -88,6 +88,17 @@ namespace Database_Hospital_Application.Models.Repositories
             return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
 
+        public async Task<int> DeleteIllnessMeds(int id)
+        {
+            string commandText = "delete_illness_meds_by_id";
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_id", id }
+            };
+
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
+        }
+
         public async Task<int> UpdateIllness(Illness illness)
         {
             string commandText = "update_illness";
