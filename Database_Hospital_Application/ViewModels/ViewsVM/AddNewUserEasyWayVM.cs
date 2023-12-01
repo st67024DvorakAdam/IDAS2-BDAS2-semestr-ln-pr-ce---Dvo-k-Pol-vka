@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
@@ -173,18 +174,61 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         private async void AddNewAction(object? obj)
         {
+            if (!isNewContactFilled(NewContact) || !isNewEmployeeFilled(NewEmployee)) 
+            {
+                MessageBox.Show("Vyplňte všechny pole!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            else if (NewEmployee.BirthNumber == null || NewEmployee.BirthNumber.Length < 10) 
+            {
+                MessageBox.Show("Rodné číslo kratší než 10!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            else if(!NewContact.Email.Contains('@') || !NewContact.Email.Contains('.'))
+            {
+                MessageBox.Show("Pole Email musí obsahovat znaky '@' a '.' !", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            else if (NewContact.PhoneNumber < 100000000)
+            {
+                MessageBox.Show("Telefonní číslo musí být nejméně 9 číslic! ", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            try
+            {
+                NewEmployee.Salt = PasswordHasher.GenerateSalt();
+                NewEmployee.Password = PasswordHasher.HashPassword(NewEmployee.Password, NewEmployee.Salt);
+                AddNewUserEasyWayRepo repo = new AddNewUserEasyWayRepo();
+                if (IsSelected) repo.AddEmployee(1, NewEmployee, NewFoto, NewContact);
+                else repo.AddEmployee(0, NewEmployee, NewFoto, NewContact);
+                NewEmployee = new Employee();
+                NewFoto = new Foto();
+                NewContact = new Contact();
+                IsSelected = false;
+                OnPropertyChange(nameof(IsSelected));
+            } catch (Exception ex)
+            {   
+                MessageBox.Show("Nastala neočekávaná chyba: " + ex.Message, "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
 
-            NewEmployee.Salt = PasswordHasher.GenerateSalt();
-            NewEmployee.Password = PasswordHasher.HashPassword(NewEmployee.Password, NewEmployee.Salt);
-            AddNewUserEasyWayRepo repo = new AddNewUserEasyWayRepo();
-            if (IsSelected) repo.AddEmployee(1,NewEmployee, NewFoto, NewContact);
-            else repo.AddEmployee(0, NewEmployee, NewFoto, NewContact);
-            NewEmployee = new Employee();
-            NewFoto = new Foto();
-            NewContact = new Contact();
-            IsSelected = false;
-            OnPropertyChange(nameof(IsSelected));
-            //LoadBasicFoto();
+        private bool isNewEmployeeFilled(Employee e)
+        {
+            return e != null
+                && !string.IsNullOrEmpty(e.FirstName) && !string.IsNullOrWhiteSpace(e.FirstName)
+                && !string.IsNullOrEmpty(e.LastName) && !string.IsNullOrWhiteSpace(e.LastName)
+                && !string.IsNullOrEmpty(e.UserName) && !string.IsNullOrWhiteSpace(e.UserName)
+                && !string.IsNullOrEmpty(e.BirthNumber) && !string.IsNullOrWhiteSpace(e.BirthNumber)
+                && e._department != null && e._department.Id != null
+                && !string.IsNullOrEmpty(e.Password) && !string.IsNullOrWhiteSpace(e.Password)
+                && !string.IsNullOrEmpty(e.RoleID.ToString()) && !string.IsNullOrWhiteSpace(e.RoleID.ToString());
+        }
+
+        private bool isNewContactFilled(Contact c)
+        {
+            return c != null
+                && !string.IsNullOrEmpty(c.Email) && !string.IsNullOrWhiteSpace(c.Email)
+                && !string.IsNullOrEmpty(c.PhoneNumber.ToString()) && !string.IsNullOrWhiteSpace(c.PhoneNumber.ToString());
         }
     }
 }

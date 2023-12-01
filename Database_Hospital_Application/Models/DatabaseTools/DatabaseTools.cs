@@ -4,6 +4,7 @@ using System.Data;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Markup;
+using System.Windows;
 
 namespace Database_Hospital_Application.Models.DatabaseTools
 {
@@ -73,7 +74,7 @@ namespace Database_Hospital_Application.Models.DatabaseTools
             }
             catch (OracleException ex)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show(ex.Message, "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
             {
@@ -103,7 +104,7 @@ namespace Database_Hospital_Application.Models.DatabaseTools
             }
             catch (OracleException ex)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show(ex.Message, "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
             {
@@ -149,7 +150,7 @@ namespace Database_Hospital_Application.Models.DatabaseTools
             }
             catch (OracleException ex)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show(ex.Message, "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
             {
@@ -187,7 +188,7 @@ namespace Database_Hospital_Application.Models.DatabaseTools
             }
             catch (OracleException ex)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show(ex.Message, "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
             {
@@ -221,7 +222,7 @@ namespace Database_Hospital_Application.Models.DatabaseTools
             }
             catch (OracleException ex)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show(ex.Message, "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
             {
