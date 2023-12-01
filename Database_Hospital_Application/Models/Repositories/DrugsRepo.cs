@@ -172,7 +172,7 @@ namespace Database_Hospital_Application.Models.Repositories
             }
             return drugs;
         }
-        l
+        
         //metoda která lékaři vypíše všechny léky které předepsal
         public async Task<ObservableCollection<DrugsPreceptedByDoctor>> GetPreceptedDrugByDoctor(User user)
         {
