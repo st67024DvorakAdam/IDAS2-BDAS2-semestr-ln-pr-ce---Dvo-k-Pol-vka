@@ -9,6 +9,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using System.Windows.Input;
+using Database_Hospital_Application.Commands;
+using Database_Hospital_Application.ViewModels.Dialogs.Edit;
+using Database_Hospital_Application.Views.Lists.Dialogs.Employee;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
 {
@@ -28,6 +32,22 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
             }
         }
 
+        private DrugsPreceptedByDoctor _selectedDrugsPreceptedByDoctor;
+        public DrugsPreceptedByDoctor SelectedDrugsPreceptedByDoctor
+        {
+            get { return _selectedDrugsPreceptedByDoctor; }
+            set
+            {
+                if (_selectedDrugsPreceptedByDoctor != value)
+                {
+                    _selectedDrugsPreceptedByDoctor = value;
+                    OnPropertyChange(nameof(SelectedDrugsPreceptedByDoctor));
+                    (EditCommand as RelayCommand)?.RaiseCanExecuteChanged();
+                    (DeleteCommand as RelayCommand)?.RaiseCanExecuteChanged();
+                }
+            }
+        }
+
 
         public PreceptedPillsVM(User user)
         {
@@ -35,6 +55,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
             LoadPreceptedDrugsAsync();
             PreceptedPillsView = CollectionViewSource.GetDefaultView(DrugsPreceptedByDoctorList);
             PreceptedPillsView.Filter = PreceptedPillsFilter;
+            InitializeCommands();
         }
         
         private async Task LoadPreceptedDrugsAsync()
@@ -44,8 +65,59 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
         }
 
 
+        public ICommand DeleteCommand { get; private set; }
+        public ICommand EditCommand { get; private set; }
+
+        private void InitializeCommands()
+        {
+            DeleteCommand = new RelayCommand(DeleteAction, CanExecuteDelete);
+            EditCommand = new RelayCommand(EditAction, CanEdit);
+        }
+
+        private bool CanExecuteDelete(object parameter)
+        {
+            return SelectedDrugsPreceptedByDoctor != null;
+        }
+
+        private async void DeleteAction(object parameter)
+        {
+            if (SelectedDrugsPreceptedByDoctor == null) return;
+
+            DrugsRepo drugRepo = new DrugsRepo();
+            IllnessDrugConnectionRepo illnessDrugConnectionRepo = new IllnessDrugConnectionRepo();
+            
+            //mazání vazby mezi lékem a nemocí
+            await illnessDrugConnectionRepo.DeleteIllnessDrugConnection(new IllnessDrugConnection 
+            { 
+                _drug = SelectedDrugsPreceptedByDoctor._drug,
+                _illness = SelectedDrugsPreceptedByDoctor._illness
+            });
+
+            await drugRepo.DeleteDrug(SelectedDrugsPreceptedByDoctor._drug.Id);
+            await LoadPreceptedDrugsAsync();
+        }
+
+        private bool CanEdit(object parameter)
+        {
+            return SelectedDrugsPreceptedByDoctor != null;
+        }
+
+        private void EditAction(object parameter)
+        {
+            //if (!CanEdit(parameter)) return;
 
 
+            //EditEmployeeVM editVM = new EditEmployeeVM(SelectedEmployee);
+            //EditEmployeeDialog editDialog = new EditEmployeeDialog(editVM);
+
+            //editDialog.ShowDialog();
+
+            //if (editDialog.DialogResult == true)
+            //{
+            //    LoadEmployeesAsync();
+            //}
+            throw new NotImplementedException();
+        }
 
         // Filter
         private string _searchText;

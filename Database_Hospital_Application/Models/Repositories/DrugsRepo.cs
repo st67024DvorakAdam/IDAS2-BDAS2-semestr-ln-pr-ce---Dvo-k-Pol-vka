@@ -194,11 +194,13 @@ namespace Database_Hospital_Application.Models.Repositories
                     {
                         _drug = new Drug
                         {
+                            Id = Convert.ToInt32(row["ID_LEKU"].ToString()),
                             Name = row["NAZEV_LEKU"].ToString(),
                             Dosage = Convert.ToInt32(row["DAVKOVANI_LEKU"])
                         },
                         _illness = new Illness
                         {
+                            Id = Convert.ToInt32(row["ID_NEMOCI"].ToString()),
                             Name = row["NAZEV_NEMOCI"].ToString()
                         },
                         _patient = new Patient
@@ -215,5 +217,6 @@ namespace Database_Hospital_Application.Models.Repositories
             }
             return drugs;
         }
+
     }
 }

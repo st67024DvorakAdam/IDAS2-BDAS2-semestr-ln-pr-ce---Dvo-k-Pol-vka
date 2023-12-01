@@ -24,7 +24,8 @@
 
         <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="Předepsané léky" VerticalAlignment="Center" FontSize="40" Margin="0,0,0,35" Foreground="White" FontWeight="Bold"/>
 
-        <DataGrid x:Name="AddressesDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding DrugsPreceptedByDoctorList}" Background="Transparent" 
+        <DataGrid x:Name="AddressesDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding DrugsPreceptedByDoctorList}" Background="Transparent"
+                  SelectedItem="{Binding SelectedDrugsPreceptedByDoctor, Mode=TwoWay}"
                   AreRowDetailsFrozen="True" CanUserAddRows="False" CanUserDeleteRows="False"
                   CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single" 
                   SelectionUnit="FullRow" GridLinesVisibility="None" HeadersVisibility="Column" 
