@@ -232,8 +232,21 @@
 
                 <TextBlock Grid.Row="1" Text="Nemoc" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
                 <ComboBox HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Background="Transparent" Width="200" 
-                ItemsSource="{Binding IllnessesList}" DisplayMemberPath="Name" 
+                ItemsSource="{Binding IllnessesList}" 
                 SelectedValuePath="Id" SelectedValue="{Binding NewIllnessDrugConnection._illness.Id}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}Id:{0}, Název:{1}, Id zdrav.karty:{2}">
+                                        <Binding Path="Id" />
+                                        <Binding Path="Name" />
+                                        <Binding Path="MedicalCardId" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
                 </ComboBox>
 
                 <TextBlock Grid.Row="3" Text="Lék" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>

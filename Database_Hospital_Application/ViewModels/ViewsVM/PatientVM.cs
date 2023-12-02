@@ -142,7 +142,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         private async void AddNewPatientAction(object parameter)
         {
-            if(NewPatient.BirthNumber.Length < 10)
+            if(NewPatient.BirthNumber != null && NewPatient.BirthNumber.Length < 10)
             {
                 MessageBox.Show("Rodné číslo kratší než 10!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -196,5 +196,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
                    || patient.BirthNumber.ToString().Contains(_searchText)
                    || SexEnumParser.GetStringFromEnumEnglish(patient.Sex).StartsWith(_searchText, StringComparison.OrdinalIgnoreCase);
         }
+
+
     }
 }

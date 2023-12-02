@@ -107,7 +107,17 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         }
         private void AddNewAddressAction(object parameter)
         {
+            if (!isAddressValidAndFilled(NewAddress))
+            {
+                MessageBox.Show("Vyplňte všechna pole!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            else if (NewAddress.ZipCode < 5) 
+            {
+                MessageBox.Show("PSČ musí být minimálně 5 znaků!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
 
+            }
             AddressRepo addressRepo = new AddressRepo();
             addressRepo.AddAddress(NewAddress);
             LoadAddressesAsync();
@@ -183,8 +193,18 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         private void EditAction(object parametr)
         {
             if (!CanEdit()) return;
-            
-            
+            if (!isAddressValidAndFilled(NewAddress))
+            {
+                MessageBox.Show("Vyplňte všechna pole!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            else if (NewAddress.ZipCode < 5)
+            {
+                MessageBox.Show("PSČ musí být minimálně 5 znaků!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+
+            }
+
             EditAddressVM editVM = new EditAddressVM(SelectedAddress);
 
             EditAddressDialog editDialog = new EditAddressDialog(editVM); 
@@ -202,6 +222,13 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         }
 
-        
+        private bool isAddressValidAndFilled(Address address)
+        {
+            return (address != null && address.Street != null && address.Country != null && address.City != null && address.HouseNumber != null && address.ZipCode != null
+                && address.Street != "" && address.Country != "" && address.City != "" && address.HouseNumber != 0 && address.ZipCode != 0
+                );
+        }
+
+
     }
 }
