@@ -42,7 +42,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
                 {
                     _selectedDrugsPreceptedByDoctor = value;
                     OnPropertyChange(nameof(SelectedDrugsPreceptedByDoctor));
-                    (EditCommand as RelayCommand)?.RaiseCanExecuteChanged();
                     (DeleteCommand as RelayCommand)?.RaiseCanExecuteChanged();
                 }
             }
@@ -66,12 +65,10 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
 
 
         public ICommand DeleteCommand { get; private set; }
-        public ICommand EditCommand { get; private set; }
 
         private void InitializeCommands()
         {
             DeleteCommand = new RelayCommand(DeleteAction, CanExecuteDelete);
-            EditCommand = new RelayCommand(EditAction, CanEdit);
         }
 
         private bool CanExecuteDelete(object parameter)
@@ -84,39 +81,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
             if (SelectedDrugsPreceptedByDoctor == null) return;
 
             DrugsRepo drugRepo = new DrugsRepo();
-            IllnessDrugConnectionRepo illnessDrugConnectionRepo = new IllnessDrugConnectionRepo();
-            
-            //mazání vazby mezi lékem a nemocí
-            await illnessDrugConnectionRepo.DeleteIllnessDrugConnection(new IllnessDrugConnection 
-            { 
-                _drug = SelectedDrugsPreceptedByDoctor._drug,
-                _illness = SelectedDrugsPreceptedByDoctor._illness
-            });
-
-            await drugRepo.DeleteDrug(SelectedDrugsPreceptedByDoctor._drug.Id);
+            await drugRepo.DeleteDrugFromIllness(SelectedDrugsPreceptedByDoctor._drug, SelectedDrugsPreceptedByDoctor._illness);
             await LoadPreceptedDrugsAsync();
-        }
-
-        private bool CanEdit(object parameter)
-        {
-            return SelectedDrugsPreceptedByDoctor != null;
-        }
-
-        private void EditAction(object parameter)
-        {
-            //if (!CanEdit(parameter)) return;
-
-
-            //EditEmployeeVM editVM = new EditEmployeeVM(SelectedEmployee);
-            //EditEmployeeDialog editDialog = new EditEmployeeDialog(editVM);
-
-            //editDialog.ShowDialog();
-
-            //if (editDialog.DialogResult == true)
-            //{
-            //    LoadEmployeesAsync();
-            //}
-            throw new NotImplementedException();
         }
 
         // Filter
