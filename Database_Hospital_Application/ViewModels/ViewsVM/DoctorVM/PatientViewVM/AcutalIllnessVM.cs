@@ -56,6 +56,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
         public ICommand PrescriptPillCommand { get; }
         public ICommand UpdateDosageCommand { get; }
         public ICommand DeleteIllnessCommand { get; }
+        public ICommand DeletePillFromIllnessCommand { get; }
 
 
         private void UpdateCommandStates()
@@ -63,6 +64,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
             (PrescriptPillCommand as RelayCommand)?.RaiseCanExecuteChanged();
             (UpdateDosageCommand as RelayCommand)?.RaiseCanExecuteChanged();
             (DeleteIllnessCommand as RelayCommand)?.RaiseCanExecuteChanged();
+            (DeletePillFromIllnessCommand as RelayCommand)?.RaiseCanExecuteChanged();
         }
         private User _currentUser;
         public ActualIllnessVM(Patient currentPatient, User user)
@@ -76,8 +78,15 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
             PrescriptPillCommand = new RelayCommand(_ => PrescriptPill(), _ => SelectedIllness != null);
             UpdateDosageCommand = new RelayCommand(_ => UpdateDosage(), _ => SelectedIllness != null && SelectedIllness.PrescriptedPills != null);
             DeleteIllnessCommand = new RelayCommand(_ => DeleteIllness(), _ => SelectedIllness != null);
+            DeletePillFromIllnessCommand = new RelayCommand(_ => DeletePillFromIllness(), _ => SelectedIllness != null && SelectedIllness.PrescriptedPills != null);
         }
 
+        private void DeletePillFromIllness()
+        {
+            DrugsRepo repo = new DrugsRepo();
+            repo.DeleteDrugFromIllness(_selectedIllness.PrescriptedPills, _selectedIllness.Illness);
+            LoadDataAsync(_patient.Id);
+        }
 
         private void AddIllness()
         {
@@ -99,8 +108,9 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
 
         private async void UpdateDosage()
         {
-            
-            EditDosageView dialog = new EditDosageView(new EditDosageVM(_selectedIllness.PrescriptedPills));
+
+            _selectedIllness.PrescriptedPills.Employee_id = _currentUser.Employee.Id;
+            EditDosageView dialog = new EditDosageView(new EditDosageVM(_selectedIllness.PrescriptedPills, _selectedIllness.Illness));
 
             dialog.ShowDialog();
             LoadDataAsync(_patient.Id);

@@ -103,14 +103,17 @@ namespace Database_Hospital_Application.Models.Repositories
             return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
 
-        public async Task<int> UpdateDosageAsync(Drug drug)
+        public async Task<int> UpdateDosageAsync(Drug drug, Illness illness)
         {
             string commandText = "update_pills_dosage";
 
             var parameters = new Dictionary<string, object>
             {
                 {"p_pill_id", drug.Id },
-                { "p_new_dosage", drug.Dosage }
+                {"p_new_dosage", drug.Dosage },
+                {"p_illness_id", illness.Id },
+                {"p_pill_name", drug.Name },
+                {"p_doctor_id", drug.Employee_id },  
             };
 
             return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
@@ -218,5 +221,16 @@ namespace Database_Hospital_Application.Models.Repositories
             return drugs;
         }
 
+        public async Task<int> DeleteDrugFromIllness(Drug prescriptedPills, Illness illness)
+        {
+            string commandText = "delete_drug_from_illness";
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_pill_id", prescriptedPills.Id },
+                { "p_illness_id", illness.Id}
+            };
+
+            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
+        }
     }
 }

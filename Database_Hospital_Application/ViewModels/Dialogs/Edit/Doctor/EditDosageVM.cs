@@ -23,6 +23,18 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
             }
         }
 
+        private Illness _illness;
+        public Illness Illness
+        {
+            get => _illness;
+            set
+            {
+                _illness = value;
+                OnPropertyChange(nameof(Illness));
+            }
+        }
+
+
         private int _newDosage;
         public int NewDosage
         {
@@ -38,9 +50,10 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
         public ICommand SaveDosageCommand { get; }
         public ICommand CancelEditDosageCommand { get; }
 
-        public EditDosageVM(Drug drug)
+        public EditDosageVM(Drug drug, Illness illness)
         {
             _drug = drug;
+            _illness = illness;
 
             SaveDosageCommand = new RelayCommand(_ => SaveDosage());
             CancelEditDosageCommand = new RelayCommand(_ => CancelEdit());
@@ -50,7 +63,7 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
         {
             DrugsRepo repo = new DrugsRepo();
             _drug.Dosage = _newDosage;
-            await repo.UpdateDosageAsync(_drug);
+            await repo.UpdateDosageAsync(_drug, _illness);
             CloseRequested?.Invoke();
         }
 
