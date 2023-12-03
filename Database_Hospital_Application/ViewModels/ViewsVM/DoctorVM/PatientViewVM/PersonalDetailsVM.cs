@@ -2,6 +2,9 @@
 using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.Views.Doctor.Patient;
 using System;
+using System.Diagnostics.Metrics;
+using System.IO;
+using System.Reflection;
 using System.Windows.Input;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewVM
@@ -32,6 +35,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
                 _patient = value;
                 OnPropertyChange(nameof(Patient));
                 UpdateProperties();
+                UpdateCommandStates();
             }
         }
 
@@ -57,91 +61,117 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
         {
             get => _firstName;
             set { _firstName = value;
-                OnPropertyChange(nameof(FirstName)); }
+                OnPropertyChange(nameof(FirstName));
+                UpdateCommandStates();
+            }
         }
 
         public string LastName
         {
             get => _lastName;
             set { _lastName = value;
-                OnPropertyChange(nameof(LastName)); }
+                OnPropertyChange(nameof(LastName));
+                UpdateCommandStates();
+            }
         }
 
         public string IdentificationNumber
         {
             get => _identificationNumber;
             set { _identificationNumber = value;
-                OnPropertyChange(nameof(IdentificationNumber)); }
+                OnPropertyChange(nameof(IdentificationNumber));
+                UpdateCommandStates();
+            }
         }
 
         public string Gender
         {
             get => _gender;
             set { _gender = value;
-                OnPropertyChange(nameof(Gender)); }
+                OnPropertyChange(nameof(Gender));
+                UpdateCommandStates();
+            }
         }
 
         public string City
         {
             get => _city;
             set { _city = value;
-                OnPropertyChange(nameof(City)); }
+                OnPropertyChange(nameof(City));
+                UpdateCommandStates();
+            }
         }
 
         public string Street
         {
             get => _street;
             set { _street = value;
-                OnPropertyChange(nameof(Street)); }
+                OnPropertyChange(nameof(Street));
+                UpdateCommandStates();
+            }
         }
 
         public int HouseNumber
         {
             get => _houseNumber;
             set { _houseNumber = value;
-                OnPropertyChange(nameof(HouseNumber)); }
+                OnPropertyChange(nameof(HouseNumber));
+                UpdateCommandStates();
+            }
         }
 
         public int PostalCode
         {
             get => _postalCode;
             set { _postalCode = value;
-                OnPropertyChange(nameof(PostalCode)); }
+                OnPropertyChange(nameof(PostalCode));
+                UpdateCommandStates();
+            }
         }
 
         public string Country
         {
             get => _country;
             set { _country = value;
-                OnPropertyChange(nameof(Country)); }
+                OnPropertyChange(nameof(Country));
+                UpdateCommandStates();
+            }
         }
 
         public string Email
         {
             get => _email;
             set { _email = value;
-                OnPropertyChange(nameof(Email)); }
+                OnPropertyChange(nameof(Email));
+                UpdateCommandStates();
+            }
         }
 
         public int Phone
         {
             get => _phone;
             set { _phone = value;
-                OnPropertyChange(nameof(Phone)); }
+                OnPropertyChange(nameof(Phone));
+                UpdateCommandStates();
+            }
         }
 
         public string InsuranceCompanyName
         {
             get => _insuranceCompanyName;
             set { _insuranceCompanyName = value;
-                OnPropertyChange(nameof(InsuranceCompanyName)); }
+                OnPropertyChange(nameof(InsuranceCompanyName));
+                UpdateCommandStates();
+            }
         }
 
         public int InsuranceCompanyAbbreviation
         {
             get => _insuranceCompanyAbbreviation;
             set { _insuranceCompanyAbbreviation = value;
-                OnPropertyChange(nameof(InsuranceCompanyAbbreviation)); }
+                OnPropertyChange(nameof(InsuranceCompanyAbbreviation));
+                UpdateCommandStates();
+            }
         }
         
         
@@ -150,7 +180,9 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
 
         public ICommand SaveChangesCommand { get; private set; }
 
-     
+        public ICommand CancelEditCommand { get; }
+
+
         public PersonalDetailsVM(Patient patient)
         {
             _patient = patient;
@@ -188,11 +220,34 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
 
 
 
-
+            CancelEditCommand = new RelayCommand(_ => CancelEdit());
             EditPatientDetailsCommand = new RelayCommand(ShowEditDialog);
-            SaveChangesCommand = new RelayCommand(SaveChanges);
+            SaveChangesCommand = new RelayCommand(
+            _ => SaveChanges(),
+            _ => CanSaveChanges()
+            );
+
+        }
+        private bool CanSaveChanges()
+        {
+            return !string.IsNullOrEmpty(FirstName) &&
+            !string.IsNullOrEmpty(LastName) &&
+            !string.IsNullOrEmpty(IdentificationNumber) &&
+            !string.IsNullOrEmpty(Gender) &&
+            !string.IsNullOrEmpty(City) &&
+            !string.IsNullOrEmpty(Street) &&
+            HouseNumber > 0 &&
+            PostalCode > 0 &&
+            !string.IsNullOrEmpty(Country) &&
+            !string.IsNullOrEmpty(Email) &&
+            Phone > 0 &&
+            !string.IsNullOrEmpty(InsuranceCompanyName) &&
+            InsuranceCompanyAbbreviation > 0 &&
+            !string.IsNullOrEmpty(IsSmoker) &&
+            !string.IsNullOrEmpty(IsAllergic);
         }
 
+        
         private void UpdateProperties()
         {
             OnPropertyChange(nameof(FirstName));
@@ -221,9 +276,26 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
             dialog.ShowDialog();
         }
 
-        private void SaveChanges(object? parameter)
+        private void SaveChanges()
         {
             //TODO
+
+            CloseRequested?.Invoke();
         }
+
+        public event Action CloseRequested;
+        private void CancelEdit()
+        {
+            CloseRequested?.Invoke();
+
+        }
+
+
+
+        private void UpdateCommandStates()
+        {
+            (SaveChangesCommand as RelayCommand)?.RaiseCanExecuteChanged();
+        }
+
     }
 }

@@ -56,13 +56,13 @@
             <StackPanel Grid.Column="0" HorizontalAlignment="Left" Width="200" Margin="2">
                 <TextBlock Text="Pacient" FontWeight="Bold" Foreground="#c9b5bc" Margin="5" HorizontalAlignment="Center" FontSize="20"/>
                 <TextBlock Text="Jméno" Foreground="#c9b5bc" Margin="5,30,5,5" FontSize="20"/>
-                <TextBlock Foreground="#c9b5bc" Margin="5" Text="{Binding FirstName}" FontSize="18" FontWeight="Bold" FontStyle="Italic"/>
+                <TextBlock Foreground="#c9b5bc" Margin="5" Text="{Binding FirstName}" FontSize="18"  FontStyle="Italic"/>
                 <TextBlock Text="Příjmení" Foreground="#c9b5bc" Margin="5,30,5,5" FontSize="20"/>
-                <TextBlock Foreground="#c9b5bc" Margin="5" Text="{Binding LastName}" FontSize="18" FontWeight="Bold" FontStyle="Italic"/>
+                <TextBlock Foreground="#c9b5bc" Margin="5" Text="{Binding LastName}" FontSize="18"  FontStyle="Italic"/>
                 <TextBlock Text="Rodné číslo" Foreground="#c9b5bc" Margin="5,30,5,5" FontSize="20"/>
-                <TextBlock Foreground="#c9b5bc" Margin="5" Text="{Binding IdentificationNumber}" FontSize="18" FontWeight="Bold" FontStyle="Italic"/>
+                <TextBlock Foreground="#c9b5bc" Margin="5" Text="{Binding IdentificationNumber}" FontSize="18"  FontStyle="Italic"/>
                 <TextBlock Text="Pohlaví" Foreground="#c9b5bc" Margin="5,30,5,5" FontSize="20"/>
-                <TextBlock Foreground="#c9b5bc" Margin="5" Text="{Binding Gender}" FontSize="18" FontWeight="Bold" FontStyle="Italic"/>
+                <TextBlock Foreground="#c9b5bc" Margin="5" Text="{Binding Gender}" FontSize="18"  FontStyle="Italic"/>
             </StackPanel>
 
 
@@ -70,15 +70,15 @@
             <StackPanel Grid.Column="1" HorizontalAlignment="Left" Width="200" Margin="2">
                 <TextBlock Text="Adresa" FontWeight="Bold" Foreground="#c9b5bc" Margin="5" HorizontalAlignment="Center" FontSize="20"/>
                 <TextBlock Text="Město" Foreground="#c9b5bc" Margin="5,30,5,5" FontSize="20"/>
-                <TextBlock Foreground="#c9b5bc" Margin="5" Text="{Binding City}" FontSize="18" FontWeight="Bold" FontStyle="Italic"/>
+                <TextBlock Foreground="#c9b5bc" Margin="5" Text="{Binding City}" FontSize="18"  FontStyle="Italic"/>
                 <TextBlock Text="Ulice" Foreground="#c9b5bc" Margin="5,30,5,5" FontSize="20"/>
-                <TextBlock Foreground="#c9b5bc" Margin="5" Text="{Binding Street}" FontSize="18" FontWeight="Bold" FontStyle="Italic"/>
+                <TextBlock Foreground="#c9b5bc" Margin="5" Text="{Binding Street}" FontSize="18"  FontStyle="Italic"/>
                 <TextBlock Text="Číslo popisné" Foreground="#c9b5bc" Margin="5,30,5,5" FontSize="20"/>
-                <TextBlock Foreground="#c9b5bc" Margin="5" Text="{Binding HouseNumber}" FontSize="18" FontWeight="Bold" FontStyle="Italic"/>
+                <TextBlock Foreground="#c9b5bc" Margin="5" Text="{Binding HouseNumber}" FontSize="18"  FontStyle="Italic"/>
                 <TextBlock Text="PSČ" Foreground="#c9b5bc" Margin="5,30,5,5" FontSize="20"/>
-                <TextBlock Foreground="#c9b5bc" Margin="5" Text="{Binding PostalCode}" FontSize="18" FontWeight="Bold" FontStyle="Italic"/>
+                <TextBlock Foreground="#c9b5bc" Margin="5" Text="{Binding PostalCode}" FontSize="18"  FontStyle="Italic"/>
                 <TextBlock Text="Stát" Foreground="#c9b5bc" Margin="5,30,5,5" FontSize="20"/>
-                <TextBlock Foreground="#c9b5bc" Margin="5" Text="{Binding Country}" FontSize="18" FontWeight="Bold" FontStyle="Italic"/>
+                <TextBlock Foreground="#c9b5bc" Margin="5" Text="{Binding Country}" FontSize="18"  FontStyle="Italic"/>
             </StackPanel>
 
 
@@ -86,9 +86,9 @@
             <StackPanel Grid.Column="2" HorizontalAlignment="Left" Width="200" Margin="2">
                 <TextBlock Text="Kontaktní údaje" FontWeight="Bold" Foreground="#c9b5bc" Margin="5" HorizontalAlignment="Center" FontSize="20"/>
                 <TextBlock Text="Email" Foreground="#c9b5bc" Margin="5,30,5,5" FontSize="20"/>
-                <TextBlock Foreground="#c9b5bc" TextWrapping="Wrap" Margin="5" Text="{Binding Email}" FontSize="18" FontWeight="Bold" FontStyle="Italic"/>
+                <TextBlock Foreground="#c9b5bc" TextWrapping="Wrap" Margin="5" Text="{Binding Email}" FontSize="18"  FontStyle="Italic"/>
                 <TextBlock Text="Telefon" Foreground="#c9b5bc" Margin="5,30,5,5" FontSize="20"/>
-                <TextBlock Foreground="#c9b5bc" Margin="5" Text="{Binding Phone}" FontSize="18" FontWeight="Bold" FontStyle="Italic"/>
+                <TextBlock Foreground="#c9b5bc" Margin="5" Text="{Binding Phone}" FontSize="18"  FontStyle="Italic"/>
             </StackPanel>
 
 
@@ -96,19 +96,19 @@
             <StackPanel Grid.Column="3" HorizontalAlignment="left" Width="210" Margin="2">
                 <TextBlock Text="Zdravotní pojišťovna" FontWeight="Bold" Foreground="#c9b5bc" Margin="5" HorizontalAlignment="Center" FontSize="20"/>
                 <TextBlock Text="Název" Foreground="#c9b5bc" Margin="5,30,5,5" FontSize="20"/>
-                <TextBlock Foreground="#c9b5bc" TextWrapping="Wrap" Margin="5" Text="{Binding InsuranceCompanyName}" FontSize="18" FontWeight="Bold" FontStyle="Italic"/>
+                <TextBlock Foreground="#c9b5bc" TextWrapping="Wrap" Margin="5" Text="{Binding InsuranceCompanyName}" FontSize="18"  FontStyle="Italic"/>
                 <TextBlock Text="Zkratka" Foreground="#c9b5bc" Margin="5,30,5,5" FontSize="20"/>
-                <TextBlock Foreground="#c9b5bc" Margin="5" Text="{Binding InsuranceCompanyAbbreviation}" FontSize="18" FontWeight="Bold" FontStyle="Italic"/>
+                <TextBlock Foreground="#c9b5bc" Margin="5" Text="{Binding InsuranceCompanyAbbreviation}" FontSize="18"  FontStyle="Italic"/>
                 <TextBlock Text="Kuřák" Foreground="#c9b5bc" Margin="5,30,5,5" FontSize="20"/>
-                <TextBlock Foreground="#c9b5bc" Margin="5" Text="{Binding IsSmoker}" FontSize="18" FontWeight="Bold" FontStyle="Italic"/>
+                <TextBlock Foreground="#c9b5bc" Margin="5" Text="{Binding IsSmoker}" FontSize="18"  FontStyle="Italic"/>
                 <TextBlock Text="Alergik" Foreground="#c9b5bc" Margin="5,30,5,5" FontSize="20"/>
-                <TextBlock Foreground="#c9b5bc" Margin="5" Text="{Binding IsAllergic}" FontSize="18" FontWeight="Bold" FontStyle="Italic"/>
+                <TextBlock Foreground="#c9b5bc" Margin="5" Text="{Binding IsAllergic}" FontSize="18"  FontStyle="Italic"/>
             </StackPanel>
 
         </Grid>
 
 
-        <Button Content="Upravit údaje" Height="35" Width="150" FontSize="20" FontWeight="Bold"
+        <Button Cursor="Hand" Content="Upravit údaje" Height="35" Width="150" FontSize="20" FontWeight="Bold"
         Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc"
         Command="{Binding EditPatientDetailsCommand}" 
         HorizontalAlignment="Center" 
