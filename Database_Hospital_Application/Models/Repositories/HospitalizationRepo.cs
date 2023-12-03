@@ -45,6 +45,30 @@ namespace Database_Hospital_Application.Models.Repositories
             }
             return hospitalizations;
         }
+        public async Task<ObservableCollection<Hospitalization>> GetAllHospitalizationsAsync(int patientId)
+        {
+            ObservableCollection<Hospitalization> hospitalizations = new ObservableCollection<Hospitalization>();
+            string commandText = "get_all_hospitalizations_by_patient_id";
+            DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
+
+            if (result.Rows.Count > 0)
+            {
+                foreach (DataRow row in result.Rows)
+                {
+                    Hospitalization hospitalization = new Hospitalization
+                    {
+                        Id = Convert.ToInt32(row["ID"]),
+                        DateIn = (OracleDate)row["DATUM_NASTUPU"],
+                        DateOut = (OracleDate)row["DATUM_PROPUSTENI"],
+                        Details = row["POPIS"].ToString(),
+                        PatientId = Convert.ToInt32(row["PACIENT_ID"]),
+                        DepartmentId = Convert.ToInt32(row["ODDELENI_ID"])
+                    };
+                    hospitalizations.Add(hospitalization);
+                }
+            }
+            return hospitalizations;
+        }
 
         public async Task AddHospitalization(Hospitalization hospitalization)
         {

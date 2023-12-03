@@ -75,7 +75,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
 
         private async void LoadDataAsync()
         {
-            var hospitalizationData = await _hospitalizationRepo.GetAllHospitalizationsAsync();
+            var hospitalizationData = await _hospitalizationRepo.GetAllHospitalizationsAsync(_currentPatient.Id);
             HospitalizationList = new ObservableCollection<Hospitalization>(hospitalizationData);
         }
 
