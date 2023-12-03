@@ -34,11 +34,11 @@ namespace Database_Hospital_Application.Models.Repositories
                     Hospitalization hospitalization = new Hospitalization
                     {
                         Id = Convert.ToInt32(row["ID"]),
-                        DateIn = (OracleDate)row["DATE_IN"],
-                        DateOut = (OracleDate)row["DATE_OUT"],
-                        Details = row["DETAILS"].ToString(),
-                        PatientId = Convert.ToInt32(row["PATIENT_ID"]),
-                        DepartmentId = Convert.ToInt32(row["DEPARTMENT_ID"])
+                        DateIn = (OracleDate)row["DATUM_NASTUPU"],
+                        DateOut = (OracleDate)row["DATUM_PROPUSTENI"],
+                        Details = row["POPIS"].ToString(),
+                        PatientId = Convert.ToInt32(row["PACIENT_ID"]),
+                        DepartmentId = Convert.ToInt32(row["ODDELENI_ID"])
                     };
                     hospitalizations.Add(hospitalization);
                 }
