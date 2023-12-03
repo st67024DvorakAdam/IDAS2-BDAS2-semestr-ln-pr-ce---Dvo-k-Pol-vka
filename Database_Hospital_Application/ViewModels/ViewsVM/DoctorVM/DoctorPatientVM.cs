@@ -179,7 +179,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
         {
             var hospitalizationView = new HospitalizationView
             {
-                DataContext = new HospitalizationVM(CurrentPatient, _currentUser)
+                DataContext = new Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewVM.HospitalizationVM(CurrentPatient, _currentUser)
             };
 
             CurrentContent = hospitalizationView;
