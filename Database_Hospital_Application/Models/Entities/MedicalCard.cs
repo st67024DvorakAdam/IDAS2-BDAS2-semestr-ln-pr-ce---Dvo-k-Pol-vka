@@ -15,8 +15,8 @@ namespace Database_Hospital_Application.Models.Entities
         public ObservableCollection<Illness> Illnesses { get; set; }
         public string StringVersionOfIllnesses { get; private set; }
         public int IdOfPatient {  get; set; }
-        public bool Smoking { get; set; }
-        public bool Alergic { get; set; }
+        public bool IsSmoker { get; set; }
+        public bool IsAllergic { get; set; }
 
         public void MakeStringVersionOfIllnesses()
         {
@@ -47,8 +47,8 @@ namespace Database_Hospital_Application.Models.Entities
         public MedicalCard(bool smoking, bool alergic, int idPatient)
         {
             IdOfPatient = idPatient;
-            Smoking = smoking;
-            Alergic = alergic;
+            IsSmoker = smoking;
+            IsAllergic = alergic;
         }
     }
 }

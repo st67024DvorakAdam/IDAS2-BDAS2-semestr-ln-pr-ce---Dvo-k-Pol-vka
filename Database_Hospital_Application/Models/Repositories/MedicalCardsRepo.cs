@@ -38,8 +38,8 @@ namespace Database_Hospital_Application.Models.Repositories
                         BirthNumberOfPatient = Convert.ToInt64(row["RODNE_CISLO"]),
                         IdOfPatient = Convert.ToInt32(row["PACIENT_ID"]),
                         Illnesses = new ObservableCollection<Illness>(),
-                        Smoking = Convert.ToInt32(row["KURAK"]) == 1? true:false,
-                        Alergic = Convert.ToInt32(row["ALERGIK"]) == 1 ? true : false
+                        IsSmoker = Convert.ToInt32(row["KURAK"]) == 1? true:false,
+                        IsAllergic = Convert.ToInt32(row["ALERGIK"]) == 1 ? true : false
                     };
 
                     string illnessesData = row["prubezna_nemoc_nazev"].ToString();
@@ -71,8 +71,8 @@ namespace Database_Hospital_Application.Models.Repositories
                 var parameters = new Dictionary<string, object>
                 {
                     { "p_pacient_id", medicalCard.IdOfPatient },
-                    { "p_kurak", medicalCard.Smoking == true?1:0},
-                    { "p_alergik", medicalCard.Alergic == true?1:0}
+                    { "p_kurak", medicalCard.IsSmoker == true?1:0},
+                    { "p_alergik", medicalCard.IsAllergic == true?1:0}
                 };
 
                 await dbTools.ExecuteNonQueryAsync(commandText, parameters);
@@ -97,8 +97,8 @@ namespace Database_Hospital_Application.Models.Repositories
             {
                 { "p_id", medicalCard.Id },
                 { "p_rodne_cislo_pacienta", medicalCard.BirthNumberOfPatient },
-                { "p_kurak", medicalCard.Smoking == true?1:0},
-                { "p_alergik", medicalCard.Alergic == true?1:0}
+                { "p_kurak", medicalCard.IsSmoker == true?1:0},
+                { "p_alergik", medicalCard.IsAllergic == true?1:0}
             };
 
             return await dbTools.ExecuteNonQueryAsync(commandText, parameters);

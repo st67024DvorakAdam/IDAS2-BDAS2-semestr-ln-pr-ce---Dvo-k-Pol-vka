@@ -22,8 +22,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
         private int _phone;
         private string _insuranceCompanyName;
         private int _insuranceCompanyAbbreviation;
-        private bool _isSmoker;
-        private bool _isAllergic;
+        private string _isSmoker;
+        private string _isAllergic;
         public Patient Patient
         {
             get => _patient;
@@ -35,7 +35,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
             }
         }
 
-        public bool IsSmoker
+        public string IsSmoker
         {
             get => _isSmoker;
             set { _isSmoker = value;
@@ -43,7 +43,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
             }
         }
 
-        public bool IsAllergic
+        public string IsAllergic
         {
             get => _isAllergic;
             set
@@ -144,8 +144,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
                 OnPropertyChange(nameof(InsuranceCompanyAbbreviation)); }
         }
         
-        //public bool IsSmoker => _patient.IsSmoker ?? false;
-        //public bool IsAllergic => _patient.IsAllergic ?? false;
+        
 
         public ICommand EditPatientDetailsCommand { get; private set; }
 
@@ -170,7 +169,25 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
             _phone = _patient.Contact.PhoneNumber;
             _insuranceCompanyName = _patient.HealthInsurance.Name;
             _insuranceCompanyAbbreviation = _patient.HealthInsurance.Code;
-            //TODO IsAllergic a smoker
+            if (_patient.MedicalCard.IsAllergic.ToString().Equals("True"))
+            {
+                _isAllergic = "Ano";
+            }
+            else
+            {
+                _isAllergic = "Ne";
+            }
+            if (_patient.MedicalCard.IsSmoker.ToString().Equals("True"))
+            {
+                _isSmoker = "Ano";
+            }
+            else
+            {
+                _isSmoker = "Ne";
+            }
+
+
+
 
             EditPatientDetailsCommand = new RelayCommand(ShowEditDialog);
             SaveChangesCommand = new RelayCommand(SaveChanges);
@@ -191,8 +208,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
             OnPropertyChange(nameof(Phone));
             OnPropertyChange(nameof(InsuranceCompanyName));
             OnPropertyChange(nameof(InsuranceCompanyAbbreviation));
-            //OnPropertyChange(nameof(IsSmoker));
-            //OnPropertyChange(nameof(IsAllergic));
+            OnPropertyChange(nameof(IsSmoker));
+            OnPropertyChange(nameof(IsAllergic));
         }
 
         public PersonalDetailsVM() { }

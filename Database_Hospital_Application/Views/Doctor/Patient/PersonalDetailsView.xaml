@@ -100,9 +100,9 @@
                 <TextBlock Text="Zkratka" Foreground="#c9b5bc" Margin="5,30,5,5" FontSize="20"/>
                 <TextBlock Foreground="#c9b5bc" Margin="5" Text="{Binding InsuranceCompanyAbbreviation}" FontSize="18" FontWeight="Bold" FontStyle="Italic"/>
                 <TextBlock Text="Kuřák" Foreground="#c9b5bc" Margin="5,30,5,5" FontSize="20"/>
-                <TextBlock Margin="5" Text="{Binding IsSmoker}" FontSize="18" FontWeight="Bold" FontStyle="Italic"/>
+                <TextBlock Foreground="#c9b5bc" Margin="5" Text="{Binding IsSmoker}" FontSize="18" FontWeight="Bold" FontStyle="Italic"/>
                 <TextBlock Text="Alergik" Foreground="#c9b5bc" Margin="5,30,5,5" FontSize="20"/>
-                <TextBlock Margin="5" Text="{Binding IsAllergic}" FontSize="18" FontWeight="Bold" FontStyle="Italic"/>
+                <TextBlock Foreground="#c9b5bc" Margin="5" Text="{Binding IsAllergic}" FontSize="18" FontWeight="Bold" FontStyle="Italic"/>
             </StackPanel>
 
         </Grid>

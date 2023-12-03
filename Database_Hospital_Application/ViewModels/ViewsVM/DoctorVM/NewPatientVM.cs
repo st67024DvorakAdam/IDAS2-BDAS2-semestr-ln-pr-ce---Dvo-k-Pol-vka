@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 using Database_Hospital_Application.Commands;
+using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.Models.Repositories;
 using Database_Hospital_Application.Views.Doctor.Patient;
 
@@ -130,10 +131,13 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
                 OnPropertyChange(nameof(IsAllergic)); }
         }
 
+        
+
         public ICommand AcceptPatientCommand { get; private set; }
 
         public NewPatientVM()
         {
+            
             AcceptPatientCommand = new RelayCommand(ExecuteAcceptPatient, CanExecuteAcceptPatient);
         }
 
@@ -163,10 +167,10 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
             cr.AddContact(new Models.Entities.Contact(Email, Phone, patientId, null));
 
 
-            // TODO
             
 
-            
+
+
 
         }
 

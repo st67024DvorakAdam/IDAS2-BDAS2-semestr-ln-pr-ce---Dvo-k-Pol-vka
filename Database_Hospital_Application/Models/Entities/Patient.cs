@@ -21,6 +21,8 @@ namespace Database_Hospital_Application.Models.Entities
         public HealthInsurance? HealthInsurance { get; set; }
         public Contact? Contact { get; set; }
 
+        public MedicalCard? MedicalCard { get; set; }
+
         public Patient(string firstName, string lastName, string birthNumber, string sex, string idAddress, string idHealthInsurance)
         {
             FirstName = firstName;

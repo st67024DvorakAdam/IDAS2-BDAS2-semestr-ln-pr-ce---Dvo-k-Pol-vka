@@ -154,7 +154,7 @@ namespace Database_Hospital_Application.Models.Repositories
                     Email = row["email"].ToString(),
                     PhoneNumber = Convert.ToInt32(row["TELEFON"].ToString()),
                 },
-                    
+
                 Address = new Address
                 {
                     Street = row["ULICE"].ToString(),
@@ -164,11 +164,19 @@ namespace Database_Hospital_Application.Models.Repositories
                     ZipCode = Convert.ToInt32(row["PSC"].ToString()),
                 },
 
-                
+
                 HealthInsurance = new HealthInsurance
                 {
                     Name = row["POJISTOVNA_NAZEV"].ToString(),
-                    Code = Convert.ToInt32(row["POJISTOVNA_ZKRATKA"].ToString()),
+                    Code = Convert.ToInt32(row["POJISTOVNA_ZKRATKA"].ToString())
+
+
+                },
+
+                MedicalCard = new MedicalCard
+                {
+                    IsAllergic = Convert.ToBoolean(row["ALERGIK"]),
+                    IsSmoker = Convert.ToBoolean(row["KURAK"])
                 }
             };
 

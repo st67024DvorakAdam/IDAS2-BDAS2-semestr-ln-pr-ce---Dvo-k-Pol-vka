@@ -13,6 +13,9 @@ namespace Database_Hospital_Application.Models.Entities
         public string Name { get; set; }
         public int Code {  get; set; }  //Zkratka
 
+        public bool IsAllergic { get; set; }
+
+        public bool IsSmoker { get; set; }
         public HealthInsurance(string name, string code)
         {
             Name = name;
