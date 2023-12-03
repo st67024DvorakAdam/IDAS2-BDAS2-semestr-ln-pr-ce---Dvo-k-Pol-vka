@@ -40,6 +40,8 @@ namespace Database_Hospital_Application.Models.Repositories
                         PatientId = Convert.ToInt32(row["PACIENT_ID"]),
                         DepartmentId = Convert.ToInt32(row["ODDELENI_ID"])
                     };
+                    hospitalization.FormattedDateIn = hospitalization.DateIn.ToString("dd.MM.yyyy");
+                    hospitalization.FormattedDateOut = hospitalization.DateOut?.ToString("dd.MM.yyyy");
                     hospitalizations.Add(hospitalization);
                 }
             }
@@ -85,10 +87,17 @@ namespace Database_Hospital_Application.Models.Repositories
         public async Task AddHospitalization(Hospitalization hospitalization)
         {
             string commandText = "add_hospitalization";
+            OracleDate oracleDateOut = new OracleDate();
+            if (hospitalization.DateOut.HasValue) 
+            {
+                DateTime dt = hospitalization.DateOut.Value;
+                oracleDateOut = new OracleDate(dt);
+            }
+
             var parameters = new Dictionary<string, object>
             {
-                { "p_date_in", hospitalization.DateIn },
-                { "p_date_out", hospitalization.DateOut },
+                { "p_date_in", new OracleDate(hospitalization.DateIn) },
+                { "p_date_out", oracleDateOut},
                 { "p_details", hospitalization.Details },
                 { "p_patient_id", hospitalization.PatientId },
                 { "p_department_id", hospitalization.DepartmentId }

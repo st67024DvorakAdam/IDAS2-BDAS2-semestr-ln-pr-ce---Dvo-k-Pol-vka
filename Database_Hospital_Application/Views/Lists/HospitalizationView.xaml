@@ -66,11 +66,11 @@
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="20"/>
-                    <DataGridTextColumn Header="Jméno" Binding="{Binding DateIn}" Width="*"/>
-                    <DataGridTextColumn Header="Příjmení" Binding="{Binding DateOut}" Width="*"/>
-                    <DataGridTextColumn Header="Username" Binding="{Binding Details}" Width="*"/>
-                    <DataGridTextColumn Header="Rodné číslo" Binding="{Binding PatientId}" Width="*"/>
-                    <DataGridTextColumn Header="Pohlaví" Binding="{Binding DepartmentId}" Width="*"/>
+                    <DataGridTextColumn Header="Datum nástupu" Binding="{Binding FormattedDateIn}" Width="*"/>
+                    <DataGridTextColumn Header="Datum propuštění" Binding="{Binding FormattedDateOut}" Width="*"/>
+                    <DataGridTextColumn Header="Popis" Binding="{Binding Details}" Width="*"/>
+                    <DataGridTextColumn Header="Id pacienta" Binding="{Binding PatientId}" Width="*"/>
+                    <DataGridTextColumn Header="Id oddělení" Binding="{Binding DepartmentId}" Width="*"/>
                 </DataGrid.Columns>
 
                 <DataGrid.CellStyle>
@@ -115,63 +115,59 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <!--<TextBlock Grid.Row="0" Text="Nová hospitalizace" Foreground="White" FontSize="20" FontWeight="Bold"
+            <TextBlock Grid.Row="0" Text="Nová hospitalizace" Foreground="White" FontSize="20" FontWeight="Bold"
                HorizontalAlignment="Center" Margin="10"/>
 
-            <TextBlock Text="Jméno" FontSize="18" Grid.Row="1" Margin="5" HorizontalAlignment="Center" Foreground="White" />
-            <TextBox x:Name="FisrtNameTextBox" Background="Transparent" Foreground="White" Height="25" FontSize="16"  Grid.Row="2" Margin="5" Width="270" HorizontalAlignment="Center" Text="{Binding NewEmployee.FirstName}"/>
+            <TextBlock Text="Datum nástupu" FontSize="18" Grid.Row="1" Margin="5" HorizontalAlignment="Center" Foreground="White" />
+            <DatePicker Grid.Row="2" Width="270" SelectedDate="{Binding NewHospitalization.DateIn, Mode=TwoWay}"/>
 
-            <TextBlock Text="Příjmení" FontSize="18" Grid.Row="3" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
-            <TextBox x:Name="LastNameTextBox" Background="Transparent" Foreground="White" Height="25" FontSize="16"  Grid.Row="4" Margin="5" Width="270" HorizontalAlignment="Center" Text="{Binding NewEmployee.LastName}"/>
 
-            <TextBlock Text="Rodné číslo" FontSize="18" Grid.Row="5" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
-            <TextBox x:Name="BirthNumberTextBox" Background="Transparent" Foreground="White" Height="25" FontSize="16" Grid.Row="6" Margin="5" Width="270" 
-                 PreviewTextInput="TextBox_PreviewTextInput" HorizontalAlignment="Center" Text="{Binding NewHospitalization.BirthNumber}"/>
+            <TextBlock Text="Datum propuštění" FontSize="18" Grid.Row="3" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
+            <DatePicker Grid.Row="4" Width="270" SelectedDate="{Binding NewHospitalization.DateOut, Mode=TwoWay}"/>
 
-            <TextBlock Text="Pohlaví" FontSize="18" Grid.Row="7" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
+            <TextBlock Text="Popis" FontSize="18" Grid.Row="5" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
+            <TextBox x:Name="TextBox" Background="Transparent" Foreground="White" Height="25" FontSize="16" Grid.Row="6" Margin="5" Width="270" 
+                HorizontalAlignment="Center" Text="{Binding NewHospitalization.Details}"/>
+
+            <TextBlock Text="Pacient" FontSize="18" Grid.Row="7" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
             <ComboBox HorizontalAlignment="Center" Grid.Row="8" VerticalAlignment="Center" Background="Transparent" Width="270" 
-                      SelectedIndex="{Binding NewEmployee.Sex, Converter={StaticResource sexToIndexConverter}}">
-                <ComboBoxItem Background="Transparent">Muž</ComboBoxItem>
-                <ComboBoxItem Background="Transparent">Žena</ComboBoxItem>
+                ItemsSource="{Binding PatientsList}" 
+                SelectedValuePath="Id" SelectedValue="{Binding NewHospitalization.PatientId}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}Id:{0}, {1} {2}, RČ:{3}">
+                                    <Binding Path="Id" />
+                                    <Binding Path="FirstName" />
+                                    <Binding Path="LastName" />
+                                    <Binding Path="BirthNumber" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
             </ComboBox>
 
-            <TextBlock Text="Vedoucí" FontSize="18" Grid.Row="9" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
-            <ComboBox x:Name="EmployeeCB" HorizontalAlignment="Center" Grid.Row="10" VerticalAlignment="Center" Background="Transparent" Width="270" 
-          ItemsSource="{Binding EmployeesList}" DisplayMemberPath="UserName" 
-          SelectedValuePath="Id" SelectedValue="{Binding NewEmployee.IdOfSuperiorEmployee}">
-                <ComboBox.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Reset" Click="ResetComboBox2_Click" />
-                    </ContextMenu>
-                </ComboBox.ContextMenu>
+            <TextBlock Text="Oddělení" FontSize="18" Grid.Row="9" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
+            <ComboBox HorizontalAlignment="Center" Grid.Row="10" VerticalAlignment="Center" Background="Transparent" Width="270" 
+              ItemsSource="{Binding DepartmentsList}"
+              SelectedValuePath="Id" SelectedValue="{Binding NewHospitalization.DepartmentId}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}Id:{0}, {1}">
+                                    <Binding Path="Id" />
+                                    <Binding Path="Name" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
             </ComboBox>
-
-            <TextBlock Text="Fotografie" FontSize="18" Grid.Row="11" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
-            <ComboBox HorizontalAlignment="Center" Grid.Row="12" VerticalAlignment="Center" Background="Transparent" Width="270" 
-          ItemsSource="{Binding PhotosList}" DisplayMemberPath="Name" 
-          SelectedValuePath="Id" SelectedValue="{Binding NewEmployee._foto.Id}">
-            </ComboBox>
-
-            <TextBlock Text="Oddělení" FontSize="18" Grid.Row="13" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
-            <ComboBox HorizontalAlignment="Center" Grid.Row="14" VerticalAlignment="Center" Background="Transparent" Width="270" 
-            ItemsSource="{Binding DepartmentList}" DisplayMemberPath="Name" 
-            SelectedValuePath="Id" SelectedValue="{Binding NewEmployee._department.Id}">
-            </ComboBox>
-
-            <TextBlock Text="Uživatelské jméno" FontSize="18" Grid.Row="15" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
-            <TextBox x:Name="UserNameTextBox" Background="Transparent" Foreground="White" Height="25" FontSize="16"  Grid.Row="16" Margin="5" Width="270" HorizontalAlignment="Center" Text="{Binding NewEmployee.UserName}"/>
-
-            <TextBlock Text="Heslo" FontSize="18" Grid.Row="17" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
-            <TextBox x:Name="PasswordTextBox" Background="Transparent" Foreground="White" Height="25" FontSize="16"  Grid.Row="18" Margin="5" Width="270" HorizontalAlignment="Center" Text="{Binding NewEmployee.Password}"/>-->
-
-            <!--<TextBlock Text="Role" FontSize="18" Grid.Row="19" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
-            <ComboBox HorizontalAlignment="Center" Grid.Row="20" VerticalAlignment="Center" Background="Transparent" Width="270" 
-            ItemsSource="{Binding RoleList}" DisplayMemberPath="Name" 
-            SelectedValuePath="Id" SelectedValue="{Binding NewEmployee.RoleID}">
-            </ComboBox>-->
-
-
-            <Button Grid.Row="21" Content="Přidat" Margin="0,10,0,0" Padding="10,3" Width="200" HorizontalAlignment="Center"
+            
+            <Button Grid.Row="11" Content="Přidat" Margin="0,10,0,0" Padding="10,3" Width="200" HorizontalAlignment="Center"
             Command="{Binding AddCommand}" VerticalAlignment="Top"/>
         </Grid>
     </Grid>
