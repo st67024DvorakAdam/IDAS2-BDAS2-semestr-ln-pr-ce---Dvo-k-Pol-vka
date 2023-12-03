@@ -65,6 +65,9 @@
         <DataTemplate DataType="{x:Type vm:SystemCatalogVM }">
             <local:SystemCatalog/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:HospitalizationVM }">
+            <local:HospitalizationView/>
+        </DataTemplate>
 
 
     </Window.Resources>
@@ -334,6 +337,22 @@
                         </Grid>
 
                     </Menu:Button>
+
+                    <Menu:Button Style="{StaticResource Button}"
+            Command="{Binding HospitalizationsListCommand}">
+
+                        <Grid>
+
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-hospital-bed-30.png?raw=true"
+               Height="30"
+               Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
+
+                            <TextBlock Text="Hospitalizace"
+                   Style="{StaticResource TextStyle}" />
+
+                        </Grid>
+
+                    </Menu:Button>
                     <Menu:Button Style="{StaticResource Button}"
                               Command="{Binding LogsListCommand}">
 
@@ -354,7 +373,7 @@
 
                         <Grid>
 
-                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-log-30.png?raw=true"
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-magazine-30.png?raw=true"
                                 Height="30"
                                 Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
 

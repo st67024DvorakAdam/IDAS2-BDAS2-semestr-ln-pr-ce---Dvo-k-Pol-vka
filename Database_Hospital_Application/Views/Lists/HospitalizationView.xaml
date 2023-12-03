@@ -1,0 +1,178 @@
+﻿<UserControl x:Class="Database_Hospital_Application.Views.Lists.HospitalizationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Database_Hospital_Application.Views.Lists"
+             xmlns:vm="clr-namespace:Database_Hospital_Application.ViewModels.ViewsVM"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:HospitalizationVM/>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Margin="10" Foreground="Gray" VerticalAlignment="Top">
+             Vyhledávání...
+            </TextBlock>
+            <TextBox Grid.Row="0" Margin="10" Height="25" Width="150" HorizontalAlignment="Left"
+            Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" 
+            Background="Transparent" Foreground="White" BorderThickness="1" 
+            BorderBrush="Gray" VerticalContentAlignment="Center" CaretBrush="White"/>
+
+            <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="HOSPITALIZACE" VerticalAlignment="Center" FontSize="40" Margin="0,0,0,35" Foreground="White" FontWeight="Bold"/>
+
+            <DataGrid x:Name="AddressesDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding HospitalizationsList}" Background="Transparent" 
+                  SelectedItem="{Binding SelectedHospitalization, Mode=TwoWay}"
+                  AreRowDetailsFrozen="True" CanUserAddRows="False" CanUserDeleteRows="False"
+                  CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single" 
+                  SelectionUnit="FullRow" GridLinesVisibility="None" HeadersVisibility="Column" 
+                  IsReadOnly="True" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1">
+
+
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="Height" Value="30"/>
+                        <Setter Property="FontSize" Value="20"/>
+                    </Style>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Height" Value="40"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#272B2F"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#272B2F"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.Resources>
+
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="20"/>
+                    <DataGridTextColumn Header="Jméno" Binding="{Binding DateIn}" Width="*"/>
+                    <DataGridTextColumn Header="Příjmení" Binding="{Binding DateOut}" Width="*"/>
+                    <DataGridTextColumn Header="Username" Binding="{Binding Details}" Width="*"/>
+                    <DataGridTextColumn Header="Rodné číslo" Binding="{Binding PatientId}" Width="*"/>
+                    <DataGridTextColumn Header="Pohlaví" Binding="{Binding DepartmentId}" Width="*"/>
+                </DataGrid.Columns>
+
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="BorderBrush" Value="Transparent"/>
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                    </Style>
+                </DataGrid.CellStyle>
+            </DataGrid>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10" >
+                <Button Content="Upravit" Margin="5" Padding="10,3" Command="{Binding EditCommand}" Height="30" FontSize="15"/>
+                <Button Content="Odebrat" Margin="5" Padding="10,3" Command="{Binding DeleteCommand}" Height="30" FontSize="15"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!--<TextBlock Grid.Row="0" Text="Nová hospitalizace" Foreground="White" FontSize="20" FontWeight="Bold"
+               HorizontalAlignment="Center" Margin="10"/>
+
+            <TextBlock Text="Jméno" FontSize="18" Grid.Row="1" Margin="5" HorizontalAlignment="Center" Foreground="White" />
+            <TextBox x:Name="FisrtNameTextBox" Background="Transparent" Foreground="White" Height="25" FontSize="16"  Grid.Row="2" Margin="5" Width="270" HorizontalAlignment="Center" Text="{Binding NewEmployee.FirstName}"/>
+
+            <TextBlock Text="Příjmení" FontSize="18" Grid.Row="3" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
+            <TextBox x:Name="LastNameTextBox" Background="Transparent" Foreground="White" Height="25" FontSize="16"  Grid.Row="4" Margin="5" Width="270" HorizontalAlignment="Center" Text="{Binding NewEmployee.LastName}"/>
+
+            <TextBlock Text="Rodné číslo" FontSize="18" Grid.Row="5" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
+            <TextBox x:Name="BirthNumberTextBox" Background="Transparent" Foreground="White" Height="25" FontSize="16" Grid.Row="6" Margin="5" Width="270" 
+                 PreviewTextInput="TextBox_PreviewTextInput" HorizontalAlignment="Center" Text="{Binding NewHospitalization.BirthNumber}"/>
+
+            <TextBlock Text="Pohlaví" FontSize="18" Grid.Row="7" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
+            <ComboBox HorizontalAlignment="Center" Grid.Row="8" VerticalAlignment="Center" Background="Transparent" Width="270" 
+                      SelectedIndex="{Binding NewEmployee.Sex, Converter={StaticResource sexToIndexConverter}}">
+                <ComboBoxItem Background="Transparent">Muž</ComboBoxItem>
+                <ComboBoxItem Background="Transparent">Žena</ComboBoxItem>
+            </ComboBox>
+
+            <TextBlock Text="Vedoucí" FontSize="18" Grid.Row="9" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
+            <ComboBox x:Name="EmployeeCB" HorizontalAlignment="Center" Grid.Row="10" VerticalAlignment="Center" Background="Transparent" Width="270" 
+          ItemsSource="{Binding EmployeesList}" DisplayMemberPath="UserName" 
+          SelectedValuePath="Id" SelectedValue="{Binding NewEmployee.IdOfSuperiorEmployee}">
+                <ComboBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Reset" Click="ResetComboBox2_Click" />
+                    </ContextMenu>
+                </ComboBox.ContextMenu>
+            </ComboBox>
+
+            <TextBlock Text="Fotografie" FontSize="18" Grid.Row="11" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
+            <ComboBox HorizontalAlignment="Center" Grid.Row="12" VerticalAlignment="Center" Background="Transparent" Width="270" 
+          ItemsSource="{Binding PhotosList}" DisplayMemberPath="Name" 
+          SelectedValuePath="Id" SelectedValue="{Binding NewEmployee._foto.Id}">
+            </ComboBox>
+
+            <TextBlock Text="Oddělení" FontSize="18" Grid.Row="13" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
+            <ComboBox HorizontalAlignment="Center" Grid.Row="14" VerticalAlignment="Center" Background="Transparent" Width="270" 
+            ItemsSource="{Binding DepartmentList}" DisplayMemberPath="Name" 
+            SelectedValuePath="Id" SelectedValue="{Binding NewEmployee._department.Id}">
+            </ComboBox>
+
+            <TextBlock Text="Uživatelské jméno" FontSize="18" Grid.Row="15" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
+            <TextBox x:Name="UserNameTextBox" Background="Transparent" Foreground="White" Height="25" FontSize="16"  Grid.Row="16" Margin="5" Width="270" HorizontalAlignment="Center" Text="{Binding NewEmployee.UserName}"/>
+
+            <TextBlock Text="Heslo" FontSize="18" Grid.Row="17" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
+            <TextBox x:Name="PasswordTextBox" Background="Transparent" Foreground="White" Height="25" FontSize="16"  Grid.Row="18" Margin="5" Width="270" HorizontalAlignment="Center" Text="{Binding NewEmployee.Password}"/>-->
+
+            <!--<TextBlock Text="Role" FontSize="18" Grid.Row="19" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
+            <ComboBox HorizontalAlignment="Center" Grid.Row="20" VerticalAlignment="Center" Background="Transparent" Width="270" 
+            ItemsSource="{Binding RoleList}" DisplayMemberPath="Name" 
+            SelectedValuePath="Id" SelectedValue="{Binding NewEmployee.RoleID}">
+            </ComboBox>-->
+
+
+            <Button Grid.Row="21" Content="Přidat" Margin="0,10,0,0" Padding="10,3" Width="200" HorizontalAlignment="Center"
+            Command="{Binding AddCommand}" VerticalAlignment="Top"/>
+        </Grid>
+    </Grid>
+</UserControl>
