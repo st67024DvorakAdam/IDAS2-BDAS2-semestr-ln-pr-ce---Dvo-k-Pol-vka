@@ -31,7 +31,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="80"/>
-            <RowDefinition Height="80"/>
+            <RowDefinition Height="100"/>
             <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
         <DataGrid  x:Name="HospitalizationGrid" AutoGenerateColumns="False" SelectedItem="{Binding SelectedHospitalization}"
@@ -110,13 +110,13 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Foreground="#c9b5bc" Text="Aktulní hospitalizace pacienta" FontWeight="Bold" Grid.Column="0" Margin="50,0,0,0" VerticalAlignment="Center"/>
-            <TextBlock Foreground="#c9b5bc" Text="Oddělení:" Grid.Column="1" Margin="10" VerticalAlignment="Center"/>
-            <TextBlock Foreground="#c9b5bc" Text="{Binding ActualDepartment}" FontWeight="DemiBold" Grid.Column="2" Margin="10" VerticalAlignment="Center"/>
-            <TextBlock Foreground="#c9b5bc" Text="Datum nástupu:" Grid.Column="3" Margin="10" VerticalAlignment="Center"/>
-            <TextBlock Foreground="#c9b5bc" Text="{Binding ActualDateIn}" FontWeight="DemiBold" Grid.Column="4" Margin="10" VerticalAlignment="Center"/>
-            <TextBlock Foreground="#c9b5bc" Text="Popis:" Grid.Column="5" Margin="10" VerticalAlignment="Center"/>
-            <TextBlock Foreground="#c9b5bc" Text="{Binding ActualDetails}" FontWeight="DemiBold" Grid.Column="6" Margin="10" VerticalAlignment="Center"/>
+            <TextBlock FontSize="14" Foreground="#c9b5bc" Text="Aktulní hospitalizace pacienta" FontWeight="Bold" Grid.Column="0" Margin="50,0,0,0" VerticalAlignment="Center"/>
+            <TextBlock FontSize="12" Foreground="#c9b5bc" Text="Oddělení:" Grid.Column="1" Margin="10" VerticalAlignment="Center"/>
+            <TextBlock FontSize="12" Foreground="#c9b5bc" Text="{Binding ActualDepartment}" FontWeight="DemiBold" Grid.Column="2" Margin="10" VerticalAlignment="Center"/>
+            <TextBlock FontSize="12" Foreground="#c9b5bc" Text="Datum nástupu:" Grid.Column="3" Margin="10" VerticalAlignment="Center"/>
+            <TextBlock FontSize="12" Foreground="#c9b5bc" Text="{Binding ActualDateIn}" FontWeight="DemiBold" Grid.Column="4" Margin="10" VerticalAlignment="Center"/>
+            <TextBlock FontSize="12" Foreground="#c9b5bc" Text="Popis:" Grid.Column="5" Margin="10" VerticalAlignment="Center"/>
+            <TextBlock FontSize="12" Foreground="#c9b5bc" Text="{Binding ActualDetails}" FontWeight="DemiBold" Grid.Column="6" Margin="10" VerticalAlignment="Center"/>
         </Grid>
 
 

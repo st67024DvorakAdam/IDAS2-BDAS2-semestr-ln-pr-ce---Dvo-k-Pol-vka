@@ -177,7 +177,12 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
 
         private void ExecuteHospitalization(object parameter)
         {
-            // CurrentView = new HospitalizationView();
+            var hospitalizationView = new HospitalizationView
+            {
+                DataContext = new HospitalizationVM(CurrentPatient, _currentUser)
+            };
+
+            CurrentContent = hospitalizationView;
         }
 
         private void UpdateCommandStates()
