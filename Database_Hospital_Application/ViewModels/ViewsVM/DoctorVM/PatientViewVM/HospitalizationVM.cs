@@ -65,6 +65,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
             _currentPatient = currentPatient;
             _hospitalizationRepo = new HospitalizationRepo();
             LoadDataAsync();
+            FindCurrentHospitalization();
 
             PatientHospitalizationCommand = new RelayCommand(_ => HospitalizePatient(), _ => CurrentHospitalization == null);
             UpdateOldDetailsCommand = new RelayCommand(_ => UpdateOldDetails(), _ => SelectedHospitalization != null);
@@ -110,6 +111,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
             (UpdateActualDetailsCommand as RelayCommand)?.RaiseCanExecuteChanged();
             (MoveToDepartmentCommand as RelayCommand)?.RaiseCanExecuteChanged();
             (DischargePatientCommand as RelayCommand)?.RaiseCanExecuteChanged();
+        }
+
+        private void FindCurrentHospitalization()
+        {
+            CurrentHospitalization = HospitalizationList.FirstOrDefault(h => h.DateOut == null);
         }
     }
 }

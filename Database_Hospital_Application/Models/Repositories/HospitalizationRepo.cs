@@ -34,8 +34,8 @@ namespace Database_Hospital_Application.Models.Repositories
                     Hospitalization hospitalization = new Hospitalization
                     {
                         Id = Convert.ToInt32(row["ID"]),
-                        DateIn = (OracleDate)row["DATUM_NASTUPU"],
-                        DateOut = (OracleDate)row["DATUM_PROPUSTENI"],
+                        DateIn = Convert.ToDateTime(row["DATUM_NASTUPU"]),
+                        DateOut = row.IsNull("DATUM_PROPUSTENI") ? (DateTime?)null : Convert.ToDateTime(row["DATUM_PROPUSTENI"]),
                         Details = row["POPIS"].ToString(),
                         PatientId = Convert.ToInt32(row["PACIENT_ID"]),
                         DepartmentId = Convert.ToInt32(row["ODDELENI_ID"])
@@ -45,11 +45,19 @@ namespace Database_Hospital_Application.Models.Repositories
             }
             return hospitalizations;
         }
+
         public async Task<ObservableCollection<Hospitalization>> GetAllHospitalizationsAsync(int patientId)
         {
             ObservableCollection<Hospitalization> hospitalizations = new ObservableCollection<Hospitalization>();
             string commandText = "get_all_hospitalizations_by_patient_id";
-            DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
+
+            
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_patient_id", patientId }
+            };
+
+            DataTable result = await dbTools.ExecuteCommandAsync(commandText, parameters);
 
             if (result.Rows.Count > 0)
             {
@@ -58,17 +66,21 @@ namespace Database_Hospital_Application.Models.Repositories
                     Hospitalization hospitalization = new Hospitalization
                     {
                         Id = Convert.ToInt32(row["ID"]),
-                        DateIn = (OracleDate)row["DATUM_NASTUPU"],
-                        DateOut = (OracleDate)row["DATUM_PROPUSTENI"],
+                        DateIn = Convert.ToDateTime(row["DATUM_NASTUPU"]),
+                        DateOut = row.IsNull("DATUM_PROPUSTENI") ? (DateTime?)null : Convert.ToDateTime(row["DATUM_PROPUSTENI"]),
                         Details = row["POPIS"].ToString(),
                         PatientId = Convert.ToInt32(row["PACIENT_ID"]),
-                        DepartmentId = Convert.ToInt32(row["ODDELENI_ID"])
+                        DepartmentName = row["ODDELENI_NAZEV"].ToString()
+                        
                     };
+                    hospitalization.FormattedDateIn = hospitalization.DateIn.ToString("dd.MM.yyyy");
+                    hospitalization.FormattedDateOut = hospitalization.DateOut?.ToString("dd.MM.yyyy");
                     hospitalizations.Add(hospitalization);
                 }
             }
             return hospitalizations;
         }
+
 
         public async Task AddHospitalization(Hospitalization hospitalization)
         {

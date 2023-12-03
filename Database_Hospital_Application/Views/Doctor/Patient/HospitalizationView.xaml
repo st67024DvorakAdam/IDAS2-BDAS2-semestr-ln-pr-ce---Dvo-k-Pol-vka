@@ -66,10 +66,10 @@
             </DataGrid.Resources>
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Oddělení" Binding="{Binding Hospitalization.Department}" Width="*"/>
-                <DataGridTextColumn Header="Popis" Binding="{Binding Hospitalization.Details}" Width="*"/>
-                <DataGridTextColumn Header="Datum nástupu" Binding="{Binding Hospitalization.DateIn}" Width="*"/>
-                <DataGridTextColumn Header="Datum propuštění" Binding="{Binding Hospitalization.DateOut}" Width="*"/>
+                <DataGridTextColumn Header="Oddělení" Binding="{Binding DepartmentName}" Width="*"/>
+                <DataGridTextColumn Header="Popis" Binding="{Binding Details}" Width="*"/>
+                <DataGridTextColumn Header="Datum nástupu" Binding="{Binding FormattedDateIn}" Width="*"/>
+                <DataGridTextColumn Header="Datum propuštění" Binding="{Binding FormattedDateOut}" Width="*"/>
             </DataGrid.Columns>
 
 
@@ -110,13 +110,13 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock FontSize="14" Foreground="#c9b5bc" Text="Aktulní hospitalizace pacienta" FontWeight="Bold" Grid.Column="0" Margin="50,0,0,0" VerticalAlignment="Center"/>
-            <TextBlock FontSize="12" Foreground="#c9b5bc" Text="Oddělení:" Grid.Column="1" Margin="10" VerticalAlignment="Center"/>
-            <TextBlock FontSize="12" Foreground="#c9b5bc" Text="{Binding ActualDepartment}" FontWeight="DemiBold" Grid.Column="2" Margin="10" VerticalAlignment="Center"/>
-            <TextBlock FontSize="12" Foreground="#c9b5bc" Text="Datum nástupu:" Grid.Column="3" Margin="10" VerticalAlignment="Center"/>
-            <TextBlock FontSize="12" Foreground="#c9b5bc" Text="{Binding ActualDateIn}" FontWeight="DemiBold" Grid.Column="4" Margin="10" VerticalAlignment="Center"/>
-            <TextBlock FontSize="12" Foreground="#c9b5bc" Text="Popis:" Grid.Column="5" Margin="10" VerticalAlignment="Center"/>
-            <TextBlock FontSize="12" Foreground="#c9b5bc" Text="{Binding ActualDetails}" FontWeight="DemiBold" Grid.Column="6" Margin="10" VerticalAlignment="Center"/>
+            <TextBlock FontSize="15" Foreground="#c9b5bc" Text="Aktulní hospitalizace pacienta" FontWeight="Bold" Grid.Column="0" Margin="50,0,0,0" VerticalAlignment="Center"/>
+            <TextBlock FontSize="14" Foreground="#c9b5bc" Text="Oddělení:" Grid.Column="1" Margin="10" VerticalAlignment="Center"/>
+            <TextBlock FontSize="12" Foreground="#c9b5bc" Text="{Binding CurrentHospitalization.DepartmentName}" FontWeight="DemiBold" Grid.Column="2" Margin="10" VerticalAlignment="Center"/>
+            <TextBlock FontSize="14" Foreground="#c9b5bc" Text="Datum nástupu:" Grid.Column="3" Margin="10" VerticalAlignment="Center"/>
+            <TextBlock FontSize="12" Foreground="#c9b5bc" Text="{Binding CurrentHospitalization.FormattedDateIn}" FontWeight="DemiBold" Grid.Column="4" Margin="10" VerticalAlignment="Center"/>
+            <TextBlock FontSize="14" Foreground="#c9b5bc" Text="Popis:" Grid.Column="5" Margin="10" VerticalAlignment="Center"/>
+            <TextBlock FontSize="12" Foreground="#c9b5bc" Text="{Binding CurrentHospitalization.Details}" FontWeight="DemiBold" Grid.Column="6" Margin="10" VerticalAlignment="Center"/>
         </Grid>
 
 
