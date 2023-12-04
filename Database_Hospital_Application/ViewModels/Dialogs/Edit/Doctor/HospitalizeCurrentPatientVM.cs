@@ -56,7 +56,7 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
             departmentRepo = new DepartmentRepo();
             DepartmentList = new ObservableCollection<Department>();
             LoadDepartmentsAsync();
-            HospitalizeCommand = new RelayCommand(_ => Hospitalize());
+            HospitalizeCommand = new RelayCommand(_ => Hospitalize(), _ => _details != null && _selectedDepartment != null);
             CancelCommand = new RelayCommand(_ => Cancel());
         }
 
