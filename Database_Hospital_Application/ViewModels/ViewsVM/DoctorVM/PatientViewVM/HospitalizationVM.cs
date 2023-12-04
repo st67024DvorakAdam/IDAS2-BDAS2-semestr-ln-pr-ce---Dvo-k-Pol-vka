@@ -93,17 +93,29 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
 
         private void UpdateOldDetails()
         {
-            //TODO
+            EditOldDetailsView dialog = new EditOldDetailsView(new EditOldDetailsVM(_selectedHospitalization));
+
+            dialog.ShowDialog();
+            LoadDataAsync();
+            FindCurrentHospitalization();
         }
 
         private void UpdateActualDetails()
         {
-            //TODO
+            EditOldDetailsView dialog = new EditOldDetailsView(new EditOldDetailsVM(_currentHospitalization));
+
+            dialog.ShowDialog();
+            LoadDataAsync();
+            FindCurrentHospitalization();
         }
 
         private void MoveToDepartment()
         {
-            //TODO
+            MoveToDepartmentView dialog = new MoveToDepartmentView(new MoveToDepartmentVM(_currentHospitalization));
+
+            dialog.ShowDialog();
+            LoadDataAsync();
+            FindCurrentHospitalization();
         }
 
         private void DischargePatient()
@@ -119,6 +131,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
 
         private void UpdateCommandStates()
         {
+            (PatientHospitalizationCommand as RelayCommand)?.RaiseCanExecuteChanged();
             (UpdateOldDetailsCommand as RelayCommand)?.RaiseCanExecuteChanged();
             (UpdateActualDetailsCommand as RelayCommand)?.RaiseCanExecuteChanged();
             (MoveToDepartmentCommand as RelayCommand)?.RaiseCanExecuteChanged();
