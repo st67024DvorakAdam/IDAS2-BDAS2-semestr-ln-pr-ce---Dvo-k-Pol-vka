@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
@@ -131,7 +132,17 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
                 OnPropertyChange(nameof(IsAllergic)); }
         }
 
-        
+
+        private IEnumerable<string> _genders = new List<string> { "Muž", "Žena" };
+        public IEnumerable<string> Genders
+        {
+            get { return _genders; }
+            set
+            {
+                _genders = value;
+                OnPropertyChange(nameof(Genders));
+            }
+        }
 
         public ICommand AcceptPatientCommand { get; private set; }
 

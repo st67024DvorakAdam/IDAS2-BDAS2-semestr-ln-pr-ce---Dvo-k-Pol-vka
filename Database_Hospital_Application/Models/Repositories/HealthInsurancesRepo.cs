@@ -69,7 +69,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<int> DeleteHealthInsurance(int id)
         {
-            string commandText = "add_insurance_by_id";
+            string commandText = "delete_insurance_by_id";
             var parameters = new Dictionary<string, object>
             {
                 { "p_name", id}
@@ -80,7 +80,7 @@ namespace Database_Hospital_Application.Models.Repositories
         }
         public async Task<int> UpdateHealthInsurance(HealthInsurance healthInsurance)
         {
-            string commandText = "add_insurance_by_id";
+            string commandText = "update_insurance";
             var parameters = new Dictionary<string, object>
             {
                 {"p_id", healthInsurance.Id},

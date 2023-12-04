@@ -40,7 +40,12 @@
                 <TextBlock Text="Rodné číslo" Foreground="White" Margin="5"/>
                 <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding IdentificationNumber}" PreviewTextInput="TextBox_PreviewTextInputForBirthNumber"/>
                 <TextBlock Text="Pohlaví" Foreground="White" Margin="5"/>
-                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding Gender}"/>
+                <!--<TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding Gender}"/>-->
+                <ComboBox Background="Transparent"
+                  ItemsSource="{Binding Genders}"
+                  SelectedItem="{Binding Gender}"
+                  DisplayMemberPath="."/>
+
             </StackPanel>
 
             <!-- Adresa -->
