@@ -37,7 +37,9 @@ namespace Database_Hospital_Application.Views.Doctor
 
         private void TextBox_PreviewTextInputForHouseNumber(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = !Regex.IsMatch(e.Text, "^[0-9]*$");
+            TextBox textBox = sender as TextBox;
+            string newText = textBox.Text + e.Text;
+            e.Handled = newText.Length > 7 || !Regex.IsMatch(newText, "^[0-9]*$");
         }
 
         private void TextBox_PreviewTextInputForPostalCode(object sender, TextCompositionEventArgs e)

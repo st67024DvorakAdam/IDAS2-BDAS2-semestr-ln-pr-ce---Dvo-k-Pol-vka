@@ -64,7 +64,6 @@
                 <TextBlock Text="PSČ" Foreground="White" Margin="5"/>
                 <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding PostalCode, Mode=TwoWay}" PreviewTextInput="TextBox_PreviewTextInputForPostalCode"/>
                 <TextBlock Text="Stát" Foreground="White" Margin="5"/>
-                <!--<TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding Country}"/>-->
                 <ComboBox Margin="5" HorizontalAlignment="Center" Grid.Row="8" VerticalAlignment="Center" Background="Transparent" Width="200" 
                 ItemsSource="{Binding CountryCodes, Mode=TwoWay}" DisplayMemberPath="OfficialName"
                 SelectedValuePath="Cca3" SelectedValue="{Binding Country, Mode=TwoWay}" />
