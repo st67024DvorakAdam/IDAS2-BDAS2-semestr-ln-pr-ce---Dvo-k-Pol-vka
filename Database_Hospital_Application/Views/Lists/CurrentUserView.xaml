@@ -90,38 +90,79 @@
             </Grid>
 
 
-
-            <TextBlock Text="Username" Style="{StaticResource MySecondTextBlockStyle}"/>
-            <TextBlock x:Name="txtUser" Style="{StaticResource MyTextBlockStyle}"
+            <Grid Height="Auto">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+            <TextBlock Text="Username" Style="{StaticResource MySecondTextBlockStyle}" Grid.Row="0"/>
+                    <TextBlock x:Name="txtUser" Style="{StaticResource MyTextBlockStyle}" Grid.Row="1"
                    Text="{Binding CurrentUser.Name}">
             </TextBlock>
 
-            <TextBlock Text="Role" Style="{StaticResource MySecondTextBlockStyle}"/>
-            <TextBlock x:Name="txtRoleId" Style="{StaticResource MyTextBlockStyle}"
+                    <TextBlock Text="Role" Style="{StaticResource MySecondTextBlockStyle}" Grid.Row="2"/>
+                    <TextBlock x:Name="txtRoleId" Style="{StaticResource MyTextBlockStyle}" Grid.Row="3"
                    Text="{Binding CurrentUser.UserRole}">
             </TextBlock>
 
-            <TextBlock Text="Jméno" Style="{StaticResource MySecondTextBlockStyle}"/>
-            <TextBlock x:Name="txtName" Style="{StaticResource MyTextBlockStyle}">
+            <TextBlock Text="Jméno" Style="{StaticResource MySecondTextBlockStyle}" Grid.Row="4"/>
+            <TextBlock x:Name="txtName" Style="{StaticResource MyTextBlockStyle}" Grid.Row="5">
             <Run Text="{Binding CurrentUser.Employee.FirstName}" />
             <Run Text="" />
             <Run Text="{Binding CurrentUser.Employee.LastName}" />
             </TextBlock>
 
-            <TextBlock Text="Rodné číslo" Style="{StaticResource MySecondTextBlockStyle}"/>
-            <TextBlock x:Name="txtBirthNumber" Style="{StaticResource MyTextBlockStyle}"
+            <TextBlock Text="Rodné číslo" Style="{StaticResource MySecondTextBlockStyle}" Grid.Row="6"/>
+            <TextBlock x:Name="txtBirthNumber" Style="{StaticResource MyTextBlockStyle}" Grid.Row="7"
                    Text="{Binding CurrentUser.Employee.BirthNumber}">
             </TextBlock>
 
-            <TextBlock Style="{StaticResource MySecondTextBlockStyle}"><Run Language="cs-cz" Text="Pracuji na oddělení"/></TextBlock>
-            <TextBlock x:Name="txtDepartment" Style="{StaticResource MyTextBlockStyle}"
+            <TextBlock Style="{StaticResource MySecondTextBlockStyle}" Grid.Row="8"><Run Language="cs-cz" Text="Pracuji na oddělení"/></TextBlock>
+                    <TextBlock x:Name="txtDepartment" Style="{StaticResource MyTextBlockStyle}" Grid.Row="9"
                    Text="{Binding CurrentUser.Employee._department.Name}">
             </TextBlock>
 
-            <TextBlock Style="{StaticResource MySecondTextBlockStyle}"><Run Language="cs-cz" Text="Pohlaví"/></TextBlock>
-            <TextBlock x:Name="txtSex" Style="{StaticResource MyTextBlockStyle}"
+             <TextBlock Style="{StaticResource MySecondTextBlockStyle}" Grid.Row="10"><Run Language="cs-cz" Text="Pohlaví"/></TextBlock>
+            <TextBlock x:Name="txtSex" Style="{StaticResource MyTextBlockStyle}" Grid.Row="11"
                    Text="{Binding CurrentUser.Employee.Sex}">
             </TextBlock>
+
+             </Grid>
+
+            <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Style="{StaticResource MySecondTextBlockStyle}" Grid.Row="0"><Run Language="cs-cz" Text="Telefon"/></TextBlock>
+                    <TextBlock x:Name="txtPhone" Style="{StaticResource MyTextBlockStyle}" Grid.Row="1"
+            Text="{Binding CurrentUser.Employee._contact.PhoneNumber}">
+            </TextBlock>
+
+                    <TextBlock Style="{StaticResource MySecondTextBlockStyle}" Grid.Row="2"><Run Language="cs-cz" Text="Email"/></TextBlock>
+                    <TextBlock x:Name="txtEmail" Style="{StaticResource MyTextBlockStyle}" Grid.Row="3"
+            Text="{Binding CurrentUser.Employee._contact.Email}">
+            </TextBlock>
+            </Grid>
+            </Grid>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10" >
                 <Button Content="Upravit" Margin="0,0,5,10" Padding="10,3" Command="{Binding EditCommand}" Height="30" FontSize="15"/>

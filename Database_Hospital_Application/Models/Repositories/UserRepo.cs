@@ -90,7 +90,26 @@ namespace Database_Hospital_Application.Models.Repositories
                         }
                     }
                 };
-                
+
+                if (result.Rows[0]["EMAIL"] != DBNull.Value && !string.IsNullOrEmpty(result.Rows[0]["EMAIL"].ToString())
+                    && result.Rows[0]["TELEFON"] != DBNull.Value && !string.IsNullOrEmpty(result.Rows[0]["TELEFON"].ToString())) 
+                {
+                    Contact c = new Contact
+                    {
+                        Email = result.Rows[0]["EMAIL"].ToString(),
+                        PhoneNumber = Convert.ToInt32(result.Rows[0]["TELEFON"])
+                    };
+                    loggedInUser.Employee._contact = c;
+                }
+                else
+                {
+                    Contact c = new Contact
+                    {
+                        Email = "---",
+                        PhoneNumber = 000000000
+                    };
+                    loggedInUser.Employee._contact = c;
+                }
 
                 if (result3 != null)
                 {
