@@ -72,7 +72,8 @@ namespace Database_Hospital_Application.Models.Repositories
                         DateOut = row.IsNull("DATUM_PROPUSTENI") ? (DateTime?)null : Convert.ToDateTime(row["DATUM_PROPUSTENI"]),
                         Details = row["POPIS"].ToString(),
                         PatientId = Convert.ToInt32(row["PACIENT_ID"]),
-                        DepartmentName = row["ODDELENI_NAZEV"].ToString()
+                        DepartmentName = row["ODDELENI_NAZEV"].ToString(),
+                        DepartmentId = Convert.ToInt32(row["ODDELENI_ID"])
                         
                     };
                     hospitalization.FormattedDateIn = hospitalization.DateIn.ToString("dd.MM.yyyy");
