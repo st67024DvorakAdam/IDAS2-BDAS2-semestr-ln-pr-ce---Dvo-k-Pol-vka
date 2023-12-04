@@ -51,55 +51,5 @@ namespace Database_Hospital_Application.Models.Repositories
             return roles;
         }
 
-
-        public async Task AddRole(Role role)
-        {
-            string commandText = "add_role";
-            var parameters = new Dictionary<string, object>
-            {
-                { "p_nazev", role.Name }
-            };
-
-            await dbTools.ExecuteNonQueryAsync(commandText, parameters);
-
-        }
-
-        public async Task<int> DeleteRole(int id)
-        {
-            if(id <= 5)
-            {
-                throw new InvalidOperationException();
-            }
-            string commandText = "delete_role_by_id";
-            var parameters = new Dictionary<string, object>
-            {
-                { "p_id", id }
-            };
-
-            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
-        }
-
-        public async Task<int> UpdateRole(Role role)
-        {
-            if (role.Id <= 5)
-            {
-                throw new InvalidOperationException();
-            }
-
-            string commandText = "update_role";
-
-            var parameters = new Dictionary<string, object>
-            {
-                {"p_id", role.Id },
-                { "p_nazev", role.Name }
-            };
-
-            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
-        }
-
-        public void DeleteAllRoles()
-        {
-            //nelze mazat 1-5 aby v tom nebyl bordel
-        }
     }
 }
