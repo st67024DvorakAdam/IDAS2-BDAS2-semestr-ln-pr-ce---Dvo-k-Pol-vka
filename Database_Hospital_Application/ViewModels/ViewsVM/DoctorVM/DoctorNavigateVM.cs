@@ -56,7 +56,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
         private void Patient(object obj) => CurrentView = new DoctorPatientVM(CurrentUser);
         private void Department(object obj) => CurrentView = new SubordinatesVM(CurrentUser);
         private void PrescriptedPills(object obj) => CurrentView = new PreceptedPillsVM(CurrentUser);
-        private void Hospitalizace(object obj) => CurrentView = new HealthInsurancesVM();
+        private void Hospitalizace(object obj) => CurrentView = new HospitalizationVM();
         private void NewPatient(object obj) => CurrentView = new NewPatientVM();
         private void Statisctics(object obj) => CurrentView = new StatisticsVM();
 

@@ -38,7 +38,10 @@ namespace Database_Hospital_Application.Models.Repositories
                         DateOut = row.IsNull("DATUM_PROPUSTENI") ? (DateTime?)null : Convert.ToDateTime(row["DATUM_PROPUSTENI"]),
                         Details = row["POPIS"].ToString(),
                         PatientId = Convert.ToInt32(row["PACIENT_ID"]),
-                        DepartmentId = Convert.ToInt32(row["ODDELENI_ID"])
+                        DepartmentId = Convert.ToInt32(row["ODDELENI_ID"]),
+                        PatientName = row["JMENO"].ToString() + " " + row["PRIJMENI"].ToString(),
+                        PatientBirthbumber = Convert.ToInt64(row["RODNE_CISLO"]),
+                        DepartmentName = row["NAZEV"].ToString(),
                     };
                     hospitalization.FormattedDateIn = hospitalization.DateIn.ToString("dd.MM.yyyy");
                     hospitalization.FormattedDateOut = hospitalization.DateOut?.ToString("dd.MM.yyyy");

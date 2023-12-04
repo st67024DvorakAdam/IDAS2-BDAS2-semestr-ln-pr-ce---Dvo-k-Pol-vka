@@ -19,6 +19,7 @@ namespace Database_Hospital_Application.Models.Entities
         public string? FormattedDateOut { get; set; }
         public string? PatientName { get; set; }
         public string? DepartmentName { get; set; }
+        public long? PatientBirthbumber { get; set; }
 
         public Hospitalization() { }
 
