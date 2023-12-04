@@ -69,8 +69,8 @@
                     <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*"/>
                     <DataGridTextColumn Header="Rodné číslo" Binding="{Binding BirthNumberOfPatient}" Width="*"/>
                     <DataGridTextColumn Header="Nemoci" Binding="{Binding StringVersionOfIllnesses}" Width="*"/>
-                    <DataGridTextColumn Header="Kuřák" Binding="{Binding Smoking}" Width="*"/>
-                    <DataGridTextColumn Header="Alergik" Binding="{Binding Alergic}" Width="*"/>
+                    <DataGridTextColumn Header="Kuřák" Binding="{Binding IsSmoker}" Width="*"/>
+                    <DataGridTextColumn Header="Alergik" Binding="{Binding IsAllergic}" Width="*"/>
                 </DataGrid.Columns>
 
 
