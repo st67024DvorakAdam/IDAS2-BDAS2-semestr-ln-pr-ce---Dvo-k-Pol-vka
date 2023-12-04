@@ -111,7 +111,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
 
         private void MoveToDepartment()
         {
-            //TODO
+            MoveToDepartmentView dialog = new MoveToDepartmentView(new MoveToDepartmentVM(_currentHospitalization));
+
+            dialog.ShowDialog();
+            LoadDataAsync();
+            FindCurrentHospitalization();
         }
 
         private void DischargePatient()
