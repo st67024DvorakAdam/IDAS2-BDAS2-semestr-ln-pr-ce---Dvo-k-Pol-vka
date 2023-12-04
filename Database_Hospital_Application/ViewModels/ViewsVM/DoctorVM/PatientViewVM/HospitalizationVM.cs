@@ -1,6 +1,8 @@
 ﻿using Database_Hospital_Application.Commands;
 using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.Models.Repositories;
+using Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor;
+using Database_Hospital_Application.Views.Doctor.Patient;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -82,7 +84,10 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
 
         private void HospitalizePatient()
         {
-            //TODO
+            HospitalizePatientView dialog = new HospitalizePatientView(new HospitalizeCurrentPatientVM(_currentPatient));
+
+            dialog.ShowDialog();
+            LoadDataAsync();
         }
 
         private void UpdateOldDetails()
