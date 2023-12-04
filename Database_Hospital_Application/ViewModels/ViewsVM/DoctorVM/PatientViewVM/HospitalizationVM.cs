@@ -108,7 +108,13 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
 
         private void DischargePatient()
         {
-            //TODO
+            if(_currentHospitalization != null)
+            {
+                _currentHospitalization.DateOut = DateTime.Now;
+                _hospitalizationRepo.UpdateHospitalization(_currentHospitalization);
+            }
+            LoadDataAsync();
+            FindCurrentHospitalization();
         }
 
         private void UpdateCommandStates()
