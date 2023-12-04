@@ -26,6 +26,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             {
                 _selectedUser = value;
                 OnPropertyChange(nameof(SelectedUser));
+                UpdateCommandStates();
             }
         }
 
@@ -64,10 +65,15 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         private void InitializeCommands()
         {
-            EmulateUserCommand = new RelayCommand(EmulateUserAction);
+            EmulateUserCommand = new RelayCommand(_ => EmulateUserAction(), _ => SelectedUser != null);
         }
 
-        private void EmulateUserAction(object parametr)
+        private void UpdateCommandStates()
+        {
+            (EmulateUserCommand as RelayCommand)?.RaiseCanExecuteChanged();
+        }
+
+        private void EmulateUserAction()
         {
             AddAnotherInfoToUser();
             LoginWindowViewModel lwvm = new LoginWindowViewModel();

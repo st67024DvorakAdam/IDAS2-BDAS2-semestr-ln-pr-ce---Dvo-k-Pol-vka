@@ -1,6 +1,7 @@
 ﻿using Database_Hospital_Application.Commands;
 using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.ViewModels.ViewsVM.NurseVM;
+using Database_Hospital_Application.Views.Assistant;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,7 +40,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.AssistantVM
                     OnPropertyChange(nameof(CurrentView));
                 }
             }
-        }
+        } 
 
         public ICommand ProfileCommand { get; }
         public ICommand GeneralInfoCommand { get; }

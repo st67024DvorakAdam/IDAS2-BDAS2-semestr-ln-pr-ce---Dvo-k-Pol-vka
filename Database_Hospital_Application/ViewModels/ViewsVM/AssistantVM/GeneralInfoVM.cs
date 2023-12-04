@@ -19,7 +19,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.AssistantVM
             set
             {
                 _openingHours = value;
-                OnPropertyChange(nameof(OpeningHours));
             }
         }
 
@@ -31,7 +30,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.AssistantVM
             set
             {
                 _addressOfHospital = value;
-                OnPropertyChange(nameof(AddressOfHospital));
             }
         }
 
@@ -44,22 +42,14 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.AssistantVM
             set
             {
                 _gps = value;
-                OnPropertyChange(nameof(Gps));
             }
         }
 
-        private Contact _generalContact;
-
-        public Contact GeneralContact
+        public GeneralInfoVM()
         {
-            get { return _generalContact; }
-            set
-            {
-                _generalContact = value;
-                OnPropertyChange(nameof(GeneralContact));
-            }
+            _addressOfHospital = "nám. Čs. legií 565\nPardubice I\n 530 02";
+            _openingHours = "Po-NE 0:00 - 23:59";
+            _gps = "50.03390232418073, 15.767215938621169";
         }
-
-
     }
 }

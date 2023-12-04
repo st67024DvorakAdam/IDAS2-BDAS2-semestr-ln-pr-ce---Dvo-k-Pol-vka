@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Database_Hospital_Application.Views.Lists"
-        xmlns:local1="clr-namespace:Database_Hospital_Application.Views.Nurse"
+        xmlns:local1="clr-namespace:Database_Hospital_Application.Views.Assistant"
         xmlns:vm="clr-namespace:Database_Hospital_Application.ViewModels.ViewsVM"
+        xmlns:vm1="clr-namespace:Database_Hospital_Application.ViewModels.ViewsVM.AssistantVM"
         xmlns:Menu="clr-namespace:Database_Hospital_Application.Utils" 
         mc:Ignorable="d"
                 Title="Hospital UPCE" Height="1000" Width="1500" MinHeight="980" MinWidth="1050"
@@ -14,6 +15,9 @@
     <Window.Resources>
         <DataTemplate DataType="{x:Type vm:CurrUserVM}">
             <local:CurrentUserView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm1:GeneralInfoVM}">
+            <local1:GeneralInfoView/>
         </DataTemplate>
     </Window.Resources>
     <Grid>
@@ -52,6 +56,19 @@
 
                     </Menu:Button>
 
+                    <Menu:Button Style="{StaticResource Button}"
+                 Command="{Binding GeneralInfoCommand}">
+
+                            <Grid>
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-info-30.png?raw=true"
+                   Height="30"
+                   Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
+                                <TextBlock Text="Info"
+                       Style="{StaticResource TextStyle}" />
+
+                            </Grid>
+
+                    </Menu:Button>
                 </StackPanel>
 
             </Grid>
