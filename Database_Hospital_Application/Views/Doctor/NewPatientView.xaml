@@ -11,6 +11,10 @@
     <UserControl.DataContext>
         <vm:NewPatientVM/>
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
     <Grid MouseDown="MouseDown" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -34,16 +38,16 @@
             <StackPanel Grid.Column="0" HorizontalAlignment="Left" Width="200" Margin="2">
                 <TextBlock Text="Pacient" FontWeight="Bold" Foreground="White" Margin="5" HorizontalAlignment="Center"/>
                 <TextBlock Text="Jméno" Foreground="White" Margin="5"/>
-                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding FirstName}"/>
+                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding FirstName, Mode=TwoWay}"/>
                 <TextBlock Text="Příjmení" Foreground="White" Margin="5"/>
-                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding LastName}"/>
+                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding LastName, Mode=TwoWay}"/>
                 <TextBlock Text="Rodné číslo" Foreground="White" Margin="5"/>
-                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding IdentificationNumber}" PreviewTextInput="TextBox_PreviewTextInputForBirthNumber"/>
+                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding IdentificationNumber, Mode=TwoWay}" PreviewTextInput="TextBox_PreviewTextInputForBirthNumber"/>
                 <TextBlock Text="Pohlaví" Foreground="White" Margin="5"/>
-                <!--<TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding Gender}"/>-->
                 <ComboBox Background="Transparent"
                   ItemsSource="{Binding Genders}"
-                  SelectedItem="{Binding Gender}"
+                  SelectedItem="{Binding Gender, Mode=TwoWay}"
+                  Margin="5"
                   DisplayMemberPath="."/>
 
             </StackPanel>
@@ -52,37 +56,65 @@
             <StackPanel Grid.Column="1" HorizontalAlignment="Left" Width="200" Margin="2">
                 <TextBlock Text="Adresa" FontWeight="Bold" Foreground="White" Margin="5" HorizontalAlignment="Center"/>
                 <TextBlock Text="Město" Foreground="White" Margin="5"/>
-                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding City}"/>
+                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding City, Mode=TwoWay}"/>
                 <TextBlock Text="Ulice" Foreground="White" Margin="5"/>
-                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding Street}"/>
+                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding Street, Mode=TwoWay}"/>
                 <TextBlock Text="Číslo popisné" Foreground="White" Margin="5"/>
-                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding HouseNumber}" PreviewTextInput="TextBox_PreviewTextInputForHouseNumber"/>
+                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding HouseNumber, Mode=TwoWay}" PreviewTextInput="TextBox_PreviewTextInputForHouseNumber"/>
                 <TextBlock Text="PSČ" Foreground="White" Margin="5"/>
-                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding PostalCode}" PreviewTextInput="TextBox_PreviewTextInputForPostalCode"/>
+                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding PostalCode, Mode=TwoWay}" PreviewTextInput="TextBox_PreviewTextInputForPostalCode"/>
                 <TextBlock Text="Stát" Foreground="White" Margin="5"/>
-                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding Country}"/>
+                <!--<TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding Country}"/>-->
+                <ComboBox Margin="5" HorizontalAlignment="Center" Grid.Row="8" VerticalAlignment="Center" Background="Transparent" Width="200" 
+                ItemsSource="{Binding CountryCodes, Mode=TwoWay}" DisplayMemberPath="OfficialName"
+                SelectedValuePath="Cca3" SelectedValue="{Binding Country, Mode=TwoWay}" />
             </StackPanel>
 
             <!-- Kontaktní údaje -->
             <StackPanel Grid.Column="2" HorizontalAlignment="Left" Width="200" Margin="2">
                 <TextBlock Text="Kontaktní údaje" FontWeight="Bold" Foreground="White" Margin="5" HorizontalAlignment="Center"/>
                 <TextBlock Text="Email" Foreground="White" Margin="5"/>
-                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding Email}"/>
+                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding Email, Mode=TwoWay}"/>
                 <TextBlock Text="Telefon" Foreground="White" Margin="5"/>
-                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding Phone}" PreviewTextInput="TextBox_PreviewTextInputForPhoneNumber"/>
+                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding Phone, Mode=TwoWay}" PreviewTextInput="TextBox_PreviewTextInputForPhoneNumber"/>
             </StackPanel>
 
             <!-- Zdravotní pojišťovna -->
             <StackPanel Grid.Column="3" HorizontalAlignment="left" Width="200" Margin="2">
                 <TextBlock Text="Zdravotní pojišťovna" FontWeight="Bold" Foreground="White" Margin="5" HorizontalAlignment="Center"/>
-                <TextBlock Text="Název" Foreground="White" Margin="5"/>
-                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding InsuranceCompanyName}"/>
-                <TextBlock Text="Zkratka" Foreground="White" Margin="5"/>
-                <TextBox Background="Transparent" Foreground="White" Margin="5" Text="{Binding InsuranceCompanyAbbreviation}"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <ComboBox Margin="5,5,0,5" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent" Width="150" Visibility="{Binding IsOtherInsuranceOposite, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    ItemsSource="{Binding HealthInsurancesList}"
+                    SelectedValue="{Binding HealthInsurance}">  
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} - {1}">
+                                        <Binding Path="Name" />
+                                        <Binding Path="Code" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                    <CheckBox Margin="1,5,0,5" Grid.Column="1" Content="Jiná" Foreground="White" IsChecked="{Binding IsOtherInsurance, Mode=TwoWay}" Checked="CheckBox_Checked"/>
+                </Grid>
+
+                <TextBlock x:Name="nameOfInsuranceTextBlock" Text="Název" Foreground="White" Margin="5" Visibility="{Binding IsOtherInsurance, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                <TextBox x:Name="nameOfInsuranceTextBox" Background="Transparent" Foreground="White" Margin="5" Text="{Binding InsuranceCompanyName, Mode=TwoWay}" Visibility="{Binding IsOtherInsurance, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                <TextBlock x:Name="codeOfInsuranceTextBlock" Text="Zkratka" Foreground="White" Margin="5" Visibility="{Binding IsOtherInsurance, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                <TextBox x:Name="codeOfInsuranceTextBox" PreviewTextInput="TextBox_PreviewTextInputForInsuranceCode" Background="Transparent" Foreground="White" Margin="5" Text="{Binding InsuranceCompanyAbbreviation, Mode=TwoWay}" Visibility="{Binding IsOtherInsurance, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    
                 <TextBlock Text="Kuřák" Foreground="White" Margin="5"/>
-                <CheckBox Margin="5" IsChecked="{Binding IsSmoker}"/>
+                <CheckBox Margin="5" IsChecked="{Binding IsSmoker, Mode=TwoWay}"/>
                 <TextBlock Text="Alergik" Foreground="White" Margin="5"/>
-                <CheckBox Margin="5" IsChecked="{Binding IsAllergic}"/>
+                <CheckBox Margin="5" IsChecked="{Binding IsAllergic, Mode=TwoWay}"/>
             </StackPanel>
         </Grid>
 

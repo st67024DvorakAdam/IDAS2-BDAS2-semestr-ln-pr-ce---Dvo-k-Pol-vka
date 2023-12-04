@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Database_Hospital_Application.Commands;
 using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.Models.Repositories;
+using Database_Hospital_Application.Models.Tools;
 using Database_Hospital_Application.Views.Doctor.Patient;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
@@ -132,7 +135,52 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
                 OnPropertyChange(nameof(IsAllergic)); }
         }
 
+        private HealthInsurance _healthInsurance;
+        public HealthInsurance HealthInsurance
+        {
+            get => _healthInsurance;
+            set
+            {
+                _healthInsurance = value;
+                OnPropertyChange(nameof(HealthInsurance));
+                UpdateInsuranceInformationFromHealthInsurance();
+            }
+        }
 
+        //pro přepínání mezi stávající a novou pojišťovnou (pro visibility)
+        private bool _isOtherInsurance;
+        public bool IsOtherInsurance
+        {
+            get => _isOtherInsurance;
+            set
+            {
+                if (_isOtherInsurance != value)
+                {
+                    _isOtherInsurance = value;
+                    OnPropertyChange(nameof(IsOtherInsurance));
+                    OnPropertyChange(nameof(IsOtherInsuranceOposite)); 
+                }
+            }
+        }
+
+        public bool IsOtherInsuranceOposite => !_isOtherInsurance;
+
+        //pojišťovna z comboboxu
+        private void UpdateInsuranceInformationFromHealthInsurance()
+        {
+            if (HealthInsurance != null)
+            {
+                InsuranceCompanyName = HealthInsurance.Name;
+                InsuranceCompanyAbbreviation = HealthInsurance.Code.ToString();
+            }
+            else
+            {
+                InsuranceCompanyName = null;
+                InsuranceCompanyAbbreviation = null;
+            }
+        }
+
+        // pro comboboxy
         private IEnumerable<string> _genders = new List<string> { "Muž", "Žena" };
         public IEnumerable<string> Genders
         {
@@ -144,12 +192,53 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
             }
         }
 
+        private ObservableCollection<CountryInfo> _countryCodes;
+
+        public ObservableCollection<CountryInfo> CountryCodes
+        {
+            get { return _countryCodes; }
+            set
+            {
+                _countryCodes = value;
+                OnPropertyChange(nameof(CountryCodes));
+
+            }
+        }
+
+        private async Task LoadCountryCodes()
+        {
+            CountryCodesLoader countryCodesLoader = new CountryCodesLoader();
+            await countryCodesLoader.LoadCountryCodesAsync();
+            CountryCodes = countryCodesLoader.CountryCodes;
+        }
+
+        private ObservableCollection<HealthInsurance> _healthInsurancesList;
+
+        public ObservableCollection<HealthInsurance> HealthInsurancesList
+        {
+            get { return _healthInsurancesList; }
+            set
+            {
+                _healthInsurancesList = value;
+                OnPropertyChange(nameof(HealthInsurancesList));
+            }
+        }
+
+        private void LoadHealthInsurancesFromHealthInsurancesVM()
+        {
+            HealthInsurancesVM healthInsurancesVM = new HealthInsurancesVM();
+            HealthInsurancesList = healthInsurancesVM.HealthInsurancesList;
+        }
+
+        //buttony
         public ICommand AcceptPatientCommand { get; private set; }
 
         public NewPatientVM()
         {
-            
+            LoadCountryCodes();
+            LoadHealthInsurancesFromHealthInsurancesVM();
             AcceptPatientCommand = new RelayCommand(ExecuteAcceptPatient, CanExecuteAcceptPatient);
+            resetVM();
         }
 
         private async void ExecuteAcceptPatient(object parameter)
@@ -178,11 +267,28 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
             cr.AddContact(new Models.Entities.Contact(Email, Phone, patientId, null));
 
 
-            
+            resetVM();
 
+        }
 
-
-
+        private void resetVM()
+        {
+            FirstName = null;
+            LastName = null;
+            IdentificationNumber = null;
+            Gender = "Muž";
+            City = null;
+            Street = null;
+            HouseNumber = null;
+            PostalCode = null;
+            Country = "CZE";
+            Email = null;
+            Phone = null;
+            InsuranceCompanyAbbreviation = null;
+            InsuranceCompanyName = null;
+            IsSmoker = false;
+            IsAllergic = false;
+            IsOtherInsurance = false;
         }
 
 

@@ -47,6 +47,13 @@ namespace Database_Hospital_Application.Views.Doctor
             e.Handled = newText.Length > 5 || !Regex.IsMatch(newText, "^[0-9]*$");
         }
 
+        private void TextBox_PreviewTextInputForInsuranceCode(object sender, TextCompositionEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            string newText = textBox.Text + e.Text;
+            e.Handled = newText.Length > 3 || !Regex.IsMatch(newText, "^[0-9]*$");
+        }
+
         private void TextBox_PreviewTextInputForPhoneNumber(object sender, TextCompositionEventArgs e)
         {
             TextBox textBox = sender as TextBox;
@@ -59,7 +66,12 @@ namespace Database_Hospital_Application.Views.Doctor
             if (!(e.OriginalSource is TextBox))
             {
                 Keyboard.ClearFocus(); 
-            }
+            } 
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
