@@ -88,6 +88,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
 
             dialog.ShowDialog();
             LoadDataAsync();
+            FindCurrentHospitalization();
         }
 
         private void UpdateOldDetails()
