@@ -147,7 +147,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
                 MessageBox.Show("Rodné číslo kratší než 10!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            if (NewPatient.Contact.Email.Contains('@') || NewPatient.Contact.Email.Contains('.'))
+            if (!NewPatient.Contact.Email.Contains('@') ||! NewPatient.Contact.Email.Contains('.'))
             {
                 MessageBox.Show("Pole Email musí obsahovat znaky '@' a '.' !", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -166,7 +166,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         private void EditAction(object parameter)
         {
             if (!CanEdit(parameter)) return;
-            if (SelectedPatient.Contact.Email.Contains('@') || SelectedPatient.Contact.Email.Contains('.'))
+            if (!SelectedPatient.Contact.Email.Contains('@') || !SelectedPatient.Contact.Email.Contains('.'))
             {
                 MessageBox.Show("Pole Email musí obsahovat znaky '@' a '.' !", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;

@@ -160,7 +160,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         private async void AddNewAction(object parameter)
         {
-            if (NewEmployee._contact.Email.Contains('@') || NewEmployee._contact.Email.Contains('.'))
+            if (!NewEmployee._contact.Email.Contains('@') || !NewEmployee._contact.Email.Contains('.'))
             {
                 MessageBox.Show("Pole Email musí obsahovat znaky '@' a '.' !", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -185,7 +185,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         private void EditAction(object parameter)
         {
             if (!CanEdit(parameter)) return;
-            if (SelectedEmployee._contact.Email.Contains('@') || SelectedEmployee._contact.Email.Contains('.'))
+            if (!SelectedEmployee._contact.Email.Contains('@') || !SelectedEmployee._contact.Email.Contains('.'))
             {
                 MessageBox.Show("Pole Email musí obsahovat znaky '@' a '.' !", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;

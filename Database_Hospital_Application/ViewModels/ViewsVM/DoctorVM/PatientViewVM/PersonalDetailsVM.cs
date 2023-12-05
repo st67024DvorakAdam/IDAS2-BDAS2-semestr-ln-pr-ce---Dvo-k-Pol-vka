@@ -396,7 +396,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
 
         private async void SaveChanges()
         {
-            if (Email.Contains('@') || Email.Contains('.'))
+            if (!Email.Contains('@') || !Email.Contains('.'))
             {
                 MessageBox.Show("Pole Email musí obsahovat znaky '@' a '.' !", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
                 CloseRequested?.Invoke();
