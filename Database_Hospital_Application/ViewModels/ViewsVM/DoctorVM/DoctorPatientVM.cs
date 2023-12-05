@@ -162,7 +162,12 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
 
         private void ExecuteProcedures(object parameter)
         {
-            // CurrentView = new ProceduresView();
+            var performedProcedureView = new PerformedProceduresView
+            {
+                DataContext = new PerformedProcedureVM(_currentPatient)
+            };
+
+            CurrentContent = performedProcedureView;
         }
 
         private void ExecuteActualIllness(object parameter)
