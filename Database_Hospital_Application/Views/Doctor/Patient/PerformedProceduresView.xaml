@@ -34,7 +34,7 @@
             
         </Grid.RowDefinitions>
         <DataGrid  x:Name="ProceduresGrid" AutoGenerateColumns="False" SelectedItem="{Binding SelectedProcedure}"
-                   ItemsSource="{Binding ProceduresList}" Background="Transparent" 
+                   ItemsSource="{Binding ProcedureList}" Background="Transparent" 
                   AreRowDetailsFrozen="True" CanUserAddRows="False" CanUserDeleteRows="False"
                   CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single" 
                   SelectionUnit="FullRow" GridLinesVisibility="None" HeadersVisibility="Column" 
@@ -67,7 +67,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Zákrok" Binding="{Binding Name}" Width="*"/>
                 <DataGridTextColumn Header="Cena - Kč" Binding="{Binding Price}" Width="*"/>
-                <DataGridTextColumn Header="Hrazeno pojišťovnou" Binding="{Binding IsCoveredByInsurence}" Width="*"/>
+                <DataGridTextColumn Header="Hrazeno pojišťovnou" Binding="{Binding IsCoveredByInsurenceString}" Width="*"/>
                 
             </DataGrid.Columns>
 

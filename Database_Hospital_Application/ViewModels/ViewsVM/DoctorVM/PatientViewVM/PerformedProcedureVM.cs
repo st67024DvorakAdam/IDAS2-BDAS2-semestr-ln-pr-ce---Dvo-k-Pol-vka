@@ -66,7 +66,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
         }
 
         public PerformedProcedureVM(Patient currentPatient) 
-        {
+        {   
+            _performedProceduresRepo = new PerformedProceduresRepo();
+            _currentPatient = currentPatient;
+            LoadDataAsync();
+            
             MakeProcedureCommand = new RelayCommand(_ => ExecuteMakeProcedure());
             MakeProcedureHospitalizeCommand = new RelayCommand(_ => ExecuteMakeProcedureHospitalize());
             UpdateProcedureCommand = new RelayCommand(_ => ExecuteUpdateProcedure(), _ => _selectedProcedure != null);
@@ -74,7 +78,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
 
         private async void LoadDataAsync()
         {
-            var procedures = await _performedProceduresRepo.GetAllPerformedProceduresAsync(); // TODO podle id pacienta
+            var procedures = await _performedProceduresRepo.GetAllPerformedProceduresAsync(_currentPatient.Id);
             _performedProcedures = new ObservableCollection<PerformedProcedure>(procedures);
         }
 

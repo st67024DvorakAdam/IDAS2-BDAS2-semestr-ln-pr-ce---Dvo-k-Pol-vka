@@ -63,6 +63,45 @@ namespace Database_Hospital_Application.Models.Repositories
             await dbTools.ExecuteNonQueryAsync(commandText, parameters);
         }
 
+        public async Task<ObservableCollection<PerformedProcedure>> GetAllPerformedProceduresAsync(int patientId)
+        {
+            ObservableCollection<PerformedProcedure> performedProcedures = new ObservableCollection<PerformedProcedure>();
+            string commandText = "get_all_performed_procedures_by_patient_id";
+
+            var parameters = new Dictionary<string, object>
+            {
+                { "p_patient_id", patientId }
+            };
+
+            DataTable result = await dbTools.ExecuteCommandAsync(commandText, parameters);
+
+            if (result.Rows.Count > 0)
+            {
+                foreach (DataRow row in result.Rows)
+                {
+                    PerformedProcedure procedure = new PerformedProcedure
+                    {
+                        Id = Convert.ToInt32(row["ID"]),
+                        Name = row["NAZEV"].ToString(),
+                        Price = Convert.ToInt32(row["CENA"]),
+                        IsCoveredByInsurence = Convert.ToBoolean(row["HRAZENO_POJISTOVNOU"]),
+                        IdOfPatient = Convert.ToInt32(row["PACIENT_ID"])
+                    };
+                    if(procedure.IsCoveredByInsurence == true)
+                    {
+                        procedure.IsCoveredByInsurenceString = "Ano";
+                    }
+                    else
+                    {
+                        procedure.IsCoveredByInsurenceString = "Ne";
+                    }
+                    performedProcedures.Add(procedure);
+                }
+            }
+            return performedProcedures;
+        }
+
+
         public async Task<int> DeletePerformedProcedure(int id)
         {
             string commandText = "delete_performed_procedure_by_id";
