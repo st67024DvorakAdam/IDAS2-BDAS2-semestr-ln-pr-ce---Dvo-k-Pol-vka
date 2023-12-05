@@ -139,7 +139,7 @@
                 </Grid.ColumnDefinitions>
                 <ComboBox Margin="5,5,0,5" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent" Width="150" Visibility="{Binding IsOtherInsuranceOposite, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"
     ItemsSource="{Binding HealthInsurancesList}"
-    SelectedValue="{Binding HealthInsurance}">
+    SelectedValue="{Binding HealthInsurance, Mode=TwoWay}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock>

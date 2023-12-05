@@ -160,7 +160,13 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         private async void AddNewAction(object parameter)
         {
-                EmployeesRepo employeesRepo = new EmployeesRepo();
+            if (NewEmployee._contact.Email.Contains('@') || NewEmployee._contact.Email.Contains('.'))
+            {
+                MessageBox.Show("Pole Email musí obsahovat znaky '@' a '.' !", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            EmployeesRepo employeesRepo = new EmployeesRepo();
                 NewEmployee.Salt = PasswordHasher.GenerateSalt();
                 
                 string hashedPassword = PasswordHasher.HashPassword(NewEmployee.Password, NewEmployee.Salt);
@@ -179,7 +185,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         private void EditAction(object parameter)
         {
             if (!CanEdit(parameter)) return;
-
+            if (SelectedEmployee._contact.Email.Contains('@') || SelectedEmployee._contact.Email.Contains('.'))
+            {
+                MessageBox.Show("Pole Email musí obsahovat znaky '@' a '.' !", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
             EditEmployeeVM editVM = new EditEmployeeVM(SelectedEmployee);
             EditEmployeeDialog editDialog = new EditEmployeeDialog(editVM);

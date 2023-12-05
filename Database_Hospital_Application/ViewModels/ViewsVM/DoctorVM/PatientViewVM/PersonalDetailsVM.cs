@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.Metrics;
 using System.IO;
+using System.IO.Packaging;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -34,6 +35,9 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
         private int _insuranceCompanyAbbreviation;
         private string _isSmoker;
         private string _isAllergic;
+
+        //pro reset pole email, když vstup editu nevyhovuje
+        private string _correctOldEmail;
         public Patient Patient
         {
             get => _patient;
@@ -302,9 +306,19 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
             _postalCode = _patient.Address.ZipCode;
             _country = _patient.Address.Country;
             _email = _patient.Contact.Email;
+            _correctOldEmail = Email;
             _phone = _patient.Contact.PhoneNumber;
             _insuranceCompanyName = _patient.HealthInsurance.Name;
             _insuranceCompanyAbbreviation = _patient.HealthInsurance.Code;
+            _healthInsurance = new HealthInsurance
+            {
+                Id = _patient.HealthInsurance.Id,
+                Code = _patient.HealthInsurance.Code,
+                Name = _patient.HealthInsurance.Name
+            };
+            //kvůli comboboxu najdu odpovídají pojišťovnu v kolekci, aby byl cb při editu vyplněn
+            _healthInsurance = HealthInsurancesList.FirstOrDefault(x => x.Id == _healthInsurance.Id);
+
             if (_patient.MedicalCard.IsAllergic.ToString().Equals("True"))
             {
                 _isAllergic = "Ano";
@@ -382,6 +396,14 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
 
         private async void SaveChanges()
         {
+            if (Email.Contains('@') || Email.Contains('.'))
+            {
+                MessageBox.Show("Pole Email musí obsahovat znaky '@' a '.' !", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                CloseRequested?.Invoke();
+                Email = _correctOldEmail;
+                return;
+            }
+
             AddressRepo ar = new AddressRepo();
             PatientRepo pr = new PatientRepo();
             MedicalCardsRepo mcr = new MedicalCardsRepo();
@@ -394,9 +416,16 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
             a.Id = Patient.IdAddress;
             await ar.UpdateAddress(a);
 
-            HealthInsurance hi = new Models.Entities.HealthInsurance(InsuranceCompanyName, InsuranceCompanyAbbreviation.ToString());
-            hi.Id = Patient.IdHealthInsurance;
-            int healthInsuranceId = await hir.UpdateHealthInsurance(hi);
+            HealthInsurance hi;
+            if (IsOtherInsuranceOposite)
+            {
+                hi = HealthInsurance;
+            }
+            else
+            {
+                hi = new Models.Entities.HealthInsurance(InsuranceCompanyName, InsuranceCompanyAbbreviation.ToString());
+                hi.Id = await hir.AddHealthInsurance(hi);
+            }           
 
             Patient p = new Models.Entities.Patient(FirstName, LastName, IdentificationNumber, Gender, a.Id.ToString(), hi.Id.ToString());
             p.Id = Patient.Id;

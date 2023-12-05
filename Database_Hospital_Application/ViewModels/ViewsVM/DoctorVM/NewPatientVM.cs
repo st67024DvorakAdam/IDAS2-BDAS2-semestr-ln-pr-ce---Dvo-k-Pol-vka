@@ -243,6 +243,12 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
 
         private async void ExecuteAcceptPatient(object parameter)
         {
+            if (Email.Contains('@') || Email.Contains('.'))
+            {
+                MessageBox.Show("Pole Email musí obsahovat znaky '@' a '.' !", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             AddressRepo ar = new AddressRepo();
             PatientRepo pr = new PatientRepo();
             MedicalCardsRepo mcr = new MedicalCardsRepo();

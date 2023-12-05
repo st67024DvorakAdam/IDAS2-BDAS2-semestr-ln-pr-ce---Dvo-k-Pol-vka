@@ -66,7 +66,7 @@ namespace Database_Hospital_Application.Views.Doctor.Patient
         {
             TextBox textBox = sender as TextBox;
             string newText = textBox.Text + e.Text;
-            e.Handled = newText.Length > 10 || !Regex.IsMatch(newText, "^[0-9]*$");
+            e.Handled = newText.Length > 9 || !Regex.IsMatch(newText, "^[0-9]*$");
         }
     }
 
