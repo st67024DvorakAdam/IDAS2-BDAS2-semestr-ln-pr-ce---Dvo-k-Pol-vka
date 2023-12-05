@@ -78,7 +78,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
 
         private async void LoadDataAsync()
         {
-            var procedures = await _performedProceduresRepo.GetAllPerformedProceduresAsync(_currentPatient.Id); // TODO podle id pacienta
+            var procedures = await _performedProceduresRepo.GetAllPerformedProceduresAsync(_currentPatient.Id);
             _performedProcedures = new ObservableCollection<PerformedProcedure>(procedures);
         }
 
