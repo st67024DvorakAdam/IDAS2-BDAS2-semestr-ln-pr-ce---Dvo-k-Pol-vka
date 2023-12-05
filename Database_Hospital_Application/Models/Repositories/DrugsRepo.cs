@@ -221,6 +221,49 @@ namespace Database_Hospital_Application.Models.Repositories
             return drugs;
         }
 
+        //metoda která vypíše všechny předepsané léky od všech lékařů - pohled pro asistenta
+        public async Task<ObservableCollection<DrugsPreceptedByDoctor>> GetAllPreceptedDrugs()
+        {
+            ObservableCollection<DrugsPreceptedByDoctor> drugs = new ObservableCollection<DrugsPreceptedByDoctor>();
+            string commandText = "get_all_precepted_drugs";
+            DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
+
+
+            if (result.Rows.Count > 0)
+            {
+
+                foreach (DataRow row in result.Rows)
+                {
+                    DrugsPreceptedByDoctor drug = new DrugsPreceptedByDoctor
+                    {
+                        _drug = new Drug
+                        {
+                            Id = Convert.ToInt32(row["ID_LEKU"].ToString()),
+                            Name = row["NAZEV_LEKU"].ToString(),
+                            Dosage = Convert.ToInt32(row["DAVKOVANI_LEKU"]),
+                        },
+                        _illness = new Illness
+                        {
+                            Id = Convert.ToInt32(row["ID_NEMOCI"].ToString()),
+                            Name = row["NAZEV_NEMOCI"].ToString()
+                        },
+                        _patient = new Patient
+                        {
+                            FirstName = row["JMENO_PACIENTA"].ToString(),
+                            LastName = row["PRIJMENI_PACIENTA"].ToString(),
+                            BirthNumber = row["RODNE_CISLO"].ToString(),
+                            Sex = SexEnumParser.GetEnumFromString(row["POHLAVI"].ToString())
+                        },
+                        _nameOfDoctor = row["UZIVATELSKE_JMENO"].ToString()
+                    };
+                    drug._patient.BirthNumber = drug._patient.completeBirthNumber(drug._patient.BirthNumber);
+                    drugs.Add(drug);
+                }
+            }
+            return drugs;
+        }
+
+
         public async Task<int> DeleteDrugFromIllness(Drug prescriptedPills, Illness illness)
         {
             string commandText = "delete_drug_from_illness";

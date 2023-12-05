@@ -11,5 +11,6 @@ namespace Database_Hospital_Application.Models.Entities.HelpEntities
         public Drug _drug {  get; set; }
         public Patient _patient { get; set; }
         public Illness _illness { get; set; }
+        public string? _nameOfDoctor { get; set; }
     }
 }
