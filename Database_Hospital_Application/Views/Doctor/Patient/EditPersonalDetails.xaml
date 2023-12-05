@@ -5,8 +5,9 @@
         Background="#1a1f1f"
         WindowStartupLocation="CenterScreen"
         Icon="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-hospital-64.png?raw=true">
-
+    
     <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <ControlTemplate x:Key="NoMouseOverButtonTemplate"   
                  TargetType="Button">
             <Border Background="{TemplateBinding Background}"  
@@ -52,6 +53,13 @@
                      Foreground="White"
                      PreviewTextInput="TextBox_PreviewTextInputForBirthNumber"/>
 
+            <Label Content="Pohlaví:" Foreground="White" Margin="5,25,5,5"/>
+            <ComboBox Background="Transparent"
+                  ItemsSource="{Binding Genders}"
+                  SelectedItem="{Binding Gender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  Margin="5"
+                  DisplayMemberPath="."/>
+            
             <Label Content="Město:" Foreground="White"
                    Margin="5,25,5,5"/>
             <TextBox Text="{Binding City, UpdateSourceTrigger=PropertyChanged}" 
@@ -104,7 +112,7 @@
                      Foreground="White"
                      PreviewTextInput="TextBox_PreviewTextInputForPhoneNumber"/>
 
-            <Label Content="Název zdravotní pojišťovny:" Foreground="White"
+            <!--<Label Content="Název zdravotní pojišťovny:" Foreground="White"
                    Margin="5,25,5,5"/>
             <TextBox Text="{Binding InsuranceCompanyName, UpdateSourceTrigger=PropertyChanged}" 
                      Margin="5,5,5,5"
@@ -116,7 +124,42 @@
             <TextBox Text="{Binding InsuranceCompanyAbbreviation, UpdateSourceTrigger=PropertyChanged}" 
                      Margin="5,5,5,5"
                      Background="Transparent"
-                     Foreground="White"/>
+                     Foreground="White"/>-->
+            <Label Content="Zdravotní púojišťovna:" Foreground="White"
+            Margin="5,25,5,5"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <ComboBox Margin="5,5,0,5" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent" Width="150" Visibility="{Binding IsOtherInsuranceOposite, Converter={StaticResource BooleanToVisibilityConverter}}"
+    ItemsSource="{Binding HealthInsurancesList}"
+    SelectedValue="{Binding HealthInsurance}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} - {1}">
+                                        <Binding Path="Name" />
+                                        <Binding Path="Code" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <CheckBox Margin="1,5,0,5" Grid.Column="1" Content="Jiná" Foreground="White" IsChecked="{Binding IsOtherInsurance, Mode=TwoWay}"/>
+            </Grid>
+
+            <TextBlock x:Name="nameOfInsuranceTextBlock" Text="Název" Foreground="White" Margin="5" Visibility="{Binding IsOtherInsurance, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <TextBox x:Name="nameOfInsuranceTextBox" Background="Transparent" Foreground="White" Margin="5" Text="{Binding InsuranceCompanyName, Mode=TwoWay}" Visibility="{Binding IsOtherInsurance, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <TextBlock x:Name="codeOfInsuranceTextBlock" Text="Zkratka" Foreground="White" Margin="5" Visibility="{Binding IsOtherInsurance, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <TextBox x:Name="codeOfInsuranceTextBox" PreviewTextInput="TextBox_PreviewTextInputForInsuranceCode" Background="Transparent" Foreground="White" Margin="5" Text="{Binding InsuranceCompanyAbbreviation, Mode=TwoWay}" Visibility="{Binding IsOtherInsurance, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+            <TextBlock Text="Kuřák" Foreground="White" Margin="5"/>
+            <CheckBox Margin="5" IsChecked="{Binding IsSmoker, Mode=TwoWay}"/>
+            <TextBlock Text="Alergik" Foreground="White" Margin="5"/>
+            <CheckBox Margin="5" IsChecked="{Binding IsAllergic, Mode=TwoWay}"/>
 
             <Button Content="Uložit" Command="{Binding SaveChangesCommand}" Height="35" 
                     Margin="5,25,5,5"

@@ -1,5 +1,6 @@
 ﻿using Database_Hospital_Application.Commands;
 using Database_Hospital_Application.Models.Entities;
+using Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM;
 using Database_Hospital_Application.ViewModels.ViewsVM.NurseVM;
 using Database_Hospital_Application.Views.Assistant;
 using System;
@@ -44,10 +45,12 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.AssistantVM
 
         public ICommand ProfileCommand { get; }
         public ICommand GeneralInfoCommand { get; }
+        public ICommand NewPatientCommand {  get; }
 
 
         private void Profile(object obj) => CurrentView = new CurrUserVM(CurrentUser);
         private void GeneralInfo(object obj) => CurrentView = new GeneralInfoVM();
+        private void NewPatient(object obj) => CurrentView = new NewPatientVM();
 
         public AssistantNavigateVM(User user)
         {
@@ -59,6 +62,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.AssistantVM
             //Inicializace příkazů
             ProfileCommand = new RelayCommand(Profile);
             GeneralInfoCommand = new RelayCommand(GeneralInfo);
+            NewPatientCommand = new RelayCommand(NewPatient);
         }
     }
 }

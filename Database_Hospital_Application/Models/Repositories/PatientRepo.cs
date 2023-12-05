@@ -148,6 +148,8 @@ namespace Database_Hospital_Application.Models.Repositories
                 LastName = row["PRIJMENI"].ToString(),
                 BirthNumber = row["RODNE_CISLO"].ToString(),
                 Sex = SexEnumParser.GetEnumFromString(row["POHLAVI"].ToString()),
+                IdAddress = Convert.ToInt32(row["ADRESA_ID"]),
+                IdHealthInsurance = Convert.ToInt32(row["ZDRAVOTNI_POJISTOVNA_ID"]),
 
                 Contact = new Contact
                 {
@@ -157,6 +159,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
                 Address = new Address
                 {
+                    Id = Convert.ToInt32(row["ADRESA_ID"]),
                     Street = row["ULICE"].ToString(),
                     City = row["MESTO"].ToString(),
                     HouseNumber = Convert.ToInt32(row["CISLO_POPISNE"].ToString()),
@@ -167,6 +170,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
                 HealthInsurance = new HealthInsurance
                 {
+                    Id = Convert.ToInt32(row["ZDRAVOTNI_POJISTOVNA_ID"]),
                     Name = row["POJISTOVNA_NAZEV"].ToString(),
                     Code = Convert.ToInt32(row["POJISTOVNA_ZKRATKA"].ToString())
 

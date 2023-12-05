@@ -1,10 +1,17 @@
 ﻿using Database_Hospital_Application.Commands;
 using Database_Hospital_Application.Models.Entities;
+using Database_Hospital_Application.Models.Repositories;
+using Database_Hospital_Application.Models.Tools;
 using Database_Hospital_Application.Views.Doctor.Patient;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics.Metrics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewVM
@@ -173,8 +180,102 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
                 UpdateCommandStates();
             }
         }
-        
-        
+
+        //pro přepínání mezi stávající a novou pojišťovnou (pro visibility)
+        private bool _isOtherInsurance;
+        public bool IsOtherInsurance
+        {
+            get => _isOtherInsurance;
+            set
+            {
+                if (_isOtherInsurance != value)
+                {
+                    _isOtherInsurance = value;
+                    OnPropertyChange(nameof(IsOtherInsurance));
+                    OnPropertyChange(nameof(IsOtherInsuranceOposite));
+                }
+            }
+        }
+
+        public bool IsOtherInsuranceOposite => !_isOtherInsurance;
+
+        private HealthInsurance _healthInsurance;
+        public HealthInsurance HealthInsurance
+        {
+            get => _healthInsurance;
+            set
+            {
+                _healthInsurance = value;
+                OnPropertyChange(nameof(HealthInsurance));
+                UpdateInsuranceInformationFromHealthInsurance();
+            }
+        }
+
+        //pojišťovna z comboboxu
+        private void UpdateInsuranceInformationFromHealthInsurance()
+        {
+            if (HealthInsurance != null)
+            {
+                InsuranceCompanyName = HealthInsurance.Name;
+                InsuranceCompanyAbbreviation = HealthInsurance.Code;
+            }
+            else
+            {
+                InsuranceCompanyName = null;
+                InsuranceCompanyAbbreviation = 0;
+            }
+        }
+
+        //pro comboboxy
+        private IEnumerable<string> _genders = new List<string> { "Muž", "Žena" };
+        public IEnumerable<string> Genders
+        {
+            get { return _genders; }
+            set
+            {
+                _genders = value;
+                OnPropertyChange(nameof(Genders));
+            }
+        }
+
+        private ObservableCollection<CountryInfo> _countryCodes;
+
+        public ObservableCollection<CountryInfo> CountryCodes
+        {
+            get { return _countryCodes; }
+            set
+            {
+                _countryCodes = value;
+                OnPropertyChange(nameof(CountryCodes));
+
+            }
+        }
+
+        private async Task LoadCountryCodes()
+        {
+            CountryCodesLoader countryCodesLoader = new CountryCodesLoader();
+            await countryCodesLoader.LoadCountryCodesAsync();
+            CountryCodes = countryCodesLoader.CountryCodes;
+        }
+
+        private ObservableCollection<HealthInsurance> _healthInsurancesList;
+
+        public ObservableCollection<HealthInsurance> HealthInsurancesList
+        {
+            get { return _healthInsurancesList; }
+            set
+            {
+                _healthInsurancesList = value;
+                OnPropertyChange(nameof(HealthInsurancesList));
+            }
+        }
+
+        private void LoadHealthInsurancesFromHealthInsurancesVM()
+        {
+            HealthInsurancesVM healthInsurancesVM = new HealthInsurancesVM();
+            HealthInsurancesList = healthInsurancesVM.HealthInsurancesList;
+        }
+
 
         public ICommand EditPatientDetailsCommand { get; private set; }
 
@@ -185,6 +286,9 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
 
         public PersonalDetailsVM(Patient patient)
         {
+            LoadCountryCodes();
+            LoadHealthInsurancesFromHealthInsurancesVM();
+
             _patient = patient;
             
             
@@ -276,9 +380,39 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
             dialog.ShowDialog();
         }
 
-        private void SaveChanges()
+        private async void SaveChanges()
         {
-            //TODO
+            AddressRepo ar = new AddressRepo();
+            PatientRepo pr = new PatientRepo();
+            MedicalCardsRepo mcr = new MedicalCardsRepo();
+            HealthInsurancesRepo hir = new HealthInsurancesRepo();
+            ContactRepo cr = new ContactRepo();
+
+            
+
+            Address a = new Models.Entities.Address(Street, City, HouseNumber.ToString(), Country, PostalCode.ToString());
+            a.Id = Patient.IdAddress;
+            await ar.UpdateAddress(a);
+
+            HealthInsurance hi = new Models.Entities.HealthInsurance(InsuranceCompanyName, InsuranceCompanyAbbreviation.ToString());
+            hi.Id = Patient.IdHealthInsurance;
+            int healthInsuranceId = await hir.UpdateHealthInsurance(hi);
+
+            Patient p = new Models.Entities.Patient(FirstName, LastName, IdentificationNumber, Gender, a.Id.ToString(), hi.Id.ToString());
+            p.Id = Patient.Id;
+            await pr.UpdatePatient(p);
+
+            bool smoker = IsSmoker.Contains("Ano") ? true : false;
+            bool alergic = IsAllergic.Contains("Ano") ? true : false;
+            ObservableCollection<MedicalCard> listOfMedicalCards = await mcr.GetAllMedicalCardsAsync();
+            MedicalCard meca = new Models.Entities.MedicalCard(smoker, alergic, Patient.Id);
+            meca.Id = listOfMedicalCards.FirstOrDefault(card => card.IdOfPatient == Patient.Id).Id;
+            mcr.UpdateMedicalCard(meca);
+
+            ObservableCollection<Contact> listOfContacts = await cr.GetAllContactsAsync();
+            Contact c = new Models.Entities.Contact(Email, Phone.ToString(), Patient.Id, null);
+            c.Id = listOfContacts.FirstOrDefault(contact => contact.IdOfPatient == Patient.Id).Id;
+            cr.UpdateContact(c);
 
             CloseRequested?.Invoke();
         }
@@ -287,7 +421,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
         private void CancelEdit()
         {
             CloseRequested?.Invoke();
-
         }
 
 
