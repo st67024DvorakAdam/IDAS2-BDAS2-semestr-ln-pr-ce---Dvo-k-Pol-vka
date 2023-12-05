@@ -1,0 +1,53 @@
+﻿<Window x:Class="Database_Hospital_Application.Views.Doctor.Patient.MakeProcedureView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Database_Hospital_Application.Views.Doctor.Patient"
+        mc:Ignorable="d"
+        Background="#1a1f1f"
+        WindowStartupLocation="CenterScreen"
+        Title="MakeProcedureView" Height="450" Width="800">
+    <Window.Resources>
+        <ControlTemplate x:Key="NoMouseOverButtonTemplate"   
+                 TargetType="Button">
+            <Border Background="{TemplateBinding Background}"  
+          BorderBrush="{TemplateBinding BorderBrush}"  
+          BorderThickness="{TemplateBinding BorderThickness}">
+                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  
+                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </Border>
+
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled"  
+             Value="False">
+                    <Setter Property="Background"  
+              Value="{x:Static SystemColors.ControlLightBrush}" />
+                    <Setter Property="Foreground"  
+              Value="{x:Static SystemColors.GrayTextBrush}" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="10" HorizontalAlignment="Center">
+
+
+            <Label Content="Provedený zákrok:" Foreground="White" Margin="5,5,5,5"/>
+            <TextBox Text="{Binding NewPerformedProcedure.Name, UpdateSourceTrigger=PropertyChanged}" 
+                     Margin="5,5,5,5" Width="250"/>
+            <Label Content="Cena:" Foreground="White" Margin="5,5,5,5"/>
+            <TextBox Text="{Binding NewPerformedProcedure.Price, UpdateSourceTrigger=PropertyChanged}" 
+                     Margin="5,5,5,5" Width="250" PreviewTextInput="TextBox_PreviewTextInputForPrice"/>
+            <Label Content="Hrazeno pojištovnou:" Foreground="White" Margin="5,5,5,5"/>
+            <CheckBox  Margin="5,0,5,5" IsChecked="{Binding NewPerformedProcedure.IsCoveredByInsurence, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Button Cursor="Hand" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Přidat zákrok" Command="{Binding AddCommand}" Height="35" 
+                    Margin="5,25,5,5"
+                    Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" />
+            <Button Cursor="Hand" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Zrušit" Command="{Binding CancelCommand}" Margin="5,25,5,5" Height="35" 
+                    Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc"/>
+        </StackPanel>
+    </ScrollViewer>
+</Window>
