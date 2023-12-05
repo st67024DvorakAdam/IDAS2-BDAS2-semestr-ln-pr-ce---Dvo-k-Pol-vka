@@ -81,15 +81,21 @@ namespace Database_Hospital_Application.Models.Repositories
         public async Task<int> UpdateHealthInsurance(HealthInsurance healthInsurance)
         {
             string commandText = "update_insurance";
-            var parameters = new Dictionary<string, object>
-            {
-                {"p_id", healthInsurance.Id},
-                { "p_name", healthInsurance.Name},
-                {"p_code", healthInsurance.Code}
 
-            };
+            var parameters = new List<OracleParameter>
+        {
+            new OracleParameter("p_id", OracleDbType.Int32, healthInsurance.Id, ParameterDirection.Input),
+            new OracleParameter("p_name", OracleDbType.Varchar2, healthInsurance.Name, ParameterDirection.Input),
+            new OracleParameter("p_code", OracleDbType.Int32, healthInsurance.Code, ParameterDirection.Input),
+            new OracleParameter("p_new_id", OracleDbType.Int32, ParameterDirection.Output)
+        };
 
-            return await dbTools.ExecuteNonQueryAsync(commandText, parameters);
+            await dbTools.ExecuteNonQueryAsync(commandText, parameters);
+
+
+            int newOrOldHealthInsuranceId = Convert.ToInt32(parameters.Last().Value.ToString());
+
+            return newOrOldHealthInsuranceId;
         }
 
         public void DeleteAllHealthInsurances()
