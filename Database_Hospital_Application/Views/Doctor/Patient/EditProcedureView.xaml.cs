@@ -24,7 +24,7 @@ namespace Database_Hospital_Application.Views.Doctor.Patient
         public EditProcedureView(EditPerformedProcedureVM viewModel)
         {
             InitializeComponent();
-            //viewModel.CloseRequested += CloseWindow;
+            viewModel.CloseRequested += CloseWindow;
             DataContext = viewModel;
         }
 

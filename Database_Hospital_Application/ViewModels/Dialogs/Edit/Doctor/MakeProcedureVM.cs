@@ -75,6 +75,7 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
             DepartmentList = _departmentRepo.GetAllDepartmentsAsync().Result;
         }
 
+        //TODO pridat do anamnez 
         private async void AddProcedureAndHospitalize()
         {
             _newPerformedProcedure.IdOfPatient = _patient.Id;
@@ -86,6 +87,7 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
             if (ongoingHospitalization == null)
             {
                 hospitalizationRepo.AddHospitalization(new Hospitalization(DateTime.Now, NewPerformedProcedure.Name, _patient.Id, _selectedDepartment.Id));
+
             }
             else
             {
@@ -106,6 +108,7 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
             
         }
 
+        //TODO pridat do anamnez
         private void AddProcedure()
         {
             _newPerformedProcedure.IdOfPatient = _patient.Id;

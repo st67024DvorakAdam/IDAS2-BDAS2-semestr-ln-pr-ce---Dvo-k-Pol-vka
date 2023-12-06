@@ -35,15 +35,16 @@
 
 
             <Label Content="Provedený zákrok:" Foreground="White" Margin="5,5,5,5"/>
-            <TextBox Text="{Binding PerformedProcedure.Name, UpdateSourceTrigger=PropertyChanged}" 
+            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
                      Margin="5,5,5,5" Width="250"/>
 
             <Label Content="Cena:" Foreground="White" Margin="5,5,5,5"/>
-            <TextBox Text="{Binding PerformedProcedure.Price, UpdateSourceTrigger=PropertyChanged}" 
+            <TextBox Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" 
                      Margin="5,5,5,5" Width="250" PreviewTextInput="TextBox_PreviewTextInputForPrice"/>
 
             <Label Content="Hrazeno pojištovnou:" Foreground="White" Margin="5,5,5,5"/>
-            <CheckBox  Margin="5,0,5,5" IsChecked="{Binding PerformedProcedure.IsCoveredByInsurence, UpdateSourceTrigger=PropertyChanged}"/>
+            <CheckBox Margin="5,0,5,5" IsChecked="{Binding IsCoveredByInsurance, UpdateSourceTrigger=PropertyChanged}"/>
+
 
 
             <Button Cursor="Hand" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Upravit zákrok" Command="{Binding EditCommand}" Height="35" 
