@@ -12,5 +12,12 @@ namespace Database_Hospital_Application.Models.Entities
         public string Description {  get; set; } //Záznam
         public int? IdOfPatient {  get; set; }
         public long? BirthNumberOfPatient { get; set; }
+
+        public PersonalMedicalHistory(string description, int patientId) {
+            Description = description;
+            IdOfPatient = patientId;
+        }
+
+        public PersonalMedicalHistory() { }
     }
 }

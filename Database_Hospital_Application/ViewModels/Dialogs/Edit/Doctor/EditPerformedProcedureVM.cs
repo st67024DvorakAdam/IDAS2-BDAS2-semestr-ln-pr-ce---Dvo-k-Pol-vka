@@ -90,6 +90,7 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
                 editedProcedure.IsCoveredByInsurence = IsCoveredByInsurance;
                 editedProcedure.Id = currentProcedure.Id;
                 editedProcedure.IdOfPatient = currentProcedure.IdOfPatient;
+
                 _proceduresRepo.UpdatePerformedProcedure(editedProcedure);
                 CloseRequested?.Invoke();
             

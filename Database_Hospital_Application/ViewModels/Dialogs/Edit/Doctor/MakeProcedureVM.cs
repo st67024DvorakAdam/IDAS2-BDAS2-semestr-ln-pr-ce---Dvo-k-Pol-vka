@@ -88,7 +88,7 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
             {
                 hospitalizationRepo.AddHospitalization(new Hospitalization(DateTime.Now, NewPerformedProcedure.Name, _patient.Id, _selectedDepartment.Id));
                 PersonalMedicalHistoriesRepo anamnesisRepo = new PersonalMedicalHistoriesRepo();
-                anamnesisRepo.AddPersonalMedicalHistory("Byl proveden zákrok " + NewPerformedProcedure.Name, _patient.Id);
+                anamnesisRepo.AddPersonalMedicalHistory(new PersonalMedicalHistory("Byl proveden zákrok " + NewPerformedProcedure.Name + " dne " + DateTime.Now.Date.ToString("dd/MM/yyyy"), _patient.Id));
             }
             else
             {
@@ -96,7 +96,7 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
                 hospitalizationRepo.UpdateHospitalization(ongoingHospitalization);
                 hospitalizationRepo.AddHospitalization(new Hospitalization(DateTime.Now, NewPerformedProcedure.Name, _patient.Id, _selectedDepartment.Id));
                 PersonalMedicalHistoriesRepo anamnesisRepo = new PersonalMedicalHistoriesRepo();
-                anamnesisRepo.AddPersonalMedicalHistory("Byl proveden zákrok " + NewPerformedProcedure.Name, _patient.Id);
+                anamnesisRepo.AddPersonalMedicalHistory(new PersonalMedicalHistory("Byl proveden zákrok " + NewPerformedProcedure.Name + " dne " + DateTime.Now.ToString("dd/MM/yyyy"), _patient.Id));
             }
 
 
@@ -117,7 +117,7 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
             _newPerformedProcedure.IdOfPatient = _patient.Id;
             _proceduresRepo.AddPerformedProcedure(NewPerformedProcedure);
             PersonalMedicalHistoriesRepo anamnesisRepo = new PersonalMedicalHistoriesRepo();
-            anamnesisRepo.AddPersonalMedicalHistory("Byl proveden zákrok " + NewPerformedProcedure.Name, _patient.Id);
+            anamnesisRepo.AddPersonalMedicalHistory(new PersonalMedicalHistory("Byl proveden zákrok " + NewPerformedProcedure.Name + " dne " + DateTime.Now.Date.ToString("dd/MM/yyyy"), _patient.Id));
             CloseRequested?.Invoke();
 
         }

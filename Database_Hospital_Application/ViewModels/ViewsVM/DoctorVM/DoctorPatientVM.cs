@@ -151,7 +151,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
 
         private void ExecuteAnamnesis(object parameter)
         {
-            
+            LoadMedicalHistoryAsync();
             var anamnesisView = new AnamnesisView
             {
                 DataContext = this
