@@ -46,7 +46,7 @@
             <CheckBox  Margin="5,0,5,5" IsChecked="{Binding NewPerformedProcedure.IsCoveredByInsurence, UpdateSourceTrigger=PropertyChanged}"/>
 
             <Label Content="Umístit na oddělení:" Foreground="White" Margin="5,5,5,5"/>
-            <ComboBox Margin="5,5,5,5" ItemsSource="{Binding DepartmentList}" SelectedItem="{Binding SelectedDepartment}"/>
+            <ComboBox Margin="5,5,5,5" ItemsSource="{Binding DepartmentList}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedDepartment}"/>
 
             <Button Cursor="Hand" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Přidat zákrok a hospitalizovat" Command="{Binding AddCommand}" Height="35" 
                     Margin="5,25,5,5"

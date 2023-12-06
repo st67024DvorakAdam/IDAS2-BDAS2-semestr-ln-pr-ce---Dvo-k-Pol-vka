@@ -43,7 +43,7 @@
             <Label Content="Hrazeno pojištovnou:" Foreground="White" Margin="5,5,5,5"/>
             <CheckBox  Margin="5,0,5,5" IsChecked="{Binding NewPerformedProcedure.IsCoveredByInsurence, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Button Cursor="Hand" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Přidat zákrok" Command="{Binding AddCommand}" Height="35" 
+            <Button Cursor="Hand" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Přidat zákrok" Command="{Binding AddProcedureCommand}" Height="35" 
                     Margin="5,25,5,5"
                     Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" />
             <Button Cursor="Hand" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Zrušit" Command="{Binding CancelCommand}" Margin="5,25,5,5" Height="35" 

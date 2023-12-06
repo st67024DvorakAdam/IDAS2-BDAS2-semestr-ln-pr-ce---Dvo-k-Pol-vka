@@ -13,7 +13,7 @@ namespace Database_Hospital_Application.Models.Entities
         public double Price { get; set; }
         public bool IsCoveredByInsurence { get; set; }
         public int IdOfPatient { get; set; }
-        public long BirthNumberOfPatient{get;set;}
+        public long? BirthNumberOfPatient{get;set;}
 
         public string? IsCoveredByInsurenceString { get; set; }
     }

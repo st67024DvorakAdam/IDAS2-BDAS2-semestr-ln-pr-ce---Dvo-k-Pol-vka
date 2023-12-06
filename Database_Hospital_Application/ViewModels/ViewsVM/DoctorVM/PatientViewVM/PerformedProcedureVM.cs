@@ -79,13 +79,14 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
         private async void LoadDataAsync()
         {
             var procedures = await _performedProceduresRepo.GetAllPerformedProceduresAsync(_currentPatient.Id);
-            _performedProcedures = new ObservableCollection<PerformedProcedure>(procedures);
+            ProcedureList = null;
+            ProcedureList = new ObservableCollection<PerformedProcedure>(procedures);
         }
 
         private async void ExecuteMakeProcedure()
         {
             //TODO VM
-            MakeProcedureView dialog = new MakeProcedureView(new Dialogs.Edit.Doctor.MakeProcedureVM());
+            MakeProcedureView dialog = new MakeProcedureView(new Dialogs.Edit.Doctor.MakeProcedureVM(_currentPatient));
             dialog.ShowDialog();
             LoadDataAsync();
         }
@@ -93,7 +94,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
         private async void ExecuteMakeProcedureHospitalize()
         {
             //TODO VM
-            MakeProcedureHospitalize dialog = new MakeProcedureHospitalize(new Dialogs.Edit.Doctor.MakeProcedureVM());
+            MakeProcedureHospitalize dialog = new MakeProcedureHospitalize(new Dialogs.Edit.Doctor.MakeProcedureVM(_currentPatient));
             dialog.ShowDialog();
             LoadDataAsync();
         }
