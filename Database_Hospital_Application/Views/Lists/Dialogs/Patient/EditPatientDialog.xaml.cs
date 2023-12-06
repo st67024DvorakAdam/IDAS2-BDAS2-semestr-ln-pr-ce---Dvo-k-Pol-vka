@@ -29,15 +29,11 @@ namespace Database_Hospital_Application.Views.Lists.Dialogs.Patient
             viewModel.ClosingRequest += (sender, e) => this.Close();
             InitializeComponent();
         }
-
-        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void TextBox_PreviewTextInputForBirthNumber(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = !IsTextAllowed(e.Text);
-        }
-
-        private static bool IsTextAllowed(string text)
-        {
-            return !Regex.IsMatch(text, "[^0-9]");
+            TextBox textBox = sender as TextBox;
+            string newText = textBox.Text + e.Text;
+            e.Handled = newText.Length > 10 || !Regex.IsMatch(newText, "^[0-9]*$");
         }
     }
 

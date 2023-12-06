@@ -47,7 +47,8 @@
         <TextBlock Grid.Row="5" Text="Rodné číslo" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
         <TextBox Grid.Row="6" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
              Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
-             VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding EditablePatient.BirthNumber, UpdateSourceTrigger=PropertyChanged}"/>
+             VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding EditablePatient.BirthNumber, UpdateSourceTrigger=PropertyChanged}"
+                 PreviewTextInput="TextBox_PreviewTextInputForBirthNumber"/>
 
         <TextBlock Grid.Row="7" Text="Pohlaví" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
         <ComboBox HorizontalAlignment="Center" Grid.Row="8" VerticalAlignment="Center" Background="Transparent" Width="200" 
@@ -59,7 +60,7 @@
         <TextBlock Grid.Row="9" Text="Adresa" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
         <ComboBox HorizontalAlignment="Center" Grid.Row="10" VerticalAlignment="Center" Background="Transparent" Width="200" 
             ItemsSource="{Binding AddressesList}"
-            SelectedValuePath="Id" SelectedValue="{Binding EditablePatient._address.Id, UpdateSourceTrigger=PropertyChanged}">
+            SelectedValuePath="Id" SelectedValue="{Binding EditablePatient.IdAddress, UpdateSourceTrigger=PropertyChanged}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock>
@@ -80,7 +81,7 @@
         <TextBlock Grid.Row="11" Text="Pojišťovna" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
         <ComboBox HorizontalAlignment="Center" Grid.Row="12" VerticalAlignment="Center" Background="Transparent" Width="200" 
             ItemsSource="{Binding HealthInsurancesList}"
-            SelectedValuePath="Id" SelectedValue="{Binding EditablePatient._healthInsurer.Id, UpdateSourceTrigger=PropertyChanged}">
+            SelectedValuePath="Id" SelectedValue="{Binding EditablePatient.IdHealthInsurance, UpdateSourceTrigger=PropertyChanged}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock>

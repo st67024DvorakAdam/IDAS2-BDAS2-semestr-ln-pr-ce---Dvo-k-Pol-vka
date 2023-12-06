@@ -7,7 +7,10 @@ using Database_Hospital_Application.Views.Lists.Dialogs.Patient;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics.Metrics;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
@@ -142,14 +145,14 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         private async void AddNewPatientAction(object parameter)
         {
-            if(NewPatient.BirthNumber != null && NewPatient.BirthNumber.Length < 10)
+            if (!IsFormValid()) 
             {
-                MessageBox.Show("Rodné číslo kratší než 10!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Vyplňte všechna pole!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            if (!NewPatient.Contact.Email.Contains('@') ||! NewPatient.Contact.Email.Contains('.'))
+            if (NewPatient.BirthNumber != null && NewPatient.BirthNumber.Length < 10)
             {
-                MessageBox.Show("Pole Email musí obsahovat znaky '@' a '.' !", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Rodné číslo kratší než 10!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             PatientRepo patientRepo = new PatientRepo();
@@ -166,12 +169,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         private void EditAction(object parameter)
         {
             if (!CanEdit(parameter)) return;
-            if (!SelectedPatient.Contact.Email.Contains('@') || !SelectedPatient.Contact.Email.Contains('.'))
-            {
-                MessageBox.Show("Pole Email musí obsahovat znaky '@' a '.' !", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
             EditPatientVM editVM = new EditPatientVM(SelectedPatient);
             EditPatientDialog editDialog = new EditPatientDialog(editVM);
 
@@ -207,6 +204,14 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
                    || SexEnumParser.GetStringFromEnumEnglish(patient.Sex).StartsWith(_searchText, StringComparison.OrdinalIgnoreCase);
         }
 
-
+        private bool IsFormValid()
+        {
+            return !string.IsNullOrWhiteSpace(NewPatient.FirstName) &&
+                   !string.IsNullOrWhiteSpace(NewPatient.LastName) &&
+                   !string.IsNullOrWhiteSpace(NewPatient.Sex.ToString()) &&
+                   !string.IsNullOrWhiteSpace(NewPatient.BirthNumber) &&
+                   !(NewPatient.IdAddress == null) && (NewPatient.IdAddress != 0) &&
+                   !(NewPatient.IdHealthInsurance == null) && (NewPatient.IdHealthInsurance != 0);
+        }
     }
 }

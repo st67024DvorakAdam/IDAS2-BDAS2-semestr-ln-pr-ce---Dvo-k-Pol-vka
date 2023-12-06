@@ -2,6 +2,7 @@
 using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.Models.Repositories;
 using Database_Hospital_Application.ViewModels.ViewsVM;
+using Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -81,6 +82,16 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
 
         private async Task SaveActionAsync()
         {
+            if (!IsFormValid())
+            {
+                MessageBox.Show("Vyplňte všechna pole!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (EditablePatient.BirthNumber != null && EditablePatient.BirthNumber.Length < 10)
+            {
+                MessageBox.Show("Rodné číslo kratší než 10!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             try
             {
                 PatientRepo patientRepo = new PatientRepo();
@@ -117,6 +128,16 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
             {
                 ClosingRequest?.Invoke(this, EventArgs.Empty);
             });
+        }
+
+        private bool IsFormValid()
+        {
+            return !string.IsNullOrWhiteSpace(EditablePatient.FirstName) &&
+            !string.IsNullOrWhiteSpace(EditablePatient.LastName) &&
+            !string.IsNullOrWhiteSpace(EditablePatient.Sex.ToString()) &&
+                   !string.IsNullOrWhiteSpace(EditablePatient.BirthNumber) &&
+            !(EditablePatient.IdAddress == null) && (EditablePatient.IdAddress != 0) &&
+            !(EditablePatient.IdHealthInsurance == null) && (EditablePatient.IdHealthInsurance != 0);
         }
     }
 
