@@ -96,32 +96,32 @@ namespace Database_Hospital_Application.Models.Repositories
 
         }
 
-        public async Task<ObservableCollection<Contact>> GetContactsByEmployeeIdAsync(int employeeId)
-        {
-            ObservableCollection<Contact> contacts = new ObservableCollection<Contact>();
-            string commandText = "get_contacts_by_employee_id";
+        //public async Task<ObservableCollection<Contact>> GetContactsByEmployeeIdAsync(int employeeId)
+        //{
+        //    ObservableCollection<Contact> contacts = new ObservableCollection<Contact>();
+        //    string commandText = "get_contacts_by_employee_id";
 
-            Dictionary<string, object> parameters = new Dictionary<string, object>
-            {
-                { "p_employee_id", employeeId }
-            };
+        //    Dictionary<string, object> parameters = new Dictionary<string, object>
+        //    {
+        //        { "p_employee_id", employeeId }
+        //    };
 
-            DataTable result = await dbTools.ExecuteCommandAsync(commandText, parameters);
+        //    DataTable result = await dbTools.ExecuteCommandAsync(commandText, parameters);
 
-            foreach (DataRow row in result.Rows)
-            {
-                Contact contact = new Contact
-                {
-                    Id = Convert.ToInt32(row["ID"]),
-                    Email = row["EMAIL"].ToString(),
-                    PhoneNumber = Convert.ToInt32(row["TELEFON"]),
-                    IdOfEmployee = Convert.ToInt32(row["ZAMESTNANEC_ID"]),
-                    IdOfPatient = Convert.ToInt32(row["PACIENT_ID"])
-                };
-                contacts.Add(contact);
-            }
+        //    foreach (DataRow row in result.Rows)
+        //    {
+        //        Contact contact = new Contact
+        //        {
+        //            Id = Convert.ToInt32(row["ID"]),
+        //            Email = row["EMAIL"].ToString(),
+        //            PhoneNumber = Convert.ToInt32(row["TELEFON"]),
+        //            IdOfEmployee = Convert.ToInt32(row["ZAMESTNANEC_ID"]),
+        //            IdOfPatient = Convert.ToInt32(row["PACIENT_ID"])
+        //        };
+        //        contacts.Add(contact);
+        //    }
 
-            return contacts;
-        }
+        //    return contacts;
+        //}
     }
 }

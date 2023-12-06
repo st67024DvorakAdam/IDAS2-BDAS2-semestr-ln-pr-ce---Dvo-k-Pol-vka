@@ -291,6 +291,11 @@ namespace Database_Hospital_Application.Models.Repositories
                                 Id = Convert.ToInt32(result.Rows[0]["ROLE_ID"]),
                                 Name = RoleExtensions.GetRoleDescription(Convert.ToInt32(result.Rows[0]["ROLE_ID"]))
                             },
+                            _contact = new Contact
+                            {
+                                Email = row["EMAIL"].ToString(),
+                                PhoneNumber = Convert.ToInt32(result.Rows[0]["TELEFON"])
+                            }
                         }
                     };
                     user.UserRole = RoleExtensions.GetRoleEnumFromId(user.RoleID);
