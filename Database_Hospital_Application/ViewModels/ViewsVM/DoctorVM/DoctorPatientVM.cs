@@ -137,9 +137,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
             return true;
         }
 
-        private void ExecutePersonalDetails(object parameter)
+        private async void ExecutePersonalDetails(object parameter)
         {
-            
+            PatientRepo patientRepo = new PatientRepo();
+            CurrentPatient = await patientRepo.GetPatientByBirthNumber(SearchText);
+
             var personalDetailsVM = new PersonalDetailsVM(CurrentPatient);
             var personalDetailsView = new PersonalDetailsView
             {
