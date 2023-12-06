@@ -84,17 +84,26 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
 
         private async void ExecuteMakeProcedure()
         {
-            //TODO
+            //TODO VM
+            MakeProcedureView dialog = new MakeProcedureView(new Dialogs.Edit.Doctor.MakeProcedureVM());
+            dialog.ShowDialog();
+            LoadDataAsync();
         }
 
         private async void ExecuteMakeProcedureHospitalize()
         {
-            //TODO
+            //TODO VM
+            MakeProcedureHospitalize dialog = new MakeProcedureHospitalize(new Dialogs.Edit.Doctor.MakeProcedureVM());
+            dialog.ShowDialog();
+            LoadDataAsync();
         }
 
         private async void ExecuteUpdateProcedure()
         {
-            //TODO
+            //TODO VM
+            EditProcedureView dialog = new EditProcedureView(new Dialogs.Edit.Doctor.EditPerformedProcedureVM());
+            dialog.ShowDialog();
+            LoadDataAsync();
         }
     }
 }
