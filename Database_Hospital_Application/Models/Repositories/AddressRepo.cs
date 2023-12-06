@@ -28,7 +28,7 @@ namespace Database_Hospital_Application.Models.Repositories
         public async Task<ObservableCollection<Address>> GetAllAddressesAsync()
         {
             ObservableCollection<Address> addresses = new ObservableCollection<Address>();
-            string commandText = "get_all_addresses";
+            string commandText = "address.get_all_addresses";
             DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
 
 
@@ -59,7 +59,7 @@ namespace Database_Hospital_Application.Models.Repositories
         public async Task<int> AddAddress(Address address)
         {
             
-            string commandText = "add_address";
+            string commandText = "address.add_address";
 
             var parameters = new List<OracleParameter>
         {
@@ -83,7 +83,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<int> DeleteAddress(int id)
         {
-            string commandText = "delete_address_by_id";
+            string commandText = "address.delete_address_by_id";
 
             var parameters = new Dictionary<string, object>
             {
@@ -95,7 +95,7 @@ namespace Database_Hospital_Application.Models.Repositories
         }
         public async Task<int> UpdateAddress(Address address)
         {
-            string commandText = "update_address";
+            string commandText = "address.update_address";
 
             var parameters = new Dictionary<string, object>
             {

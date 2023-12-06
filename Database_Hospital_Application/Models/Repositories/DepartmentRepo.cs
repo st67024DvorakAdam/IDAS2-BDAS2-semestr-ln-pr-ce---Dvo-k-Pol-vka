@@ -23,7 +23,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<ObservableCollection<Department>> GetAllDepartmentsAsync()
         {
-            string commandText = "get_all_departments";
+            string commandText = "department.get_all_departments";
             DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
 
             departments.Clear(); 
@@ -46,7 +46,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task AddDepartment(Department department)
         {
-            string commandText = "add_department";
+            string commandText = "department.add_department";
             var parameters = new Dictionary<string, object>
             {
                 { "p_nazev", department.Name }
@@ -58,7 +58,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<int> DeleteDepartment(int id)
         {
-            string commandText = "delete_department_by_id";
+            string commandText = "department.delete_department_by_id";
             var parameters = new Dictionary<string, object>
             {
                 { "p_id", id }
@@ -68,7 +68,7 @@ namespace Database_Hospital_Application.Models.Repositories
         }
         public async Task<int> UpdateDepartment(Department department)
         {
-            string commandText = "update_department";
+            string commandText = "department.update_department";
 
             var parameters = new Dictionary<string, object>
             {
@@ -87,7 +87,7 @@ namespace Database_Hospital_Application.Models.Repositories
         //metoda pro načtení výpisu oddělení i s počtem zaměstanců
         public async Task<string> GetNumberOfEmployeesOnDepartments()
         {
-            string commandText = "spocitat_zamestnance_na_oddeleni";
+            string commandText = "department.spocitat_zamestnance_na_oddeleni";
 
             OracleParameter op = new OracleParameter("v_output", OracleDbType.Varchar2, ParameterDirection.Output);
             op.Size = 4000;

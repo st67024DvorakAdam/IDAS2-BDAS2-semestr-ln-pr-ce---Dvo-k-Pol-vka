@@ -25,7 +25,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<ObservableCollection<Contact>> GetAllContactsAsync()
         {
-            string commandText = "get_all_contacts";
+            string commandText = "contact.get_all_contacts";
             DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
 
             contacts.Clear(); // Vyčistíme stávající kolekci před načtením nových dat
@@ -51,7 +51,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task AddContact(Contact contact)
         {
-            string commandText = "add_contact";
+            string commandText = "contact.add_contact";
             var parameters = new Dictionary<string, object>
             {
                 { "p_email", contact.Email },
@@ -66,7 +66,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<int> DeleteContact(int id)
         {
-            string commandText = "delete_contact_by_id";
+            string commandText = "contact.delete_contact_by_id";
             var parameters = new Dictionary<string, object>
             {
                 { "p_id", id }
@@ -77,7 +77,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<int> UpdateContact(Contact contact)
         {
-            string commandText = "update_contact";
+            string commandText = "contact.update_contact";
 
             var parameters = new Dictionary<string, object>
             {
