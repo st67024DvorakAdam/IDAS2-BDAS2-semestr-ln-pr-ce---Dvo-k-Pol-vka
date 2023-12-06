@@ -27,6 +27,9 @@
         <DataTemplate DataType="{x:Type vm1:AllPreceptedPillsVM}">
             <local1:AllPreceptedPillsView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:HospitalizationVM}">
+            <local2:HospitalizaceView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
 
@@ -82,6 +85,17 @@
                              Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
                             <TextBlock Text="Předepsané léky" Style="{StaticResource TextStyle}" HorizontalAlignment="Stretch" Margin="70,0,54,0" />
 
+                        </Grid>
+
+                    </Menu:Button>
+
+                    <Menu:Button Style="{StaticResource Button}"
+                        Command="{Binding HospitalizaceCommand}">
+
+                        <Grid>
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-hospital-bed-30.png?raw=true"
+                             Height="30" Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
+                            <TextBlock Text="Hospitalizace" Style="{StaticResource TextStyle}" />
                         </Grid>
 
                     </Menu:Button>

@@ -32,6 +32,17 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             }
         }
 
+        private ObservableCollection<Hospitalization> _hospitalizationsListForSpecificallyEmployee;
+        public ObservableCollection<Hospitalization> HospitalizationsListForSpecificallyEmployee
+        {
+            get { return _hospitalizationsListForSpecificallyEmployee; }
+            set
+            {
+                _hospitalizationsListForSpecificallyEmployee = value;
+                OnPropertyChange(nameof(HospitalizationsListForSpecificallyEmployee));
+            }
+        }
+
         private ObservableCollection<Patient> _patientsList;
 
         public ObservableCollection<Patient> PatientsList
@@ -94,6 +105,28 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             NewHospitalization.DateIn = DateTime.Today;
             LoadHospitalizationsAsync();
+
+            LoadPatientsAsync();
+            LoadDepartmentsAsync();
+            HospitalizationView = CollectionViewSource.GetDefaultView(HospitalizationsList);
+            HospitalizationView.Filter = HospitalizationFilter;
+            InitializeCommands();
+        }
+
+        //konstruktor který je využíván pro načtení hospitalizací např u sestry na jejím oddělení
+        public HospitalizationVM(Employee employee)
+        {
+            NewHospitalization.DateIn = DateTime.Today;
+            LoadHospitalizationsAsync();
+
+            HospitalizationsListForSpecificallyEmployee = new ObservableCollection<Hospitalization>();
+            foreach (var hospitalization in HospitalizationsList)
+            {
+                if (hospitalization.DepartmentId == employee._department.Id)
+                {
+                    HospitalizationsListForSpecificallyEmployee.Add(hospitalization);
+                }
+            }
 
             LoadPatientsAsync();
             LoadDepartmentsAsync();

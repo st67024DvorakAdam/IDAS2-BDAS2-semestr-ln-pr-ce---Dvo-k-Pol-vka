@@ -43,9 +43,12 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.NurseVM
 
         public ICommand ProfileCommand { get; }
         public ICommand DosageForHospitalizatedCommand { get; }
+        public ICommand HospitalizaceCommand { get; }
 
         private void Profile(object obj) => CurrentView = new CurrUserVM(CurrentUser);
         private void DosageForHospitalizated(object obj) => CurrentView = new DosageForHospitalizatedVM(CurrentUser);
+        private void Hospitalizace(object obj) => CurrentView = new HospitalizationVM(CurrentUser.Employee);
+
 
         public NurseNavigateVM(User user)
         {
@@ -57,6 +60,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.NurseVM
             //Inicializace příkazů
             ProfileCommand = new RelayCommand(Profile);
             DosageForHospitalizatedCommand = new RelayCommand(DosageForHospitalizated);
+            HospitalizaceCommand = new RelayCommand(Hospitalizace);
         }
     }
 }

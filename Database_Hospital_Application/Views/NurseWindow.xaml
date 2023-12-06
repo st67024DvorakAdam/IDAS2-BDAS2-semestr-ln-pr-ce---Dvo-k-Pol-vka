@@ -19,6 +19,9 @@
         <DataTemplate DataType="{x:Type vm1:DosageForHospitalizatedVM}">
             <local1:DosageForHospitalizatedView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:HospitalizationVM}">
+            <local1:HospitalizationsOnNurseDepartment/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
 
@@ -57,7 +60,7 @@
                     </Menu:Button>
 
                     <Menu:Button Style="{StaticResource Button}"
-                         Command="{Binding DosageForHospitalizatedCommand}"> 
+                         Command="{Binding DosageForHospitalizatedCommand}">
 
                         <Grid>
                             <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-person-30.png?raw=true"
@@ -66,12 +69,17 @@
                             <TextBlock Text="Dávkování léků"
                        Style="{StaticResource TextStyle}" />
 
-                        </Grid> 
+                        </Grid>
 
                     </Menu:Button>
-
+                    <Menu:Button Style="{StaticResource Button}" Command="{Binding HospitalizaceCommand}">
+                        <Grid>
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-hospital-bed-30.png?raw=true"
+                            Height="30" Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
+                            <TextBlock Text="Hospitalizace" Style="{StaticResource TextStyle}" />
+                        </Grid>
+                    </Menu:Button>
                 </StackPanel>
-
             </Grid>
 
             <Border Grid.Column="1" Margin="15" Background="#1a1f1f" CornerRadius="20" Height="920">
