@@ -28,7 +28,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<ObservableCollection<Employee>> GetAllEmployeesAsync()
         {
-            string commandText = "get_all_employees";
+            string commandText = "employee.get_all_employees";
             DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
 
             employees.Clear(); // Vyčistíme stávající kolekci před načtením nových dat
@@ -82,7 +82,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task AddEmployee(Employee employee)
         {
-                string commandText = "add_employee";
+                string commandText = "employee.add_employee";
                 var parameters = new Dictionary<string, object>
             {
                 { "p_jmeno", employee.FirstName },
@@ -106,7 +106,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<int> DeleteEmployee(int id)
         {
-            string commandText = "delete_employee_by_id";
+            string commandText = "employee.delete_employee_by_id";
             var parameters = new Dictionary<string, object>
             {
                 { "p_id", id }
@@ -117,7 +117,7 @@ namespace Database_Hospital_Application.Models.Repositories
         {
             if (hashThePassword) employee.Password = PasswordHasher.HashPassword(employee.Password, employee.Salt);
 
-            string commandText = "update_employee";
+            string commandText = "employee.update_employee";
 
             var parameters = new Dictionary<string, object>
             {
@@ -145,7 +145,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<Employee> GetEmployeeByIdAsync(int employeeId)
         {
-            string commandText = "get_employee_by_id";
+            string commandText = "employee.get_employee_by_id";
 
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
@@ -186,7 +186,7 @@ namespace Database_Hospital_Application.Models.Repositories
         public async Task<ObservableCollection<string>> GetListOfSubordinates(int IdOfEmployee)
         {
             ObservableCollection<string> subordinates = new ObservableCollection<string>();
-            string commandText = "get_subordinates";
+            string commandText = "employee.get_subordinates";
             var parameters = new Dictionary<string, object>
             {
                 { "p_id", IdOfEmployee }

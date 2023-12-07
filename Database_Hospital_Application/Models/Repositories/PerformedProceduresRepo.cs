@@ -23,7 +23,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<ObservableCollection<PerformedProcedure>> GetAllPerformedProceduresAsync()
         {
-            string commandText = "get_all_performed_procedures";
+            string commandText = "performed_procedure.get_all_performed_procedures";
             DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
 
             performedProcedures.Clear();
@@ -50,7 +50,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task AddPerformedProcedure(PerformedProcedure performedProcedure)
         {
-            string commandText = "add_performed_procedure";
+            string commandText = "performed_procedure.add_performed_procedure";
 
             var parameters = new Dictionary<string, object>
             {
@@ -66,7 +66,7 @@ namespace Database_Hospital_Application.Models.Repositories
         public async Task<ObservableCollection<PerformedProcedure>> GetAllPerformedProceduresAsync(int patientId)
         {
             ObservableCollection<PerformedProcedure> performedProcedures = new ObservableCollection<PerformedProcedure>();
-            string commandText = "get_all_performed_procedures_by_patient_id";
+            string commandText = "performed_procedure.get_all_performed_procedures_by_patient_id";
 
             var parameters = new Dictionary<string, object>
             {
@@ -104,7 +104,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<int> DeletePerformedProcedure(int id)
         {
-            string commandText = "delete_performed_procedure_by_id";
+            string commandText = "performed_procedure.delete_performed_procedure_by_id";
             var parameters = new Dictionary<string, object>
             {
                 { "p_id", id }
@@ -114,7 +114,7 @@ namespace Database_Hospital_Application.Models.Repositories
         }
         public async Task<int> UpdatePerformedProcedure(PerformedProcedure performedProcedure)
         {
-            string commandText = "update_performed_procedure";
+            string commandText = "performed_procedure.update_performed_procedure";
 
             var parameters = new Dictionary<string, object>
             {

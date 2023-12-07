@@ -21,7 +21,7 @@ namespace Database_Hospital_Application.Models.Repositories
         {
             try
             {
-                string storedProcedure = "add_complete_employee";
+                string storedProcedure = "employee.add_complete_employee";
 
                 OracleParameter pInsertingNewPhoto = new OracleParameter("p_vkladani_fota", OracleDbType.Int32)
                 {

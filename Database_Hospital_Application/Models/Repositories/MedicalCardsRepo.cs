@@ -23,7 +23,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<ObservableCollection<MedicalCard>> GetAllMedicalCardsAsync()
         {
-            string commandText = "get_all_medical_cards"; 
+            string commandText = "medical_card.get_all_medical_cards"; 
             DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
 
             medicalCards.Clear(); // Vyčistíme stávající kolekci před načtením nových dat
@@ -67,7 +67,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task AddMedicalCard(MedicalCard medicalCard)
         {
-             string commandText = "add_medical_card";
+             string commandText = "medical_card.add_medical_card";
                 var parameters = new Dictionary<string, object>
                 {
                     { "p_pacient_id", medicalCard.IdOfPatient },
@@ -81,7 +81,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<int> DeleteMedicalCard(MedicalCard medicalCard)
         {
-            string commandText = "delete_medical_card_by_id";
+            string commandText = "medical_card.delete_medical_card_by_id";
             var parameters = new Dictionary<string, object>
             {
                 { "p_id", medicalCard.Id }
@@ -91,7 +91,7 @@ namespace Database_Hospital_Application.Models.Repositories
         }
         public async Task<int> UpdateMedicalCard(MedicalCard medicalCard)
         {
-            string commandText = "update_medical_card";
+            string commandText = "medical_card.update_medical_card";
 
             var parameters = new Dictionary<string, object>
             {

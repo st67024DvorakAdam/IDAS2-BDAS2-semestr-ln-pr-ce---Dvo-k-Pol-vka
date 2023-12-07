@@ -20,7 +20,7 @@ namespace Database_Hospital_Application.Models.Repositories.GuestRepo
         public async Task<ObservableCollection<string>> GetListOfEmployeesOnDepartments()
         {
                 ObservableCollection<string> employeesOnDepartments = new ObservableCollection<string>();
-                string commandText = "get_doktori_na_oddeleni";
+                string commandText = "unclassified.get_doktori_na_oddeleni";
 
                 DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
                 foreach (DataRow row in result.Rows)

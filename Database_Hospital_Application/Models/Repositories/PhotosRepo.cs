@@ -27,7 +27,7 @@ namespace Database_Hospital_Application.Models.Repositories
         public async Task<ObservableCollection<Foto>> GetAllPhotosAsync()
         {
             ObservableCollection<Foto> photos = new ObservableCollection<Foto>();
-            string commandText = "get_all_photos";
+            string commandText = "photo.get_all_photos";
             DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
 
 
@@ -56,7 +56,7 @@ namespace Database_Hospital_Application.Models.Repositories
                     else photo.Image = new BitmapImage(new Uri("https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/raw/main/Images/no-profile-photo-icon.png"));
 
 
-                    string commandText2 = "get_all_photos_additional_info";
+                    string commandText2 = "photo.get_all_photos_additional_info";
                     Dictionary<string, object> parameters2 = new Dictionary<string, object>
                 {
                     { "p_foto_id", photo.Id }
@@ -78,7 +78,7 @@ namespace Database_Hospital_Application.Models.Repositories
         {
             try
             {
-                string storedProcedure = "add_photo";
+                string storedProcedure = "photo.add_photo";
 
                 OracleParameter pPhotoBlob = new OracleParameter("p_photo_blob", OracleDbType.Blob)
                 {
@@ -112,7 +112,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<int> DeletePhoto(int id)
         {
-            string commandText = "delete_photo_by_id";
+            string commandText = "photo.delete_photo_by_id";
             var parameters = new Dictionary<string, object>
             {
                 { "p_id", id }
@@ -124,7 +124,7 @@ namespace Database_Hospital_Application.Models.Repositories
         {
             try
             {
-                string storedProcedure = "update_photo";
+                string storedProcedure = "photo.update_photo";
 
                 OracleParameter pId = new OracleParameter("p_Id", OracleDbType.Int32)
                 {
@@ -171,7 +171,7 @@ namespace Database_Hospital_Application.Models.Repositories
         public async Task<Foto> GetBasicPhotoAsync()
         {
             Foto photo = new Foto();
-            string commandText = "GetEmployeeImage";
+            string commandText = "photo.GetEmployeeImage";
             var parameters = new Dictionary<string, object>
             {
                 { "p_id", 1 }
