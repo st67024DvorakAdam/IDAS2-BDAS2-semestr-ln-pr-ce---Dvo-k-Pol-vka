@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -121,6 +122,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         private async void AddNewAction(object parameter)
         {
+            if(NewDrug.Dosage == 0)
+            {
+                MessageBox.Show("Dávkování léku nesmí být 0!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             DrugsRepo drugsRepo = new DrugsRepo();
             await drugsRepo.AddDrug(NewDrug);
             await LoadDrugsAsync();
@@ -135,7 +141,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         private void EditAction(object parameter)
         {
             if (!CanEdit(parameter)) return;
-
 
             EditDrugVM editVM = new EditDrugVM(SelectedDrug);
             EditDrugDialog editDialog = new EditDrugDialog(editVM);

@@ -61,6 +61,11 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
 
         private async Task SaveActionAsync()
         {
+            if (EditableDrug.Dosage == 0)
+            {
+                MessageBox.Show("Dávkování léku nesmí být 0!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             try
             {
                 DrugsRepo drugsRepo = new DrugsRepo();

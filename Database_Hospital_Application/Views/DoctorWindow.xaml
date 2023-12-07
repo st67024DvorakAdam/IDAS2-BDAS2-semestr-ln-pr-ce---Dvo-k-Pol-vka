@@ -7,8 +7,10 @@
         xmlns:Menu="clr-namespace:Database_Hospital_Application.Utils" 
         xmlns:vm="clr-namespace:Database_Hospital_Application.ViewModels.ViewsVM"
         xmlns:vm1="clr-namespace:Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM" 
+        xmlns:vm2="clr-namespace:Database_Hospital_Application.ViewModels.ViewsVM.AssistantVM" 
         xmlns:local1="clr-namespace:Database_Hospital_Application.Views.Doctor"
         xmlns:local2="clr-namespace:Database_Hospital_Application.Views.Doctor.Statistics"
+        xmlns:local3="clr-namespace:Database_Hospital_Application.Views.Assistant"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
         Title="Hospital UPCE" Height="1000" Width="1500" MinHeight="980" MinWidth="1050"
@@ -26,8 +28,9 @@
         <DataTemplate DataType="{x:Type vm1:DoctorPatientVM}">
             <local1:PatientView/>
         </DataTemplate>
-
-        
+        <DataTemplate DataType="{x:Type vm2:GeneralInfoVM}">
+            <local3:GeneralInfoView/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type vm1:NewPatientVM}">
             <local1:NewPatientView/>
         </DataTemplate>
@@ -173,6 +176,19 @@
                             <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-statistics-30.png?raw=true" Height="30"
                              Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
                             <TextBlock Text="Statistiky" Style="{StaticResource TextStyle}" HorizontalAlignment="Stretch" Margin="70,0,54,0" />
+
+                        </Grid>
+
+                    </Menu:Button>
+                    <Menu:Button Style="{StaticResource Button}"
+                        Command="{Binding GeneralInfoCommand}">
+
+                        <Grid>
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-info-30.png?raw=true"
+                            Height="30"
+                            Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
+                            <TextBlock Text="Info"
+                             Style="{StaticResource TextStyle}" />
 
                         </Grid>
 

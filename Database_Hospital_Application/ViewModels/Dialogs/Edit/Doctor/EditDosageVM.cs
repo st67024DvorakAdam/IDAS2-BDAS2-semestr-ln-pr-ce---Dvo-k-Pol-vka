@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
@@ -61,6 +62,11 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
 
         private async void SaveDosage()
         {
+            if (NewDosage == 0)
+            {
+                MessageBox.Show("Dávkování léku nesmí být 0!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             DrugsRepo repo = new DrugsRepo();
             _drug.Dosage = _newDosage;
             await repo.UpdateDosageAsync(_drug, _illness);

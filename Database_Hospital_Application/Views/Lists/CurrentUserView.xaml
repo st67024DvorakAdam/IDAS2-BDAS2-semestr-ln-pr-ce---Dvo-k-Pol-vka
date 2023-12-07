@@ -118,7 +118,7 @@
 
                     <TextBlock Text="Role" Style="{StaticResource MySecondTextBlockStyle}" Grid.Row="2"/>
                     <TextBlock x:Name="txtRoleId" Style="{StaticResource MyTextBlockStyle}" Grid.Row="3"
-                   Text="{Binding CurrentUser.UserRole}">
+                   Text="{Binding Role}">
             </TextBlock>
 
             <TextBlock Text="Jméno" Style="{StaticResource MySecondTextBlockStyle}" Grid.Row="4"/>

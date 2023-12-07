@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
@@ -54,6 +55,11 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
 
         private async void PrescriptPill()
         {
+            if (_dosage == 0)
+            {
+                MessageBox.Show("Dávkování léku nesmí být 0!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             DrugsRepo repo = new DrugsRepo();
             
             await repo.PrescriptDrugForIllness(new Drug(_pill, _dosage, _currentUser.Id), _selectedIllness);

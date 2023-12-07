@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewVM
@@ -90,7 +91,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
 
         private void AddIllness()
         {
-            // TODO
             AddNewIllnessView dialog = new AddNewIllnessView(new AddNewIllnessVM(_patient));
 
             dialog.ShowDialog();
@@ -99,7 +99,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
 
         private void PrescriptPill()
         {
-            // TODO
             PrescriptPillView dialog = new PrescriptPillView(new PrescriptPillVM(_patient, _currentUser, _selectedIllness.Illness));
 
             dialog.ShowDialog();
@@ -108,7 +107,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
 
         private async void UpdateDosage()
         {
-
             _selectedIllness.PrescriptedPills.Employee_id = _currentUser.Employee.Id;
             EditDosageView dialog = new EditDosageView(new EditDosageVM(_selectedIllness.PrescriptedPills, _selectedIllness.Illness));
 

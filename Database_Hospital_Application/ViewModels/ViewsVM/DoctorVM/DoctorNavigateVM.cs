@@ -1,5 +1,6 @@
 ﻿using Database_Hospital_Application.Commands;
 using Database_Hospital_Application.Models.Entities;
+using Database_Hospital_Application.ViewModels.ViewsVM.AssistantVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,6 +52,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
         public ICommand ProfileCommand { get; }
         public ICommand StatisticsCommand { get; }
         public ICommand PatientsListCommand { get; }
+        public ICommand GeneralInfoCommand { get; }
 
         // TODO udělat VMs 
         private void Profile(object obj) => CurrentView = new CurrUserVM(CurrentUser);
@@ -61,6 +63,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
         private void NewPatient(object obj) => CurrentView = new NewPatientVM();
         private void Statisctics(object obj) => CurrentView = new StatisticsVM();
         private void Patients(object obj) => CurrentView = new PatientVM();
+        private void GeneralInfo(object obj) => CurrentView = new GeneralInfoVM();
 
         public DoctorNavigateVM(User user)
         {
@@ -78,6 +81,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
             SubordinatesCommand = new RelayCommand(Subordinates);
             StatisticsCommand = new RelayCommand(Statisctics);
             PatientsListCommand = new RelayCommand(Patients);
+            GeneralInfoCommand = new RelayCommand(GeneralInfo);
         }
     }
 }

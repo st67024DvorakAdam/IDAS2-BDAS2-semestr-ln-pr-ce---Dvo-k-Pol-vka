@@ -22,6 +22,17 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 {
     public class CurrUserVM : BaseViewModel
     {
+        private string _role;
+        public string Role
+        {
+            get => _role;
+            set
+            {
+                _role = value;
+                OnPropertyChange(nameof(Role));
+            }
+        }
+
         private OpenFileDialogService fileDialogService;
 
         private User _currentUser;
@@ -39,6 +50,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         public CurrUserVM(User currentUser)
         {
             CurrentUser = currentUser;
+            Role = RoleExtensions.GetEnumDescription(currentUser.UserRole);
             this.fileDialogService = new OpenFileDialogService();
         }
 
