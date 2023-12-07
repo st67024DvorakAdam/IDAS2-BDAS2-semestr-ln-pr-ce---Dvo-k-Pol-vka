@@ -42,22 +42,5 @@ namespace Database_Hospital_Application.Models.Repositories
             return logs;
         }
 
-        
-        public void AddLog(Log log)
-        {
-            
-        }
-
-        
-        public void DeleteLog(int id)
-        {
-            
-        }
-
-        
-        public void UpdateLog(Log log)
-        {
-            
-        }
     }
 }

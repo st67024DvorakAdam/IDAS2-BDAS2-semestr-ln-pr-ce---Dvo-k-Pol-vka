@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Database_Hospital_Application.Views.Lists"
         xmlns:local1="clr-namespace:Database_Hospital_Application.Views.Nurse"
+        xmlns:local2="clr-namespace:Database_Hospital_Application.Views.Doctor"
         xmlns:vm="clr-namespace:Database_Hospital_Application.ViewModels.ViewsVM"
         xmlns:vm1="clr-namespace:Database_Hospital_Application.ViewModels.ViewsVM.NurseVM"
+        xmlns:vm2="clr-namespace:Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM"
         xmlns:Menu="clr-namespace:Database_Hospital_Application.Utils" 
         mc:Ignorable="d"
         Title="Hospital UPCE" Height="1000" Width="1500" MinHeight="980" MinWidth="1050"
@@ -21,6 +23,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:HospitalizationVM}">
             <local1:HospitalizationsOnNurseDepartment/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm2:DoctorPatientVM}">
+            <local2:PatientView/>
         </DataTemplate>
     </Window.Resources>
     <Grid>
@@ -54,6 +59,21 @@
                                    Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
                             <TextBlock Text="Profil"
                                        Style="{StaticResource TextStyle}" />
+
+                        </Grid>
+
+                    </Menu:Button>
+
+                    <Menu:Button Style="{StaticResource Button}"
+                         Command="{Binding PatientCommand}"
+                         >      
+
+                        <Grid>
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-patient-30.png?raw=true"
+                        Height="30"
+                        Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
+                                                <TextBlock Text="Pacient"
+                            Style="{StaticResource TextStyle}" />   
 
                         </Grid>
 

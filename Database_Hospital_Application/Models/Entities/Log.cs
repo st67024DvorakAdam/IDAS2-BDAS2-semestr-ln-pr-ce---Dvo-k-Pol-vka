@@ -14,9 +14,7 @@ namespace Database_Hospital_Application.Models.Entities
         public OracleTimeStamp TimeStamp { get; set; }
         public string Table { get; set; }
         public string OldState { get; set; } 
-        public string NewState { get; set; } 
-
-        
+        public string NewState { get; set; }   
         
     }
 }
