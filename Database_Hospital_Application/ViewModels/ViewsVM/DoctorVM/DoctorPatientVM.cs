@@ -11,6 +11,7 @@ using Database_Hospital_Application.Commands;
 using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.Models.Repositories;
 using Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewVM;
+using Database_Hospital_Application.Views.Assistant;
 using Database_Hospital_Application.Views.Doctor.Patient;
 using Database_Hospital_Application.Views.Nurse;
 
@@ -226,7 +227,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
                     break;
                 //NURSE
                 case 3:
-                    performedProcedureView = new PerformedProceduresView
+                    performedProcedureView = new PerformedProceduresNurseAssistantView
                     {
                         DataContext = new PerformedProcedureVM(_currentPatient)
                     };
@@ -234,7 +235,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
                     break;
                 // ASSISTANT
                 case 4:
-                    performedProcedureView = new PerformedProceduresView
+                    performedProcedureView = new PerformedProceduresNurseAssistantView
                     {
                         DataContext = new PerformedProcedureVM(_currentPatient)
                     };
@@ -262,7 +263,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
                     break;
                 //NURSE
                 case 3:
-                    actualIllnessView = new ActualIllnessView
+                    actualIllnessView = new ActualIllnessNurseView
                     {
                         DataContext = new ActualIllnessVM(CurrentPatient, _currentUser)
                     };
@@ -271,7 +272,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
                     break;
                 // ASSISTANT
                 case 4:
-                    actualIllnessView = new ActualIllnessView
+                    actualIllnessView = new ActualIllnessNurseView
                     {
                         DataContext = new ActualIllnessVM(CurrentPatient, _currentUser)
                     };
@@ -299,7 +300,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
                     break;
                 //NURSE
                 case 3:
-                    hospitalizationView = new HospitalizationView
+                    hospitalizationView = new HospitalizationNurseView
                     {
                         DataContext = new Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewVM.HospitalizationVM(CurrentPatient, _currentUser)
                     };
@@ -308,7 +309,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
                     break;
                 // ASSISTANT
                 case 4:
-                    hospitalizationView = new HospitalizationView
+                    hospitalizationView = new HospitalizationAssistantView
                     {
                         DataContext = new Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewVM.HospitalizationVM(CurrentPatient, _currentUser)
                     };
