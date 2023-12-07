@@ -25,7 +25,7 @@ namespace Database_Hospital_Application.Models.Repositories
         public async Task<ObservableCollection<Drug>> GetAllDrugsAsync()
         {
             ObservableCollection<Drug> drugs = new ObservableCollection<Drug>();
-            string commandText = "get_all_drugs";
+            string commandText = "drug.get_all_drugs";
             DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
 
 
@@ -53,7 +53,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task AddDrug(Drug drug)
         {
-            string commandText = "add_drug";
+            string commandText = "drug.add_drug";
             var parameters = new Dictionary<string, object>
             {
                 { "p_nazev", drug.Name },
@@ -66,7 +66,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task PrescriptDrugForIllness(Drug drug, Illness illness)
         {
-            string commandText = "add_drug_for_illness";
+            string commandText = "drug.add_drug_for_illness";
             var parameters = new Dictionary<string, object>
             {
                 { "p_nazev", drug.Name },
@@ -80,7 +80,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<int> DeleteDrug(int id)
         {
-            string commandText = "delete_drug_by_id";
+            string commandText = "drug.delete_drug_by_id";
             var parameters = new Dictionary<string, object>
             {
                 { "p_id", id }
@@ -90,7 +90,7 @@ namespace Database_Hospital_Application.Models.Repositories
         }
         public async Task<int> UpdateDrug(Drug drug)
         {
-            string commandText = "update_drug";
+            string commandText = "drug.update_drug";
 
             var parameters = new Dictionary<string, object>
             {
@@ -105,7 +105,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<int> UpdateDosageAsync(Drug drug, Illness illness)
         {
-            string commandText = "update_pills_dosage";
+            string commandText = "drug.update_pills_dosage";
 
             var parameters = new Dictionary<string, object>
             {
@@ -131,7 +131,7 @@ namespace Database_Hospital_Application.Models.Repositories
         public async Task<ObservableCollection<DosageForHospitalizated>> GetDosageForHospitalizatedPatients(User user)
         {
             ObservableCollection<DosageForHospitalizated> drugs = new ObservableCollection<DosageForHospitalizated>();
-            string commandText = "get_dosage_for_hospitalizated";
+            string commandText = "drug.get_dosage_for_hospitalizated";
             Dictionary<string, object> parameters = new Dictionary<string, object>
                 {
                     { "p_id", user.Employee._department.Id }
@@ -180,7 +180,7 @@ namespace Database_Hospital_Application.Models.Repositories
         public async Task<ObservableCollection<DrugsPreceptedByDoctor>> GetPreceptedDrugByDoctor(User user)
         {
             ObservableCollection<DrugsPreceptedByDoctor> drugs = new ObservableCollection<DrugsPreceptedByDoctor>();
-            string commandText = "get_drugs_issued_by_doctor";
+            string commandText = "drug.get_drugs_issued_by_doctor";
             Dictionary<string, object> parameters = new Dictionary<string, object>
                 {
                     { "p_doktor_id", user.Employee.Id }
@@ -222,10 +222,12 @@ namespace Database_Hospital_Application.Models.Repositories
         }
 
         //metoda která vypíše všechny předepsané léky od všech lékařů - pohled pro asistenta
+
+       
         public async Task<ObservableCollection<DrugsPreceptedByDoctor>> GetAllPreceptedDrugs()
         {
             ObservableCollection<DrugsPreceptedByDoctor> drugs = new ObservableCollection<DrugsPreceptedByDoctor>();
-            string commandText = "get_all_precepted_drugs";
+            string commandText = "drug.get_all_precepted_drugs";
             DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
 
 
@@ -266,7 +268,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<int> DeleteDrugFromIllness(Drug prescriptedPills, Illness illness)
         {
-            string commandText = "delete_drug_from_illness";
+            string commandText = "drug.delete_drug_from_illness";
             var parameters = new Dictionary<string, object>
             {
                 { "p_pill_id", prescriptedPills.Id },

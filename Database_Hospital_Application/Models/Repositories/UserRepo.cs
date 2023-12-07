@@ -54,7 +54,7 @@ namespace Database_Hospital_Application.Models.Repositories
                 result3 = await dbTools.ExecuteCommandAsync(commandText3, parameters3); 
             }
 
-            string commandText4 = "GetEmployeeImage";
+            string commandText4 = "photo.GetEmployeeImage";
 
             Dictionary<string, object> parameters4 = new Dictionary<string, object>
             {
@@ -188,7 +188,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<Foto> GetUsersPhoto(User user)
         {
-            string commandText4 = "GetEmployeeImage";
+            string commandText4 = "photo.GetEmployeeImage";
 
             Dictionary<string, object> parameters4 = new Dictionary<string, object>
             {
@@ -256,7 +256,7 @@ namespace Database_Hospital_Application.Models.Repositories
         public async Task<ObservableCollection<User>> GetAllUsersAsync()
         {
             ObservableCollection<User> users = new ObservableCollection<User>();
-            string commandText = "get_all_employees";
+            string commandText = "employee.get_all_employees";
             DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
 
 
@@ -328,7 +328,7 @@ namespace Database_Hospital_Application.Models.Repositories
         {
             try
             {
-                string storedProcedure = "update_employee_photo";
+                string storedProcedure = "photo.update_employee_photo";
 
                 
                 OracleParameter pEmployeeId = new OracleParameter("p_employee_id", OracleDbType.Int32)
@@ -364,7 +364,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
 
 
-                string commandText2 = "get_employee_by_id";
+                string commandText2 = "employee.get_employee_by_id";
                 Dictionary<string, object> parameters2 = new Dictionary<string, object> { { "p_id", employeeId } };
                 DataTable result = await dbTools.ExecuteCommandAsync(commandText2, parameters2);
 
@@ -404,7 +404,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<int> UpdateUser(User user)
         {
-            string commandText2 = "get_employee_by_id";
+            string commandText2 = "employee.get_employee_by_id";
             Dictionary<string, object> parameters2 = new Dictionary<string, object> { { "p_id", user.Id } };
             DataTable result = await dbTools.ExecuteCommandAsync(commandText2, parameters2);
 

@@ -22,7 +22,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<ObservableCollection<IllnessDrugConnection>> GetAllIllness_drugConnectionsAsync()
         {
-            string commandText = "get_all_illness_drugConnection";
+            string commandText = "illness_drug.get_all_illness_drugConnection";
             DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
 
             illness_drugConnections.Clear(); // Vyčistíme stávající kolekci před načtením nových dat
@@ -57,7 +57,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task AddIllnessDrugConnection(IllnessDrugConnection illnessDrugConnection)
         {
-            string commandText = "add_illnessDrugConnection";
+            string commandText = "illness_drug.add_illnessDrugConnection";
             var parameters = new Dictionary<string, object>
             {
                 { "p_UZITY_LEK_ID", illnessDrugConnection._drug.Id },
@@ -70,7 +70,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<int> DeleteIllnessDrugConnection(IllnessDrugConnection illnessDrugConnection)
         {
-            string commandText = "delete_illnessDrugConnection";
+            string commandText = "illness_drug.delete_illnessDrugConnection";
             var parameters = new Dictionary<string, object>
             {
                 { "p_UZITY_LEK_ID", illnessDrugConnection._drug.Id },

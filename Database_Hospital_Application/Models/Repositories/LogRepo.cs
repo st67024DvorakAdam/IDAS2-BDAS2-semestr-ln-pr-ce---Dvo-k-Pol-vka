@@ -20,7 +20,7 @@ namespace Database_Hospital_Application.Models.Repositories
         public async Task<ObservableCollection<Log>> GetAllLogsAsync()
         {
             ObservableCollection<Log> logs = new ObservableCollection<Log>();
-            string commandText = "get_all_logs"; 
+            string commandText = "logs.get_all_logs"; 
             DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
 
             if (result.Rows.Count > 0)

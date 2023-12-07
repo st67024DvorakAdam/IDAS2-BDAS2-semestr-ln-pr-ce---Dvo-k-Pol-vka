@@ -24,7 +24,7 @@ namespace Database_Hospital_Application.Models.Repositories
         public async Task<ObservableCollection<Hospitalization>> GetAllHospitalizationsAsync()
         {
             ObservableCollection<Hospitalization> hospitalizations = new ObservableCollection<Hospitalization>();
-            string commandText = "get_all_hospitalizations";
+            string commandText = "hospitalization.get_all_hospitalizations";
             DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
 
             if (result.Rows.Count > 0)
@@ -54,7 +54,7 @@ namespace Database_Hospital_Application.Models.Repositories
         public async Task<ObservableCollection<Hospitalization>> GetAllHospitalizationsAsync(int patientId)
         {
             ObservableCollection<Hospitalization> hospitalizations = new ObservableCollection<Hospitalization>();
-            string commandText = "get_all_hospitalizations_by_patient_id";
+            string commandText = "hospitalization.get_all_hospitalizations_by_patient_id";
 
             
             var parameters = new Dictionary<string, object>
@@ -90,7 +90,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task AddHospitalization(Hospitalization hospitalization)
         {
-            string commandText = "add_hospitalization";
+            string commandText = "hospitalization.add_hospitalization";
             OracleDate oracleDateOut = new OracleDate();
             if (hospitalization.DateOut.HasValue) 
             {
@@ -112,7 +112,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<int> UpdateHospitalization(Hospitalization hospitalization)
         {
-            string commandText = "update_hospitalization";
+            string commandText = "hospitalization.update_hospitalization";
             var parameters = new Dictionary<string, object>
             {
                 { "p_id", hospitalization.Id },
@@ -128,7 +128,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<int> DeleteHospitalization(int id)
         {
-            string commandText = "delete_hospitalization_by_id";
+            string commandText = "hospitalization.delete_hospitalization_by_id";
             var parameters = new Dictionary<string, object>
             {
                 { "p_id", id }

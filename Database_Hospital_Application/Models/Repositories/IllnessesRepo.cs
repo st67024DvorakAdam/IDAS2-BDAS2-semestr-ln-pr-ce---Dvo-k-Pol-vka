@@ -25,7 +25,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<ObservableCollection<Illness>> GetIllnessesAsync()
         {
-            string commandText = "get_all_illnesses";
+            string commandText = "illness.get_all_illnesses";
 
             DataTable dataTable = await dbTools.ExecuteCommandAsync(commandText);
 
@@ -51,7 +51,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task AddIllness(Illness illness)
         {
-            string commandText = "add_illness";
+            string commandText = "illness.add_illness";
             var parameters = new Dictionary<string, object>
             {
                 { "p_nazev", illness.Name },
@@ -65,7 +65,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task AddIllness(string illness, int patient_id, string description)
         {
-            string commandText = "add_patient_illness";
+            string commandText = "illness.add_patient_illness";
             var parameters = new List<OracleParameter>
             {
                 new OracleParameter("p_patient_id", OracleDbType.Int32) { Value = patient_id },
@@ -79,7 +79,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<int> DeleteIllness(int id)
         {
-            string commandText = "delete_illness_by_id";
+            string commandText = "illness.delete_illness_by_id";
             var parameters = new Dictionary<string, object>
             {
                 { "p_id", id }
@@ -90,7 +90,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<int> DeleteIllnessMeds(int id)
         {
-            string commandText = "delete_illness_meds_by_id";
+            string commandText = "illness.delete_illness_meds_by_id";
             var parameters = new Dictionary<string, object>
             {
                 { "p_id", id }
@@ -101,7 +101,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<int> UpdateIllness(Illness illness)
         {
-            string commandText = "update_illness";
+            string commandText = "illness.update_illness";
 
             var parameters = new Dictionary<string, object>
             {

@@ -24,7 +24,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<ObservableCollection<HealthInsurance>> GetAllHealthInsurancesAsync()
         {
-            string commandText = "get_all_health_insurances"; 
+            string commandText = "health_insurance.get_all_health_insurances"; 
             DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
 
             if (result.Rows.Count > 0)
@@ -48,7 +48,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<int> AddHealthInsurance(HealthInsurance healthInsurance)
         {
-            string commandText = "add_insurance";
+            string commandText = "health_insurance.add_insurance";
 
             var parameters = new List<OracleParameter>
         {
@@ -69,7 +69,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<int> DeleteHealthInsurance(int id)
         {
-            string commandText = "delete_insurance_by_id";
+            string commandText = "health_insurance.delete_insurance_by_id";
             var parameters = new Dictionary<string, object>
             {
                 { "p_name", id}
@@ -81,7 +81,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<int> UpdateHealthInsurance(HealthInsurance healthInsurance)
         {
-            string commandText = "update_insurance";
+            string commandText = "health_insurance.update_insurance";
             var parameters = new Dictionary<string, object>
             {
                 {"p_id", healthInsurance.Id},

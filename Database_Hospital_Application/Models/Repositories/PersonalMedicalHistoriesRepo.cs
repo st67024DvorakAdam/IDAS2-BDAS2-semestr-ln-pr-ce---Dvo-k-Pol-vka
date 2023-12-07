@@ -22,7 +22,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<ObservableCollection<PersonalMedicalHistory>> GetAllPersonalMedicalHistoriesAsync()
         {
-            string commandText = "get_all_personal_medical_histories";
+            string commandText = "medical_history.get_all_personal_medical_histories";
             DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
 
             if (result.Rows.Count > 0)
@@ -47,7 +47,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<ObservableCollection<PersonalMedicalHistory>> GetPersonalMedicalHistoryByPatientIdAsync(int id)
         {
-            string commandText = "get_personal_history_by_patient_id";
+            string commandText = "medical_history.get_personal_history_by_patient_id";
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
                 { "p_patient_id", id }
@@ -77,7 +77,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task AddPersonalMedicalHistory(PersonalMedicalHistory personalMedicalHistory)
         {
-            string commandText = "add_personal_medical_history";
+            string commandText = "medical_history.add_personal_medical_history";
             var parameters = new Dictionary<string, object>
             {
                 { "p_zaznam", personalMedicalHistory.Description },
@@ -89,7 +89,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<int> DeletePersonalMedicalHistory(int? id)
         {
-            string commandText = "delete_personal_medical_history_by_id";
+            string commandText = "medical_history.delete_personal_medical_history_by_id";
             var parameters = new Dictionary<string, object>
             {
                 { "p_id", id }
@@ -99,7 +99,7 @@ namespace Database_Hospital_Application.Models.Repositories
         }
         public async Task<int> UpdatePersonalMedicalHistory(PersonalMedicalHistory personalMedicalHistory)
         {
-            string commandText = "update_personal_medical_history";
+            string commandText = "medical_history.update_personal_medical_history";
 
             var parameters = new Dictionary<string, object>
             {

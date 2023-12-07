@@ -29,7 +29,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<ObservableCollection<Patient>> GetAllPatientsAsync()
         {
-            string commandText = "get_all_patients";
+            string commandText = "patient.get_all_patients";
             DataTable result = await dbTools.ExecuteCommandAsync(commandText, null);
 
             Patients.Clear(); 
@@ -64,7 +64,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<int> AddPatient(Patient patient)
         {
-            string commandText = "add_patient";
+            string commandText = "patient.add_patient";
             var parameters = new List<OracleParameter>
         {
             new OracleParameter("p_jmeno", OracleDbType.Varchar2, patient.FirstName, ParameterDirection.Input),
@@ -95,7 +95,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<int> DeletePatient(int id)
         {
-            string commandText = "delete_patient_by_id";
+            string commandText = "patient.delete_patient_by_id";
             var parameters = new Dictionary<string, object>
             {
                 { "p_id", id }
@@ -106,7 +106,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<int> UpdatePatient(Patient patient)
         {
-            string commandText = "update_patient";
+            string commandText = "patient.update_patient";
 
             var parameters = new Dictionary<string, object>
             {
@@ -125,7 +125,7 @@ namespace Database_Hospital_Application.Models.Repositories
         public async Task<Patient> GetPatientByBirthNumber(string birthNumber)
         {
             
-            string commandText = "get_patient_info_by_birth_number";
+            string commandText = "patient.get_patient_info_by_birth_number";
 
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
@@ -189,7 +189,7 @@ namespace Database_Hospital_Application.Models.Repositories
 
         public async Task<ObservableCollection<DataActualIllness>> GetActualIllnessByPatientIdAsync(int patientId)
         {
-            string commandText = "get_patient_illnesses_meds";
+            string commandText = "patient.get_patient_illnesses_meds";
             var parameters = new List<OracleParameter>
             {
                 new OracleParameter("p_patient_id", OracleDbType.Int32, patientId, ParameterDirection.Input)
