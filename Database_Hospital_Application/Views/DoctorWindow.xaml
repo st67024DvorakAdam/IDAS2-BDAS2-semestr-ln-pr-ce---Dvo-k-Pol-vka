@@ -43,6 +43,9 @@
         <DataTemplate DataType="{x:Type vm1:PreceptedPillsVM}">
             <local1:PrescriptedPillsView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:PatientVM}">
+            <local1:AllPatientsView/>
+        </DataTemplate>
 
     </Window.Resources>
     <Grid>
@@ -94,15 +97,32 @@
                         </Grid>
 
                     </Menu:Button>
+
+                    <Menu:Button Style="{StaticResource Button}"
+          Command="{Binding PatientsListCommand}">
+
+                        <Grid>
+
+
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-patients-30.png?raw=true"
+               Height="30"
+               Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
+                            <TextBlock Text="Všichni pacienti"
+                   Style="{StaticResource TextStyle}" />
+
+                        </Grid>
+
+                    </Menu:Button>
+
                     <Menu:Button Style="{StaticResource Button}"
                     Command="{Binding DepartmentCommand}"
                     >
 
                         <Grid>
-                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-department-30.png?raw=true"
+                            <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-traditional-company-structure-30.png?raw=true"
                         Height="30"
                         Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Margin="22,0,0,0"/>
-                            <TextBlock Text="Moje oddělení"
+                            <TextBlock Text="Moji podřízení"
                         Style="{StaticResource TextStyle}" />
 
                         </Grid>

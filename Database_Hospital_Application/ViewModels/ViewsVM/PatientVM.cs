@@ -198,10 +198,14 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             var patient = item as Patient;
             if (patient == null) return false;
 
+            var fullName = $"{patient.FirstName} {patient.LastName}";
+            var fullName2 = $"{patient.LastName} {patient.FirstName}";
             return patient.FirstName.Contains(_searchText, StringComparison.OrdinalIgnoreCase)
                    || patient.LastName.Contains(_searchText, StringComparison.OrdinalIgnoreCase)
                    || patient.BirthNumber.ToString().Contains(_searchText)
-                   || SexEnumParser.GetStringFromEnumEnglish(patient.Sex).StartsWith(_searchText, StringComparison.OrdinalIgnoreCase);
+                   || SexEnumParser.GetStringFromEnumEnglish(patient.Sex).StartsWith(_searchText, StringComparison.OrdinalIgnoreCase)
+                   || fullName.Contains(_searchText, StringComparison.OrdinalIgnoreCase)
+                   || fullName2.Contains(_searchText, StringComparison.OrdinalIgnoreCase);
         }
 
         private bool IsFormValid()
