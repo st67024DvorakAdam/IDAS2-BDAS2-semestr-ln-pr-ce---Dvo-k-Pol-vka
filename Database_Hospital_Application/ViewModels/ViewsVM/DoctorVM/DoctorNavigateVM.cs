@@ -44,7 +44,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
 
         
         public ICommand PatientCommand { get; }
-        public ICommand DepartmentCommand { get; }
+        public ICommand SubordinatesCommand { get; }
         public ICommand PrescriptedPillsCommand { get; }
         public ICommand HospitalizaceCommand { get; }
         public ICommand NewPatientCommand { get; }
@@ -55,7 +55,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
         // TODO udělat VMs 
         private void Profile(object obj) => CurrentView = new CurrUserVM(CurrentUser);
         private void Patient(object obj) => CurrentView = new DoctorPatientVM(CurrentUser);
-        private void Department(object obj) => CurrentView = new SubordinatesVM(CurrentUser);
+        private void Subordinates(object obj) => CurrentView = new SubordinatesVM(CurrentUser);
         private void PrescriptedPills(object obj) => CurrentView = new PreceptedPillsVM(CurrentUser);
         private void Hospitalizace(object obj) => CurrentView = new HospitalizationVM();
         private void NewPatient(object obj) => CurrentView = new NewPatientVM();
@@ -75,7 +75,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
             PrescriptedPillsCommand = new RelayCommand(PrescriptedPills);
             HospitalizaceCommand = new RelayCommand(Hospitalizace);
             NewPatientCommand = new RelayCommand(NewPatient);
-            DepartmentCommand = new RelayCommand(Department);
+            SubordinatesCommand = new RelayCommand(Subordinates);
             StatisticsCommand = new RelayCommand(Statisctics);
             PatientsListCommand = new RelayCommand(Patients);
         }

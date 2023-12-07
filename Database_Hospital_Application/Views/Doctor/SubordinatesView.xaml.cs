@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Database_Hospital_Application.Views.Doctor
 {
     /// <summary>
-    /// Interakční logika pro DepartmentView.xaml
+    /// Interakční logika pro SubordinatesView.xaml
     /// </summary>
-    public partial class DepartmentView : UserControl
+    public partial class SubordinatesView : UserControl
     {
-        public DepartmentView()
+        public SubordinatesView()
         {
             InitializeComponent();
         }

@@ -33,7 +33,7 @@
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type vm1:SubordinatesVM}">
-            <local1:DepartmentView/>
+            <local1:SubordinatesView/>
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type vm1:StatisticsVM}">
@@ -115,7 +115,7 @@
                     </Menu:Button>
 
                     <Menu:Button Style="{StaticResource Button}"
-                    Command="{Binding DepartmentCommand}"
+                    Command="{Binding SubordinatesCommand}"
                     >
 
                         <Grid>

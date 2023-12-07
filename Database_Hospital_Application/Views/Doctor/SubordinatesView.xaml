@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Database_Hospital_Application.Views.Doctor.DepartmentView"
+﻿<UserControl x:Class="Database_Hospital_Application.Views.Doctor.SubordinatesView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -24,7 +24,7 @@
             Background="Transparent" Foreground="White" BorderThickness="1" 
             BorderBrush="Gray" VerticalContentAlignment="Center" CaretBrush="White"/>
 
-            <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="MOJE ODDĚLENÍ - PODŘÍZENÍ" VerticalAlignment="Center" FontSize="40" Margin="0,0,0,35" Foreground="White" FontWeight="Bold"/>
+            <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="MOJI PODŘÍZENÍ" VerticalAlignment="Center" FontSize="40" Margin="0,0,0,35" Foreground="White" FontWeight="Bold"/>
         <TextBlock Grid.Row="1" Margin="10" Foreground="Gray" VerticalAlignment="Top">
            Zde naleznete seznam svých podřízených
         </TextBlock>

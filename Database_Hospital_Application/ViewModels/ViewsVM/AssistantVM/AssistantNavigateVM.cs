@@ -49,7 +49,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.AssistantVM
         public ICommand AllPreceptedPillsCommand { get; }
         public ICommand HospitalizaceCommand { get; }
         public ICommand PatientCommand { get; }
-
+        public ICommand SubordinatesCommand { get; }
 
         private void Profile(object obj) => CurrentView = new CurrUserVM(CurrentUser);
         private void GeneralInfo(object obj) => CurrentView = new GeneralInfoVM();
@@ -57,6 +57,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.AssistantVM
         private void AllPreceptedPills(object obj) => CurrentView = new AllPreceptedPillsVM();
         private void Hospitalizace(object obj) => CurrentView = new HospitalizationVM();
         private void Patient(object obj) => CurrentView = new DoctorPatientVM(CurrentUser);
+        private void Subordinates(object obj) => CurrentView = new SubordinatesVM(CurrentUser);
 
         public AssistantNavigateVM(User user)
         {
@@ -72,6 +73,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.AssistantVM
             AllPreceptedPillsCommand = new RelayCommand(AllPreceptedPills);
             HospitalizaceCommand = new RelayCommand(Hospitalizace);
             PatientCommand = new RelayCommand(Patient);
+            SubordinatesCommand = new RelayCommand(Subordinates);
         }
     }
 }
