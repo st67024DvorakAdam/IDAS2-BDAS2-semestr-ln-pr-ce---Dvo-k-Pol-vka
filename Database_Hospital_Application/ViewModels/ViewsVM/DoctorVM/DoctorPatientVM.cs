@@ -12,6 +12,7 @@ using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.Models.Repositories;
 using Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewVM;
 using Database_Hospital_Application.Views.Doctor.Patient;
+using Database_Hospital_Application.Views.Nurse;
 
 namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
 {
@@ -100,6 +101,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
 
         private async void ExecuteSearchPatient(object parameter)
         {
+            
             if(_searchText == "" || _searchText == null)
             {
                 MessageBox.Show("Vyplňte prosím pole s rodným číslem", "Pacient nenalezen", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -114,13 +116,37 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
                 return;
             }
 
-            PersonalDetailsVM personalDetailsVM = new PersonalDetailsVM(CurrentPatient);
-            var personalDetailsView = new PersonalDetailsView
+            UserControl personalDetailsView;
+            switch (_currentUser.RoleID)
             {
-                DataContext = personalDetailsVM
-            };
+                //DOCTOR
+                case 2:
+                    personalDetailsView = new PersonalDetailsView
+                    {
+                        DataContext = new PersonalDetailsVM(_currentPatient)
+                    };
+                    CurrentContent = personalDetailsView;
+                    break;
+                //NURSE
+                case 3:
+                    personalDetailsView = new PersonalDetailsNurseView
+                    {
+                        DataContext = new PersonalDetailsVM(_currentPatient)
+                    };
+                    CurrentContent = personalDetailsView;
+                    break;
+                // ASSISTANT
+                case 4:
+                    personalDetailsView = new PersonalDetailsView
+                    {
+                        DataContext = new PersonalDetailsVM(_currentPatient)
+                    };
+                    CurrentContent = personalDetailsView;
+                    break;
+                default: return;
+            }
             await LoadMedicalHistoryAsync();
-            CurrentContent = personalDetailsView;
+            
         }
 
         private async Task LoadMedicalHistoryAsync()
@@ -141,18 +167,41 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
         {
             PatientRepo patientRepo = new PatientRepo();
             CurrentPatient = await patientRepo.GetPatientByBirthNumber(SearchText);
-
-            var personalDetailsVM = new PersonalDetailsVM(CurrentPatient);
-            var personalDetailsView = new PersonalDetailsView
+            UserControl personalDetailsView;
+            switch (_currentUser.RoleID)
             {
-                DataContext = personalDetailsVM
-            };
-
-            CurrentContent = personalDetailsView;
+                //DOCTOR
+                case 2:
+                    personalDetailsView = new PersonalDetailsView
+                    {
+                        DataContext = new PersonalDetailsVM(_currentPatient)
+                    };
+                    CurrentContent = personalDetailsView;
+                    break;
+                //NURSE
+                case 3:
+                    personalDetailsView = new PersonalDetailsNurseView
+                    {
+                        DataContext = new PersonalDetailsVM(_currentPatient)
+                    };
+                    CurrentContent = personalDetailsView;
+                    break;
+                // ASSISTANT
+                case 4:
+                    personalDetailsView = new PersonalDetailsView
+                    {
+                        DataContext = new PersonalDetailsVM(_currentPatient)
+                    };
+                    CurrentContent = personalDetailsView;
+                    break;
+                default: return;
+            }
+            
         }
 
         private void ExecuteAnamnesis(object parameter)
         {
+            
             LoadMedicalHistoryAsync();
             var anamnesisView = new AnamnesisView
             {
@@ -164,32 +213,111 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
 
         private void ExecuteProcedures(object parameter)
         {
-            var performedProcedureView = new PerformedProceduresView
+            UserControl performedProcedureView;
+            switch (_currentUser.RoleID)
             {
-                DataContext = new PerformedProcedureVM(_currentPatient)
-            };
+                //DOCTOR
+                case 2:
+                    performedProcedureView = new PerformedProceduresView
+                        {
+                            DataContext = new PerformedProcedureVM(_currentPatient)
+                        };
+                    CurrentContent = performedProcedureView;
+                    break;
+                //NURSE
+                case 3:
+                    performedProcedureView = new PerformedProceduresView
+                    {
+                        DataContext = new PerformedProcedureVM(_currentPatient)
+                    };
+                    CurrentContent = performedProcedureView;
+                    break;
+                // ASSISTANT
+                case 4:
+                    performedProcedureView = new PerformedProceduresView
+                    {
+                        DataContext = new PerformedProcedureVM(_currentPatient)
+                    };
+                    CurrentContent = performedProcedureView;
+                    break;
+                default: return;
+            }
+            
 
-            CurrentContent = performedProcedureView;
         }
 
         private void ExecuteActualIllness(object parameter)
         {
-            var actualIllnessView = new ActualIllnessView
+            UserControl actualIllnessView;
+            switch (_currentUser.RoleID)
             {
-                DataContext = new ActualIllnessVM(CurrentPatient, _currentUser)
-            };
+                //DOCTOR
+                case 2:
+                    actualIllnessView = new ActualIllnessView
+                    {
+                        DataContext = new ActualIllnessVM(CurrentPatient, _currentUser)
+                    };
 
-            CurrentContent = actualIllnessView;
+                    CurrentContent = actualIllnessView;
+                    break;
+                //NURSE
+                case 3:
+                    actualIllnessView = new ActualIllnessView
+                    {
+                        DataContext = new ActualIllnessVM(CurrentPatient, _currentUser)
+                    };
+
+                    CurrentContent = actualIllnessView;
+                    break;
+                // ASSISTANT
+                case 4:
+                    actualIllnessView = new ActualIllnessView
+                    {
+                        DataContext = new ActualIllnessVM(CurrentPatient, _currentUser)
+                    };
+
+                    CurrentContent = actualIllnessView;
+                    break;
+                default: return;
+            }
+            
         }
 
         private void ExecuteHospitalization(object parameter)
         {
-            var hospitalizationView = new HospitalizationView
+            UserControl hospitalizationView;
+            switch (_currentUser.RoleID)
             {
-                DataContext = new Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewVM.HospitalizationVM(CurrentPatient, _currentUser)
-            };
+                //DOCTOR
+                case 2:
+                    hospitalizationView = new HospitalizationView
+                    {
+                        DataContext = new Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewVM.HospitalizationVM(CurrentPatient, _currentUser)
+                    };
 
-            CurrentContent = hospitalizationView;
+                    CurrentContent = hospitalizationView;
+                    break;
+                //NURSE
+                case 3:
+                    hospitalizationView = new HospitalizationView
+                    {
+                        DataContext = new Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewVM.HospitalizationVM(CurrentPatient, _currentUser)
+                    };
+
+                    CurrentContent = hospitalizationView;
+                    break;
+                // ASSISTANT
+                case 4:
+                    hospitalizationView = new HospitalizationView
+                    {
+                        DataContext = new Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewVM.HospitalizationVM(CurrentPatient, _currentUser)
+                    };
+
+                    CurrentContent = hospitalizationView;
+                    break;
+                default: return;
+            }
+           
         }
 
         private void UpdateCommandStates()
