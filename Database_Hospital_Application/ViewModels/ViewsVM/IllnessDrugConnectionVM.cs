@@ -69,7 +69,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         // BUTTONS
         public ICommand AddCommand { get; private set; }
         public ICommand DeleteConCommand { get; private set; }
-        public ICommand EditCommand { get; private set; }
 
         private IllnessDrugConnection _selectedIllnessDrugConnection;
         public IllnessDrugConnection SelectedIllnessDrugConnection
@@ -81,7 +80,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
                 {
                     _selectedIllnessDrugConnection = value;
                     OnPropertyChange(nameof(SelectedIllnessDrugConnection));
-                    (EditCommand as RelayCommand)?.RaiseCanExecuteChanged();
                     (DeleteConCommand as RelayCommand)?.RaiseCanExecuteChanged();
                 }
             }
@@ -120,7 +118,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             AddCommand = new RelayCommand(AddNewAction);
             DeleteConCommand = new RelayCommand(DeleteAction, CanExecuteDelete);
-            EditCommand = new RelayCommand(EditAction, CanEdit);
         }
 
         private bool CanExecuteDelete(object parameter)
@@ -145,26 +142,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             NewIllnessDrugConnection = new IllnessDrugConnection();
         }
 
-        private bool CanEdit(object parameter)
-        {
-            return SelectedIllnessDrugConnection != null;
-        }
 
-        private void EditAction(object parameter)
-        {
-            //if (!CanEdit(parameter)) return;
-
-
-            //EditIllnessVM editVM = new EditIllnessVM(SelectedIllnessDrugConnection);
-            //EditIllnessDialog editDialog = new EditIllnessDialog(editVM);
-
-            //editDialog.ShowDialog();
-
-            //if (editDialog.DialogResult == true)
-            //{
-            //    LoadIllnessDrugConnectionAsync();
-            //}
-        }
 
         //FILTER/////////////////////////////////////////////////////////////////////
 

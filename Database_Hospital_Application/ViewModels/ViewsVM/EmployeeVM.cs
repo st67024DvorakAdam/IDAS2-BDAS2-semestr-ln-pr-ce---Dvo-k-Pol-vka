@@ -196,10 +196,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
             editDialog.ShowDialog();
 
-            if (editDialog.DialogResult == true)
-            {
-                LoadEmployeesAsync();
-            }
+            LoadEmployeesAsync();
+            
         }
         //FILTER/////////////////////////////////////////////////////////////////////
 

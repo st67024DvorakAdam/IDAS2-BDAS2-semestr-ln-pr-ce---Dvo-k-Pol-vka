@@ -11,7 +11,7 @@ namespace Database_Hospital_Application.Models.Entities
     public class MedicalCard
     {
         public int Id { get; set; }
-        public long BirthNumberOfPatient { get; set; }
+        public string BirthNumberOfPatient { get; set; }
         public ObservableCollection<Illness> Illnesses { get; set; }
         public string StringVersionOfIllnesses { get; private set; }
         public int IdOfPatient {  get; set; }

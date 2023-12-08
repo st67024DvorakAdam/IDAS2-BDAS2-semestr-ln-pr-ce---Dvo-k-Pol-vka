@@ -108,8 +108,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
             LoadPatientsAsync();
             LoadDepartmentsAsync();
-            HospitalizationView = CollectionViewSource.GetDefaultView(HospitalizationsList);
-            HospitalizationView.Filter = HospitalizationFilter;
             InitializeCommands();
         }
 
@@ -130,14 +128,14 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
             LoadPatientsAsync();
             LoadDepartmentsAsync();
-            HospitalizationView = CollectionViewSource.GetDefaultView(HospitalizationsList);
-            HospitalizationView.Filter = HospitalizationFilter;
             InitializeCommands();
         }
         private async Task LoadHospitalizationsAsync()
         {
             HospitalizationRepo repo = new HospitalizationRepo();
             HospitalizationsList = await repo.GetAllHospitalizationsAsync();
+            HospitalizationView = CollectionViewSource.GetDefaultView(HospitalizationsList);
+            HospitalizationView.Filter = HospitalizationFilter;
         }
         private async Task LoadPatientsAsync()
         {
@@ -171,8 +169,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             HospitalizationRepo repo = new HospitalizationRepo();
             await repo.DeleteHospitalization(SelectedHospitalization.Id);
             await LoadHospitalizationsAsync();
-            HospitalizationView = CollectionViewSource.GetDefaultView(HospitalizationsList);
-            HospitalizationView.Filter = HospitalizationFilter;
         }
 
         private async void AddNewHospitalizationAction(object parameter)

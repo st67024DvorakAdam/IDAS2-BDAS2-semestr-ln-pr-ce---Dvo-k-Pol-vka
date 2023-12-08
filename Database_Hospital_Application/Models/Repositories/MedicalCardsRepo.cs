@@ -35,7 +35,7 @@ namespace Database_Hospital_Application.Models.Repositories
                     MedicalCard medicalCard = new MedicalCard
                     {
                         Id = Convert.ToInt32(row["ID"]),
-                        BirthNumberOfPatient = Convert.ToInt64(row["RODNE_CISLO"]),
+                        BirthNumberOfPatient = row["RODNE_CISLO"].ToString(),
                         IdOfPatient = Convert.ToInt32(row["PACIENT_ID"]),
                         Illnesses = new ObservableCollection<Illness>(),
                         IsSmoker = Convert.ToInt32(row["KURAK"]) == 1? true:false,

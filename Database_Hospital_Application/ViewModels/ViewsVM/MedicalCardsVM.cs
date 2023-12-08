@@ -164,10 +164,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
             editDialog.ShowDialog();
 
-            if (editDialog.DialogResult == true)
-            {
-                LoadMedicalCardsAsync();
-            }
+            LoadMedicalCardsAsync();
+            
         }
 
         //FILTER/////////////////////////////////////////////////////////////////////

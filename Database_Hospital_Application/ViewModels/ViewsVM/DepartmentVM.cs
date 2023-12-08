@@ -118,7 +118,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
             editDialog.ShowDialog();
 
-
             LoadDepartmentsAsync();
 
         }

@@ -86,16 +86,16 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         public DrugsVM()
         {
             LoadDrugsAsync();
-            DrugsView = CollectionViewSource.GetDefaultView(DrugsList);
-            DrugsView.Filter = DrugsFilter;
+            
             InitializeCommands();
-
             LoadDoctorsAsync();
         }
         private async Task LoadDrugsAsync()
         {
             DrugsRepo repo = new DrugsRepo();
             DrugsList = await repo.GetAllDrugsAsync();
+            DrugsView = CollectionViewSource.GetDefaultView(DrugsList);
+            DrugsView.Filter = DrugsFilter;
         }
 
 
@@ -147,10 +147,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
             editDialog.ShowDialog();
 
-            if (editDialog.DialogResult == true)
-            {
-                LoadDrugsAsync();
-            }
+            LoadDrugsAsync();
+            
         }
 
         //FILTER/////////////////////////////////////////////////////////////////////

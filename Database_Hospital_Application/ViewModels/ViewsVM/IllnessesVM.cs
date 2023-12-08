@@ -81,14 +81,14 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             LoadIllnessesAsync();
 
             LoadMedicalCardsAsync();
-            IllnessesView = CollectionViewSource.GetDefaultView(IllnessesList);
-            IllnessesView.Filter = IllnessesFilter;
             InitializeCommands();
         }
         private async Task LoadIllnessesAsync()
         {
             IllnessesRepo repo = new IllnessesRepo();
             IllnessesList = await repo.GetIllnessesAsync();
+            IllnessesView = CollectionViewSource.GetDefaultView(IllnessesList);
+            IllnessesView.Filter = IllnessesFilter;
         }
         private async Task LoadMedicalCardsAsync()
         {
@@ -141,10 +141,9 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
             editDialog.ShowDialog();
 
-            if (editDialog.DialogResult == true)
-            {
-                LoadIllnessesAsync();
-            }
+            
+            LoadIllnessesAsync();
+            
         }
 
         //FILTER/////////////////////////////////////////////////////////////////////

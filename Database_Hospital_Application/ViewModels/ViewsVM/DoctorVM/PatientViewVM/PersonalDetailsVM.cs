@@ -436,7 +436,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
             ObservableCollection<MedicalCard> listOfMedicalCards = await mcr.GetAllMedicalCardsAsync();
             MedicalCard meca = new Models.Entities.MedicalCard(smoker, alergic, Patient.Id);
             meca.Id = listOfMedicalCards.FirstOrDefault(card => card.IdOfPatient == Patient.Id).Id;
-            meca.BirthNumberOfPatient = Convert.ToInt64(Patient.BirthNumber);
+            meca.BirthNumberOfPatient = Patient.BirthNumber;
             mcr.UpdateMedicalCard(meca);
 
             ObservableCollection<Contact> listOfContacts = await cr.GetAllContactsAsync();
