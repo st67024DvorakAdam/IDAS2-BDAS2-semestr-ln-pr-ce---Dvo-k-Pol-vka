@@ -52,8 +52,12 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
         {
             _currUser = user;
             LoadPreceptedDrugsAsync();
-            PreceptedPillsView = CollectionViewSource.GetDefaultView(DrugsPreceptedByDoctorList);
-            PreceptedPillsView.Filter = PreceptedPillsFilter;
+            if (DrugsPreceptedByDoctorList != null)
+            {
+                PreceptedPillsView = CollectionViewSource.GetDefaultView(DrugsPreceptedByDoctorList);
+                PreceptedPillsView.Filter = PreceptedPillsFilter;
+            }
+            
             InitializeCommands();
         }
         

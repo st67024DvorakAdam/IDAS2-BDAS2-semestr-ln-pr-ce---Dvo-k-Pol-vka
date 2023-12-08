@@ -8,6 +8,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -139,6 +140,13 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         private async void AddNewContactAction(object parameter)
         {
+            if (!IsContactValidAndFilled(NewContact))
+            {
+                
+                    MessageBox.Show("Vyplňte správně všechna pole", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                
+            }
             ContactRepo contactRepo = new ContactRepo();
             await contactRepo.AddContact(NewContact);
             await LoadContactsAsync();
@@ -191,6 +199,13 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             
             return contact.PhoneNumber.ToString().Contains(_searchText)
                    || contact.Email.Contains(_searchText, StringComparison.OrdinalIgnoreCase);
+        }
+
+        private bool IsContactValidAndFilled(Contact contact)
+        {
+            return (!string.IsNullOrEmpty(contact.Email) && contact.Email.Contains("@") && contact.Email.Contains(".") && 
+                (contact.PhoneNumber != 0 && contact.PhoneNumber != null && contact.PhoneNumber.ToString().Length == 9) && ((contact.IdOfEmployee != 0 && contact.IdOfEmployee != null) ||
+                (contact.IdOfPatient != 0 && contact.IdOfPatient!= null)));
         }
     }
 }

@@ -117,7 +117,7 @@
             <TextBlock Grid.Row="3" Text="Dávkování" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
             <TextBox Grid.Row="4" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
              Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
-             VerticalContentAlignment="Center" PreviewTextInput="TextBox_PreviewTextInput" CaretBrush="White" Text="{Binding NewDrug.Dosage}"/>
+             VerticalContentAlignment="Center" PreviewTextInput="TextBox_PreviewTextInputForDosage" CaretBrush="White" Text="{Binding NewDrug.Dosage}"/>
 
             <TextBlock Grid.Row="5" Text="Lékař" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
             <ComboBox HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Center" Background="Transparent" Width="200" 

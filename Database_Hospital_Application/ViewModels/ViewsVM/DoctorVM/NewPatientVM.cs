@@ -245,7 +245,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
         {
             if (!Email.Contains('@') || !Email.Contains('.'))
             {
-                MessageBox.Show("Pole Email musí obsahovat znaky '@' a '.' !", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Pole Email musí obsahovat znaky '@' a '.' !", "Chybný formát", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -259,6 +259,12 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
             if (existingPatient != null)
             {
                 MessageBox.Show("Pacient s tímto rodným číslem již existuje.", "Existující pacient", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (!IsFormValidInsuranceCompanyAbbreviation(InsuranceCompanyAbbreviation))
+            {
+                MessageBox.Show("Zkratka pojišťovny musí být ve formátu XXX", "Chybný formát", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -317,7 +323,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
                    !string.IsNullOrWhiteSpace(Email) &&
                    IsValidPhoneNumber(Phone) &&
                    !string.IsNullOrWhiteSpace(InsuranceCompanyName) &&
-                   !string.IsNullOrWhiteSpace(InsuranceCompanyAbbreviation);
+                   !string.IsNullOrWhiteSpace(InsuranceCompanyAbbreviation) &&
+                   IsFormValidInsuranceCompanyAbbreviation(InsuranceCompanyAbbreviation);
         }
 
 
@@ -343,6 +350,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
         {
             base.OnPropertyChange(propertyName);
             (AcceptPatientCommand as RelayCommand)?.RaiseCanExecuteChanged();
+        }
+
+        private bool IsFormValidInsuranceCompanyAbbreviation(string code)
+        {
+            return (InsuranceCompanyAbbreviation.Length == 3);
         }
     }
 }

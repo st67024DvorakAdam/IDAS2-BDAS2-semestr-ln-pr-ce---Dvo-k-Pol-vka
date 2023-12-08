@@ -61,9 +61,14 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
 
         private async Task SaveActionAsync()
         {
-            if (EditableDrug.Dosage == 0)
+            if (!IsDrugValidAndFilled(EditableDrug))
             {
-                MessageBox.Show("Dávkování léku nesmí být 0!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (EditableDrug.Dosage == 0)
+                {
+                    MessageBox.Show("Dávkování léku nesmí být 0!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                MessageBox.Show("Vyplňte správně všechna pole", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             try
@@ -101,6 +106,11 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
             {
                 ClosingRequest?.Invoke(this, EventArgs.Empty);
             });
+        }
+
+        private bool IsDrugValidAndFilled(Drug drug)
+        {
+            return (!string.IsNullOrEmpty(drug.Name) && (drug.Dosage != 0 && drug.Dosage != null) && (drug.Employee_id != 0 && drug.Employee_id != null));
         }
     }
 }

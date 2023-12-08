@@ -35,9 +35,14 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
         private async Task LoadSubordinatesAsync()
         {
             EmployeesRepo repo = new EmployeesRepo();
+            
             SubordinatesList = await repo.GetListOfSubordinates(_employee.Id);
+            if(SubordinatesList != null) 
+            {
             DepartmentView = CollectionViewSource.GetDefaultView(SubordinatesList);
             DepartmentView.Filter = SubordinatesFilter;
+            }
+            
         }
 
         private string _searchText;

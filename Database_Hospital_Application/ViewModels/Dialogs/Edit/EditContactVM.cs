@@ -80,6 +80,13 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
 
         private async Task SaveActionAsync()
         {
+            if (!IsContactValidAndFilled(EditableContact))
+            {
+
+                MessageBox.Show("Vyplňte správně všechna pole", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+
+            }
             try
             {
                 ContactRepo contactRepo = new ContactRepo();
@@ -116,6 +123,13 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
             {
                 ClosingRequest?.Invoke(this, EventArgs.Empty);
             });
+        }
+
+        private bool IsContactValidAndFilled(Contact contact)
+        {
+            return (!string.IsNullOrEmpty(contact.Email) && contact.Email.Contains("@") && contact.Email.Contains(".") &&
+                (contact.PhoneNumber != 0 && contact.PhoneNumber != null && contact.PhoneNumber.ToString().Length == 9) && ((contact.IdOfEmployee != 0 && contact.IdOfEmployee != null) ||
+                (contact.IdOfPatient != 0 && contact.IdOfPatient != null)));
         }
     }
 }

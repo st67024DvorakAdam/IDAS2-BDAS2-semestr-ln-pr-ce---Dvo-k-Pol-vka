@@ -122,11 +122,17 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         private async void AddNewAction(object parameter)
         {
-            if(NewDrug.Dosage == 0)
+            if(!IsDrugValidAndFilled(NewDrug))
             {
-                MessageBox.Show("Dávkování léku nesmí být 0!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                if(NewDrug.Dosage == 0)
+                {
+                    MessageBox.Show("Dávkování léku nesmí být 0!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                MessageBox.Show("Vyplňte správně všechna pole", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            
             DrugsRepo drugsRepo = new DrugsRepo();
             await drugsRepo.AddDrug(NewDrug);
             await LoadDrugsAsync();
@@ -181,5 +187,12 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
                 || drug.Employee_id.ToString().Contains(_searchText);
         }
         //FILTER/////////////////////////////////////////////////////////////////////
+
+
+
+        private bool IsDrugValidAndFilled(Drug drug)
+        {
+            return (!string.IsNullOrEmpty(drug.Name) && (drug.Dosage != 0 && drug.Dosage != null) && (drug.Employee_id != 0 && drug.Employee_id != null));
+        }
     }
 }

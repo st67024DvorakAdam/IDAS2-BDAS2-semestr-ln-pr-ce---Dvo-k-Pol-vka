@@ -41,6 +41,13 @@ namespace Database_Hospital_Application.Views.Lists.Dialogs.Drug
             return !Regex.IsMatch(text, "[^0-9]");
         }
 
+        private void TextBox_PreviewTextInputForDosage(object sender, TextCompositionEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            string newText = textBox.Text + e.Text;
+            e.Handled = newText.Length > 5 || !Regex.IsMatch(newText, "^[0-9]*$");
+        }
+
     }
 
 }
