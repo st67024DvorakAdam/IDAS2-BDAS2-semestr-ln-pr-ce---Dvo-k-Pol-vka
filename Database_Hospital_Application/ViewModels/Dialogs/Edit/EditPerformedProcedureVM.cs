@@ -59,6 +59,11 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
 
         private async Task SaveActionAsync()
         {
+            if (!IsProcedureValidAndFilled(EditablePerformedProcedure))
+            {
+                MessageBox.Show("Vyplňte správně všechna pole!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             try
             {
                 PerformedProceduresRepo performedProceduresRepo = new PerformedProceduresRepo();
@@ -94,6 +99,11 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
             {
                 ClosingRequest?.Invoke(this, EventArgs.Empty);
             });
+        }
+
+        private bool IsProcedureValidAndFilled(PerformedProcedure procedure)
+        {
+            return (!string.IsNullOrEmpty(procedure.Name) && (procedure.Price > 0 && (procedure.Price != null || procedure.Price != 0)) && (procedure.IdOfPatient != 0 && procedure.IdOfPatient != null));
         }
     }
 }

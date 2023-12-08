@@ -36,6 +36,12 @@ namespace Database_Hospital_Application.Views.Lists
         {
             return !Regex.IsMatch(text, "[^0-9]");
         }
+        private void TextBox_PreviewTextInputForPrice(object sender, TextCompositionEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            string newText = textBox.Text + e.Text;
+            e.Handled = newText.Length > 9 || !Regex.IsMatch(newText, "^[0-9]*$");
+        }
     }
     public class BoolToIndexConverter : IValueConverter
     {
@@ -48,5 +54,7 @@ namespace Database_Hospital_Application.Views.Lists
         {
             return ((int)value == 0) ? true : false;
         }
+
+        
     }
 }

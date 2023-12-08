@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -88,12 +89,15 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         }
         private void AddNewPerformedProcedrureAction(object parameter)
         {
-
+            if (!IsProcedureValidAndFilled(NewPerformedProcedure))
+            {
+                MessageBox.Show("Vyplňte správně všechna pole!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             PerformedProceduresRepo performedProcedureRepo = new PerformedProceduresRepo();
             performedProcedureRepo.AddPerformedProcedure(NewPerformedProcedure);
             LoadPerformedProceduresAsync();
-            PerformedProceduresView = CollectionViewSource.GetDefaultView(PerformedProceduresList);
-            PerformedProceduresView.Filter = PerformedProceduresFilter;
+            
             NewPerformedProcedure = new PerformedProcedure();
         }
 
@@ -113,6 +117,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             PerformedProceduresRepo repo = new PerformedProceduresRepo();
             PerformedProceduresList = await repo.GetAllPerformedProceduresAsync();
+            PerformedProceduresView = CollectionViewSource.GetDefaultView(PerformedProceduresList);
+            PerformedProceduresView.Filter = PerformedProceduresFilter;
         }
         ///KONSTRUKTOR ////////////////////////////////////////////////////////////////////////////////////////
         ///
@@ -178,13 +184,17 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             editDialog.ShowDialog();
 
 
-            if (editDialog.DialogResult == true)
-            {
-                LoadPerformedProceduresAsync();
+            LoadPerformedProceduresAsync();
+                
 
 
-            }
+            
 
+        }
+
+        private bool IsProcedureValidAndFilled(PerformedProcedure procedure)
+        {
+            return (!string.IsNullOrEmpty(procedure.Name) && (procedure.Price > 0 && (procedure.Price != null || procedure.Price != 0)) && (procedure.IdOfPatient != 0 && procedure.IdOfPatient != null));
         }
 
     }

@@ -118,7 +118,7 @@
             <TextBox Grid.Row="4" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
              Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
              VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding NewPerformedProcedure.Price}"
-             PreviewTextInput="TextBox_PreviewTextInput"/>
+             PreviewTextInput="TextBox_PreviewTextInputForPrice"/>
 
             <TextBlock Grid.Row="5" Text="Hrazeno pojišťovnou" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
             <ComboBox HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Center" Background="Transparent" Width="200" 
