@@ -132,7 +132,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             }
         }
 
-        private void DeletePhoto(object? obj)
+        private async void DeletePhoto(object? obj)
         {
             if (CurrentUser.Employee._foto.Id == 1)
             {
@@ -141,9 +141,9 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             else
             {
                 UserRepo ur = new UserRepo();
-                ur.DeleteUserPhoto(CurrentUser);
+                await ur.DeleteUserPhoto(CurrentUser);
                 MessageBox.Show("Profilová fotka byla odstraněna.");
-                EditParametersOfPhoto();
+                await EditParametersOfPhoto();
                 OnPropertyChange(nameof(CurrentUser));
             }
         }
