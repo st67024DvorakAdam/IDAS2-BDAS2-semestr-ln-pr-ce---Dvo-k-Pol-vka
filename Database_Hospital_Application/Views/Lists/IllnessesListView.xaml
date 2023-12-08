@@ -121,8 +121,20 @@
              VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding NewIllness.Details}"/>
                 <TextBlock Grid.Row="5" Text="Zdrav.karta id" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
                 <ComboBox HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Center" Background="Transparent" Width="200" 
-                ItemsSource="{Binding MedicalCardsList}" DisplayMemberPath="Id" 
+                ItemsSource="{Binding MedicalCardsList}"
                 SelectedValuePath="Id" SelectedValue="{Binding NewIllness.MedicalCardId}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}Id:{0}, RČ:{1}">
+                                        <Binding Path="Id" />
+                                        <Binding Path="BirthNumberOfPatient" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
                 </ComboBox>
 
                 <Button Grid.Row="7" Content="Přidat" Margin="0,10,0,0" Padding="10,3" Width="200" HorizontalAlignment="Center"
