@@ -132,6 +132,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             }
         }
 
+
         private async void DeletePhoto(object? obj)
         {
             if (CurrentUser.Employee._foto.Id == 1)
