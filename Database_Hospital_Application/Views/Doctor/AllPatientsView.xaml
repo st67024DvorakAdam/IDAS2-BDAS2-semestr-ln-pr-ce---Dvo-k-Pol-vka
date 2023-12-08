@@ -61,8 +61,6 @@
                 <DataGridTextColumn Header="Příjmení" Binding="{Binding LastName}" Width="*"/>
                 <DataGridTextColumn Header="Rodné číslo" Binding="{Binding BirthNumber}" Width="*"/>
                 <DataGridTextColumn Header="Pohlaví" Binding="{Binding Sex}" Width="*"/>
-                <DataGridTextColumn Header="Id pojišťovny" Binding="{Binding IdHealthInsurance}" Width="*"/>
-                <DataGridTextColumn Header="Id adresy" Binding="{Binding IdAddress}" Width="*"/>
             </DataGrid.Columns>
 
 

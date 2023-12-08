@@ -207,6 +207,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
                 IsSelected = false;
                 OnPropertyChange(nameof(IsSelected));
                 LoadBasicFoto();
+                LoadEmployeesAsync();
             } catch (Exception ex)
             {   
                 MessageBox.Show("Nastala neočekávaná chyba: " + ex.Message, "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
