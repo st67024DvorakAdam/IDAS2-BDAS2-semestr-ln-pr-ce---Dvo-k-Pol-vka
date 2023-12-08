@@ -82,7 +82,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             }
         }
 
-        private void EditPhoto(object parametr)
+        private async void EditPhoto(object parametr)
         {
             try
             {
@@ -92,7 +92,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
                 byte[] imageBytes = File.ReadAllBytes(selectedFilePath);
                 CurrentUser.Employee._foto.Image = FotoExtension.ConvertBytesToBitmapImage(imageBytes);
                 UserRepo ur = new UserRepo();
-                ur.UploadPhotoAsync(CurrentUser.Employee.Id, FotoExtension.BitmapImageToBytes(CurrentUser.Employee._foto.Image),filename,suffix);
+                await ur.UploadPhotoAsync(CurrentUser.Employee.Id, FotoExtension.BitmapImageToBytes(CurrentUser.Employee._foto.Image),filename,suffix);
                 
                 EditParametersOfPhoto();
                 OnPropertyChange(nameof(CurrentUser));
