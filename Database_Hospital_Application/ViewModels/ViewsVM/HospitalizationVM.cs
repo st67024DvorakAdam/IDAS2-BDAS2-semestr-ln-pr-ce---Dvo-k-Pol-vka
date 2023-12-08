@@ -171,6 +171,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             HospitalizationRepo repo = new HospitalizationRepo();
             await repo.DeleteHospitalization(SelectedHospitalization.Id);
             await LoadHospitalizationsAsync();
+            HospitalizationView = CollectionViewSource.GetDefaultView(HospitalizationsList);
+            HospitalizationView.Filter = HospitalizationFilter;
         }
 
         private async void AddNewHospitalizationAction(object parameter)
@@ -190,6 +192,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             HospitalizationRepo repo = new HospitalizationRepo();
             await repo.AddHospitalization(NewHospitalization);
             await LoadHospitalizationsAsync();
+            HospitalizationView = CollectionViewSource.GetDefaultView(HospitalizationsList);
+            HospitalizationView.Filter = HospitalizationFilter;
             NewHospitalization = new Hospitalization();
             NewHospitalization.DateIn = DateTime.Today;
         }
@@ -221,10 +225,10 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
             editDialog.ShowDialog();
 
-            if (editDialog.DialogResult == true)
-            {
-                LoadHospitalizationsAsync();
-            }
+            LoadHospitalizationsAsync();
+            HospitalizationView = CollectionViewSource.GetDefaultView(HospitalizationsList);
+            HospitalizationView.Filter = HospitalizationFilter;
+
         }
 
         //FILTER/////////////////////////////////////////////////////////////////////

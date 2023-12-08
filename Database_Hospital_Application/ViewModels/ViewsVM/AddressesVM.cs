@@ -121,8 +121,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             AddressRepo addressRepo = new AddressRepo();
             addressRepo.AddAddress(NewAddress);
             LoadAddressesAsync();
-            AddressesView = CollectionViewSource.GetDefaultView(AddressesList);
-            AddressesView.Filter = AddressFilter;
             NewAddress = new Address();
         }
 
@@ -134,8 +132,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             LoadCountryCodes();
 
             LoadAddressesAsync();
-            AddressesView = CollectionViewSource.GetDefaultView(AddressesList);
-            AddressesView.Filter = AddressFilter;
             NewAddress = new Address();
             InitializeCommands();
             
@@ -146,6 +142,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             AddressRepo repo = new AddressRepo();
             AddressesList = await repo.GetAllAddressesAsync();
+            AddressesView = CollectionViewSource.GetDefaultView(AddressesList);
+            AddressesView.Filter = AddressFilter;
         }
 
 
@@ -212,13 +210,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             
             editDialog.ShowDialog();
 
-            
-            if (editDialog.DialogResult == true)
-            {
-                LoadAddressesAsync();
-                
-
-            }
+            LoadAddressesAsync();                
 
         }
 

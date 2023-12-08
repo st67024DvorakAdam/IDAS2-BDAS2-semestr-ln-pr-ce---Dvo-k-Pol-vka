@@ -104,8 +104,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         public EmployeeVM()
         {
             LoadEmployeesAsync();
-            EmployeesView = CollectionViewSource.GetDefaultView(EmployeesList);
-            EmployeesView.Filter = EmployeesFilter;
             InitializeCommands();
 
             LoadPhotosFromPhotoVM();
@@ -135,6 +133,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             EmployeesRepo repo = new EmployeesRepo();
             EmployeesList = await repo.GetAllEmployeesAsync();
+            EmployeesView = CollectionViewSource.GetDefaultView(EmployeesList);
+            EmployeesView.Filter = EmployeesFilter;
         }
 
         private void InitializeCommands()
@@ -160,7 +160,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         private async void AddNewAction(object parameter)
         {
-            if (!NewEmployee._contact.Email.Contains('@') || !NewEmployee._contact.Email.Contains('.'))
+            if (NewEmployee._contact != null && (!NewEmployee._contact.Email.Contains('@') || !NewEmployee._contact.Email.Contains('.')))
             {
                 MessageBox.Show("Pole Email musí obsahovat znaky '@' a '.' !", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
