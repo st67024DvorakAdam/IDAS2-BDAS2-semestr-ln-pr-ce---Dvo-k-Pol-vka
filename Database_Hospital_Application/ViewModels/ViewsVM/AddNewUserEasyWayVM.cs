@@ -206,6 +206,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
                 NewContact = new Contact();
                 IsSelected = false;
                 OnPropertyChange(nameof(IsSelected));
+                LoadBasicFoto();
             } catch (Exception ex)
             {   
                 MessageBox.Show("Nastala neočekávaná chyba: " + ex.Message, "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
