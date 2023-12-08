@@ -66,6 +66,16 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
 
         private async Task SaveActionAsync()
         {
+            if (!isNewEmployeeFilled(EditableEmployee))
+            {
+                MessageBox.Show("Vyplňte všechna pole!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (EditableEmployee.BirthNumber.Length < 10)
+            {
+                MessageBox.Show("Rodné číslo má méně než 10 znaků!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             try
             {
                 EmployeesRepo employeesRepo = new EmployeesRepo();
@@ -173,6 +183,17 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
         {
             EmployeeVM e = new EmployeeVM();
             _employeesList = e.EmployeesList;
+        }
+        private bool isNewEmployeeFilled(Employee e)
+        {
+            return e != null
+                && !string.IsNullOrEmpty(e.FirstName) && !string.IsNullOrWhiteSpace(e.FirstName)
+                && !string.IsNullOrEmpty(e.LastName) && !string.IsNullOrWhiteSpace(e.LastName)
+                && !string.IsNullOrEmpty(e.UserName) && !string.IsNullOrWhiteSpace(e.UserName)
+                && !string.IsNullOrEmpty(e.BirthNumber) && !string.IsNullOrWhiteSpace(e.BirthNumber)
+                && e._department != null && e._department.Id != null
+                && !string.IsNullOrEmpty(e.Password) && !string.IsNullOrWhiteSpace(e.Password)
+                && !string.IsNullOrEmpty(e.RoleID.ToString()) && !string.IsNullOrWhiteSpace(e.RoleID.ToString());
         }
     }
 }

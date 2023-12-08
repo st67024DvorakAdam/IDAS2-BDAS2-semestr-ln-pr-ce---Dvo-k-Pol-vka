@@ -46,6 +46,13 @@ namespace Database_Hospital_Application.Views.Lists.Dialogs.Employee
             EmployeeCB.SelectedIndex = -1;
         }
 
+        private void TextBox_PreviewTextInputForBirthNumber(object sender, TextCompositionEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            string newText = textBox.Text + e.Text;
+            e.Handled = newText.Length > 10 || !Regex.IsMatch(newText, "^[0-9]*$");
+        }
+
     }
 
     public class SexToIndexConverter : IValueConverter

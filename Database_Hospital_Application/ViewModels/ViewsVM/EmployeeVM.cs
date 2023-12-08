@@ -160,9 +160,14 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         private async void AddNewAction(object parameter)
         {
-            if (NewEmployee._contact != null && (!NewEmployee._contact.Email.Contains('@') || !NewEmployee._contact.Email.Contains('.')))
+            if (!isNewEmployeeFilled(NewEmployee))
             {
-                MessageBox.Show("Pole Email musí obsahovat znaky '@' a '.' !", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Vyplňte všechna pole!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (NewEmployee.BirthNumber.Length < 10)
+            {
+                MessageBox.Show("Rodné číslo má méně než 10 znaků!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -185,11 +190,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         private void EditAction(object parameter)
         {
             if (!CanEdit(parameter)) return;
-            if (SelectedEmployee._contact != null && (!SelectedEmployee._contact.Email.Contains('@') || !SelectedEmployee._contact.Email.Contains('.')))
-            {
-                MessageBox.Show("Pole Email musí obsahovat znaky '@' a '.' !", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
 
             EditEmployeeVM editVM = new EditEmployeeVM(SelectedEmployee);
             EditEmployeeDialog editDialog = new EditEmployeeDialog(editVM);
@@ -235,5 +235,19 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
                 || employee._foto.Id.ToString().Contains(_searchText);
         }
         //FILTER/////////////////////////////////////////////////////////////////////
+
+        private bool isNewEmployeeFilled(Employee e)
+        {
+            return e != null
+                && !string.IsNullOrEmpty(e.FirstName) && !string.IsNullOrWhiteSpace(e.FirstName)
+                && !string.IsNullOrEmpty(e.LastName) && !string.IsNullOrWhiteSpace(e.LastName)
+                && !string.IsNullOrEmpty(e.UserName) && !string.IsNullOrWhiteSpace(e.UserName)
+                && !string.IsNullOrEmpty(e.BirthNumber) && !string.IsNullOrWhiteSpace(e.BirthNumber)
+                && e.Sex != null
+                && e._department != null && e._department.Id != null
+                && e._foto != null && e._foto.Id != 0
+                && !string.IsNullOrEmpty(e.Password) && !string.IsNullOrWhiteSpace(e.Password)
+                && !string.IsNullOrEmpty(e.RoleID.ToString()) && !string.IsNullOrWhiteSpace(e.RoleID.ToString());
+        }
     }
 }
