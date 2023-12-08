@@ -47,6 +47,7 @@
                     <TextBlock Margin="10" Foreground="Gray" VerticalAlignment="Top" Text="Vyhledávání..."/>
                     <TextBox Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
                  VerticalContentAlignment="Center" CaretBrush="White" Width="115" Cursor="Hand"
+                             PreviewTextInput="TextBox_PreviewTextInputForBirthNumber"
                  Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" RenderTransformOrigin="0.502,0.524"/>
                 </StackPanel>
 

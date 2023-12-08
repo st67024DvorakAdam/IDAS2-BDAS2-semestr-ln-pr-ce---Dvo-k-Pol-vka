@@ -362,7 +362,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
             !string.IsNullOrEmpty(InsuranceCompanyName) &&
             InsuranceCompanyAbbreviation > 0 &&
             !string.IsNullOrEmpty(IsSmoker) &&
-            !string.IsNullOrEmpty(IsAllergic);
+            !string.IsNullOrEmpty(IsAllergic) &&
+            Email.Contains("@") && 
+            Email.Contains(".") &&
+            InsuranceCompanyAbbreviation.ToString().Length == 3 &&
+            PostalCode.ToString().Length == 5;
         }
 
         

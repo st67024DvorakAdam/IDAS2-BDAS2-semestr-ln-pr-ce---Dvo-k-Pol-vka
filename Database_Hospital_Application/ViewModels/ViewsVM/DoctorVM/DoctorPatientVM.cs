@@ -108,6 +108,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
                 MessageBox.Show("Vyplňte prosím pole s rodným číslem", "Pacient nenalezen", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
+            if(_searchText.Length < 10)
+            {
+                MessageBox.Show("Špatný formát rodného čísla", "Chybný formát", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
             PatientRepo patientRepo = new PatientRepo();
             CurrentPatient = await patientRepo.GetPatientByBirthNumber(SearchText);
             
