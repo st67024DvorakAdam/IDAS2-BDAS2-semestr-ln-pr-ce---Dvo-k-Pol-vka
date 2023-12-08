@@ -124,7 +124,7 @@
             <TextBox Grid.Row="6" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
              Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
              VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding NewAddress.HouseNumber}"
-             PreviewTextInput="TextBox_PreviewTextInput"/>
+             PreviewTextInput="TextBox_PreviewTextInputForHouseNumber"/>
 
             <TextBlock Grid.Row="7" Text="Země" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
             <ComboBox HorizontalAlignment="Center" Grid.Row="8" VerticalAlignment="Center" Background="Transparent" Width="200" 
@@ -136,7 +136,7 @@
             <TextBox Grid.Row="10" Margin="10" Height="25" Width="200" HorizontalAlignment="Center"
              Background="Transparent" Foreground="White" BorderThickness="1" BorderBrush="Gray"
              VerticalContentAlignment="Center" CaretBrush="White" Text="{Binding NewAddress.ZipCode}"
-             PreviewTextInput="TextBox_PreviewTextInput"/>
+             PreviewTextInput="TextBox_PreviewTextInputForPostalCode"/>
             
             <Button Grid.Row="11" Content="Přidat" Margin="10" Padding="10,3" Width="200" HorizontalAlignment="Center"
             Command="{Binding AddNewAddressCommand}" VerticalAlignment="Top"/>

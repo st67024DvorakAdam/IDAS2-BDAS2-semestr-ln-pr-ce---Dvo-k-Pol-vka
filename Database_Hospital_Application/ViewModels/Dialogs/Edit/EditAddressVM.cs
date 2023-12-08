@@ -63,6 +63,17 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
 
         private async Task SaveActionAsync()
         {
+            if (!isAddressValidAndFilled(EditableAddress))
+            {
+                MessageBox.Show("Vyplňte všechna pole!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (EditableAddress.ZipCode.ToString().Length < 5)
+            {
+                MessageBox.Show("PSČ musí být minimálně 5 znaků!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+
+            }
             try
             {
                 AddressRepo addressRepo = new AddressRepo();
@@ -99,6 +110,13 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
             {
                 ClosingRequest?.Invoke(this, EventArgs.Empty);
             });
+        }
+
+        private bool isAddressValidAndFilled(Address address)
+        {
+            return (address != null && address.Street != null && address.Country != null && address.City != null && address.HouseNumber != null && address.ZipCode != null
+                && address.Street != "" && address.Country != "" && address.City != "" && address.HouseNumber != 0 && address.ZipCode != 0
+                );
         }
     }
 }
