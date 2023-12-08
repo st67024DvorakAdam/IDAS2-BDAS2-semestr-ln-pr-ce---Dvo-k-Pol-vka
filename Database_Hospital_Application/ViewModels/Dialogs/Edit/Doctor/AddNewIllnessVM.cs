@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
@@ -60,7 +61,11 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
         private void AddIllness()
         {
             IllnessesRepo repo = new IllnessesRepo();
-            
+            if (!IsIllnessValidAndFilled(_newIllness, _newIllnessDescription))
+            {
+                MessageBox.Show("Vyplňte správně všechna pole!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             repo.AddIllness(_newIllness, _patient.Id, _newIllnessDescription);
             CloseRequested?.Invoke();
         }
@@ -69,6 +74,11 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
         {
             
             CloseRequested?.Invoke();
+        }
+
+        private bool IsIllnessValidAndFilled(string illnessName, string description)
+        {
+            return (!string.IsNullOrEmpty(illnessName) && !string.IsNullOrEmpty(description));
         }
     }
 }

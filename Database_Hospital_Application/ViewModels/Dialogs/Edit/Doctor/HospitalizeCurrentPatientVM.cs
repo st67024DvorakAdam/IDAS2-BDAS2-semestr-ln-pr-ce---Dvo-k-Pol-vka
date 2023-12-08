@@ -4,6 +4,7 @@ using Database_Hospital_Application.Models.Repositories;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
@@ -73,6 +74,11 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
         private async void Hospitalize()
         {
             HospitalizationRepo hospitalizationRepo = new HospitalizationRepo();
+            if (SelectedDepartment == null)
+            {
+                MessageBox.Show("Vyberte oddělení!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             hospitalizationRepo.AddHospitalization(new Hospitalization(DateTime.Now, _details, _patient.Id, _selectedDepartment.Id));
             CloseRequested?.Invoke();
         }

@@ -67,6 +67,11 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
 
         private async void MoveToDepartment()
         {
+            if (_selectedDepartment == null)
+            {
+                MessageBox.Show("Vyberte nové oddělení!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             if (_hospitalization.DepartmentId == _selectedDepartment.Id)
             {
                 MessageBox.Show("Pacienta nelze přemístit na stejné oddělení", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);

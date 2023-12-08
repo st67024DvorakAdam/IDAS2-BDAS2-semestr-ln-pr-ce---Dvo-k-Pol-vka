@@ -60,6 +60,11 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
                 MessageBox.Show("Dávkování léku nesmí být 0!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            if (string.IsNullOrEmpty(_pill))
+            {
+                MessageBox.Show("Vyplňte název léku!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             DrugsRepo repo = new DrugsRepo();
             
             await repo.PrescriptDrugForIllness(new Drug(_pill, _dosage, _currentUser.Id), _selectedIllness);

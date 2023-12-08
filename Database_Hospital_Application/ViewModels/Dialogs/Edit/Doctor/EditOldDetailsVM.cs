@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
@@ -42,6 +43,7 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
         private async void SaveDetails()
         {
             _hospitalization.Details = _newDetails;
+            
             HospitalizationRepo repo = new HospitalizationRepo();
             repo.UpdateHospitalization(_hospitalization);
             CloseRequested?.Invoke();
@@ -52,5 +54,7 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
             CloseRequested?.Invoke();
 
         }
+
+        
     }
 }
