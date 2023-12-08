@@ -366,7 +366,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
             Email.Contains("@") && 
             Email.Contains(".") &&
             InsuranceCompanyAbbreviation.ToString().Length == 3 &&
-            PostalCode.ToString().Length == 5;
+            PostalCode.ToString().Length == 5 &&
+            IdentificationNumber.Length == 10;
         }
 
         
