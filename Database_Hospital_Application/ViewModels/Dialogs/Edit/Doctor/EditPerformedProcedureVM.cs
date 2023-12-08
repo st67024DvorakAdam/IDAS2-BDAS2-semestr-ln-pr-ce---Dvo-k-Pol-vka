@@ -2,6 +2,7 @@
 using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.Models.Repositories;
 using System;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
@@ -83,7 +84,11 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
         // TODO upravit detaily u hospitalizace u zakroku s hospitalizací
         private void EditProcedure()
         {
-            
+            if(!IsProcedureValidAndFilled())
+            {
+                MessageBox.Show("Vyplňte všechna pole!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
                 PerformedProcedure editedProcedure = new PerformedProcedure();
                 editedProcedure.Name = Name;    
                 editedProcedure.Price = Price;  
@@ -103,6 +108,9 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
             CloseRequested?.Invoke();
         }
 
-
+        private bool IsProcedureValidAndFilled()
+        {
+            return (!string.IsNullOrEmpty(Name) && Price > 0);
+        }
     }
 }
