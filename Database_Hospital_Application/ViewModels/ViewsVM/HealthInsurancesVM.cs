@@ -8,6 +8,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -96,6 +97,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         private async void AddNewInsuranceAction(object parameter)
         {
+            if(!isValidAndFilled(NewInsurance))
+            {
+                MessageBox.Show("Vyplňte správně všechna pole!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             HealthInsurancesRepo repo = new HealthInsurancesRepo();
             await repo.AddHealthInsurance(NewInsurance);
             await LoadHealthInsurancesAsync();
@@ -117,10 +123,9 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
             editDialog.ShowDialog();
 
-            if (editDialog.DialogResult == true)
-            {
-                LoadHealthInsurancesAsync();
-            }
+            
+            LoadHealthInsurancesAsync();
+            
         }
 
         //FILTER/////////////////////////////////////////////////////////////////////
@@ -148,6 +153,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
             return insurance.Name.Contains(_searchText, StringComparison.OrdinalIgnoreCase)
                    || insurance.Code.ToString().Contains(_searchText, StringComparison.OrdinalIgnoreCase);
+        }
+
+        private bool isValidAndFilled(HealthInsurance insurance)
+        {
+            return (!string.IsNullOrEmpty(insurance.Name) && (insurance.Code != 0 || insurance.Code != null) && insurance.Code.ToString().Length == 3);
         }
     }
 }

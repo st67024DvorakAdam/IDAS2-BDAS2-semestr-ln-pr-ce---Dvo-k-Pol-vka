@@ -112,7 +112,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
                 MessageBox.Show("Vyplňte všechna pole!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            else if (NewAddress.ZipCode < 5) 
+            if (NewAddress.ZipCode.ToString().Length < 5) 
             {
                 MessageBox.Show("PSČ musí být minimálně 5 znaků!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -193,17 +193,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         private void EditAction(object parametr)
         {
             if (!CanEdit()) return;
-            if (!isAddressValidAndFilled(NewAddress))
-            {
-                MessageBox.Show("Vyplňte všechna pole!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            else if (NewAddress.ZipCode < 5)
-            {
-                MessageBox.Show("PSČ musí být minimálně 5 znaků!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-
-            }
+           
 
             EditAddressVM editVM = new EditAddressVM(SelectedAddress);
 

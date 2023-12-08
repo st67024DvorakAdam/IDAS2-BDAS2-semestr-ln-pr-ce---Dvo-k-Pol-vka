@@ -51,5 +51,19 @@ namespace Database_Hospital_Application.Views.Lists.Dialogs.Address
             e.Handled = newText.Length > 3 || !Regex.IsMatch(newText, "^[a-zA-Z]*$");
         }
 
+        private void TextBox_PreviewTextInputForPostalCode(object sender, TextCompositionEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            string newText = textBox.Text + e.Text;
+            e.Handled = newText.Length > 5 || !Regex.IsMatch(newText, "^[0-9]*$");
+        }
+
+        private void TextBox_PreviewTextInputForHouseNumber(object sender, TextCompositionEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            string newText = textBox.Text + e.Text;
+            e.Handled = newText.Length > 7 || !Regex.IsMatch(newText, "^[0-9]*$");
+        }
+
     }
 }

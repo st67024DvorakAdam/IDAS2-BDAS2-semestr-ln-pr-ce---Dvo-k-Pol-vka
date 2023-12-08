@@ -18,7 +18,10 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
         public HealthInsurance EditableInsurance
         {
             get { return _editableInsurance; }
-            set { _editableInsurance = value; OnPropertyChange(nameof(EditableInsurance)); }
+            set { _editableInsurance = value; OnPropertyChange(nameof(EditableInsurance));
+                
+            }
+
         }
 
 
@@ -39,13 +42,18 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
 
         private async Task SaveActionAsync()
         {
+            if (!isValidAndFilled(EditableInsurance))
+            {
+                MessageBox.Show("Vyplňte správně všechna pole!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             try
             {
                 HealthInsurancesRepo insuranceRepo = new HealthInsurancesRepo();
                 int affectedRows = await insuranceRepo.UpdateHealthInsurance(EditableInsurance);
                 if (affectedRows == 0)
                 {
-                    MessageBox.Show("Pojištovnu se nepodařilo změnit", "Not Ok", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Pojištovnu se nepodařilo změnit", "Not Ok", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 }
                 else
@@ -75,6 +83,11 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
             {
                 ClosingRequest?.Invoke(this, EventArgs.Empty);
             });
+        }
+
+        private bool isValidAndFilled(HealthInsurance insurance)
+        {
+            return (!string.IsNullOrEmpty(insurance.Name) && (insurance.Code != 0 || insurance.Code != null) && insurance.Code.ToString().Length == 3);
         }
     }
 }
