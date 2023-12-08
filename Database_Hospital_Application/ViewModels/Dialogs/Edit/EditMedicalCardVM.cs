@@ -64,6 +64,11 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
 
         private async Task SaveActionAsync()
         {
+            if (!MedicalCardValidator.IsPatientFilled(EditableMedicalCard))
+            {
+                MessageBox.Show("Vyplňte všechna pole!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             try
             {
                 MedicalCardsRepo medicalCardsRepo = new MedicalCardsRepo();

@@ -87,8 +87,14 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             //string salt = await userRepo.GetUserSaltByUsername(Username);
             //string hashedPassword = PasswordHasher.HashPassword(Password, salt);
             //User user = await userRepo.LoginUserAsync(Username, hashedPassword);
-
-            User user = await userRepo.LoginUserAsync(Username, Password);
+            User user;
+            try
+            {
+                user = await userRepo.LoginUserAsync(Username, Password);
+            } catch
+            {
+                return;
+            }
             if (user == null)
             {
                 MessageBox.Show("Zadané přihlašovací údaje se neschodují!", "Info", MessageBoxButton.OK, MessageBoxImage.Error);

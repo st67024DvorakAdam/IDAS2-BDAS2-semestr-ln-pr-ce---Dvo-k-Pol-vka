@@ -51,4 +51,13 @@ namespace Database_Hospital_Application.Models.Entities
             IsAllergic = alergic;
         }
     }
+
+    public static class MedicalCardValidator
+    {
+        public static bool IsPatientFilled(MedicalCard medicalCard)
+        {
+            return medicalCard != null
+                && medicalCard.IdOfPatient != 0 && medicalCard.IdOfPatient != null;
+        }
+    }
 }

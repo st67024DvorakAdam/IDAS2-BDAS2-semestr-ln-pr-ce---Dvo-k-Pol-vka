@@ -12,6 +12,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -83,8 +84,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         public PersonalMedicalHistoriesVM()
         {
             LoadPersonalMedicalHistoriesAsync();
-            PersonalMedicalHistoriesView = CollectionViewSource.GetDefaultView(PersonalMedicalHistoriesList);
-            PersonalMedicalHistoriesView.Filter = PersonalMedicalHistoriesFilter;
             InitializeCommands();
 
             LoadPatientsFromPatientVM();
@@ -94,6 +93,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             PersonalMedicalHistoriesRepo repo = new PersonalMedicalHistoriesRepo();
             PersonalMedicalHistoriesList = await repo.GetAllPersonalMedicalHistoriesAsync();
+            PersonalMedicalHistoriesView = CollectionViewSource.GetDefaultView(PersonalMedicalHistoriesList);
+            PersonalMedicalHistoriesView.Filter = PersonalMedicalHistoriesFilter;
         }
         ///KONSTRUKTOR ////////////////////////////////////////////////////////////////////////////////////////
 
@@ -121,6 +122,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         private async void AddNewAction(object parameter)
         {
+            if (!PersonalMedicalHistoryValidator.IsDescriptionAndPatientFilled(NewPersonalMedicalHistory)) 
+            {
+                MessageBox.Show("Vyplňte všechna pole!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }     
             PersonalMedicalHistoriesRepo personalMedicalHistoriesRepoRepo = new PersonalMedicalHistoriesRepo();
             await personalMedicalHistoriesRepoRepo.AddPersonalMedicalHistory(NewPersonalMedicalHistory);
             await LoadPersonalMedicalHistoriesAsync();
@@ -142,10 +148,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
             editDialog.ShowDialog();
 
-            if (editDialog.DialogResult == true)
-            {
-                LoadPersonalMedicalHistoriesAsync();
-            }
+            LoadPersonalMedicalHistoriesAsync();
+            
         }
 
         //FILTER/////////////////////////////////////////////////////////////////////

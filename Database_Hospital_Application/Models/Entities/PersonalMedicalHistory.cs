@@ -20,4 +20,14 @@ namespace Database_Hospital_Application.Models.Entities
 
         public PersonalMedicalHistory() { }
     }
+
+    public static class PersonalMedicalHistoryValidator
+    {
+        public static bool IsDescriptionAndPatientFilled(PersonalMedicalHistory personalMedicalHistory)
+        {
+            return personalMedicalHistory != null
+                && !string.IsNullOrEmpty(personalMedicalHistory.Description)
+                && !string.IsNullOrEmpty(personalMedicalHistory.IdOfPatient.ToString()) && personalMedicalHistory.IdOfPatient != null && personalMedicalHistory.IdOfPatient != 0;
+        }
+    }
 }

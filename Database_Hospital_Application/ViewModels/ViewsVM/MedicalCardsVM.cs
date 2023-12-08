@@ -12,6 +12,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -99,10 +100,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         public MedicalCardsVM()
         {
             LoadMedicalCardsAsync();
-            MedicalCardsView = CollectionViewSource.GetDefaultView(MedicalCardsList);
-            MedicalCardsView.Filter = MedicalCardsFilter;
             InitializeCommands();
-
             LoadPatientsAsync();
             LoadIllnessesAsync();
         }
@@ -111,6 +109,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             MedicalCardsRepo repo = new MedicalCardsRepo();
             MedicalCardsList = await repo.GetAllMedicalCardsAsync();
+            MedicalCardsView = CollectionViewSource.GetDefaultView(MedicalCardsList);
+            MedicalCardsView.Filter = MedicalCardsFilter;
         }
         ///KONSTRUKTOR ////////////////////////////////////////////////////////////////////////////////////////
         ///
@@ -138,6 +138,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         private async void AddNewAction(object parameter)
         {
+            if (!MedicalCardValidator.IsPatientFilled(NewMedicalCard))
+            {
+                MessageBox.Show("Vyplňte všechna pole!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             MedicalCardsRepo medicalCardsRepo = new MedicalCardsRepo();
             await medicalCardsRepo.AddMedicalCard(NewMedicalCard);
             await LoadMedicalCardsAsync();
@@ -194,6 +199,5 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
                 || medicalCard.StringVersionOfIllnesses.Contains(_searchText, StringComparison.OrdinalIgnoreCase);
         }
         //FILTER/////////////////////////////////////////////////////////////////////
-
     }
 }

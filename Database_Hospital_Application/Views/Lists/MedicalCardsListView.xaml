@@ -116,14 +116,14 @@
 
             <TextBlock Grid.Row="5" Text="Kouří" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
             <ComboBox HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Center" Background="Transparent" Width="200" 
-                      SelectedIndex="{Binding NewMedicalCard.Smoking, Converter={StaticResource boolToIndexConverter}}">
+                      SelectedIndex="{Binding NewMedicalCard.IsSmoker, Converter={StaticResource boolToIndexConverter}}">
                 <ComboBoxItem>True</ComboBoxItem>
                 <ComboBoxItem>False</ComboBoxItem>
             </ComboBox>
 
             <TextBlock Grid.Row="7" Text="Alergik" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
             <ComboBox HorizontalAlignment="Center" Grid.Row="8" VerticalAlignment="Center" Background="Transparent" Width="200" 
-                      SelectedIndex="{Binding NewMedicalCard.Alergic, Converter={StaticResource boolToIndexConverter}}">
+                      SelectedIndex="{Binding NewMedicalCard.IsAllergic, Converter={StaticResource boolToIndexConverter}}">
                 <ComboBoxItem>True</ComboBoxItem>
                 <ComboBoxItem>False</ComboBoxItem>
             </ComboBox>

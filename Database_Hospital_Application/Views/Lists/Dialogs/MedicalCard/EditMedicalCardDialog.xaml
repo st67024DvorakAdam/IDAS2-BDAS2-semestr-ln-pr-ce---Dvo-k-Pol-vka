@@ -32,14 +32,14 @@
 
         <TextBlock Grid.Row="2" Text="Kouří" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
         <ComboBox HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" Background="Transparent" Width="200" 
-                      SelectedIndex="{Binding EditableMedicalCard.Smoking, Converter={StaticResource boolToIndexConverter}, UpdateSourceTrigger=PropertyChanged}">
+                      SelectedIndex="{Binding EditableMedicalCard.IsSmoker, Converter={StaticResource boolToIndexConverter}, UpdateSourceTrigger=PropertyChanged}">
             <ComboBoxItem>True</ComboBoxItem>
             <ComboBoxItem>False</ComboBoxItem>
         </ComboBox>
 
         <TextBlock Grid.Row="4" Text="Alergik" Foreground="White" FontSize="14" HorizontalAlignment="Center" Margin="10"/>
         <ComboBox HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" Background="Transparent" Width="200" 
-                      SelectedIndex="{Binding EditableMedicalCard.Alergic, Converter={StaticResource boolToIndexConverter}, UpdateSourceTrigger=PropertyChanged}">
+                      SelectedIndex="{Binding EditableMedicalCard.IsAllergic, Converter={StaticResource boolToIndexConverter}, UpdateSourceTrigger=PropertyChanged}">
             <ComboBoxItem>True</ComboBoxItem>
             <ComboBoxItem>False</ComboBoxItem>
         </ComboBox>
