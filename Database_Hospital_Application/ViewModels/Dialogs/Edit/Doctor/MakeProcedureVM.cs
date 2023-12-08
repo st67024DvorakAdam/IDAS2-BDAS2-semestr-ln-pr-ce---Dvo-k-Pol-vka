@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Linq;
-
+using System.Windows;
 
 namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
 {
@@ -78,6 +78,11 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
         
         private async void AddProcedureAndHospitalize()
         {
+            if(!IsProcedureHospitalizeValidAndFilled(NewPerformedProcedure))
+            {
+                MessageBox.Show("Vyplňte všechna pole!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             _newPerformedProcedure.IdOfPatient = _patient.Id;
             _proceduresRepo.AddPerformedProcedure(NewPerformedProcedure);
             var hospitalizationRepo = new HospitalizationRepo();
@@ -114,6 +119,11 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
         
         private void AddProcedure()
         {
+            if (!IsProcedureValidAndFilled(NewPerformedProcedure))
+            {
+                MessageBox.Show("Vyplňte všechna pole!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             _newPerformedProcedure.IdOfPatient = _patient.Id;
             _proceduresRepo.AddPerformedProcedure(NewPerformedProcedure);
             PersonalMedicalHistoriesRepo anamnesisRepo = new PersonalMedicalHistoriesRepo();
@@ -145,6 +155,16 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit.Doctor
         private void Cancel()
         {
             CloseRequested?.Invoke();
+        }
+
+        private bool IsProcedureValidAndFilled(PerformedProcedure procedure)
+        {
+            return (!string.IsNullOrEmpty(procedure.Name) && (procedure.Price != 0 && procedure.Price != null));
+        }
+
+        private bool IsProcedureHospitalizeValidAndFilled(PerformedProcedure procedure)
+        {
+            return (!string.IsNullOrEmpty(procedure.Name) && (procedure.Price != 0 && procedure.Price != null) && SelectedDepartment != null);
         }
     }
 }
