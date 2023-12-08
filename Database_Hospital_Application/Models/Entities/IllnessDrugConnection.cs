@@ -17,4 +17,11 @@ namespace Database_Hospital_Application.Models.Entities
             _drug = new Drug();
         }
     }
+    public static class IllnessDrugConnectionValidator
+    {
+        public static bool IsConnectionOk(IllnessDrugConnection connection)
+        {
+            return connection._illness.Id != 0 && connection._drug.Id != 0;
+        }
+    }
 }

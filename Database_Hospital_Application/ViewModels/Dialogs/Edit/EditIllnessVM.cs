@@ -59,6 +59,11 @@ namespace Database_Hospital_Application.ViewModels.Dialogs.Edit
 
         private async Task SaveActionAsync()
         {
+            if (!IllnessValidator.IsFilled(EditableIllness))
+            {
+                MessageBox.Show("Vyplňte všechna pole!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             try
             {
                 IllnessesRepo illnessRepo = new IllnessesRepo();

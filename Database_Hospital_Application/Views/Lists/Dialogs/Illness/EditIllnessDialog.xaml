@@ -31,8 +31,20 @@
 
         <TextBlock Text="Zdrav.karta id" FontSize="18" Grid.Row="4" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
         <ComboBox HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" Background="Transparent" Width="300" 
-            ItemsSource="{Binding MedicalCardsList}" DisplayMemberPath="Id" 
-            SelectedValuePath="Id" SelectedValue="{Binding EditableIllness.MedicalCardId, UpdateSourceTrigger=PropertyChanged}">  
+            ItemsSource="{Binding MedicalCardsList}"
+            SelectedValuePath="Id" SelectedValue="{Binding EditableIllness.MedicalCardId, UpdateSourceTrigger=PropertyChanged}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Id:{0}, RČ:{1}">
+                                <Binding Path="Id" />
+                                <Binding Path="BirthNumberOfPatient" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
         </ComboBox>
 
         <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Center" Margin="25">

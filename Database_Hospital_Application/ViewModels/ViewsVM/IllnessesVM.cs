@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -120,6 +121,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         private async void AddNewIllnessAction(object parameter)
         {
+            if (!IllnessValidator.IsFilled(NewIllness))
+            {
+                MessageBox.Show("Vyplňte všechna pole!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             IllnessesRepo illnessesRepo = new IllnessesRepo();
             await illnessesRepo.AddIllness(NewIllness);
             await LoadIllnessesAsync();
@@ -171,7 +177,9 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             if (illness == null) return false;
 
             return illness.Name.Contains(_searchText, StringComparison.OrdinalIgnoreCase)
-                || illness.Id.ToString().Contains(_searchText);
+                || illness.Id.ToString().Contains(_searchText)
+                || illness.Details.Contains(_searchText, StringComparison.OrdinalIgnoreCase)
+                || illness.MedicalCardId.ToString().Contains(_searchText);
         }
         //FILTER/////////////////////////////////////////////////////////////////////
     }

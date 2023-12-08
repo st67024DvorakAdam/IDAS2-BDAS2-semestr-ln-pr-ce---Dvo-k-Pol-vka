@@ -12,7 +12,7 @@ namespace Database_Hospital_Application.Models.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         
-        public string Details { get; set; }
+        public string? Details { get; set; }
         public int MedicalCardId { get; set; }
 
         public Illness()
@@ -21,5 +21,15 @@ namespace Database_Hospital_Application.Models.Entities
         
 
 
+    }
+
+    public static class IllnessValidator
+    {
+        public static bool IsFilled(Illness illness)
+        {
+            return illness != null
+                && !string.IsNullOrEmpty(illness.Name)
+                && illness.MedicalCardId != 0 && illness.MedicalCardId != null;
+        }
     }
 }

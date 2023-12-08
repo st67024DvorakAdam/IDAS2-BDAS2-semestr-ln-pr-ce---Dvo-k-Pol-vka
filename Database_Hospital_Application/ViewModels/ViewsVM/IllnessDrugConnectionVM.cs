@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -100,11 +101,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         public IllnessDrugConnectionVM()
         {
-            LoadIllnessDrugConnectionAsync();
-            IllnessDrugConnectionView = CollectionViewSource.GetDefaultView(IllnessDrugConnectionsList);
-            IllnessDrugConnectionView.Filter = IllnessDrugConnectionsFilter;
+            LoadIllnessDrugConnectionAsync();      
             InitializeCommands();
-
             LoadIllnessesFromIllnessesVM();
             LoadDrugssFromDrugsVM();
         }
@@ -112,6 +110,8 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             IllnessDrugConnectionRepo repo = new IllnessDrugConnectionRepo();
             IllnessDrugConnectionsList = await repo.GetAllIllness_drugConnectionsAsync();
+            IllnessDrugConnectionView = CollectionViewSource.GetDefaultView(IllnessDrugConnectionsList);
+            IllnessDrugConnectionView.Filter = IllnessDrugConnectionsFilter;
         }
 
         private void InitializeCommands()
@@ -136,6 +136,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         private async void AddNewAction(object parameter)
         {
+            if (!IllnessDrugConnectionValidator.IsConnectionOk(NewIllnessDrugConnection))
+            {
+                MessageBox.Show("Vyplňte všechna pole!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             IllnessDrugConnectionRepo repo = new IllnessDrugConnectionRepo();
             await repo.AddIllnessDrugConnection(NewIllnessDrugConnection);
             await LoadIllnessDrugConnectionAsync();
