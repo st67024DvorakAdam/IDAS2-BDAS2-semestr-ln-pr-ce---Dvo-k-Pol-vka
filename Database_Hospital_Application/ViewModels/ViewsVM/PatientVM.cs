@@ -118,8 +118,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             PatientRepo repo = new PatientRepo();
             PatientsList = await repo.GetAllPatientsAsync();
-            PatientsView = CollectionViewSource.GetDefaultView(PatientsList);
-            PatientsView.Filter = PatientsFilter;
+            if (PatientsList != null)
+            {
+                PatientsView = CollectionViewSource.GetDefaultView(PatientsList);
+                PatientsView.Filter = PatientsFilter;
+            }
         }
 
         private void InitializeCommands()

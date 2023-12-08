@@ -33,14 +33,18 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         public RolesVM()
         {
             LoadRolesAsync();
-            RolesView = CollectionViewSource.GetDefaultView(RolesList);
-            RolesView.Filter = RolesFilter;
+            
         }
 
         private async Task LoadRolesAsync()
         {
             RolesRepo repo = new RolesRepo();
             RolesList = await repo.GetAllRoleDescriptionsAsync();
+            if(RolesList != null)
+            {
+                RolesView = CollectionViewSource.GetDefaultView(RolesList);
+                RolesView.Filter = RolesFilter;
+            }
         }
 
 

@@ -28,8 +28,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         public LogsVM()
         {
             LoadLogsAsync();
-            LogsView = CollectionViewSource.GetDefaultView(LogsList);
-            LogsView.Filter = LogsFilter;
+            if (LogsList != null)
+            {
+                LogsView = CollectionViewSource.GetDefaultView(LogsList);
+                LogsView.Filter = LogsFilter;
+            }
         }
 
         private async Task LoadLogsAsync()

@@ -93,8 +93,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             PersonalMedicalHistoriesRepo repo = new PersonalMedicalHistoriesRepo();
             PersonalMedicalHistoriesList = await repo.GetAllPersonalMedicalHistoriesAsync();
-            PersonalMedicalHistoriesView = CollectionViewSource.GetDefaultView(PersonalMedicalHistoriesList);
-            PersonalMedicalHistoriesView.Filter = PersonalMedicalHistoriesFilter;
+            if (PersonalMedicalHistoriesList != null)
+            {
+                PersonalMedicalHistoriesView = CollectionViewSource.GetDefaultView(PersonalMedicalHistoriesList);
+                PersonalMedicalHistoriesView.Filter = PersonalMedicalHistoriesFilter;
+            }
         }
         ///KONSTRUKTOR ////////////////////////////////////////////////////////////////////////////////////////
 

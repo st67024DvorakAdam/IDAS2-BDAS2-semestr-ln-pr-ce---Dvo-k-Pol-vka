@@ -44,14 +44,17 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         public SystemCatalogVM()
         {
             LoadSystemCatalogAsync();
-            SystemCatalogView = CollectionViewSource.GetDefaultView(SystemCatalogList);
-            SystemCatalogView.Filter = SystemCatalogFilter;
         }
 
         private async Task LoadSystemCatalogAsync()
         {
             SystemCatalogRepo repo = new SystemCatalogRepo();
             SystemCatalogList = await repo.GetSystemCatalogAsync();
+            if(SystemCatalogList!= null)
+            {
+                SystemCatalogView = CollectionViewSource.GetDefaultView(SystemCatalogList);
+                SystemCatalogView.Filter = SystemCatalogFilter;
+            }
         }
 
         private bool SystemCatalogFilter(object item)

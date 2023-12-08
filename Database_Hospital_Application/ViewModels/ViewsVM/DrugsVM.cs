@@ -94,8 +94,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             DrugsRepo repo = new DrugsRepo();
             DrugsList = await repo.GetAllDrugsAsync();
-            DrugsView = CollectionViewSource.GetDefaultView(DrugsList);
-            DrugsView.Filter = DrugsFilter;
+            if (DrugsList != null)
+            {
+                DrugsView = CollectionViewSource.GetDefaultView(DrugsList);
+                DrugsView.Filter = DrugsFilter;
+            }
         }
 
 

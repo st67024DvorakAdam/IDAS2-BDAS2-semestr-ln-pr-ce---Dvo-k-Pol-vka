@@ -113,8 +113,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             ContactRepo repo = new ContactRepo();
             ContactsList = await repo.GetAllContactsAsync();
-            ContactsView = CollectionViewSource.GetDefaultView(ContactsList);
-            ContactsView.Filter = ContactFilter;
+            if (ContactsList != null)
+            {
+                ContactsView = CollectionViewSource.GetDefaultView(ContactsList);
+                ContactsView.Filter = ContactFilter;
+            }
         }
 
         private void InitializeCommands()

@@ -142,8 +142,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             AddressRepo repo = new AddressRepo();
             AddressesList = await repo.GetAllAddressesAsync();
-            AddressesView = CollectionViewSource.GetDefaultView(AddressesList);
-            AddressesView.Filter = AddressFilter;
+            if (AddressesList != null)
+            {
+                AddressesView = CollectionViewSource.GetDefaultView(AddressesList);
+                AddressesView.Filter = AddressFilter;
+            }
         }
 
 

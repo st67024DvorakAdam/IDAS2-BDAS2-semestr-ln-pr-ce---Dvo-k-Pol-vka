@@ -110,8 +110,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             IllnessDrugConnectionRepo repo = new IllnessDrugConnectionRepo();
             IllnessDrugConnectionsList = await repo.GetAllIllness_drugConnectionsAsync();
-            IllnessDrugConnectionView = CollectionViewSource.GetDefaultView(IllnessDrugConnectionsList);
-            IllnessDrugConnectionView.Filter = IllnessDrugConnectionsFilter;
+            if (IllnessDrugConnectionsList != null)
+            {
+                IllnessDrugConnectionView = CollectionViewSource.GetDefaultView(IllnessDrugConnectionsList);
+                IllnessDrugConnectionView.Filter = IllnessDrugConnectionsFilter;
+            }
         }
 
         private void InitializeCommands()

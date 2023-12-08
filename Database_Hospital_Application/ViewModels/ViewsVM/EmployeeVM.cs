@@ -133,8 +133,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             EmployeesRepo repo = new EmployeesRepo();
             EmployeesList = await repo.GetAllEmployeesAsync();
-            EmployeesView = CollectionViewSource.GetDefaultView(EmployeesList);
-            EmployeesView.Filter = EmployeesFilter;
+            if (EmployeesList != null)
+            {
+                EmployeesView = CollectionViewSource.GetDefaultView(EmployeesList);
+                EmployeesView.Filter = EmployeesFilter;
+            }
         }
 
         private void InitializeCommands()

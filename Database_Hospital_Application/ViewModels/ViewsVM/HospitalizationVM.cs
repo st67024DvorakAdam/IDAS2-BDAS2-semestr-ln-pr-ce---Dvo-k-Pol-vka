@@ -134,8 +134,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             HospitalizationRepo repo = new HospitalizationRepo();
             HospitalizationsList = await repo.GetAllHospitalizationsAsync();
-            HospitalizationView = CollectionViewSource.GetDefaultView(HospitalizationsList);
-            HospitalizationView.Filter = HospitalizationFilter;
+            if (HospitalizationsList != null)
+            {
+                HospitalizationView = CollectionViewSource.GetDefaultView(HospitalizationsList);
+                HospitalizationView.Filter = HospitalizationFilter;
+            }
         }
         private async Task LoadPatientsAsync()
         {

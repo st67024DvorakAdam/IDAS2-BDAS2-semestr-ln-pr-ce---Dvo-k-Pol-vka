@@ -109,8 +109,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             MedicalCardsRepo repo = new MedicalCardsRepo();
             MedicalCardsList = await repo.GetAllMedicalCardsAsync();
-            MedicalCardsView = CollectionViewSource.GetDefaultView(MedicalCardsList);
-            MedicalCardsView.Filter = MedicalCardsFilter;
+            if (MedicalCardsList != null)
+            {
+                MedicalCardsView = CollectionViewSource.GetDefaultView(MedicalCardsList);
+                MedicalCardsView.Filter = MedicalCardsFilter;
+            }
         }
         ///KONSTRUKTOR ////////////////////////////////////////////////////////////////////////////////////////
         ///

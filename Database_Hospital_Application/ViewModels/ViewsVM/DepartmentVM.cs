@@ -70,8 +70,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             DepartmentRepo repo = new DepartmentRepo();
             DepartmentsList = await repo.GetAllDepartmentsAsync();
-            DepartmentsView = CollectionViewSource.GetDefaultView(DepartmentsList);
-            DepartmentsView.Filter = DepartmentsFilter;
+            if (DepartmentsList != null)
+            {
+                DepartmentsView = CollectionViewSource.GetDefaultView(DepartmentsList);
+                DepartmentsView.Filter = DepartmentsFilter;
+            }
         }
 
         private void InitializeCommands()

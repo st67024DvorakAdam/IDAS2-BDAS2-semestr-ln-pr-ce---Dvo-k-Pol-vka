@@ -117,8 +117,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             PerformedProceduresRepo repo = new PerformedProceduresRepo();
             PerformedProceduresList = await repo.GetAllPerformedProceduresAsync();
-            PerformedProceduresView = CollectionViewSource.GetDefaultView(PerformedProceduresList);
-            PerformedProceduresView.Filter = PerformedProceduresFilter;
+            if (PerformedProceduresList != null)
+            {
+                PerformedProceduresView = CollectionViewSource.GetDefaultView(PerformedProceduresList);
+                PerformedProceduresView.Filter = PerformedProceduresFilter;
+            }
         }
         ///KONSTRUKTOR ////////////////////////////////////////////////////////////////////////////////////////
         ///

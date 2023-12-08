@@ -70,8 +70,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             HealthInsurancesRepo repo = new HealthInsurancesRepo();
             HealthInsurancesList = await repo.GetAllHealthInsurancesAsync();
-            HealthInsurancesView = CollectionViewSource.GetDefaultView(HealthInsurancesList);
-            HealthInsurancesView.Filter = HealthInsuranceFilter;
+            if (HealthInsurancesList != null)
+            {
+                HealthInsurancesView = CollectionViewSource.GetDefaultView(HealthInsurancesList);
+                HealthInsurancesView.Filter = HealthInsuranceFilter;
+            }
         }
 
         private void InitializeCommands()

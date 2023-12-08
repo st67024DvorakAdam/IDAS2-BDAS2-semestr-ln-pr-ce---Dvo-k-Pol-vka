@@ -67,8 +67,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             this.fileDialogService = new OpenFileDialogService();
             LoadPhotosAsync();
-            PhotosView = CollectionViewSource.GetDefaultView(PhotosList);
-            PhotosView.Filter = PhotosFilter;
             InitializeCommands();
         }
 
@@ -76,6 +74,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         {
             PhotosRepo repo = new PhotosRepo();
             PhotosList = await repo.GetAllPhotosAsync();
+            if(PhotosList != null)
+            {
+                PhotosView = CollectionViewSource.GetDefaultView(PhotosList);
+                PhotosView.Filter = PhotosFilter;
+            }
         }
 
 
@@ -103,8 +106,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             PhotosRepo photosRepo = new PhotosRepo();
             await photosRepo.DeletePhoto(SelectedPhoto.Id);
             await LoadPhotosAsync();
-            PhotosView = CollectionViewSource.GetDefaultView(PhotosList);
-            PhotosView.Filter = PhotosFilter;
         }
 
         private async void AddNewAction(object parameter)
@@ -118,8 +119,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
                 PhotosRepo photosRepo = new PhotosRepo();
                 await photosRepo.AddPhoto(imageBytes, filename, suffix);
                 await LoadPhotosAsync();
-                PhotosView = CollectionViewSource.GetDefaultView(PhotosList);
-                PhotosView.Filter = PhotosFilter;
                 NewPhoto = new Foto();
             }
             catch (Exception ex)
@@ -148,8 +147,6 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
                 PhotosRepo photosRepo = new PhotosRepo();
                 await photosRepo.UpdatePhoto(SelectedPhoto.Id, imageBytes, filename, suffix);
                 LoadPhotosAsync();
-                PhotosView = CollectionViewSource.GetDefaultView(PhotosList);
-                PhotosView.Filter = PhotosFilter;
                 NewPhoto = new Foto();
             }
             catch (Exception ex)
