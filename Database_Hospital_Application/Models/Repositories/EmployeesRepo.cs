@@ -1,5 +1,4 @@
-﻿using Database_Hospital_Application.Exceptions;
-using Database_Hospital_Application.Models.Entities;
+﻿using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.Models.Enums;
 using Database_Hospital_Application.Models.Tools;
 using Oracle.ManagedDataAccess.Client;
