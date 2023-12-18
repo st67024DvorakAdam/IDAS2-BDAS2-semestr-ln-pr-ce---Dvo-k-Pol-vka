@@ -23,8 +23,10 @@
         <TextBox x:Name="CityTextBox" Height="25" FontSize="16"  Grid.Row="1" Margin="5" Width="300" HorizontalAlignment="Center" Text="{Binding EditableDepartment.Name, UpdateSourceTrigger=PropertyChanged}"/>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="25">
-            <Button Command="{Binding CancelCommand}" Content="Zrušit" Margin="5" Width="100" Height="35" FontSize="18"/>
-            <Button Command="{Binding SaveCommand}" Content="Potvrdit" Margin="5" Width="100" FontSize="18"/>
+            <Button Command="{Binding CancelCommand}" Content="Zrušit" Margin="5" Width="100" Height="35" FontSize="18"
+                    Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" Cursor="Hand" Template="{StaticResource NoMouseOverButtonTemplate}"/>
+            <Button Command="{Binding SaveCommand}" Content="Potvrdit" Margin="5" Width="100" FontSize="18"
+                    Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" Cursor="Hand" Template="{StaticResource NoMouseOverButtonTemplate}"/>
         </StackPanel>
     </Grid>
 </Window>

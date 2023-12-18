@@ -165,8 +165,10 @@
             </Grid>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10" >
-                <Button Content="Upravit" Margin="0,0,5,10" Padding="10,3" Command="{Binding EditCommand}" Height="30" FontSize="15"/>
-                <Button Content="Odstranit foto" Margin="5,0,0,10" Padding="10,3" Command="{Binding DeletePhotoCommand}" Height="30" FontSize="15"/>
+                <Button Content="Upravit" Margin="0,0,5,10" Padding="10,3" Command="{Binding EditCommand}" Height="30" FontSize="15"
+                        Width="120" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" Cursor="Hand" Template="{StaticResource NoMouseOverButtonTemplate}"/>
+                <Button Content="Odstranit foto" Margin="5,0,0,10" Padding="10,3" Command="{Binding DeletePhotoCommand}" Height="30" FontSize="15"
+                        Width="120" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" Cursor="Hand" Template="{StaticResource NoMouseOverButtonTemplate}"/>
             </StackPanel>
 
 

@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ViewModels\ViewsVM\AdminVm\**" />
+    <EmbeddedResource Remove="ViewModels\ViewsVM\AdminVm\**" />
+    <None Remove="ViewModels\ViewsVM\AdminVm\**" />
+    <Page Remove="ViewModels\ViewsVM\AdminVm\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ApplicationDefinition Remove="App.xaml" />
   </ItemGroup>
 
@@ -23,10 +30,6 @@
     <PackageReference Include="iTextSharp" Version="5.5.13.3" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="3.21.120" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ViewModels\ViewsVM\AdminVm\" />
   </ItemGroup>
 
 </Project>

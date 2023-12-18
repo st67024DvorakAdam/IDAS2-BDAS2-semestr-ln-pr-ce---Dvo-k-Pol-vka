@@ -90,9 +90,15 @@
             </DataGrid.CellStyle>
         </DataGrid>
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10" >
-            <Button Content="Přidat" Margin="5" Padding="10,3" Command="{Binding AddCommand}" Height="30" FontSize="15"/>
-            <Button Content="Upravit" Margin="5" Padding="10,3" Command="{Binding EditCommand}" Height="30" FontSize="15"/>
-            <Button Content="Odebrat" Margin="5" Padding="10,3" Command="{Binding DeleteCommand}" Height="30" FontSize="15"/>
+            <Button Content="Přidat" Margin="5" Padding="10,3" Command="{Binding AddCommand}" Height="30" FontSize="15"
+                    Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" Cursor="Hand" Template="{StaticResource NoMouseOverButtonTemplate}"
+                    Width="80"/>
+            <Button Content="Upravit" Margin="5" Padding="10,3" Command="{Binding EditCommand}" Height="30" FontSize="15"
+                    Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" Cursor="Hand" Template="{StaticResource NoMouseOverButtonTemplate}"
+                    Width="80"/>
+            <Button Content="Odebrat" Margin="5" Padding="10,3" Command="{Binding DeleteCommand}" Height="30" FontSize="15"
+                    Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" Cursor="Hand" Template="{StaticResource NoMouseOverButtonTemplate}"
+                    Width="80"/>
         </StackPanel>
     </Grid>
 </UserControl>

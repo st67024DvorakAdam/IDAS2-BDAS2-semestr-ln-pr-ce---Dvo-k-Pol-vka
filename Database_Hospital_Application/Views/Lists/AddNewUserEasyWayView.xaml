@@ -91,7 +91,8 @@
               SelectedValuePath="Id" SelectedValue="{Binding NewEmployee.RoleID}">      
             </ComboBox>
 
-            <Button Grid.Row="11" Grid.Column="1" Margin="5" Width="270" Height="20" Content="Přidat zaměstnance" Command="{Binding AddCommand}"/>
+            <Button Grid.Row="11" Grid.Column="1" Margin="5" Width="270" Height="30" Content="Přidat zaměstnance" Command="{Binding AddCommand}"
+                     Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" Cursor="Hand" Template="{StaticResource NoMouseOverButtonTemplate}"/>
 
             <!--grid-column 2-->
             <TextBlock Text="Email" FontSize="18" Grid.Row="1" Grid.Column="2" Margin="5" HorizontalAlignment="Center" Foreground="White"/>
@@ -101,7 +102,8 @@
             <TextBox x:Name="PhoneTextBox" Background="Transparent" Foreground="White" Height="25" FontSize="16" Grid.Row="4" Grid.Column="2" Margin="5" Width="270" 
             PreviewTextInput="TextBox_PreviewTextInputForPhoneNumber" HorizontalAlignment="Center" Text="{Binding NewContact.PhoneNumber}"/>
             <CheckBox x:Name="OwnPhtoCheckBox" IsChecked="{Binding IsSelected, Mode=TwoWay}" Grid.Row="5" Grid.Column="2" Content="Vlastní fotografie" Foreground="White" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Click="OwnPhtoCheckBox_Clicked"/>
-            <Button x:Name="UploadOwnPhotoButton" Grid.Row="6" Grid.Column="2" Margin="5" Width="270" Content="Nahrát vlastní fotografii" Command="{Binding UploadPhotoCommand}"/>
+            <Button x:Name="UploadOwnPhotoButton" Grid.Row="6" Grid.Column="2" Margin="5" Width="270" Content="Nahrát vlastní fotografii" Command="{Binding UploadPhotoCommand}"
+                    Height="30" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" Cursor="Hand" Template="{StaticResource NoMouseOverButtonTemplate}"/>
         </Grid>
     </Grid>
 </UserControl>
