@@ -57,12 +57,13 @@
             </StackPanel>
 
 
-            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="211,0,0,0" Width="550">
+            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="211,0,0,0" Width="660">
                 <Button Cursor="Hand" Content="Osobní údaje" Command="{Binding PersonalDetailsCommand}" Margin="10" Width="90" Height="30" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" Template="{StaticResource NoMouseOverButtonTemplate}"/>
                 <Button Cursor="Hand" Content="Anamnéza" Command="{Binding AnamnesisCommand}" Margin="10" Width="90" Height="30" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" Template="{StaticResource NoMouseOverButtonTemplate}"/>
                 <Button Cursor="Hand" Content="Zákroky" Command="{Binding ProceduresCommand}" Margin="10" Width="90" Height="30" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" Template="{StaticResource NoMouseOverButtonTemplate}"/>
                 <Button Cursor="Hand" Content="Aktuální nemoci" Command="{Binding ActualIllnessCommand}" Margin="10" Width="90" Height="30" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" Template="{StaticResource NoMouseOverButtonTemplate}"/>
                 <Button Cursor="Hand" Content="Hospitalizace" Command="{Binding HospitalizationCommand}" Margin="10" Width="90" Height="30" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" Template="{StaticResource NoMouseOverButtonTemplate}"/>
+                <Button Cursor="Hand" Content="Kompletní výpis" Command="{Binding DownloadReportCommand}" Margin="10" Width="90" Height="30" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" Template="{StaticResource NoMouseOverButtonTemplate}"/>
             </StackPanel>
         </Grid>
 

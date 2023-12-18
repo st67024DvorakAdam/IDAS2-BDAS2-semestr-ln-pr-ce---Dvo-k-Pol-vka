@@ -10,6 +10,7 @@ using System.Windows.Input;
 using Database_Hospital_Application.Commands;
 using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.Models.Repositories;
+using Database_Hospital_Application.Models.Tools;
 using Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewVM;
 using Database_Hospital_Application.Views.Assistant;
 using Database_Hospital_Application.Views.Doctor.Patient;
@@ -88,6 +89,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
         public ICommand ProceduresCommand { get; private set; }
         public ICommand ActualIllnessCommand { get; private set; }
         public ICommand HospitalizationCommand { get; private set; }
+        public ICommand DownloadReportCommand {  get; private set; }
 
         public DoctorPatientVM(User user)
         {
@@ -98,6 +100,12 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
             ProceduresCommand = new RelayCommand(ExecuteProcedures, CanExecutePatientRelatedCommands);
             ActualIllnessCommand = new RelayCommand(ExecuteActualIllness, CanExecutePatientRelatedCommands);
             HospitalizationCommand = new RelayCommand(ExecuteHospitalization, CanExecutePatientRelatedCommands);
+            DownloadReportCommand = new RelayCommand(DownloadPatientReport, CanExecutePatientRelatedCommands);
+        }
+
+        private void DownloadPatientReport(object? obj)
+        {
+            PdfGenerator.GeneratePdfForPatient(CurrentPatient);
         }
 
         private async void ExecuteSearchPatient(object parameter)
@@ -333,6 +341,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
             (ProceduresCommand as RelayCommand)?.RaiseCanExecuteChanged();
             (ActualIllnessCommand as RelayCommand)?.RaiseCanExecuteChanged();
             (HospitalizationCommand as RelayCommand)?.RaiseCanExecuteChanged();
+            (DownloadReportCommand as RelayCommand)?.RaiseCanExecuteChanged();
         }
 
         private bool CanExecutePatientRelatedCommands(object parameter)
