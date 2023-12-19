@@ -105,7 +105,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM
 
         private void DownloadPatientReport(object? obj)
         {
-            PdfGenerator.GeneratePdfForPatient(CurrentPatient);
+            PdfGenerator.GenerateAndDownloadPdfForPatient(CurrentPatient);
         }
 
         private async void ExecuteSearchPatient(object parameter)

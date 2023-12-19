@@ -112,7 +112,7 @@ namespace Database_Hospital_Application.Models.Repositories
                         string subject = "Ověřovací kód pro přihlášení";
                         string body = $"Váš ověřovací kód je: {verificationCode}";
 
-                        await emailSender.SendEmailAsync(c.Email, subject, body);
+                        //await emailSender.SendEmailAsync(c.Email, subject, body);
 
                     }
                 }
