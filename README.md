@@ -1,6 +1,6 @@
 # IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka
 # Přihlašovací údaje do aplikace:
-##Role: administrátor
+## Role: administrátor
 username: admin
 heslo: admin
 
@@ -19,7 +19,7 @@ heslo: asistent
 ## Role: host
 přihlášení pomocí tlačítka "Pokračovat bez přihlášení"
 
-#Přihlašovací údaje do reálných emailových schránek
+# Přihlašovací údaje do reálných emailových schránek
 (kvůli dvoufázovému ověření přihlašovacích údajů do aplikace.)
 
 ## Email pro roli admin
