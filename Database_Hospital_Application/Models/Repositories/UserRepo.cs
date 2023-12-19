@@ -19,6 +19,9 @@ using Database_Hospital_Application.ViewModels.ViewsVM;
 using System.Collections;
 using Microsoft.Extensions.Configuration;
 using System.IO;
+using Database_Hospital_Application.ViewModels.Dialogs.Edit;
+using Database_Hospital_Application.Views.Lists.Dialogs.Illness;
+using Database_Hospital_Application.Views;
 
 namespace Database_Hospital_Application.Models.Repositories
 {
@@ -121,6 +124,14 @@ namespace Database_Hospital_Application.Models.Repositories
                         string body = $"Váš ověřovací kód je: {verificationCode}";
 
                         await emailSender.SendEmailAsync(c.Email, subject, body);
+
+                        VerifyVM verifyVM = new VerifyVM(verificationCode);
+                        VerificationView verificationView = new VerificationView(verifyVM);
+                        bool? dialogResult = verificationView.ShowDialog();
+                        if (dialogResult!=null && dialogResult == true) 
+                        {
+                            
+                        }
 
                     }
                 }

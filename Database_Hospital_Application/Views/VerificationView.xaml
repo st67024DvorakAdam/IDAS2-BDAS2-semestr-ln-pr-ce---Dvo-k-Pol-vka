@@ -37,7 +37,7 @@
             
 
             <Label Content="4-místný kód:" Foreground="White" Margin="5,5,5,5"/>
-            <TextBox Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" 
+            <TextBox Text="{Binding Code, UpdateSourceTrigger=PropertyChanged}" 
                      Margin="5,5,5,5" Width="250" PreviewTextInput="TextBox_PreviewTextInputForCode"/>
             
             <Button Cursor="Hand" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Ověřit" Command="{Binding VerifyCommand}" Margin="5,25,5,5" Height="35" 
