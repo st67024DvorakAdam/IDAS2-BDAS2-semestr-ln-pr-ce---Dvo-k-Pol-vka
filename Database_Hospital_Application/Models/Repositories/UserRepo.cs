@@ -24,9 +24,11 @@ namespace Database_Hospital_Application.Models.Repositories
     {
 
         private DatabaseTools.DatabaseTools dbTools = new DatabaseTools.DatabaseTools();
-
+        private TwoWayAuth emailSender = new TwoWayAuth();
         public ObservableCollection<User> users { get; set; }
 
+
+        
         public async Task<User> LoginUserAsync(string username, string password)
         {
             string commandText = "get_user";
@@ -94,12 +96,25 @@ namespace Database_Hospital_Application.Models.Repositories
                 if (result.Rows[0]["EMAIL"] != DBNull.Value && !string.IsNullOrEmpty(result.Rows[0]["EMAIL"].ToString())
                     && result.Rows[0]["TELEFON"] != DBNull.Value && !string.IsNullOrEmpty(result.Rows[0]["TELEFON"].ToString())) 
                 {
+
                     Contact c = new Contact
                     {
                         Email = result.Rows[0]["EMAIL"].ToString(),
                         PhoneNumber = Convert.ToInt32(result.Rows[0]["TELEFON"])
                     };
                     loggedInUser.Employee._contact = c;
+
+                    if (!string.IsNullOrEmpty(c.Email))
+                    {
+                        int verificationCode = CodeGenerator.Generate4DigitCode();
+
+                       
+                        string subject = "Ověřovací kód pro přihlášení";
+                        string body = $"Váš ověřovací kód je: {verificationCode}";
+
+                        await emailSender.SendEmailAsync(c.Email, subject, body);
+
+                    }
                 }
                 else
                 {
