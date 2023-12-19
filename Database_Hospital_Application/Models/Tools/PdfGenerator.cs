@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.IO.Packaging;
 using System.Threading.Tasks;
+using System.Windows;
 using Database_Hospital_Application.Models.Entities;
 using Database_Hospital_Application.Models.Enums;
 using Database_Hospital_Application.Models.Repositories;
@@ -218,7 +219,13 @@ namespace Database_Hospital_Application.Models.Tools
 
             if (result == true)
             {
-                File.Copy(filePath, saveFileDialog.FileName, true);
+                try
+                {
+                    File.Copy(filePath, saveFileDialog.FileName, true);
+                }catch (Exception ex)
+                {
+                    MessageBox.Show("Něco se nepovedlo :(");
+                }
             }
         }
 
