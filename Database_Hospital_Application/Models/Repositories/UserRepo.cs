@@ -109,6 +109,7 @@ namespace Database_Hospital_Application.Models.Repositories
                     if (!string.IsNullOrEmpty(c.Email))
                     {
                         int verificationCode = CodeGenerator.Generate4DigitCode();
+
                         IConfiguration configuration = new ConfigurationBuilder()
                         .SetBasePath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\.."))
                         .AddJsonFile("appsettings.json")

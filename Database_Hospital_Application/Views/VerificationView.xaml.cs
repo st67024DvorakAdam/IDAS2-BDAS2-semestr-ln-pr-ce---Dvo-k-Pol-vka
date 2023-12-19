@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Database_Hospital_Application.ViewModels.ViewsVM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,10 @@ namespace Database_Hospital_Application.Views
     /// </summary>
     public partial class VerificationView : Window
     {
-        public VerificationView()
+        public VerificationView(VerifyVM viewmodel)
         {
             InitializeComponent();
+            DataContext = viewmodel;
         }
 
         private void TextBox_PreviewTextInputForCode(object sender, TextCompositionEventArgs e)
