@@ -1,4 +1,6 @@
-﻿using Database_Hospital_Application.ViewModels.ViewsVM;
+﻿using Database_Hospital_Application.Models.Tools;
+using Database_Hospital_Application.ViewModels.ViewsVM;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -16,9 +18,11 @@ namespace Database_Hospital_Application
         protected override void OnStartup(StartupEventArgs e)
         {
 
+            
+
             MainWindow = new LoginWindow
             {
-                //DataContext = new LoginWindowViewModel()
+                //DataContext = new LoginWindowViewModel(twoWayAuth)
             };
 
             MainWindow.Show();

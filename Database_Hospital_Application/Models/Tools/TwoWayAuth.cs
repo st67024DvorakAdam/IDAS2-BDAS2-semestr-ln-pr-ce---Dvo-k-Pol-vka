@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
@@ -21,12 +22,17 @@ namespace Database_Hospital_Application.Models.Tools
             this.smtpPassword = smtpPassword;
         }
 
-        public TwoWayAuth()
+        public TwoWayAuth(IConfiguration configuration)
         {
-            this.smtpServer = "smtp.gmail.com";
-            this.smtpPort = 587;
-            this.smtpUsername = "davidecekcz@gmail.com";
-            this.smtpPassword = "oxaqutpssxmdsimr"; 
+            if (configuration == null)
+            {
+                throw new ArgumentNullException(nameof(configuration));
+            }
+            var emailConfiguration = configuration.GetSection("EmailConfiguration");
+            this.smtpServer = emailConfiguration["SmtpServer"];
+            this.smtpPort = int.Parse(emailConfiguration["SmtpPort"]);
+            this.smtpUsername = emailConfiguration["SmtpUsername"];
+            this.smtpPassword = emailConfiguration["SmtpPassword"];
         }
 
         public async Task SendEmailAsync(string toEmailAddress, string subject, string body)

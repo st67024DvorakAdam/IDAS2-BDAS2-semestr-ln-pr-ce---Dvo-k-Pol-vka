@@ -17,6 +17,7 @@ using System.Windows.Controls;
 using Database_Hospital_Application.Models.Tools;
 using Database_Hospital_Application.ViewModels.ViewsVM;
 using System.Collections;
+using Microsoft.Extensions.Configuration;
 
 namespace Database_Hospital_Application.Models.Repositories
 {
@@ -24,7 +25,7 @@ namespace Database_Hospital_Application.Models.Repositories
     {
 
         private DatabaseTools.DatabaseTools dbTools = new DatabaseTools.DatabaseTools();
-        private TwoWayAuth emailSender = new TwoWayAuth();
+        
         public ObservableCollection<User> users { get; set; }
 
 
@@ -107,12 +108,17 @@ namespace Database_Hospital_Application.Models.Repositories
                     if (!string.IsNullOrEmpty(c.Email))
                     {
                         int verificationCode = CodeGenerator.Generate4DigitCode();
+                        MessageBox.Show($"Current Directory: {Environment.CurrentDirectory}");
+                        IConfiguration configuration = new ConfigurationBuilder()
+                        .AddJsonFile("appsettings.json")
+                        .Build();
 
-                       
+                        TwoWayAuth emailSender = new TwoWayAuth(configuration);
+
                         string subject = "Ověřovací kód pro přihlášení";
                         string body = $"Váš ověřovací kód je: {verificationCode}";
 
-                        //await emailSender.SendEmailAsync(c.Email, subject, body);
+                        await emailSender.SendEmailAsync(c.Email, subject, body);
 
                     }
                 }
