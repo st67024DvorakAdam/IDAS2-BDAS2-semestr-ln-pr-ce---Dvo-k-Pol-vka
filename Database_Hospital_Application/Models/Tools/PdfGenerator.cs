@@ -7,8 +7,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -43,10 +45,29 @@ namespace Database_Hospital_Application.Models.Tools
                 p {{
                     font-size: 10px;
                 }}
+                .image-text-container {{display: flex;
+                    align-items: center;
+                }}
+
+                .side-image {{width: 30px;
+                    height: 30px;
+                    margin-right: 10px;
+                }}
+
+                .side-text {{margin: 0;
+                }}
+
             </style>
         </head>
         <body>
-            
+            <div class=""image-text-container"">
+                <img src=""https://eduroam.upce.cz/favicon/ms-icon-310x310.png"" alt=""Obrázek"" class=""side-image"">
+                <p class=""side-text"" style=""font-size: 20px; color: red; font-weight: bold;"">Nemocnice UPCE</p>
+            </div>
+
+            <div style=""position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: -1; opacity: 0.13;"">
+             <img src=""https://eduroam.upce.cz/favicon/ms-icon-310x310.png"" alt=""Logo"" style=""max-width: 100%; height: auto;"" />
+            </div>
     ");
             contentBuilder.AppendLine($"<p style=\"text-align: right;\">Datum vygenerování: {DateTime.Now.ToString("dd.MM.yyyy HH:mm")}</p>");
             contentBuilder.AppendLine($"<h1>Report o pacientovi {patient.FirstName} {patient.LastName}</h1>");
@@ -101,13 +122,27 @@ namespace Database_Hospital_Application.Models.Tools
     ");
 
             string content = contentBuilder.ToString();
-            PdfDocument pdf = new ChromePdfRenderer().RenderHtmlAsPdf(content);
+
+            //PdfDocument pdf = new ChromePdfRenderer().RenderHtmlAsPdf(content);
+
+            PdfDocument pdf = null;
+            try
+            {
+                // Zde probíhá vykreslování PDF
+                pdf = await Task.Run(() => new ChromePdfRenderer().RenderHtmlAsPdf(content));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Chyba při generování PDF: " + ex.Message, "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
 
             // Získání cesty k adresáři "Downloads"
             string downloadsPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads";
 
             // Uložení vygenerovaného PDF do složky "Downloads"
             string pdfFilePath = Path.Combine(downloadsPath, pdfName);
+            if(pdf!= null)
             pdf.SaveAs(pdfFilePath);
 
             // Otevření vygenerovaného PDF v externím PDF prohlížeči

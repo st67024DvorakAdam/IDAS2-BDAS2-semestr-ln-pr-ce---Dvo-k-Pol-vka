@@ -57,13 +57,19 @@
             </StackPanel>
 
 
-            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="211,0,0,0" Width="660">
+            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="211,0,0,0" Width="680">
                 <Button Cursor="Hand" Content="Osobní údaje" Command="{Binding PersonalDetailsCommand}" Margin="10" Width="90" Height="30" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" Template="{StaticResource NoMouseOverButtonTemplate}"/>
                 <Button Cursor="Hand" Content="Anamnéza" Command="{Binding AnamnesisCommand}" Margin="10" Width="90" Height="30" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" Template="{StaticResource NoMouseOverButtonTemplate}"/>
                 <Button Cursor="Hand" Content="Zákroky" Command="{Binding ProceduresCommand}" Margin="10" Width="90" Height="30" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" Template="{StaticResource NoMouseOverButtonTemplate}"/>
                 <Button Cursor="Hand" Content="Aktuální nemoci" Command="{Binding ActualIllnessCommand}" Margin="10" Width="90" Height="30" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" Template="{StaticResource NoMouseOverButtonTemplate}"/>
                 <Button Cursor="Hand" Content="Hospitalizace" Command="{Binding HospitalizationCommand}" Margin="10" Width="90" Height="30" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" Template="{StaticResource NoMouseOverButtonTemplate}"/>
-                <Button Cursor="Hand" Content="Kompletní výpis" Command="{Binding DownloadReportCommand}" Margin="10" Width="90" Height="30" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" Template="{StaticResource NoMouseOverButtonTemplate}"/>
+                <Button Cursor="Hand" Command="{Binding DownloadReportCommand}" Margin="10" Width="Auto" Height="30" Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" Template="{StaticResource NoMouseOverButtonTemplate}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-download-30.png?raw=true" Width="20" Height="20" Margin="0,0,5,0"/>
+                        <TextBlock Text="Kompletní výpis" Margin="0,0,5,0"/>
+                    </StackPanel>
+                </Button>
+
             </StackPanel>
         </Grid>
 
