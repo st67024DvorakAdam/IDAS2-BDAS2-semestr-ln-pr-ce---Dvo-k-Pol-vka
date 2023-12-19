@@ -4,37 +4,37 @@
 username: admin
 heslo: admin
 
-##Role: doktor
+## Role: doktor
 username: doktor
 heslo: doktor
 
-##Role: sestra
+## Role: sestra
 username: sestra
 heslo: sestra
 
-##Role: asistent
+## Role: asistent
 username: asistent
 heslo: asistent
 
-##Role: host
+## Role: host
 přihlášení pomocí tlačítka "Pokračovat bez přihlášení"
 
 #Přihlašovací údaje do reálných emailových schránek
 (kvůli dvoufázovému ověření přihlašovacích údajů do aplikace.)
 
-##Email pro roli admin
+## Email pro roli admin
 Email: spravce.upcehospital@gmail.com
 Heslo: UPCEhospital123
 
-##Email pro roli doktor
+## Email pro roli doktor
 Email: doktor.upcehospital@gmail.com
 Heslo: UPCEhospital123
 
-##Email pro roli sestra
+## Email pro roli sestra
 Email: sestra.upcehospital@gmail.com
 Heslo: UPCEhospital123
 
-##Email pro roli asistent
+## Email pro roli asistent
 Email: asistent.upcehospital@gmail.com
 Heslo: UPCEhospital123
 
