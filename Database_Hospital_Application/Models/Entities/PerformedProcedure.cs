@@ -16,5 +16,10 @@ namespace Database_Hospital_Application.Models.Entities
         public long? BirthNumberOfPatient{get;set;}
 
         public string? IsCoveredByInsurenceString { get; set; }
+
+        public override string? ToString()
+        {
+            return $"{Name} | {Price}Kč | Kryto poj.:{(IsCoveredByInsurence == true? "Ano":"Ne")}";
+        }
     }
 }

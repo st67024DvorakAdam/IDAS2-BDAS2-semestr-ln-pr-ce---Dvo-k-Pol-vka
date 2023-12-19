@@ -31,5 +31,10 @@ namespace Database_Hospital_Application.Models.Entities
         }
 
         public HealthInsurance() { }
+
+        public override string? ToString()
+        {
+            return $"{Name} ({Code})";
+        }
     }
 }

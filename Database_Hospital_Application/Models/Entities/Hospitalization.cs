@@ -30,5 +30,9 @@ namespace Database_Hospital_Application.Models.Entities
             DepartmentId = departmentId;
         }
 
+        public override string? ToString()
+        {
+            return $"{(DateOut == null?"AKTUÁLNÍ - ":"")}{Details}, Oddělení:{DepartmentName}, Od:{DateIn.ToString()} {(DateOut != null?(", Do: " + DateOut.ToString()):"")}";
+        }
     }
 }

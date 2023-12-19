@@ -43,5 +43,9 @@ namespace Database_Hospital_Application.Models.Entities
 
         public Address() { }
 
+        public override string? ToString()
+        {
+            return $"{Street} {HouseNumber}, {City}, {Country} {ZipCode}";
+        }
     }
 }

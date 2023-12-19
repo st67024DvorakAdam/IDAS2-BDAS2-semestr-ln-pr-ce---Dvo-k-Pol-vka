@@ -33,6 +33,11 @@ namespace Database_Hospital_Application.Models.Entities
             }
         }
 
-        public Contact() { }   
+        public Contact() { }
+
+        public override string? ToString()
+        {
+            return $"{Email}  |  {PhoneNumber}";
+        }
     }
 }

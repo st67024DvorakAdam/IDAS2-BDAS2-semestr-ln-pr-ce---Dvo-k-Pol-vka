@@ -134,5 +134,11 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM.DoctorVM.PatientViewV
     {
         public Illness? Illness{ set; get; }
         public Drug? PrescriptedPills { set; get; }
+
+        public override string? ToString()
+        {
+            return $"Nemoc: {Illness.Name}, {(Illness.Details == ""?"":"Detaily: ")}{Illness.Details} " +
+                $"{(PrescriptedPills == null?"":"Lék: ")}{(PrescriptedPills == null?"":PrescriptedPills.Name+",")} {(PrescriptedPills == null ? "" : PrescriptedPills.Dosage + "x denně")}";
+        }
     }
 }
