@@ -14,13 +14,13 @@ namespace Database_Hospital_Application.Models.Tools
         private readonly string smtpUsername;
         private readonly string smtpPassword;
 
-        public TwoWayAuth(string smtpServer, int smtpPort, string smtpUsername, string smtpPassword)
-        {
-            this.smtpServer = smtpServer;
-            this.smtpPort = smtpPort;
-            this.smtpUsername = smtpUsername;
-            this.smtpPassword = smtpPassword;
-        }
+        //public TwoWayAuth(string smtpServer, int smtpPort, string smtpUsername, string smtpPassword)
+        //{
+        //    this.smtpServer = smtpServer;
+        //    this.smtpPort = smtpPort;
+        //    this.smtpUsername = smtpUsername;
+        //    this.smtpPassword = smtpPassword;
+        //}
 
         public TwoWayAuth(IConfiguration configuration)
         {

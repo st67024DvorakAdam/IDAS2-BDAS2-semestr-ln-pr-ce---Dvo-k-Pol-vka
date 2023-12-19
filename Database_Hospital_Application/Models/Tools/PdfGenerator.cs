@@ -123,8 +123,6 @@ namespace Database_Hospital_Application.Models.Tools
 
             string content = contentBuilder.ToString();
 
-            //PdfDocument pdf = new ChromePdfRenderer().RenderHtmlAsPdf(content);
-
             PdfDocument pdf = null;
             try
             {

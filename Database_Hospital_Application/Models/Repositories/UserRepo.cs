@@ -18,6 +18,7 @@ using Database_Hospital_Application.Models.Tools;
 using Database_Hospital_Application.ViewModels.ViewsVM;
 using System.Collections;
 using Microsoft.Extensions.Configuration;
+using System.IO;
 
 namespace Database_Hospital_Application.Models.Repositories
 {
@@ -108,8 +109,8 @@ namespace Database_Hospital_Application.Models.Repositories
                     if (!string.IsNullOrEmpty(c.Email))
                     {
                         int verificationCode = CodeGenerator.Generate4DigitCode();
-                        MessageBox.Show($"Current Directory: {Environment.CurrentDirectory}");
                         IConfiguration configuration = new ConfigurationBuilder()
+                        .SetBasePath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\.."))
                         .AddJsonFile("appsettings.json")
                         .Build();
 
