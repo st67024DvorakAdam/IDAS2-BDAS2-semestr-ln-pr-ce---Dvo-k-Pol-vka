@@ -32,6 +32,8 @@ namespace Database_Hospital_Application.Models.Tools
             // Otevření dokumentu pro editaci
             document.Open();
 
+            document.AddLanguage("cs-CZ"); // Nastavení jazyka dokumentu
+
             document = await EditDocument(document, patient); 
 
             // Přidání obsahu do PDF
@@ -46,10 +48,10 @@ namespace Database_Hospital_Application.Models.Tools
 
         private static async Task<Document> EditDocument(Document document, Patient patient)
         {
-            Font textFont = FontFactory.GetFont(FontFactory.HELVETICA, 10f);
-            Font textBoldFont = FontFactory.GetFont(FontFactory.HELVETICA, 10f, Font.BOLD);
-            Font titleFont = FontFactory.GetFont(FontFactory.HELVETICA, 15f, Font.BOLD);
-            Font title2Font = FontFactory.GetFont(FontFactory.HELVETICA, 13f, Font.BOLD);
+            Font textFont = FontFactory.GetFont("Arial", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED, 10f);
+            Font textBoldFont = FontFactory.GetFont("Arial", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED, 10f, Font.BOLD);
+            Font titleFont = FontFactory.GetFont("Arial", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED, 15f, Font.BOLD);
+            Font title2Font = FontFactory.GetFont("Arial", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED, 13f, Font.BOLD);
 
             string generatedDate = "Datum vygenerování: " + DateTime.Now.ToString("dd.MM.yyyy HH:mm");
             string titleText = "Úplný výpis o pacientovi";
@@ -136,7 +138,7 @@ namespace Database_Hospital_Application.Models.Tools
             document.Add(smokerParagraph);
 
             // Alergik
-            Chunk boldAllergicLabel = new Chunk(allergicLabelText, FontFactory.GetFont(FontFactory.HELVETICA, 10f, Font.BOLD));
+            Chunk boldAllergicLabel = new Chunk(allergicLabelText, textBoldFont);
             Chunk patientAllergic = new Chunk((patient.HealthInsurance.IsAllergic ? "Ano" : "Ne"), textFont);
             Paragraph allergicParagraph = new Paragraph();
             allergicParagraph.Add(boldAllergicLabel);
