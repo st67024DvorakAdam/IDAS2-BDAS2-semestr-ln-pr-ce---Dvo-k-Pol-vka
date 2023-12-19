@@ -127,11 +127,13 @@ namespace Database_Hospital_Application.Models.Repositories
 
                         VerifyVM verifyVM = new VerifyVM(verificationCode);
                         VerificationView verificationView = new VerificationView(verifyVM);
-                        bool? dialogResult = verificationView.ShowDialog();
-                        if (dialogResult!=null && dialogResult == true) 
+
+                        verificationView.ShowDialog();
+                        if(verifyVM.IsVerified != true)
                         {
-                            
+                            return null;
                         }
+                        
 
                     }
                 }

@@ -23,12 +23,25 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
                 UpdateCommandStates();
             }
         }
+
+        private bool _isVerified;
+        public bool IsVerified
+        {
+            get { return _isVerified; }
+            set
+            {
+                _isVerified = value;
+                OnPropertyChange(nameof(IsVerified));
+                
+            }
+        }
         public VerifyVM(int code)
         {
             _verificationCode = code;
             InitializeCommands();
         }
 
+        public event Action CloseRequested;
         public ICommand VerifyCommand { get; private set; }
 
         private void InitializeCommands()
@@ -46,9 +59,24 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             return _code.ToString().Length == 4;
         }
 
+        private void Cancel()
+        {
+            CloseRequested?.Invoke();
+
+        }
+
         private void VerifyCodeAction(object? obj)
         {
-            throw new NotImplementedException();
+            if (_code.ToString().Equals(_verificationCode.ToString()))
+            {
+                _isVerified = true;
+                CloseRequested?.Invoke();
+            }
+            else
+            {
+                _isVerified = false;
+                CloseRequested?.Invoke();
+            }
         }
     }
 }

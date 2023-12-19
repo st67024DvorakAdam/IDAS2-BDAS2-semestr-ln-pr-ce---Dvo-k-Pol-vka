@@ -21,10 +21,16 @@ namespace Database_Hospital_Application.Views
     /// </summary>
     public partial class VerificationView : Window
     {
-        public VerificationView(VerifyVM viewmodel)
+        public VerificationView(VerifyVM viewModel)
         {
             InitializeComponent();
-            DataContext = viewmodel;
+            viewModel.CloseRequested += CloseWindow;
+            DataContext = viewModel;
+        }
+
+        private void CloseWindow()
+        {
+            this.Close();
         }
 
         private void TextBox_PreviewTextInputForCode(object sender, TextCompositionEventArgs e)
