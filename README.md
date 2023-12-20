@@ -1,4 +1,45 @@
 # IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka
+# Přihlašovací údaje do aplikace:
+## Role: administrátor
+username: admin
+heslo: admin
+
+## Role: doktor
+username: doktor
+heslo: doktor
+
+## Role: sestra
+username: sestra
+heslo: sestra
+
+## Role: asistent
+username: asistent
+heslo: asistent
+
+## Role: host
+přihlášení pomocí tlačítka "Pokračovat bez přihlášení"
+
+# Přihlašovací údaje do reálných emailových schránek
+(kvůli dvoufázovému ověření přihlašovacích údajů do aplikace.)
+
+## Email pro roli admin
+Email: spravce.upcehospital@gmail.com
+Heslo: UPCEhospital123
+
+## Email pro roli doktor
+Email: doktor.upcehospital@gmail.com
+Heslo: UPCEhospital123
+
+## Email pro roli sestra
+Email: sestra.upcehospital@gmail.com
+Heslo: UPCEhospital123
+
+## Email pro roli asistent
+Email: asistent.upcehospital@seznam.cz
+Heslo: UPCEhospital123
+
+
+
 # Požadavky
 1. ✅min. 10 tabulek navrženého datového modelu i s číselníky; •
 2. ✅min. 2 číselníky, v dokumentaci bude uvedeno, proč byly tabulky vybrány jako číselníky; • (role a oddělení)

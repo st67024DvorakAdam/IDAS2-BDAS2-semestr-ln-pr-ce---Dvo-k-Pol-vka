@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Background="#1a1f1f"
         WindowStartupLocation="CenterScreen"
-        Title="VerifyView" Height="450" Width="800">
+        Title="Ověření" Height="200" Width="300">
     <Window.Resources>
         <ControlTemplate x:Key="NoMouseOverButtonTemplate"   
                  TargetType="Button">
@@ -38,7 +38,7 @@
 
             <Label Content="4-místný kód:" Foreground="White" Margin="5,5,5,5"/>
             <TextBox Text="{Binding Code, UpdateSourceTrigger=PropertyChanged}" 
-                     Margin="5,5,5,5" Width="250" PreviewTextInput="TextBox_PreviewTextInputForCode"/>
+                     Margin="5,5,5,5" Width="125" PreviewTextInput="TextBox_PreviewTextInputForCode"/>
             
             <Button Cursor="Hand" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Ověřit" Command="{Binding VerifyCommand}" Margin="5,25,5,5" Height="35" 
                     Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc"/>
