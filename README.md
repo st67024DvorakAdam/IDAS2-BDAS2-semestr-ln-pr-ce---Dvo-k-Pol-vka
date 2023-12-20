@@ -35,7 +35,7 @@ Email: sestra.upcehospital@gmail.com
 Heslo: UPCEhospital123
 
 ## Email pro roli asistent
-Email: asistent.upcehospital@gmail.com
+Email: asistent.upcehospital@seznam.cz
 Heslo: UPCEhospital123
 
 
