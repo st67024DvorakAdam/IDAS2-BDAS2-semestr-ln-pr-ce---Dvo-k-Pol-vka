@@ -19,6 +19,18 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
         public ICommand LoginCommand { get; private set; }
         public ICommand LoginAsGuestCommand { get; private set; }
 
+        private bool _isLoggingIn;
+        public bool IsLoggingIn
+        {
+            get { return _isLoggingIn; }
+            set
+            {
+                _isLoggingIn = value;
+                OnPropertyChange(nameof(IsLoggingIn));
+                (LoginCommand as RelayCommand)?.RaiseCanExecuteChanged();
+            }
+        }
+
         private string _username;
         public string Username
         {
@@ -71,26 +83,29 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 
         private bool CanExecuteLogin()
         {
-            return !string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(Password);
+            return !IsLoggingIn && !string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(Password);
         }
 
         private async Task ExecuteLogin()
         {
             UserRepo userRepo = new UserRepo();
+            if (IsLoggingIn)
+                return;
+
             if (Username == null || Password == null)
             {
                 MessageBox.Show("Vyplňte prosím všechna pole!", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            // Pro hashování přímo z passwordBoxu -> to samé musí být hashované při přidávání Employee (hashovat hned z inputu)
-            //string salt = await userRepo.GetUserSaltByUsername(Username);
-            //string hashedPassword = PasswordHasher.HashPassword(Password, salt);
-            //User user = await userRepo.LoginUserAsync(Username, hashedPassword);
+            
+            
             User user;
             try
             {
+                IsLoggingIn = true;
                 user = await userRepo.LoginUserAsync(Username, Password);
+                IsLoggingIn = false;
             } catch
             {
                 return;
@@ -98,13 +113,14 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
             if (user == null)
             {
                 MessageBox.Show("Zadané přihlašovací údaje se neschodují!", "Info", MessageBoxButton.OK, MessageBoxImage.Error);
+                IsLoggingIn = false;
                 return;
             }
 
             if (user.Name == Username && user.Password == Password)
             {
-                MessageBox.Show($"Úspěšné přihlášení, username: {Username}", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
                 OpenProfileWindow(user);
+                IsLoggingIn = false;
             }
         }
 

@@ -12,7 +12,7 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
     public class VerifyVM : BaseViewModel
     {
         private DateTime _codeCreationTime;
-        private const int CodeValiditySeconds = 60;
+        private const int CodeValiditySeconds = 180;
 
         private int _verificationCode;
         public int VerificationCode

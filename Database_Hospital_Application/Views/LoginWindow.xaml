@@ -10,7 +10,8 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        Icon="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-hospital-64.png?raw=true">
 
     <Window.InputBindings>
         <KeyBinding Key="Enter" Command="{Binding LoginCommand}" />
@@ -247,15 +248,7 @@
                                 HorizontalAlignment="Center"
                                 Margin="0,15,0,0">
 
-                        <!--<Button Content="Pokračovat bez přihlášení" 
-                                Background="Transparent" FontSize="12" FontFamily="Montserrat" FontWeight="Medium" Foreground="DarkGray" BorderThickness="0"
-                                Command="{Binding LoginAsGuestCommand}">
-                            <Button.Template>
-                                <ControlTemplate TargetType="Button">
-                                    <TextBlock Text="{TemplateBinding Content}" />
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>-->
+                        
                         <Button Command="{Binding LoginAsGuestCommand}"
                             Background="Transparent"
                             FontSize="12"

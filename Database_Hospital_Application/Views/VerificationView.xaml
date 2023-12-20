@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Background="#1a1f1f"
         WindowStartupLocation="CenterScreen"
-        Title="Ověření" Height="200" Width="300">
+        Title="Ověření" Height="230" Width="300" ResizeMode="NoResize"
+        Icon="https://github.com/st67024DvorakAdam/IDAS2-BDAS2-semestralni_prace-Dvorak-Polivka/blob/main/Images/icons8-hospital-64.png?raw=true">
     <Window.Resources>
         <ControlTemplate x:Key="NoMouseOverButtonTemplate"   
                  TargetType="Button">
@@ -36,12 +37,12 @@
 
             
 
-            <Label Content="4-místný kód:" Foreground="White" Margin="5,5,5,5"/>
+            <Label Content="4-místný kód:" Foreground="White" Margin="5,5,5,5" FontSize="18"/>
             <TextBox Text="{Binding Code, UpdateSourceTrigger=PropertyChanged}" 
-                     Margin="5,5,5,5" Width="125" PreviewTextInput="TextBox_PreviewTextInputForCode"/>
+                     Margin="5,5,5,5" Padding="3,3,3,3" Width="125" PreviewTextInput="TextBox_PreviewTextInputForCode" Height="45" FontSize="25" VerticalAlignment="Center"/>
             
             <Button Cursor="Hand" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Ověřit" Command="{Binding VerifyCommand}" Margin="5,25,5,5" Height="35" 
-                    Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc"/>
+                    Background="#524247" BorderBrush="#272B2F" Foreground="#c9b5bc" IsDefault="True"/>
         </StackPanel>
     </ScrollViewer>
 </Window>
