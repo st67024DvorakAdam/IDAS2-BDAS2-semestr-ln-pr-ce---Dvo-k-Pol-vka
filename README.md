@@ -49,10 +49,14 @@ Po stisku tlačítka přihlásit přijde na příslušný email ověřovací kó
 
 Každý uživatel si může editovat základní údaje, fotografii a heslo.
 Admin - Má možnost zjednodušeně přididávat nové uživatele (zaměstnance), má možnost se na jednotlivé uživatele emulovat a může editovat veškeré tabulky z db. Též vidí výpis logů a systém. katalogu.
+
 Doktor - Může si vyhledat pacienta podle rodného čísla, upravit mu data(přidat hospitalizaci, nemoc, lék atd.). Do osobních anamnéz se zapisuje automaticky. Může si stáhnout do PDF podrobnou zprávu o pacientovi.
 	Dále si může zobrazit seznam všech pacientů, všech svých podřízených, všech léků které předepsal, hospitalizací a může přijímat nového pacienta. Též si může zobrazit info a statistiky.
+ 
 Sestra - V omezenějším zobrazení si může vyhledat konkrétního pacienta, ale nemůže např. předepisovat léky. Dále vidí dávkování léků pro aktuálně hospitalizované pacienty na jejím oddělení, dále si může zobrazit všechny hospitalizace a její podřízené a info.
+
 Asistent - V podstatě jako sestra ale místo zobrazení léků může pacienty přijímat.
+
 Host - Může se jen seznámit s doktory.
 
 Ukončení aplikace proběhne při zavření okna.
