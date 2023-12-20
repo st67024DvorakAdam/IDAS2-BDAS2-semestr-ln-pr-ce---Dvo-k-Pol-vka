@@ -1,4 +1,5 @@
 ﻿using Database_Hospital_Application.Commands;
+using Database_Hospital_Application.Models.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,19 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
 {
     public class VerifyVM : BaseViewModel
     {
-        private int _verificationCode;
+        private DateTime _codeCreationTime;
+        private const int CodeValiditySeconds = 60;
 
+        private int _verificationCode;
+        public int VerificationCode
+        {
+            get { return _verificationCode; }
+            set
+                {
+                    _verificationCode = value;
+                    OnPropertyChange(nameof(VerificationCode));
+                    }
+                }
         private int _code;
         public int Code
         {
@@ -33,11 +45,22 @@ namespace Database_Hospital_Application.ViewModels.ViewsVM
                 _isVerified = value;
                 OnPropertyChange(nameof(IsVerified));
                 
+
             }
         }
-        public VerifyVM(int code)
+
+        
+        
+
+        public bool IsCodeStillValid()
         {
-            _verificationCode = code;
+            TimeSpan elapsedTime = DateTime.Now - _codeCreationTime;
+            return elapsedTime.TotalSeconds <= CodeValiditySeconds;
+        }
+        public VerifyVM()
+        {
+            _codeCreationTime = DateTime.Now;
+            _verificationCode = CodeGenerator.Generate4DigitCode();
             InitializeCommands();
         }
 

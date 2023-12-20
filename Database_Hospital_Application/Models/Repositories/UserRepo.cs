@@ -31,7 +31,7 @@ namespace Database_Hospital_Application.Models.Repositories
         private DatabaseTools.DatabaseTools dbTools = new DatabaseTools.DatabaseTools();
         
         public ObservableCollection<User> users { get; set; }
-
+        
 
         
         public async Task<User> LoginUserAsync(string username, string password)
@@ -111,8 +111,10 @@ namespace Database_Hospital_Application.Models.Repositories
 
                     if (!string.IsNullOrEmpty(c.Email))
                     {
-                        int verificationCode = CodeGenerator.Generate4DigitCode();
-
+                        
+                        VerifyVM verifyVM = new VerifyVM();
+                        VerificationView verificationView = new VerificationView(verifyVM);
+                        
                         IConfiguration configuration = new ConfigurationBuilder()
                         .SetBasePath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\.."))
                         .AddJsonFile("appsettings.json")
@@ -121,15 +123,14 @@ namespace Database_Hospital_Application.Models.Repositories
                         TwoWayAuth emailSender = new TwoWayAuth(configuration);
 
                         string subject = "Ověřovací kód pro přihlášení";
-                        string body = $"Váš ověřovací kód je: {verificationCode}";
+                        string body = $"Váš ověřovací kód je: {verifyVM.VerificationCode}";
 
                         await emailSender.SendEmailAsync(c.Email, subject, body);
 
-                        VerifyVM verifyVM = new VerifyVM(verificationCode);
-                        VerificationView verificationView = new VerificationView(verifyVM);
+                        
 
                         verificationView.ShowDialog();
-                        if(verifyVM.IsVerified != true)
+                        if(verifyVM.IsVerified != true || !verifyVM.IsCodeStillValid())
                         {
                             return null;
                         }
